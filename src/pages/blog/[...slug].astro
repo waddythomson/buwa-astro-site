@@ -1,0 +1,151 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts
+    .filter((post) => post.data.status === 'publish')
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const {
+  title,
+  description,
+  seoTitle,
+  seoDescription,
+  featuredImage,
+  featuredImageAlt,
+  canonicalUrl,
+  noIndex,
+  pubDate,
+  updatedDate,
+  author,
+  tags,
+  categories,
+} = post.data;
+---
+
+<BaseLayout
+  title={seoTitle || title}
+  description={seoDescription || description}
+  image={featuredImage}
+  imageAlt={featuredImageAlt}
+  canonicalUrl={canonicalUrl}
+  noIndex={noIndex}
+  type="article"
+  publishedTime={pubDate}
+  modifiedTime={updatedDate}
+  author={author}
+  tags={tags}
+>
+  <article class="post">
+    <header class="post-header">
+      <h1>{title}</h1>
+      
+      <div class="post-meta">
+        {author && <span class="author">By {author}</span>}
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+      </div>
+      
+      {categories.length > 0 && (
+        <div class="categories">
+          {categories.map((cat) => (
+            <a href={`/category/${cat.toLowerCase()}`} class="category">{cat}</a>
+          ))}
+        </div>
+      )}
+    </header>
+    
+    {featuredImage && (
+      <figure class="featured-image">
+        <img src={featuredImage} alt={featuredImageAlt || title} />
+      </figure>
+    )}
+    
+    <div class="post-content">
+      <Content />
+    </div>
+    
+    {tags.length > 0 && (
+      <footer class="post-footer">
+        <div class="tags">
+          <strong>Tags:</strong>
+          {tags.map((tag) => (
+            <a href={`/tag/${tag.toLowerCase()}`} class="tag">{tag}</a>
+          ))}
+        </div>
+      </footer>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .post-header {
+    margin-bottom: 2rem;
+  }
+  
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .post-meta {
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .categories {
+    margin-top: 0.5rem;
+  }
+  
+  .category, .tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    background: #f0f0f0;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+  
+  .featured-image {
+    margin: 0 0 2rem;
+  }
+  
+  .featured-image img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .post-content {
+    line-height: 1.8;
+  }
+  
+  .post-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+</style>

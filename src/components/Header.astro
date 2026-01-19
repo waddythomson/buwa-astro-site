@@ -1,0 +1,170 @@
+---
+const navItems = [
+  { label: 'Solutions', href: '/solutions', dropdown: [
+    { label: 'BuWa TV Advertising', href: '/screen-advertising' },
+    { label: 'Google Business Profile', href: '/google-business-profile' },
+    { label: 'Pay-Per-Click (PPC)', href: '/pay-per-click-ppc' },
+    { label: 'Website Design', href: '/website-design' },
+    { label: 'Geofencing', href: '/geofencing' },
+    { label: 'Social Media Ads', href: '/social-media-ads' },
+    { label: 'YouTube Ads', href: '/youtube-ads' },
+    { label: 'Connected TV/OTT', href: '/connected-tv-ott-ads' },
+    { label: 'All Solutions', href: '/solutions' },
+  ]},
+  { label: 'Network Partner', href: '/venue-partner' },
+  { label: 'Locations', href: '/locations' },
+  { label: 'About Us', href: '/about-us' },
+];
+---
+
+<header class="site-header">
+  <div class="header-container">
+    <a href="/" class="logo">
+      <img src="/uploads/2024/BuWa-Digital-Logo.png" alt="BuWa Digital" height="50" />
+    </a>
+    
+    <nav class="main-nav">
+      {navItems.map(item => (
+        <div class="nav-item">
+          <a href={item.href}>{item.label}</a>
+          {item.dropdown && (
+            <div class="dropdown">
+              {item.dropdown.map(subItem => (
+                <a href={subItem.href}>{subItem.label}</a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+    
+    <a href="/contact-us" class="header-cta">Schedule A Call</a>
+    
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo img {
+    height: 50px;
+    width: auto;
+  }
+  
+  .main-nav {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  .nav-item > a {
+    text-decoration: none;
+    color: #1a1a2e;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.2s;
+  }
+  
+  .nav-item > a:hover {
+    color: #e94560;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 1rem 0;
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s;
+  }
+  
+  .nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .dropdown a:hover {
+    background: #f8f9fa;
+    color: #e94560;
+  }
+  
+  .header-cta {
+    background: #e94560;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  
+  .header-cta:hover {
+    background: #d63850;
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #1a1a2e;
+    border-radius: 2px;
+  }
+  
+  @media (max-width: 768px) {
+    .main-nav, .header-cta {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: flex;
+    }
+  }
+</style>

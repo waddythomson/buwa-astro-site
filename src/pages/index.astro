@@ -1,0 +1,317 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "BuWa Digital - Indoor Digital Billboard Advertising";
+const description = "Reach more customers where they eat, shop, work, and play. Discover the power of BuWa TV: The indoor digital billboard network that makes your message impossible to ignore.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Reach More Customers Where They Eat, Shop, Work, and Play.</h1>
+      <p class="hero-subtitle">Discover the power of BuWa TV: The indoor digital billboard network that makes your message impossible to ignore.</p>
+      <a href="/contact-us" class="cta-button">Schedule A Call</a>
+    </div>
+  </section>
+
+  <!-- Problem/Solution Section -->
+  <section class="features">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature-image">
+          <img src="/uploads/2024/Indoor-Billboards.webp" alt="Indoor Billboards" loading="lazy" />
+        </div>
+        <div class="feature-content">
+          <div class="feature-item">
+            <h3>Are you trying to grow your local business?</h3>
+            <p>We understand how difficult – and expensive — it can be to get customers to pay attention.</p>
+          </div>
+          <div class="feature-item">
+            <h3>We Can Help!</h3>
+            <p>We help local business owners stop wasting money on underperforming ads by telling their story through locally targeted, full-motion video that delivers real results — without breaking the bank.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Be Seen. Be Trusted. Be Chosen!</h3>
+            <p>Customers trust brands that they recognize. By using vibrant visuals to tell your story, you gain valuable local exposure and <strong>turn recognition into trust</strong>— the trust that ultimately leads to being chosen. It's time to discover the power of BuWa TV!</p>
+          </div>
+          <a href="/contact-us" class="cta-button">Schedule A Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <span class="stat-number">400%</span>
+          <span class="stat-label">More Impactful Than Static Advertising</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">30%</span>
+          <span class="stat-label">Increase in Average Ticket Value</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">83%</span>
+          <span class="stat-label">Recall Among Consumers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Host Partner Network -->
+  <section class="network">
+    <div class="container">
+      <div class="network-grid">
+        <div class="network-content">
+          <h2>Host Partner Network</h2>
+          <p>Our mission is to help local businesses like yours reach their audience. Every month, millions of consumers see our screens and remember them.</p>
+          <p>Join the network of businesses that are prioritizing hyper-local advertising!</p>
+          <a href="/venue-partner" class="cta-button secondary">Learn More</a>
+        </div>
+        <div class="network-image">
+          <img src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="Venue Network" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marketing Solutions -->
+  <section class="solutions">
+    <div class="container">
+      <h2>Marketing Solutions</h2>
+      <div class="solution-grid">
+        <a href="/google-business-profile" class="solution-card">
+          <h3>Google Business Profile</h3>
+          <p>Optimize your profile to increase online visibility, improve local search rankings, and attract more customers to your business</p>
+        </a>
+        <a href="/pay-per-click-ppc" class="solution-card">
+          <h3>Pay-Per-Click (PPC)</h3>
+          <p>Drive immediate traffic and convert more leads with strategic, budget-friendly online advertising</p>
+        </a>
+        <a href="/website-design" class="solution-card">
+          <h3>Website Design</h3>
+          <p>Create a positive first impression, increase customer engagement and conversions</p>
+        </a>
+        <a href="/geofencing" class="solution-card">
+          <h3>Geofencing</h3>
+          <p>Increase foot traffic and boost sales by sending personalized ads to customers when they are near your business</p>
+        </a>
+      </div>
+      <div class="solutions-cta">
+        <a href="/solutions" class="cta-button">Check out all our Solutions</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background: #e94560;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.2s;
+  }
+  
+  .cta-button:hover {
+    background: #d63850;
+    transform: translateY(-2px);
+  }
+  
+  .cta-button.secondary {
+    background: transparent;
+    border: 2px solid #e94560;
+    color: #e94560;
+  }
+  
+  .cta-button.secondary:hover {
+    background: #e94560;
+    color: white;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  section {
+    padding: 4rem 0;
+  }
+  
+  .features {
+    background: #f8f9fa;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .feature-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+  
+  .feature-item {
+    margin-bottom: 2rem;
+  }
+  
+  .feature-item h3 {
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-item p {
+    color: #555;
+    line-height: 1.7;
+  }
+  
+  .stats {
+    background: #1a1a2e;
+    color: white;
+  }
+  
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #e94560;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  
+  .network-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .network h2 {
+    color: #1a1a2e;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .network p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  
+  .network-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+  
+  .solutions {
+    background: #f8f9fa;
+    text-align: center;
+  }
+  
+  .solutions h2 {
+    color: #1a1a2e;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .solution-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .solution-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  
+  .solution-card h3 {
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .solution-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .solutions-cta {
+    margin-top: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+    
+    .feature-grid,
+    .network-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .stat-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    .solution-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

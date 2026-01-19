@@ -1,0 +1,139 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/uploads/2024/BuWa-Digital-Logo.png" alt="BuWa Digital" height="40" />
+        <p>Helping local businesses reach their audience through the power of indoor digital billboard advertising.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="/screen-advertising">BuWa TV Advertising</a></li>
+          <li><a href="/google-business-profile">Google Business Profile</a></li>
+          <li><a href="/pay-per-click-ppc">Pay-Per-Click (PPC)</a></li>
+          <li><a href="/website-design">Website Design</a></li>
+          <li><a href="/geofencing">Geofencing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/venue-partner">Network Partner</a></li>
+          <li><a href="/locations">Locations</a></li>
+          <li><a href="/contact-us">Contact Us</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Get In Touch</h4>
+        <a href="/contact-us" class="footer-cta">Schedule A Call</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} BuWa Digital. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #1a1a2e;
+    color: white;
+    padding: 4rem 0 2rem;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .footer-brand img {
+    height: 40px;
+    width: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-brand p {
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    font-size: 0.9rem;
+  }
+  
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  
+  .footer-links a:hover {
+    color: #e94560;
+  }
+  
+  .footer-cta {
+    display: inline-block;
+    background: #e94560;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  
+  .footer-cta:hover {
+    background: #d63850;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    text-align: center;
+  }
+  
+  .footer-bottom p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

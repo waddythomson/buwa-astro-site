@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages
+    .filter(page => page.data.slug !== 'home') // Homepage handled by index.astro
+    .map(page => ({
+      params: { slug: page.data.slug || page.slug },
+      props: { page }
+    }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+
+const { title, description, ogImage } = page.data;
+---
+
+<BaseLayout 
+  title={title} 
+  description={description}
+  ogImage={ogImage}
+>
+  <div class="content-page">
+    <h1>{title}</h1>
+    <Content />
+  </div>
+</BaseLayout>

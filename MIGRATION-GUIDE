@@ -1,0 +1,219 @@
+# WordPress to Astro Migration Guide
+
+This project is pre-configured for migrating your WordPress site to Astro while preserving SEO.
+
+## Project Structure
+
+```
+wp-migration/
+├── src/
+│   ├── content/
+│   │   ├── posts/          # Your blog posts (Markdown)
+│   │   └── pages/          # Your static pages (Markdown)
+│   ├── content.config.ts   # Content collection schemas
+│   ├── layouts/
+│   │   ├── Layout.astro    # Default Astro layout
+│   │   └── BaseLayout.astro # SEO-optimized layout
+│   └── pages/
+│       ├── index.astro     # Homepage
+│       ├── [...slug].astro # Dynamic page routes
+│       └── blog/
+│           └── [...slug].astro # Dynamic post routes
+├── public/
+│   └── uploads/            # Migrated media files
+├── scripts/
+│   └── migrate-wp.js       # Migration script
+└── astro.config.mjs        # Astro configuration
+```
+
+## Quick Start
+
+### 1. Install Dependencies
+
+```bash
+cd wp-migration
+npm install
+```
+
+### 2. Install Migration Dependencies
+
+```bash
+npm install node-fetch@2 turndown
+```
+
+### 3. Run the Migration Script
+
+```bash
+node scripts/migrate-wp.js https://your-wordpress-site.com
+```
+
+This will:
+- Fetch all posts and pages via the WordPress REST API
+- Convert HTML content to Markdown
+- Preserve SEO metadata (including Yoast data if available)
+- Save content to `src/content/`
+
+### 4. Migrate Media Files
+
+Download your WordPress uploads folder and copy to `public/uploads/`:
+
+```bash
+# Via FTP/SFTP, or if you have SSH access:
+scp -r user@yourserver:/var/www/html/wp-content/uploads/* public/uploads/
+```
+
+Then update image URLs in your content files:
+- From: `https://yoursite.com/wp-content/uploads/2024/01/image.jpg`
+- To: `/uploads/2024/01/image.jpg`
+
+### 5. Update Configuration
+
+Edit `astro.config.mjs`:
+- Set your `site` URL
+- Add any needed redirects
+- Configure `trailingSlash` to match your WordPress setup
+
+### 6. Install Recommended Integrations
+
+```bash
+npm install @astrojs/sitemap @astrojs/mdx
+```
+
+Then update `astro.config.mjs`:
+```javascript
+import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
+
+export default defineConfig({
+  integrations: [sitemap(), mdx()],
+  // ...
+});
+```
+
+### 7. Preview Your Site
+
+```bash
+npm run dev
+```
+
+## SEO Checklist
+
+### ✅ Preserved Automatically
+- [x] Page titles and meta descriptions
+- [x] Open Graph tags
+- [x] Twitter Card tags
+- [x] Canonical URLs
+- [x] Published/modified dates
+- [x] Author information
+- [x] Categories and tags
+
+### 🔧 Manual Steps Required
+- [ ] Update `site` in `astro.config.mjs`
+- [ ] Update site name in `BaseLayout.astro`
+- [ ] Add default OG image to `/public/og-default.jpg`
+- [ ] Set up 301 redirects for any changed URLs
+- [ ] Submit new sitemap to Google Search Console
+- [ ] Update any hardcoded internal links
+
+## Redirect Configuration
+
+Add redirects in `astro.config.mjs` for any URLs that changed:
+
+```javascript
+redirects: {
+  // WordPress category URLs
+  '/category/[...slug]': '/blog/category/[...slug]',
+  
+  // WordPress tag URLs
+  '/tag/[...slug]': '/blog/tag/[...slug]',
+  
+  // Old media URLs
+  '/wp-content/uploads/[...path]': '/uploads/[...path]',
+  
+  // Specific page redirects
+  '/old-page-name': '/new-page-name',
+}
+```
+
+## Content Format
+
+### Post Frontmatter
+```yaml
+---
+title: "Post Title"
+description: "Short description"
+pubDate: 2024-01-15
+author: "Author Name"
+featuredImage: "/uploads/image.jpg"
+featuredImageAlt: "Image description"
+categories: ["Category1", "Category2"]
+tags: ["tag1", "tag2"]
+wpId: 123
+wpSlug: "original-slug"
+status: "publish"
+seoTitle: "Custom SEO Title"
+seoDescription: "Custom meta description"
+---
+```
+
+### Page Frontmatter
+```yaml
+---
+title: "Page Title"
+description: "Page description"
+featuredImage: "/uploads/hero.jpg"
+wpId: 10
+wpSlug: "page-slug"
+seoTitle: "Custom SEO Title"
+seoDescription: "Custom meta description"
+---
+```
+
+## Deployment
+
+### Build for Production
+```bash
+npm run build
+```
+
+Output will be in `dist/` - ready for any static hosting:
+- Netlify
+- Vercel
+- Cloudflare Pages
+- AWS S3 + CloudFront
+- GitHub Pages
+
+### Preview Build
+```bash
+npm run preview
+```
+
+## Troubleshooting
+
+### REST API Not Accessible
+If the migration script can't access the WordPress REST API:
+1. Check if REST API is enabled on your WordPress site
+2. Try visiting `https://yoursite.com/wp-json/wp/v2/posts` in a browser
+3. Some security plugins block the REST API - temporarily disable them
+
+### Images Not Loading
+1. Check that media files are in `public/uploads/`
+2. Verify paths in content files match actual file locations
+3. For remote images, add domain to `astro.config.mjs`:
+   ```javascript
+   image: {
+     domains: ['your-old-domain.com'],
+   }
+   ```
+
+### Yoast SEO Data Missing
+The Yoast plugin must expose data via REST API. Install "Yoast SEO: REST API" or enable in Yoast settings.
+
+## Need Help?
+
+Feel free to ask for assistance with:
+- Customizing the migration script
+- Setting up specific redirects
+- Creating custom page templates
+- Optimizing performance
+- Configuring deployment
