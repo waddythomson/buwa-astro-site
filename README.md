@@ -16,7 +16,12 @@ npm install
 npm run dev
 ```
 
-Astro will serve the site at `http://localhost:4321`.
+Astro will serve the site at `http://localhost:4322` by default. If that port
+is blocked, use:
+
+```sh
+npm run dev -- --host 127.0.0.1 --port 4322
+```
 
 ## Common Commands
 
