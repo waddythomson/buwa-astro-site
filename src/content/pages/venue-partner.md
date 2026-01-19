@@ -11,7 +11,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 We all share the same customers, so why not work together?
 
-[Get In Touch](/contact-us)
+[Get In Touch](/contact-us/)
 
 ## Become A Network Partner
 
@@ -75,10 +75,12 @@ It's as easy as 1-2-3
 
 ![Calendar Date](/uploads/2024/05/Calendar-Date.webp)
 
-[Learn More](/contact-us)
+[Learn More](/contact-us/)
 
 ## Featured Partner
 
 Rave provides professional installation for our BuWa TV screens. They are a local company that offers low voltage solutions, designing, installing, and maintaining state of the art electrical residential and commercial systems.
 
 [![Rave Installation LLC](/uploads/2024/09/RaveInstallationLLCLogo1.png)](https://raveinstallation.com/)
+
+![BuWa TV](/uploads/2024/BuWaTV_white.png)
