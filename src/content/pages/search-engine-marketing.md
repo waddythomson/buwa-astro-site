@@ -1,585 +1,90 @@
 ---
 title: "Search Engine Marketing"
-description: "Focuses on the traffic generation aspect.Search Engine Marketing (SEM) is the umbrella term encompassing all digital marketing strategies aimed at increasing a website's visibility in search engine results pages (SERPs). It includes both organic methods, such as Search Engine Optimization (SEO), which focuses on optimizing website content and structure to improve unpaid search rankings, and paid methods, such as Pay-Per-Click (PPC) advertising. SEM aims to drive targeted traffic, increase brand visibility, and generate conversions through a combination of organic and paid search tactics.Search Engine OptimizationLocal SEOOn Page SEO"
+description: "Search Engine Marketing (SEM) encompasses all digital marketing strategies aimed at increasing website visibility in search engine results through organic SEO and paid advertising."
 date: "2024-04-23T20:30:41"
 modified: "2024-06-04T17:35:53"
 slug: "search-engine-marketing"
-ogImage: "https://buwadigital.com/wp-content/uploads/2024/07/buwa-logo.png"
+ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
 # Search Engine Marketing
 
-						
-						Focuses on the traffic generation aspect.
+Focuses on the traffic generation aspect.
 
-						[Get In Touch](/contact-us/)
-					
-					
-				
-				
-				[
-					7
-					
-					
-				](#)
-			
-				
-				
-			
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-					## SEM
+[Get In Touch](/contact-us)
 
-				
-			
-				
-				
-				
-				
-				Search Engine Marketing (SEM) is the umbrella term encompassing all digital marketing strategies aimed at increasing a website's visibility in search engine results pages (SERPs). It includes both organic methods, such as Search Engine Optimization (SEO), which focuses on optimizing website content and structure to improve unpaid search rankings, and paid methods, such as Pay-Per-Click (PPC) advertising. SEM aims to drive targeted traffic, increase brand visibility, and generate conversions through a combination of organic and paid search tactics.
-			
-			
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				![](https://buwadigital.com/wp-content/uploads/2024/04/PPC1.jpg)
-			
-			
-				
-				
-				
-				
-			
-				
-				
-			
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-					## Organic SEO
+## SEM
 
-				
-			
-				
-				
-				
-				
-				*Search Engine Optimization*
+Search Engine Marketing (SEM) is the umbrella term encompassing all digital marketing strategies aimed at increasing a website's visibility in search engine results pages (SERPs). It includes both organic methods, such as Search Engine Optimization (SEO), which focuses on optimizing website content and structure to improve unpaid search rankings, and paid methods, such as Pay-Per-Click (PPC) advertising. SEM aims to drive targeted traffic, increase brand visibility, and generate conversions through a combination of organic and paid search tactics.
 
-			
-				
-				
-				
-				
-				### Local SEO
+![PPC Marketing](/uploads/2024/04/PPC1.jpg)
 
-			
-				
-				
-				
-				
-				
-				
-				
-					
-			
-				
-			
-		   
-				
-				   		
-					
-					
-					
-					
-						#### Google Business Profile
+## Organic SEO
 
-						
-						
-						
-				
-				
-					
-					![](https://buwadigital.com/wp-content/uploads/2024/04/SEO-icon-1.png)
-				
-			
-				
-				   		
-					
-					
-					
-					
-						#### Citation Management
+*Search Engine Optimization*
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-		
-		
-				
-			
-				
-				
-				
-				
-				### On Page SEO
+### Local SEO
 
-			
-				
-				
-				
-				
-				
-				
-				
-					
-			
-				
-			
-		   
-				
-				   		
-					
-					
-					
-					
-						#### Web Design
+#### Google Business Profile
 
-						
-						
-						
-				
-				
-					
-					![](https://buwadigital.com/wp-content/uploads/2024/04/SEO-icon-1.png)
-				
-			
-				
-				   		
-					
-					
-					
-					
-						#### URL Structure
+![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Keyword Strategy
+#### Citation Management
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Interlinking
+### On Page SEO
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Proper use of H1,H2 and H3 tags
+#### Web Design
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-		
-		
-				
-			
-				
-				
-				
-				
-				### Off Page SEO
+![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
 
-			
-				
-				
-				
-				
-				
-				
-				
-					
-			
-				
-			
-		   
-				
-				   		
-					
-					
-					
-					
-						#### Link Building
+#### URL Structure
 
-						
-						
-						
-				
-				
-					
-					![](https://buwadigital.com/wp-content/uploads/2024/04/SEO-icon-1.png)
-				
-			
-				
-				   		
-					
-					
-					
-					
-						#### Social Media
+#### Keyword Strategy
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Review Management
+#### Interlinking
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-		
-		
-				
-			
-				
-				
-				
-				
-				### Technical SEO
+#### Proper use of H1, H2 and H3 tags
 
-			
-				
-				
-				
-				
-				
-				
-				
-					
-			
-				
-			
-		   
-				
-				   		
-					
-					
-					
-					
-						#### Site Security
+### Off Page SEO
 
-						
-						
-						
-				
-				
-					
-					![](https://buwadigital.com/wp-content/uploads/2024/04/SEO-icon-1.png)
-				
-			
-				
-				   		
-					
-					
-					
-					
-						#### Sitemaps
+#### Link Building
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Crawlability & Indexablity
+![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Google Console
+#### Social Media
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Meta Tag Descriptions
+#### Review Management
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-		
-		
-				
-			
-				
-				
-				
-				
-				### Paid
+### Technical SEO
 
-*Traffic/ Exposure*
+#### Site Security
 
-			
-				
-				
-				
-				
-				
-				
-				
-					
-			
-				
-			
-		   
-				
-				   		
-					
-					
-					
-					
-						#### Social Media Advertising 
+![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
 
-						
-						
-						
-				
-				
-					
-					![](https://buwadigital.com/wp-content/uploads/2024/04/Paid-icon.png)
-				
-			
-				
-				   		
-					
-					
-					
-					
-						#### PPC Pay Per Click
+#### Sitemaps
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### CTV/ OTT
+#### Crawlability & Indexability
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Pre-Roll Ads
+#### Google Console
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Geofencing
+#### Meta Tag Descriptions
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### YouTube Ads
+### Paid
 
-						
-						
-						
-				
-				
-					
-					
-				
-			
-			
-				   		
-					
-					
-					
-					
-						#### Streaming Audio
+*Traffic / Exposure*
+
+#### Social Media Advertising
+
+![Paid Icon](/uploads/2024/04/Paid-icon.png)
+
+#### PPC Pay Per Click
+
+#### CTV / OTT
+
+#### Pre-Roll Ads
+
+#### Geofencing
+
+#### YouTube Ads
+
+#### Streaming Audio

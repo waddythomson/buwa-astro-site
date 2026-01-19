@@ -1,46 +1,48 @@
-# Astro Starter Kit: Basics
+# Buwa Astro Site
+
+Local setup and editing guide for the Buwa Astro migration site.
+
+## Quick Start
+
+1) Install dependencies:
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2) Start the dev server:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run dev
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Astro will serve the site at `http://localhost:4321`.
 
-## 🧞 Commands
+## Common Commands
 
-All commands are run from the root of the project, from a terminal:
+- `npm run dev` — local development server with hot reload
+- `npm run build` — production build to `dist/`
+- `npm run preview` — preview the production build locally
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Editing Content
 
-## 👀 Want to learn more?
+**Pages**
+- Page content lives in `src/content/pages/*.md`.
+- The home page uses `src/content/pages/home.md`.
+- Most pages use frontmatter fields like `title`, `description`, `slug`, `ogImage`, `date`, and `modified`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Blog posts**
+- Blog posts live in `src/content/posts/*.md`.
+
+**Images**
+- Add static images to `public/` or `public/uploads/` and reference them with `/uploads/...` paths.
+- External images can be linked directly by URL.
+
+## Routing Notes
+
+- `src/pages/index.astro` renders the home page.
+- `src/pages/[...slug].astro` renders other pages by `slug` from the page frontmatter.
+
+## Need Help?
+
+If the dev server fails to start, make sure you are on a modern Node.js version (18+).

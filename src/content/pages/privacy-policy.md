@@ -1,119 +1,97 @@
---- 
+---
 title: "Privacy Policy"
 description: "Privacy Policy for Buwa Digital regarding the collection, use, disclosure, transfer, and sharing of information."
 date: "2024-04-11T16:54:28"
 modified: "2024-07-05T18:50:34"
 slug: "privacy-policy"
-ogImage: "https://buwadigital.com/wp-content/uploads/2024/07/buwa-logo.png"
+ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# Privacy Policy
+## Privacy Policy
 
- 
-
-The following Privacy Policy provides information and notice to you of  Buwa Digital (" Buwa", "Buwa** Digital**", " **we**, " " **our** " or " **us** ") policies and practices regarding the collection, use, disclosure, transfer, and sharing of information from or about you in connection with your use of the Buwa Digital services, which includes our digital advertising service, digital marketing services, all content developed and supplied through our platforms, our website, account portal, applications, software, branded products and related services (collectively, the " **Services** "). You, other visitors to our website and application, and other end users of our Services are collectively referred to as " **you** ", " **your** " and " **Users** ".
+The following Privacy Policy provides information and notice to you of Buwa Digital ("Buwa", "Buwa Digital", "we", "our" or "us") policies and practices regarding the collection, use, disclosure, transfer, and sharing of information from or about you in connection with your use of the Buwa Digital services, which includes our digital advertising service, digital marketing services, all content developed and supplied through our platforms, our website, account portal, applications, software, branded products and related services (collectively, the "Services"). You, other visitors to our website and application, and other end users of our Services are collectively referred to as "you", "your" and "Users".
 
 By accessing and using any of our Services, you agree and accept the terms and conditions of this Privacy Policy and consent to the collection and use of information from or about you that is explained in this Privacy Policy. This Privacy Policy applies to data and private information collected by us through the Services, which includes personal information and non-personal information (such as certain persistent identifiers and aggregated information).
 
-**Please read this policy**. If you have any questions or suggestions regarding our privacy policy, please contact us. If you do not consent to the collection and use of information from or about you in accordance with this Privacy Policy, then do not use the Buwa Digital Service (s).
+**Please read this policy.** If you have any questions or suggestions regarding our privacy policy, please contact us. If you do not consent to the collection and use of information from or about you in accordance with this Privacy Policy, then do not use the Buwa Digital Service(s).
 
-**Collection of Information**
+### Collection of Information
 
 Buwa Digital may collect the below types of information from or about you on its Website, through email, or other various means:
 
-**● Information you provide to us, including without limitation :**
+**Information you provide to us, including without limitation:**
 
 - Information provided during the sign-up process: personal information and non-personal information, including your name, business name (as applicable), email address, service or home address, phone number, username, password, account preferences, and other similar or related information.
-
 - Billing information, including your credit card number, its expiration date, security code, billing address, purchase and payment history, and any other information you, your credit card issuer or our payment processors provide or make available to us related to billing.
-
 - Information gathered through your communications with us, including questions, suggestions, complaints or other information communicated to customer service, whether through email or phone, or by any other available means at the time.
 
-●** Information Buwa Digital and third parties collect automatically, including without limitation :**
+**Information Buwa Digital and third parties collect automatically, including without limitation:**
 
-- Usage and Log Data, including your IP address, device, browser, and software characteristics (e.g., type and operating system), location (longitude and latitude), and general activity on the Services, including viewing habits and content you view on the Buwa Digital service, page views, ad data referral URLs, network state, device identifiers/information or other unique identifiers such as advertising identifiers (your AD – ID or ID – FA) and identifiers associated with cookies (see "Cookies" section below). 465 BUWA PRIVACY POLICY.docx
+- Usage and Log Data, including your IP address, device, browser, and software characteristics (e.g., type and operating system), location (longitude and latitude), and general activity on the Services, including viewing habits and content you view on the Buwa Digital service, page views, ad data referral URLs, network state, device identifiers/information or other unique identifiers such as advertising identifiers (your AD–ID or ID–FA) and identifiers associated with cookies (see "Cookies" section below).
+- Information automatically collected and transmitted when you visit our website, such as information contained in cookies, web beacons, tags, and other technologies related to your online behavior activities (e.g., pages visited, searches requested, and other browser-related information and activities), and any other information collected using similar technologies.
 
-- Information automatically collected and transmitted when you visit our website, such as information contained in cookies, web beacons, tags, and other technologies related to your online behavior activities (e.g., pages visited, searches requested, and other browser-related information and activities), and any other information collected using similar technologies
-******Said third parties may include, without limitation :**
+**Said third parties may include, without limitation:**
 
 - Affiliates or business partners, consumer reporting agencies, and other service providers (e.g., advertising networks, advertising technology companies, and other advertising-related service providers).
-
 - Service providers that help us determine a location based on your IP address in order to customize service and for other uses as set forth in this Privacy Policy.
-
 - Select partners who we engage for co-marketing or co-sponsorship activities.
 
-**● Data Collected Through Cookies**
+**Data Collected Through Cookies**
 
 Like many online services, Buwa Digital may use various technologies to collect usage data and store preferences. One such technology is a "Cookie", which is a small data file that is saved within browser storage that can be deleted at any time. We and our third parties use Cookies and other similar types of technology to make your use of the Service more convenient and to support and improve our business, marketing, and advertising activities on the Service. The Service may use Google Analytics, a web analytics service provided by Google, Inc. ("Google"). Google Analytics and Buwa Digital business partners use Cookies to help analyze how users use the Service. The information generated by the Cookie about your use of the Service will be transmitted to and stored by Google on servers in the United States. Buwa Digital business partners will use this information for the purpose of evaluating your use of the Services, compiling reports on activity for end users, and providing other services relating to Service usage. Buwa Digital business partners may also transfer this information to third parties when required to do so by law, or where such third parties process the information on Buwa Digital business partners' behalf. Most browsers are initially set up to accept Cookies, but you can set up your browser to alert you every time a Cookie is offered, letting you decide whether or not to accept it or you may select the appropriate settings on your internet browser, or by enabling the Do Not Track settings in your browser. Please note, that if you do this, you may not have full access to the Websites. By accessing and using the Websites, you consent to the processing of data about you Buwa Digital business partners in the manner and for the purposes set out above.
-**Use of your Data and Information
-**Buwa Digital uses the information you provide for various purposes, including those listed below :
 
-● **To provide our Services.** For example, to set – up, register, and maintain your account, provide the Buwa Digital Services and all Content to you, and charge you for any of our paid Services. 465 BUWA PRIVACY POLICY.docx
+### Use of your Data and Information
 
-● **To further develop and improve our Services.** For example, by adding new features and Buwa Digital services, options, and content that we think our users will enjoy.
+Buwa Digital uses the information you provide for various purposes, including those listed below:
 
-● **To monitor and analyze trends.** This allows us the ability to better understand how users interact with our Services, which helps us improve and maintain our Services and make them easier to use.
+- **To provide our Services.** For example, to set-up, register, and maintain your account, provide the Buwa Digital Services and all Content to you, and charge you for any of our paid Services.
+- **To further develop and improve our Services.** For example, by adding new features and Buwa Digital services, options, and content that we think our users will enjoy.
+- **To monitor and analyze trends.** This allows us the ability to better understand how users interact with our Services, which helps us improve and maintain our Services and make them easier to use.
+- **To monitor the effectiveness of advertising.** To measure, gauge, and improve the effectiveness of our advertising, and better understand user retention and attrition.
+- **To monitor and prevent any problems with our Services.** To protect the security of our Services, detect and prevent fraudulent transactions and other illegal activities, fight spam, and protect the rights and property of Buwa Digital.
+- **To communicate with you.** For example, through an email, voice mail, phone call, or text, about offers and promotions, to solicit your feedback, update your advertising campaign, keep you up to date on Buwa Digital and our Services (which you can unsubscribe from at any time).
+- **To personalize your experience.** We may contact you from time to time to revise or update your advertising and marketing campaigns.
 
-●** To monitor the effectiveness of advertising.** To measure, gauge, and improve the effectiveness of our advertising, and better understand user retention and attrition.
-
-● **To monitor and prevent any problems with our Services.** To protect the security of our Services, detect and prevent fraudulent transactions and other illegal activities, fight spam, and protect the rights and property of Buwa Digital.
-
-● **To communicate with you.** For example, through an email, voice mail, phone call, or text, about offers and promotions, to solicit your feedback, update your advertising campaign, keep you up to date on Buwa Digital and our Services (which you can unsubscribe from at any time).
-
-● **To personalize your experience.** We may contact you from time to time to revise or update your advertising and marketing campaigns.
-
- 
-
-**How We Share Information**
+### How We Share Information
 
 Buwa Digital respects the need for privacy and online security. As such, we do not and will not sell your data to affiliates, third-party vendors, or any other parties for any purpose. Buwa Digital shares information about you in the limited circumstances spelled out below and with appropriate safeguards on your privacy:
 
-● **Business Partners:** We work with a number of business partners who help us offer Buwa Digital Services. We may share information collected from or about you with such business partners.
+- **Business Partners:** We work with a number of business partners who help us offer Buwa Digital Services. We may share information collected from or about you with such business partners.
+- **Affiliates:** We may share your information (including but not limited to, information from cookies, log files, device identifiers, location data, and usage data) with businesses that are legally part of the same group of companies that Buwa Digital is part of, or that become part of that group ("Affiliates"). Affiliates may use this information to help provide, understand, and improve the Services and Affiliates' own services.
+- **Subsidiaries, Employees, and Independent Contractors:** We may disclose information about you to our subsidiaries, our employees, and individuals who are our independent contractors who need to know the information in order to help us provide our Services or to process the information on our behalf. We require our subsidiaries, employees, and independent contractors to follow this Privacy Policy for personal information that we share with them.
+- **Third-Party Vendors:** We may share information about you with third-party vendors who need to know information about you in order to provide their services to us, or to provide their services to you through our Services. This group includes vendors that help us provide our Services to you (like payment providers that process your credit card information, email delivery services that help us stay in touch with you, and those that assist us with our marketing efforts (e.g. by providing tools for identifying a specific marketing target group or improving our marketing campaigns) and those that help us understand and enhance our Services (like analytics providers), who may need information about you in order to, for example, provide technical or other support services to you. We require vendors to agree to privacy commitments in order to share information with them.
+- **Legal and Regulatory Requirements:** We may disclose information about you in response to a subpoena, court order, to comply with a judicial proceeding, or other governmental request.
+- **To Protect Rights, Property, and Others:** We may disclose information about you when we believe in good faith that disclosure is reasonably necessary to protect the property or rights of Buwa Digital, its users, third parties, or the public at large or to prevent fraud or other illegal activity.
+- **Business Transfers:** In connection with any merger, sale of company assets, or acquisition of all or a portion of our business by another company, or in the unlikely event that Buwa Digital goes out of business or enters bankruptcy, user information would likely be one of the assets that is transferred or acquired by a third party. If any of these events were to happen, this Privacy Policy would continue to apply to your information and the party receiving your information may continue to use your information, but only consistent with this Privacy Policy.
+- **With Your Consent:** We may share and disclose information with your consent or at your direction. For example, we may share your information with third parties with which you authorize us to do so.
+- **Aggregated or De-Identified Information:** We may share information that has been aggregated or reasonably de-identified so that the information could not reasonably be used to identify you. This includes the collection of precise location information, which may be used by itself for the provision of Services and/or aggregated or combined with other identifiers and shared with third parties, for purposes related to advertising, attribution (e.g., measuring ad performance) analytics, and research.
+- **Advertisers:** Buwa Digital does not share your personal information with advertisers without your consent. Buwa Digital does allow advertisers to choose the characteristics of users who will see their advertisements and Buwa Digital may use any of the non-personal identifiable attributes it has collected to select the appropriate audience for those advertisements.
 
-● **Affiliates:** We may share your information (including but not limited to, information from cookies, log files, device identifiers, location data, and usage data) with businesses that are legally part of the same group of companies that Buwa Digital is part of, or that become part of that group (" Affiliates "). Affiliates may use this information to help provide, understand, and improve the Services and Affiliates' own services.
+**Log Files:** Like most standard website servers, we use log files. This includes internet protocol addresses, browser type, internet service provider (ISP), referring/exit pages, platform type, date/time stamp, and number of clicks to analyze trends, administer the site, track user's movement in the aggregate, and gather broad demographic information for aggregate use. We may use a tracking utility that uses log files to analyze user movement. This information is not linked to personally identifiable information.
 
-● **Subsidiaries, Employees, and Independent Contractors:** We may disclose information about you to our subsidiaries, our employees, and individuals who are our independent contractors who need to know the information in order to help us provide our Services or to process the information on our behalf. We require our subsidiaries, employees, and independent contractors to follow this Privacy Policy for personal information that we share with them.
-
-● **Third-Party Vendors:** We may share information about you with third-party vendors who need to know information about you in order to provide their services to us, or to provide their services to you through our Services. This group includes vendors that help us provide our Services to you (like payment providers that process your credit card information, email delivery services that help us stay in touch with you, and those that assist us with our marketing efforts (e.g. by providing tools for identifying a specific marketing target group or improving our marketing campaigns) and those that help us understand and enhance our Services (like analytics providers), who may need information about you in order to, for example, provide technical or other support services 465 BUWA PRIVACY POLICY.docx to you. We require vendors to agree to privacy commitments in order to share information with them.
-
-● **Legal and Regulatory Requirements:** We may disclose information about you in response to a subpoena, court order, to comply with a judicial proceeding, or other governmental request.
-
-● **To Protect Rights, Property, and Others:** We may disclose information about you when we believe in good faith that disclosure is reasonably necessary to protect the property or rights of Buwa Digital, its users, third parties, or the public at large or to prevent fraud or other illegal activity.
-
-● **Business Transfers:** In connection with any merger, sale of company assets, or acquisition of all or a portion of our business by another company, or in the unlikely event that Buwa Digital goes out of business or enters bankruptcy, user information would likely be one of the assets that is transferred or acquired by a third party. If any of these events were to happen, this Privacy Policy would continue to apply to your information and the party receiving your information may continue to use your information, but only consistent with this Privacy Policy.
-
-● **With Your Consent:** We may share and disclose information with your consent or at your direction. For example, we may share your information with third parties with which you authorize us to do so.
-
-● **Aggregated or De-Identified Information:** We may share information that has been aggregated or reasonably de-identified so that the information could not reasonably be used to identify you. This includes the collection of precise location information, which may be used by itself for the provision of Services and/or aggregated or combined with other identifiers and shared with third parties, for purposes related to advertising, attribution ( e.g., measuring ad performance) analytics, and research.
-
-●** Advertisers:** Buwa Digital does not share your personal information with advertisers without your consent. Buwa Digital does allow advertisers to choose the characteristics of users who will see their advertisements and Buwa Digital may use any of the non-personal identifiable attributes it has collected to select the appropriate audience for those advertisements.
-
-**Log Files**. Like most standard website servers, we use log files. This includes internet protocol addresses, browser type, internet service provider (ISP), referring/exit pages, platform type, date /time stamp, and number of clicks to analyze trends, administer the site, track user's movement in the aggregate, and gather broad demographic information for aggregate use. We may use a tracking utility that uses log files to analyze user movement. This information is not linked to personally identifiable information.
-
-**Your Choices / Opt-Out Options**
+### Your Choices / Opt-Out Options
 
 You have several choices available when it comes to information about you:
 
-●** Opt-Out of Marketing Communications:** You may opt out of receiving promotional communications from us. Just follow the instructions in those communications or let us know. If you opt out of promotional communications, we may still send you other communications, like those about your account, your installation schedules, your advertising and marketing campaign updates, and other legal notices.
-
-●** Set Your Browser to Reject Cookies:** You can choose to set your browser to remove or reject browser cookies before using the Buwa Digital website, with the drawback that certain features of the website may not function properly without the aid of cookies.
+- **Opt-Out of Marketing Communications:** You may opt out of receiving promotional communications from us. Just follow the instructions in those communications or let us know. If you opt out of promotional communications, we may still send you other communications, like those about your account, your installation schedules, your advertising and marketing campaign updates, and other legal notices.
+- **Set Your Browser to Reject Cookies:** You can choose to set your browser to remove or reject browser cookies before using the Buwa Digital website, with the drawback that certain features of the website may not function properly without the aid of cookies.
 
 You may reach us at [waddy@buwadigital.com](mailto:waddy@buwadigital.com) to exercise any of these rights. We may reject requests that are unreasonable or not required by law, including those that would be extremely impractical, would require disproportionate technical effort, or could expose us to operational risks. **Please note, that by deleting your data, your ability to access the service may be disrupted.**
 
-**Controllers and Responsible Companies**. Buwa Digital is the controller of all customer personal information, which means that Buwa Digital is the company responsible for processing that information, based on the particular service and the location of the customer using our Services. Depending on the Services, more than one company may be the controller of your personal data.
+**Controllers and Responsible Companies:** Buwa Digital is the controller of all customer personal information, which means that Buwa Digital is the company responsible for processing that information, based on the particular service and the location of the customer using our Services. Depending on the Services, more than one company may be the controller of your personal data.
 
-**Retention and Security**
+### Retention and Security
 
 We may retain information as requested or permitted by applicable laws and regulations, for our billing or records purposes and to fulfill the purposes of this Privacy Policy. We take reasonable measures to destroy or de-identify personal information in a secure manner when it is no longer needed. We also use reasonable, administrative, logical, physical, and managerial measures to safeguard your personal information against loss, theft, and unauthorized access, use, and modification. These measures are designed to provide a level of security appropriate to the risks of processing your personal information. Unfortunately, no measures can be guaranteed to provide 100% security. Accordingly, we cannot guarantee the security of your personal information.
 
-**Mailing List**
+### Mailing List
 
 Buwa Digital may launch an email mailing list for customers of its Services. In order to receive regular emails, newsletters, and the like from a mailing list from Buwa Digital, users must submit information during the registration process including, without limitation, a valid email address, phone number, and address/location. This information will be used in anonymous, aggregate form only in order to assess general user interest in various internal and third-party products and services. Your personal contact information will not be passed to any other organization. Users who choose to sign up for a mailing list will receive regular emails from us. You may opt out of receiving emails from third-party advertisers at any time by contacting us at [waddy@buwadigital.com](mailto:waddy@buwadigital.com)
 
-**Notification of Changes**
+### Notification of Changes
 
 We will update this Privacy Policy from time to time in response to changing legal, regulatory, or operational requirements, and will provide notice of any such changes and when those changes take effect. Whenever Buwa Digital changes its Privacy Policy, we will post those changes to this Privacy Policy, and other places deemed appropriate. Your continued use of Buwa Digital Services will constitute acknowledgment and acceptance of any updates to this Privacy Policy.
 
-**How Should a User Contact Buwa Digital?**
+### How Should a User Contact Buwa Digital?
 
 If you suspect that Buwa Digital has handled your information in a manner that does not comply with this Privacy Policy, please contact us at [waddy@buwadigital.com](mailto:waddy@buwadigital.com)

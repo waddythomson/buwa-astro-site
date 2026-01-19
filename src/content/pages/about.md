@@ -1,11 +1,8 @@
 ---
 title: "About Us"
 description: "Learn more about our company and team"
-featuredImage: "/uploads/about-hero.jpg"
-wpId: 10
-wpSlug: "about"
-seoTitle: "About Us | Your Site Name"
-seoDescription: "Learn about our mission, values, and the team behind our success."
+slug: "about"
+ogImage: "/uploads/about-hero.jpg"
 ---
 
 # About Our Company
