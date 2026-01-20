@@ -75,7 +75,7 @@ It's as easy as 1-2-3
 
 ![Calendar Date](/uploads/2024/05/Calendar-Date.webp)
 
-[Learn More](/contact-us/)
+<a href="/solutions" class="btn btn-navy">Check out all our Solutions</a>
 
 ## Featured Partner
 
