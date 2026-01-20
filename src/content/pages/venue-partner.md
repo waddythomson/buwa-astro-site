@@ -81,6 +81,6 @@ It's as easy as 1-2-3
 
 Rave provides professional installation for our BuWa TV screens. They are a local company that offers low voltage solutions, designing, installing, and maintaining state of the art electrical residential and commercial systems.
 
-[![Rave Installation LLC](/uploads/2024/09/RaveInstallationLLCLogo1.png)](https://raveinstallation.com/)
+[![Rave Installation LLC](/uploads/2024/RaveLogo.png)](https://raveinstallation.com/)
 
 ![BuWa TV](/uploads/2024/BuWaTV_white.png)
