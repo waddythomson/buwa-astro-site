@@ -64,13 +64,14 @@ const description = "Reach more customers where they eat, shop, work, and play. 
 
   <!-- Host Partner Network -->
   <section class="network">
+    <div class="network-bg"></div>
     <div class="container">
       <div class="network-grid">
         <div class="network-content">
           <h2>Host Partner Network</h2>
           <p>Our mission is to help local businesses like yours reach their audience. Every month, millions of consumers see our screens and remember them.</p>
           <p>Join the network of businesses that are prioritizing hyper-local advertising!</p>
-          <a href="/venue-partner/" class="cta-button secondary">Learn More</a>
+          <a href="/venue-partner/" class="cta-button cta-button-red">Learn More</a>
         </div>
         <div class="network-image">
           <img src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="Venue Network" loading="lazy" />
@@ -104,6 +105,16 @@ const description = "Reach more customers where they eat, shop, work, and play. 
       <div class="solutions-cta">
         <a href="/solutions/" class="cta-button">Browse all Services</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Write Us a Review -->
+  <section class="review">
+    <div class="review-bg"></div>
+    <div class="container">
+      <h2>Write Us a Review</h2>
+      <p>We'd love to hear about your experience working with BuWa Digital!</p>
+      <a href="https://www.google.com/search?q=BuWa+digital#lrd=0x88f8bd85ea099f37:0x690a91cd69d798a0,3,,," class="cta-button cta-button-red" target="_blank" rel="noopener">Leave One Now</a>
     </div>
   </section>
 </BaseLayout>
@@ -155,21 +166,21 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     height: auto;
     margin: 0 auto 2rem;
   }
-  
+
   .hero h1 {
     font-size: 2.5rem;
     max-width: 800px;
     margin: 0 auto 1.5rem;
     line-height: 1.2;
   }
-  
+
   .hero-subtitle {
     font-size: 1.25rem;
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto 2rem;
   }
-  
+
   .cta-button {
     display: inline-block;
     background: #17246c;
@@ -180,7 +191,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     font-weight: 600;
     transition: transform 0.2s, background 0.2s;
   }
-  
+
   .cta-button:hover {
     background: #111b52;
     transform: translateY(-2px);
@@ -193,71 +204,71 @@ const description = "Reach more customers where they eat, shop, work, and play. 
   .cta-button.cta-button-red:hover {
     background: #7d1521;
   }
-  
+
   .cta-button.secondary {
     background: transparent;
     border: 2px solid #17246c;
     color: #17246c;
   }
-  
+
   .cta-button.secondary:hover {
     background: #17246c;
     color: white;
   }
-  
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
   }
-  
+
   section {
     padding: 4rem 0;
   }
-  
+
   .features {
     background: #f8f9fa;
   }
-  
+
   .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
   }
-  
+
   .feature-image img {
     width: 100%;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
   }
-  
+
   .feature-item {
     margin-bottom: 2rem;
   }
-  
+
   .feature-item h3 {
     color: #1a1a2e;
     margin-bottom: 0.5rem;
   }
-  
+
   .feature-item p {
     color: #555;
     line-height: 1.7;
   }
-  
+
   .stats {
     background: #1a1a2e;
     color: white;
   }
-  
+
   .stat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     text-align: center;
   }
-  
+
   .stat-number {
     display: block;
     font-size: 3rem;
@@ -265,55 +276,81 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     color: #a01c2b;
     margin-bottom: 0.5rem;
   }
-  
+
   .stat-label {
     font-size: 1rem;
     opacity: 0.9;
   }
-  
+
+  /* Host Partner Network with diagonal stripes */
+  .network {
+    position: relative;
+    overflow: hidden;
+    background: #17246c;
+  }
+
+  .network-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
+      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
+      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
+      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
+    pointer-events: none;
+  }
+
+  .network .container {
+    position: relative;
+    z-index: 1;
+  }
+
   .network-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
   }
-  
+
   .network h2 {
-    color: #1a1a2e;
+    color: white;
     font-size: 2rem;
     margin-bottom: 1rem;
   }
-  
+
   .network p {
-    color: #555;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.7;
     margin-bottom: 1rem;
   }
-  
+
   .network-image img {
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border-radius: 50% 50% 50% 10%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
   }
-  
+
   .solutions {
     background: #f8f9fa;
     text-align: center;
   }
-  
+
   .solutions h2 {
     color: #1a1a2e;
     font-size: 2rem;
     margin-bottom: 3rem;
   }
-  
+
   .solution-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-bottom: 2rem;
   }
-  
+
   .solution-card {
     background: white;
     padding: 2rem;
@@ -322,28 +359,69 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  
+
   .solution-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.12);
   }
-  
+
   .solution-card h3 {
     color: #1a1a2e;
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
   }
-  
+
   .solution-card p {
     color: #666;
     font-size: 0.9rem;
     line-height: 1.6;
   }
-  
+
   .solutions-cta {
     margin-top: 2rem;
   }
-  
+
+  /* Write Us a Review Section */
+  .review {
+    position: relative;
+    overflow: hidden;
+    background: #17246c;
+    color: white;
+    text-align: center;
+  }
+
+  .review-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
+      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
+      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
+      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
+    pointer-events: none;
+  }
+
+  .review .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .review h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .review p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 1.75rem;
@@ -352,17 +430,17 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     .hero-logo {
       max-width: 220px;
     }
-    
+
     .feature-grid,
     .network-grid {
       grid-template-columns: 1fr;
     }
-    
+
     .stat-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
-    
+
     .solution-grid {
       grid-template-columns: 1fr;
     }
