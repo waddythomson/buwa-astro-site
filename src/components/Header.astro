@@ -1,19 +1,37 @@
 ---
-const navItems = [
-  { label: 'Solutions', href: '/solutions/', dropdown: [
-    { label: 'BuWa TV Advertising', href: '/screen-advertising/' },
-    { label: 'Google Business Profile', href: '/google-business-profile/' },
-    { label: 'Pay-Per-Click (PPC)', href: '/pay-per-click-ppc/' },
-    { label: 'Website Design', href: '/website-design/' },
-    { label: 'Geofencing', href: '/geofencing/' },
-    { label: 'Social Media Ads', href: '/social-media-ads/' },
-    { label: 'YouTube Ads', href: '/youtube-ads/' },
-    { label: 'Connected TV/OTT', href: '/connected-tv-ott-ads/' },
-    { label: 'All Solutions', href: '/solutions/' },
-  ]},
-  { label: 'Network Partner', href: '/venue-partner/' },
+const solutionsDropdown = [
+  {
+    heading: 'Foundational',
+    items: [
+      { label: 'Website Design', href: '/website-design/' },
+      { label: 'Google Business Profile', href: '/google-business-profile/' },
+      { label: 'Social Media Management', href: '/social-media-management/' },
+      { label: 'Design Services', href: '/design-services/' },
+    ]
+  },
+  {
+    heading: 'Lead Gen',
+    items: [
+      { label: 'Social Media Advertising', href: '/social-media-ads/' },
+      { label: 'Pay Per Click', href: '/pay-per-click-ppc/' },
+    ]
+  },
+  {
+    heading: 'Branding & Awareness',
+    items: [
+      { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott/' },
+      { label: 'Display | Geofencing', href: '/geofencing/' },
+      { label: 'Streaming Audio', href: '/streaming-audio/' },
+      { label: 'Pre-roll Ads', href: '/pre-roll-ads/' },
+      { label: 'Youtube Advertising', href: '/youtube-ads/' },
+    ]
+  }
+];
+
+const indoorBillboardsDropdown = [
+  { label: 'Become a Network Partner', href: '/host-partner-network/' },
   { label: 'Locations', href: '/locations/' },
-  { label: 'About Us', href: '/about-us/' },
+  { label: 'Screen Advertising', href: '/screen-advertising/' },
 ];
 ---
 
@@ -22,24 +40,41 @@ const navItems = [
     <a href="/" class="logo">
       <img src="/uploads/2024/buwa-logo.png" alt="BuWa Digital" height="50" />
     </a>
-    
+
     <nav class="main-nav">
-      {navItems.map(item => (
-        <div class="nav-item">
-          <a href={item.href}>{item.label}</a>
-          {item.dropdown && (
-            <div class="dropdown">
-              {item.dropdown.map(subItem => (
-                <a href={subItem.href}>{subItem.label}</a>
+      <!-- Solutions with sectioned dropdown -->
+      <div class="nav-item has-mega-dropdown">
+        <a href="/solutions/">Solutions</a>
+        <div class="mega-dropdown">
+          {solutionsDropdown.map(section => (
+            <div class="dropdown-section">
+              <h4>{section.heading}</h4>
+              {section.items.map(item => (
+                <a href={item.href}>{item.label}</a>
               ))}
             </div>
-          )}
+          ))}
         </div>
-      ))}
+      </div>
+
+      <!-- Indoor Billboards with simple dropdown -->
+      <div class="nav-item">
+        <a href="/buwa-tv-advertising/">Indoor Billboards</a>
+        <div class="dropdown">
+          {indoorBillboardsDropdown.map(item => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <!-- About Us - no dropdown -->
+      <div class="nav-item">
+        <a href="/about-us/">About Us</a>
+      </div>
     </nav>
-    
+
     <a href="/contact-us/" class="header-cta">Schedule A Call</a>
-    
+
     <button class="mobile-menu-toggle" aria-label="Toggle menu">
       <span></span>
       <span></span>
@@ -56,7 +91,7 @@ const navItems = [
     top: 0;
     z-index: 1000;
   }
-  
+
   .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -65,21 +100,21 @@ const navItems = [
     align-items: center;
     justify-content: space-between;
   }
-  
+
   .logo img {
     height: 50px;
     width: auto;
   }
-  
+
   .main-nav {
     display: flex;
     gap: 2rem;
   }
-  
+
   .nav-item {
     position: relative;
   }
-  
+
   .nav-item > a {
     text-decoration: none;
     color: #1a1a2e;
@@ -87,11 +122,12 @@ const navItems = [
     padding: 0.5rem 0;
     transition: color 0.2s;
   }
-  
+
   .nav-item > a:hover {
     color: #a01c2b;
   }
-  
+
+  /* Simple dropdown (Indoor Billboards) */
   .dropdown {
     position: absolute;
     top: 100%;
@@ -106,13 +142,13 @@ const navItems = [
     transform: translateY(10px);
     transition: all 0.2s;
   }
-  
+
   .nav-item:hover .dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
-  
+
   .dropdown a {
     display: block;
     padding: 0.5rem 1.5rem;
@@ -120,12 +156,64 @@ const navItems = [
     color: #333;
     transition: background 0.2s, color 0.2s;
   }
-  
+
   .dropdown a:hover {
     background: #f8f9fa;
     color: #a01c2b;
   }
-  
+
+  /* Mega dropdown (Solutions) */
+  .mega-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 3rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    min-width: 600px;
+  }
+
+  .has-mega-dropdown:hover .mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .dropdown-section {
+    min-width: 160px;
+  }
+
+  .dropdown-section h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a01c2b;
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #a01c2b;
+    font-weight: 700;
+  }
+
+  .dropdown-section a {
+    display: block;
+    padding: 0.4rem 0;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .dropdown-section a:hover {
+    color: #a01c2b;
+  }
+
   .header-cta {
     background: #a01c2b;
     color: white;
@@ -135,11 +223,11 @@ const navItems = [
     font-weight: 600;
     transition: background 0.2s;
   }
-  
+
   .header-cta:hover {
     background: #7d1521;
   }
-  
+
   .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -149,7 +237,7 @@ const navItems = [
     cursor: pointer;
     padding: 0.5rem;
   }
-  
+
   .mobile-menu-toggle span {
     display: block;
     width: 25px;
@@ -157,12 +245,26 @@ const navItems = [
     background: #1a1a2e;
     border-radius: 2px;
   }
-  
+
+  @media (max-width: 900px) {
+    .mega-dropdown {
+      flex-direction: column;
+      min-width: 220px;
+      gap: 1.5rem;
+      left: 0;
+      transform: translateY(10px);
+    }
+
+    .has-mega-dropdown:hover .mega-dropdown {
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 768px) {
     .main-nav, .header-cta {
       display: none;
     }
-    
+
     .mobile-menu-toggle {
       display: flex;
     }
