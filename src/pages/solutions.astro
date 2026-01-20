@@ -111,15 +111,26 @@ const services = [
       <p class="hero-subtitle">A full range of services to make your business a digital powerhouse!</p>
       <a href="/contact-us" class="btn-red">Get In Touch</a>
     </div>
-    <div class="hero-image">
-      <img src="/uploads/2024/06/stage.webp" alt="Digital Marketing Stage" />
+  </section>
+
+  <!-- Image Section -->
+  <section class="image-section">
+    <div class="container">
+      <img src="/uploads/2024/06/stage.webp" alt="Digital Marketing Stage" class="featured-image" />
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>A Digital Marketing Powerhouse</h2>
+      <p>Use multiple channels to connect with a wider audience in different places. Our comprehensive suite of digital marketing solutions helps you reach more people, increase engagement, maintain a consistent brand image, and simplify the customer path to conversion.</p>
     </div>
   </section>
 
   <!-- Benefits Section -->
   <section class="benefits-section">
     <div class="container">
-      <h2>A Digital Marketing Powerhouse</h2>
       <div class="benefits-grid">
         {benefits.map((benefit) => (
           <div class="benefit-card">
@@ -163,11 +174,10 @@ const services = [
 <style>
   /* Hero Section */
   .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 400px;
     background: linear-gradient(135deg, #17246c 0%, #1a3a8a 100%);
     position: relative;
+    padding: 4rem 2rem;
+    text-align: center;
   }
   
   .hero::before {
@@ -188,13 +198,11 @@ const services = [
   }
   
   .hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 3rem;
     color: white;
     position: relative;
     z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   .hero h1 {
@@ -207,16 +215,40 @@ const services = [
     opacity: 0.9;
     margin-bottom: 2rem;
   }
-  
-  .hero-image {
-    position: relative;
-    overflow: hidden;
+
+  /* Image Section */
+  .image-section {
+    padding: 3rem 2rem;
+    background: #f8f9fa;
+    text-align: center;
   }
-  
-  .hero-image img {
+
+  .featured-image {
+    max-width: 400px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  /* Intro Section */
+  .intro-section {
+    padding: 3rem 2rem 4rem;
+    background: #f8f9fa;
+    text-align: center;
+  }
+
+  .intro-section h2 {
+    font-size: 2rem;
+    color: #17246c;
+    margin-bottom: 1rem;
+  }
+
+  .intro-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   .btn-red {
@@ -418,25 +450,12 @@ const services = [
   }
   
   @media (max-width: 768px) {
-    .hero {
-      grid-template-columns: 1fr;
-    }
-    
-    .hero-content {
-      text-align: center;
-      padding: 2rem;
-    }
-    
     .hero h1 {
       font-size: 1.8rem;
     }
-    
-    .btn-red {
-      margin: 0 auto;
-    }
-    
-    .hero-image {
-      max-height: 250px;
+
+    .featured-image {
+      max-width: 280px;
     }
     
     .benefits-grid,
