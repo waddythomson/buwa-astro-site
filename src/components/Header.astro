@@ -3,37 +3,40 @@ const solutionsDropdown = [
   {
     heading: 'Foundational',
     items: [
-      { label: 'Website Design', href: '/website-design/' },
-      { label: 'Google Business Profile', href: '/google-business-profile/' },
-      { label: 'Social Media Management', href: '/social-media-management/' },
-      { label: 'Design Services', href: '/design-services/' },
+      { label: 'Website Design', href: '/website-design/', icon: 'fa-solid fa-object-ungroup' },
+      { label: 'Google Business Profile', href: '/google-business-profile/', icon: 'fa-brands fa-google' },
+      { label: 'Social Media Management', href: '/social-media-management/', icon: 'fa-solid fa-laptop' },
+      { label: 'Design Services', href: '/design-services/', icon: 'fa-solid fa-pen-ruler' },
     ]
   },
   {
     heading: 'Lead Gen',
     items: [
-      { label: 'Social Media Advertising', href: '/social-media-ads/' },
-      { label: 'Pay Per Click', href: '/pay-per-click-ppc/' },
+      { label: 'Social Media Advertising', href: '/social-media-ads/', icon: 'fa-solid fa-photo-film' },
+      { label: 'Pay Per Click', href: '/pay-per-click-ppc/', icon: 'fa-solid fa-hand-point-up' },
     ]
   },
   {
     heading: 'Branding & Awareness',
     items: [
-      { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott/' },
-      { label: 'Display | Geofencing', href: '/geofencing/' },
-      { label: 'Streaming Audio', href: '/streaming-audio/' },
-      { label: 'Pre-roll Ads', href: '/pre-roll-ads/' },
-      { label: 'Youtube Advertising', href: '/youtube-ads/' },
+      { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott/', icon: 'fa-solid fa-tv' },
+      { label: 'Display | Geofencing', href: '/geofencing/', icon: 'fa-solid fa-location-dot' },
+      { label: 'Streaming Audio', href: '/streaming-audio/', icon: 'fa-solid fa-headphones' },
+      { label: 'Pre-roll Ads', href: '/pre-roll-ads/', icon: 'fa-brands fa-square-youtube' },
+      { label: 'Youtube Advertising', href: '/youtube-ads/', icon: 'fa-brands fa-youtube' },
     ]
   }
 ];
 
 const indoorBillboardsDropdown = [
-  { label: 'Become a Network Partner', href: '/host-partner-network/' },
-  { label: 'Locations', href: '/locations/' },
-  { label: 'Screen Advertising', href: '/screen-advertising/' },
+  { label: 'Become a Network Partner', href: '/host-partner-network/', icon: 'fa-regular fa-handshake' },
+  { label: 'Locations', href: '/locations/', icon: 'fa-solid fa-location-dot' },
+  { label: 'Screen Advertising', href: '/screen-advertising/', icon: 'fa-solid fa-rectangle-ad' },
 ];
 ---
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 <header class="site-header">
   <div class="header-container">
@@ -50,7 +53,7 @@ const indoorBillboardsDropdown = [
             <div class="dropdown-section">
               <h4>{section.heading}</h4>
               {section.items.map(item => (
-                <a href={item.href}>{item.label}</a>
+                <a href={item.href}><i class={item.icon}></i> {item.label}</a>
               ))}
             </div>
           ))}
@@ -62,7 +65,7 @@ const indoorBillboardsDropdown = [
         <a href="/buwa-tv-advertising/">Indoor Billboards</a>
         <div class="dropdown">
           {indoorBillboardsDropdown.map(item => (
-            <a href={item.href}>{item.label}</a>
+            <a href={item.href}><i class={item.icon}></i> {item.label}</a>
           ))}
         </div>
       </div>
@@ -212,6 +215,20 @@ const indoorBillboardsDropdown = [
   }
 
   .dropdown-section a:hover {
+    color: #a01c2b;
+  }
+
+  /* Dropdown icons */
+  .dropdown a i,
+  .dropdown-section a i {
+    width: 1.25em;
+    margin-right: 0.5rem;
+    color: #17246c;
+    text-align: center;
+  }
+
+  .dropdown a:hover i,
+  .dropdown-section a:hover i {
     color: #a01c2b;
   }
 
