@@ -75,12 +75,12 @@ It's as easy as 1-2-3
 
 ![Calendar Date](/uploads/2024/05/Calendar-Date.webp)
 
-<a href="/solutions" class="btn btn-navy">Browse All Solutions</a>
+<a href="/solutions/" class="btn btn-navy">Browse All Solutions</a>
 
 ## Featured Partner
 
 Rave provides professional installation for our BuWa TV screens. They are a local company that offers low voltage solutions, designing, installing, and maintaining state of the art electrical residential and commercial systems.
 
-<a href="https://raveinstallation.com/"><img src="/uploads/2024/RaveLogo.png" alt="Rave Installation LLC" style="max-width: 180px;" /></a>
-
-![BuWa TV](/uploads/2024/BuWaTV_white.png)
+<a href="https://raveinstallation.com/">
+  <img src="/uploads/2024/RaveLogo.png" alt="Rave Installation LLC" style="max-width: 200px; display: block; margin: 0;" />
+</a>
