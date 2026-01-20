@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Locations";
+const description = "Check out where you could be seen in the community. View our network of host locations and partners.";
+
+const partners = [
+  { name: "Beckett Financial", src: "/uploads/2025/10/Beckett-Financial-Logo.png" },
+  { name: "Sharpe Leventis LLC", src: "/uploads/2025/05/Sharpe-Leventis-LLC.png" },
+  { name: "TLC", src: "/uploads/2025/10/TLC-Wedsite-Logo-2025-1-2.webp" },
+  { name: "Warrior Axe CrossFit", src: "/uploads/2025/10/Warrior-Axe-CrossFit-Green.webp" },
+  { name: "Greedy Rascals", src: "/uploads/2025/12/greedy-rascals.png" },
+  { name: "Sully's Steamers", src: "/uploads/2025/12/sullys-steamers.png" },
+  { name: "True Pharmacy", src: "/uploads/2024/10/TrueLogoBig.png" },
+  { name: "Triangle Pharmacy", src: "/uploads/2024/10/TriangleSquareLogo.png" },
+  { name: "San Jose", src: "/uploads/2024/10/SanJoseLogo.png" },
+  { name: "Que Bueno", src: "/uploads/2024/10/QueBuenoLogo.png" },
+  { name: "Gervais Nail Spa", src: "/uploads/2024/10/GervNailSpa.png" },
+  { name: "Gadgetboy", src: "/uploads/2024/10/GB.png" },
+  { name: "Devine Nails", src: "/uploads/2024/10/DevineNails.png" },
+  { name: "The Collective", src: "/uploads/2024/10/CollectiveLogo.png" },
+  { name: "Bierkeller", src: "/uploads/2024/10/Bierkeller_logo.jpg" },
+  { name: "BHGRE Medley", src: "/uploads/2024/10/BHGRE_MEDLEY.jpg" },
+  { name: "Spa On Devine", src: "/uploads/2025/05/Spa-On-Devine.jpg" },
+  { name: "Veritas", src: "/uploads/2025/05/Veritas-scaled.png" },
+  { name: "Genova Family Karate", src: "/uploads/2025/05/Genova-Family-Karate.png" },
+  { name: "Whetzel's Automotive", src: "/uploads/2025/05/Whetzels-Automotive.jpg" },
+  { name: "Blue Moon Ballroom", src: "/uploads/2025/10/Blue-Moon-Ballroom-Logo.jpg" },
+  { name: "Century 21", src: "/uploads/2025/05/Century-21.png" },
+  { name: "Touchdowns", src: "/uploads/2025/10/Touchdowns-Logo.jpg" },
+  { name: "Milestone Wealth Advisors", src: "/uploads/2025/05/Milestone-Wealth-Advisors.jpg" },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Our Network Partners</h1>
+      <p>Check out where you could be seen in the community.</p>
+      <a href="/contact-us" class="cta-button">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- Our Locations Section with Map -->
+  <section class="locations-section">
+    <div class="container">
+      <h2>Our Locations</h2>
+      <p>Our screens can be found in many popular locations throughout the community. Our screens offer a unique format - keeping you in front of your customers in your business, even when other ads are playing.</p>
+      
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/d/embed?mid=1XGVatlmUL7p9iJ9cFjk7LxkEtQXPdrI&ehbc=2E312F"
+          width="100%" 
+          height="480" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Logo Carousel -->
+  <section class="partners-section">
+    <div class="container">
+      <h2>Our Partners</h2>
+    </div>
+    
+    <div class="carousel-wrapper">
+      <div class="carousel-track">
+        <!-- First set of logos -->
+        {partners.map((partner) => (
+          <div class="logo-item">
+            <img src={partner.src} alt={partner.name} />
+          </div>
+        ))}
+        <!-- Duplicate for seamless loop -->
+        {partners.map((partner) => (
+          <div class="logo-item">
+            <img src={partner.src} alt={partner.name} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #17246c 0%, #1a2b5f 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #17246c;
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: white;
+    color: #17246c;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Locations Section */
+  .locations-section {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+  }
+
+  .locations-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #17246c;
+  }
+
+  .locations-section p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .map-container iframe {
+    display: block;
+  }
+
+  /* Partners Section */
+  .partners-section {
+    padding: 4rem 0;
+    background: white;
+    overflow: hidden;
+  }
+
+  .partners-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #17246c;
+  }
+
+  /* Carousel */
+  .carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 40s linear infinite;
+    width: max-content;
+  }
+
+  .carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .logo-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    padding: 0.5rem;
+  }
+
+  .logo-item img {
+    max-width: 150px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(20%);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+  }
+
+  .logo-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+    }
+
+    .locations-section h2,
+    .partners-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .map-container iframe {
+      height: 350px;
+    }
+
+    .carousel-track {
+      gap: 2rem;
+      animation-duration: 30s;
+    }
+
+    .logo-item img {
+      max-width: 120px;
+      max-height: 60px;
+    }
+  }
+</style>
