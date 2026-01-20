@@ -101,6 +101,33 @@ const reasons = [
       <a href="/contact-us" class="btn-red">Schedule a Call</a>
     </div>
   </section>
+
+  <!-- Affiliations Section -->
+  <section class="affiliations-section">
+    <div class="container">
+      <h2>Our Affiliations</h2>
+      <div class="affiliations-grid">
+        <div class="affiliation-item">
+          <img src="/uploads/2025/06/Columbia-Chamber.png" alt="Columbia Chamber of Commerce" />
+        </div>
+        <div class="affiliation-item">
+          <img src="/uploads/2025/06/CWC-Chamber.webp" alt="Cayce-West Columbia Chamber" />
+        </div>
+        <div class="affiliation-item">
+          <img src="/uploads/2025/06/NIA.png" alt="National Indoor Advertising" />
+        </div>
+        <div class="affiliation-item">
+          <img src="/uploads/2025/06/BNI.png" alt="BNI - Business Network International" />
+        </div>
+        <div class="affiliation-item">
+          <img src="/uploads/2025/06/Optimist-International.png" alt="Optimist International" />
+        </div>
+        <div class="affiliation-item">
+          <img src="/uploads/2025/06/Kiwanis.png" alt="Kiwanis" />
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -383,6 +410,62 @@ const reasons = [
     
     .reason-icon {
       margin: 0 auto;
+    }
+    
+    .affiliations-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Affiliations Section */
+  .affiliations-section {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    text-align: center;
+  }
+
+  .affiliations-section h2 {
+    font-size: 2rem;
+    color: #17246c;
+    margin-bottom: 2rem;
+  }
+
+  .affiliations-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .affiliation-item img {
+    max-width: 120px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(20%);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+  }
+
+  .affiliation-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .affiliations-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .affiliations-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
