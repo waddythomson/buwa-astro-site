@@ -1,0 +1,447 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Solutions";
+const description = "A full range of digital marketing services to make your business a powerhouse, from screen advertising to website design and social media management.";
+
+const benefits = [
+  {
+    icon: "📢",
+    title: "Reach More People",
+    description: "Use multiple channels to connect with a wider audience in different places."
+  },
+  {
+    icon: "💬",
+    title: "Increase Engagement",
+    description: "Connect with users on their preferred channels, where they're more likely to engage with your content."
+  },
+  {
+    icon: "🎯",
+    title: "Consistent Brand Image",
+    description: "Maintain a uniform brand image across channels to make your brand recognizable and relatable."
+  },
+  {
+    icon: "🛤️",
+    title: "Simplify Customer Path",
+    description: "Create more touch points in the customer journey, making it easier to guide them towards a desired action."
+  }
+];
+
+const services = [
+  {
+    title: "Screen Advertising",
+    link: "/screen-advertising",
+    description: "Our hyper-local digital screens showcase your personalized motion ad on repeat, keeping your brand at the forefront.",
+    icon: "📺"
+  },
+  {
+    title: "Website Design",
+    link: "/website-design",
+    description: "Collaborate with our skilled creative team to craft a visually stunning and well-functioning website.",
+    icon: "💻"
+  },
+  {
+    title: "Google Business Profile",
+    link: "/google-business-profile",
+    description: "Your Google Business Profile is the open sign on your digital storefront. Optimize it with posts, photos, and more.",
+    icon: "📍"
+  },
+  {
+    title: "Social Media Management",
+    link: "/social-media-management",
+    description: "Amplify your brand online with strategic management and captivating content.",
+    icon: "📱"
+  },
+  {
+    title: "Pay-Per-Click (PPC)",
+    link: "/pay-per-click-ppc",
+    description: "Drive leads and dominate search engine results with highly targeted Pay-Per-Click campaigns.",
+    icon: "🔍"
+  },
+  {
+    title: "Social Media Ads",
+    link: "/social-media-ads",
+    description: "Use targeted messaging and demographics to reach your ideal customers on social platforms.",
+    icon: "📣"
+  },
+  {
+    title: "Display Advertising | Geofencing",
+    link: "/geofencing",
+    description: "Leverage location-targeted ads to reach users online and on their devices.",
+    icon: "📌"
+  },
+  {
+    title: "Connected TV | OTT Ads",
+    link: "/connected-tv-ott-ads",
+    description: "Put your brand front and center with non-skippable ads on popular streaming platforms.",
+    icon: "📡"
+  },
+  {
+    title: "Pre-Roll Ads",
+    link: "/pre-roll-advertising",
+    description: "Appear before videos on your target audience's favorite websites with non-skippable ads.",
+    icon: "🎬"
+  },
+  {
+    title: "YouTube Ads",
+    link: "/youtube-ads",
+    description: "Reach a global audience with stunning visuals through YouTube advertising.",
+    icon: "▶️"
+  },
+  {
+    title: "Streaming Audio",
+    link: "/streaming-audio",
+    description: "Streamline your message into listeners' favorite podcasts, radio, or music platforms.",
+    icon: "🎧"
+  },
+  {
+    title: "Design Services",
+    link: "/design",
+    description: "Transform your vision into exceptional graphic design, from logos to captivating marketing materials.",
+    icon: "🎨"
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Digital Marketing Services</h1>
+      <p class="hero-subtitle">A full range of services to make your business a digital powerhouse!</p>
+      <a href="/contact-us" class="btn-red">Get In Touch</a>
+    </div>
+    <div class="hero-image">
+      <img src="/uploads/2024/06/stage.webp" alt="Digital Marketing Stage" />
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2>A Digital Marketing Powerhouse</h2>
+      <div class="benefits-grid">
+        {benefits.map((benefit) => (
+          <div class="benefit-card">
+            <div class="benefit-icon">{benefit.icon}</div>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid Section -->
+  <section class="services-section">
+    <div class="container">
+      <h2>Multichannel Marketing</h2>
+      <p class="section-subtitle">Explore our comprehensive suite of digital marketing solutions</p>
+      <div class="services-grid">
+        {services.map((service) => (
+          <a href={service.link} class="service-card">
+            <div class="service-icon">{service.icon}</div>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <span class="learn-more">Learn More →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Amplify Your Marketing?</h2>
+      <p>Let's create a customized strategy that drives real results for your business.</p>
+      <a href="/contact-us" class="btn-red">Schedule a Call</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+    background: linear-gradient(135deg, #17246c 0%, #1a3a8a 100%);
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .btn-red {
+    display: inline-block;
+    background: #a01c2b;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    width: fit-content;
+  }
+  
+  .btn-red:hover {
+    background: #8a1825;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Benefits Section */
+  .benefits-section {
+    padding: 4rem 0;
+    background: #f8f9fa;
+  }
+  
+  .benefits-section h2 {
+    text-align: center;
+    color: #17246c;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .benefit-card {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  
+  .benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .benefit-card h3 {
+    color: #17246c;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .benefit-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Services Section */
+  .services-section {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .services-section h2 {
+    text-align: center;
+    color: #17246c;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .service-card:hover {
+    border-color: #17246c;
+    background: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(23, 36, 108, 0.15);
+  }
+  
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-card h3 {
+    color: #17246c;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .service-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  
+  .learn-more {
+    color: #a01c2b;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+  
+  .service-card:hover .learn-more {
+    color: #17246c;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 0;
+    text-align: center;
+    background: #17246c;
+    color: white;
+    position: relative;
+  }
+  
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .cta-section .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cta-section h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section p {
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero-content {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+    
+    .btn-red {
+      margin: 0 auto;
+    }
+    
+    .hero-image {
+      max-height: 250px;
+    }
+    
+    .benefits-grid,
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

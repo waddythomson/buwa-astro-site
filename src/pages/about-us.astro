@@ -1,0 +1,402 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "About Us";
+const description = "At BuWa Digital, we're passionate about empowering local businesses to thrive in the digital age through innovative marketing strategies.";
+
+const reasons = [
+  {
+    icon: "/uploads/2024/04/01-icon.png",
+    title: "Experts in Local Marketing",
+    description: "Our marketing strategies are finely tuned to reach your specific community. From indoor digital billboards to robust digital campaigns, we ensure your brand connects with the people who matter most—those in your immediate vicinity who are most likely to become loyal customers."
+  },
+  {
+    icon: "/uploads/2024/04/2-1.png",
+    title: "Community-Based Advertising",
+    description: "We understand the value of community and tailor our campaigns to resonate with local values and interests. This approach not only boosts your brand's visibility but also fosters a strong, positive relationship with your audience."
+  },
+  {
+    icon: "/uploads/2024/04/3.png",
+    title: "Affordability",
+    description: "We offer cost-effective marketing solutions tailored to your budget, providing exceptional value without compromising on quality or impact."
+  },
+  {
+    icon: "/uploads/2024/04/4.png",
+    title: "Amazing Creative",
+    description: "Our team excels at creating dynamic, engaging content that stands out. Whether it's eye-catching visuals or compelling messaging, we ensure your advertisements capture and retain the attention of your target audience."
+  },
+  {
+    icon: "/uploads/2024/04/5.png",
+    title: "A Proven Track Record",
+    description: "We have a history of successful campaigns that drive results. Our clients have seen significant increases in brand awareness, foot traffic, and customer engagement. Our proven strategies are designed to deliver measurable outcomes that contribute to your business growth."
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Unleash the Power of Digital Marketing!</h1>
+      <a href="/contact-us" class="btn-red">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>About Us</h2>
+          <p>At BuWa Digital we're passionate about empowering local businesses to thrive in the digital age. We understand that in today's competitive digital landscape, effective marketing strategies are essential for your success. That's where we come in.</p>
+          <p>Our journey began with a simple yet powerful idea: to harness the potential of indoor digital billboards and help local businesses reach their full potential. With a focus on innovation, creativity, and results, we've become a trusted partner for businesses across Columbia and the Upstate of South Carolina.</p>
+          <p>While we specialize in indoor digital billboards, our expertise extends far beyond that. From Website design to robust multichannel campaigns, we offer a full suite of services designed to elevate your brand and drive results.</p>
+          <p class="tagline"><strong>Our strategy, your brand. Together, let's build something great.</strong></p>
+        </div>
+        <div class="about-image">
+          <img src="/uploads/2024/07/buwa-logo.png" alt="BuWa Digital Logo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chamber Champion Award Section -->
+  <section class="award-section">
+    <div class="container">
+      <div class="award-content">
+        <div class="award-badge">
+          <img src="/uploads/2025/06/CWC-Chamber-Champion-1-300x240.png" alt="CWC Chamber Champion Award" />
+        </div>
+        <div class="award-text">
+          <h2>Chamber Champion Award</h2>
+          <p>BuWa Digital is proud to have been recognized with the <strong>Chamber Champion Award</strong> at the Greater Cayce-West Columbia Chamber's 2025 Small Business Month Luncheon.</p>
+          <p>As a proud member of the Chamber, we remain dedicated to empowering local businesses through cutting-edge digital solutions and community engagement.</p>
+          <div class="award-links">
+            <a href="https://thecaycewestcolumbianews.com/small-businesses-celebrated-at-luncheon/" target="_blank" rel="noopener" class="btn-navy">Read The Full Article</a>
+            <img src="/uploads/2025/06/Greater-Columbia-Chamber--225x300.png" alt="Greater Columbia Chamber" class="chamber-logo" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Reasons Section -->
+  <section class="reasons-section">
+    <div class="container">
+      <h2>5 Reasons To Choose Us</h2>
+      <div class="reasons-grid">
+        {reasons.map((reason) => (
+          <div class="reason-card">
+            <div class="reason-icon">
+              <img src={reason.icon} alt={reason.title} />
+            </div>
+            <div class="reason-content">
+              <h3>{reason.title}</h3>
+              <p>{reason.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Grow Your Business?</h2>
+      <p>Let's discuss how we can help you reach more customers and build your brand.</p>
+      <a href="/contact-us" class="btn-red">Schedule a Call</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #17246c 0%, #1a3a8a 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.03) 10px,
+      rgba(255,255,255,0.03) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-red {
+    display: inline-block;
+    background: #a01c2b;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-red:hover {
+    background: #8a1825;
+  }
+  
+  .btn-navy {
+    display: inline-block;
+    background: #17246c;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-navy:hover {
+    background: #0f1a4a;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* About Section */
+  .about-section {
+    padding: 4rem 0;
+    background: #f8f9fa;
+  }
+  
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .about-text h2 {
+    color: #17246c;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+  }
+  
+  .about-text p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: #333;
+  }
+  
+  .about-text .tagline {
+    font-size: 1.1rem;
+    color: #17246c;
+    margin-top: 1.5rem;
+  }
+  
+  .about-image img {
+    max-width: 250px;
+    width: 100%;
+  }
+
+  /* Award Section */
+  .award-section {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .award-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .award-badge img {
+    max-width: 200px;
+    border-radius: 10px;
+  }
+  
+  .award-text h2 {
+    color: #17246c;
+    margin-bottom: 1rem;
+  }
+  
+  .award-text p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .award-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  
+  .chamber-logo {
+    max-height: 80px;
+    width: auto;
+  }
+
+  /* Reasons Section */
+  .reasons-section {
+    padding: 4rem 0;
+    background: #17246c;
+    color: white;
+    position: relative;
+  }
+  
+  .reasons-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .reasons-section .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .reasons-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+  
+  .reasons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .reason-card {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  .reason-card:hover {
+    transform: translateX(10px);
+    background: rgba(255,255,255,0.15);
+  }
+  
+  .reason-icon {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .reason-icon img {
+    max-width: 60px;
+    max-height: 60px;
+    filter: brightness(0) invert(1);
+  }
+  
+  .reason-content h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+  
+  .reason-content p {
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 0;
+    text-align: center;
+    background: #f8f9fa;
+  }
+  
+  .cta-section h2 {
+    color: #17246c;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+    
+    .about-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .about-image {
+      order: -1;
+    }
+    
+    .award-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .award-links {
+      flex-direction: column;
+    }
+    
+    .reason-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .reason-icon {
+      margin: 0 auto;
+    }
+  }
+</style>
