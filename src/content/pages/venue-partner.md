@@ -11,7 +11,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 We all share the same customers, so why not work together?
 
-[Get In Touch](/contact-us/)
+<a href="/contact-us/" class="btn btn-red">Get In Touch</a>
 
 ## Become A Network Partner
 
