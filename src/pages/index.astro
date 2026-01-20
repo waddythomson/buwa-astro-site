@@ -47,15 +47,15 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     <div class="container">
       <div class="stat-grid">
         <div class="stat-item">
-          <span class="stat-number">400%</span>
+          <span class="stat-number" data-count="400">400%</span>
           <span class="stat-label">More Impactful Than Static Advertising</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">30%</span>
+          <span class="stat-number" data-count="30">30%</span>
           <span class="stat-label">Increase in Average Ticket Value</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">83%</span>
+          <span class="stat-number" data-count="83">83%</span>
           <span class="stat-label">Recall Among Consumers</span>
         </div>
       </div>
@@ -107,6 +107,40 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+  const animateCount = (el) => {
+    const target = Number(el.dataset.count || '0');
+    const duration = 1200;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const value = Math.round(progress * target);
+      el.textContent = `${value}%`;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        if (el.dataset.animated) return;
+        el.dataset.animated = 'true';
+        animateCount(el);
+        obs.unobserve(el);
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  statNumbers.forEach((el) => observer.observe(el));
+</script>
 
 <style>
   .hero {
