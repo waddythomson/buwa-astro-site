@@ -147,35 +147,76 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
     margin: 1.5rem 0;
   }
 
-  /* Navy button */
+  /* Navy button - 3D style */
   .btn-navy {
     display: inline-block;
-    background: #17246c;
+    background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
     color: white !important;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.2s;
+    border: none;
+    box-shadow: 
+      0 4px 6px rgba(23, 36, 108, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .btn-navy:hover {
-    background: #111b52;
+    background: linear-gradient(to bottom, #2439a0 0%, #1e2f8a 50%, #17246c 100%);
+    box-shadow: 
+      0 6px 10px rgba(23, 36, 108, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
   }
 
+  .btn-navy:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 3px rgba(23, 36, 108, 0.3),
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Red button - 3D style */
   .btn-red {
     display: inline-block;
-    background: #a01c2b;
+    background: linear-gradient(to bottom, #c4222e 0%, #a01c2b 50%, #7d1521 100%);
     color: white !important;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.2s;
+    border: none;
+    box-shadow: 
+      0 4px 6px rgba(160, 28, 43, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .btn-red:hover {
-    background: #7d1521;
+    background: linear-gradient(to bottom, #d62a38 0%, #c4222e 50%, #a01c2b 100%);
+    box-shadow: 
+      0 6px 10px rgba(160, 28, 43, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn-red:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 3px rgba(160, 28, 43, 0.3),
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      inset 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
   /* Auto-style "Get In Touch" links to /contact-us as navy buttons */
