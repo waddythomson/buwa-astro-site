@@ -97,7 +97,9 @@ Our strategic SEO and seamless publishing process ensures your website content i
 
 ### Why do websites vary so much in price?
 
-The pricing of a website is dependent on several factors including keyword research, content development, and plugin requirements. [**Schedule a call to learn more.**](/contact-us)
+The pricing of a website is dependent on several factors including keyword research, content development, and plugin requirements.
+
+[**Schedule a call to learn more.**](/contact-us)
 
 ### What if I want to add more pages later?
 
