@@ -62,7 +62,7 @@ const indoorBillboardsDropdown = [
 
       <!-- Indoor Billboards with simple dropdown -->
       <div class="nav-item">
-        <a href="/buwa-tv-advertising/">Indoor Billboards</a>
+        <span class="dropdown-trigger">Indoor Billboards</span>
         <div class="dropdown">
           {indoorBillboardsDropdown.map(item => (
             <a href={item.href}><i class={item.icon}></i> {item.label}</a>
@@ -120,15 +120,18 @@ const indoorBillboardsDropdown = [
     padding-bottom: 10px;
   }
 
-  .nav-item > a {
+  .nav-item > a,
+  .nav-item > .dropdown-trigger {
     text-decoration: none;
     color: #1a1a2e;
     font-weight: 500;
     padding: 0.5rem 0;
     transition: color 0.2s;
+    cursor: pointer;
   }
 
-  .nav-item > a:hover {
+  .nav-item > a:hover,
+  .nav-item > .dropdown-trigger:hover {
     color: #a01c2b;
   }
 
