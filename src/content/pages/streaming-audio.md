@@ -7,8 +7,6 @@ slug: "streaming-audio"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# Streaming Audio
-
 Amplify your reach with targeted streaming audio advertising.
 
 [Get In Touch](/contact-us)
@@ -51,29 +49,41 @@ With dynamic ad insertion, you can deliver personalized messages in multiple for
 
 ## Four Steps for Effective Streaming Audio Advertising
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### On-Boarding Meeting
 
 We begin by understanding your goals and target audience to ensure that your ad will be most effective.
+</div>
 
-![Step 1](/uploads/2024/04/01-icon.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Script Development
 
 Our team crafts compelling scripts tailored to your brand's messaging and audience preferences, setting the stage for impactful ad delivery.
+</div>
 
-![Step 2](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Going Live
 
 With your approval, we will launch your ads across the selected streaming platforms, maximizing reach and engagement with your target audience.
+</div>
 
-![Step 3](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### Reporting
 
 We provide comprehensive reports detailing the performance of your streaming audio ads, offering valuable insights to refine future campaigns and optimize results.
+</div>
 
-![Step 4](/uploads/2024/04/4.png)
+</div>
 
 ## Our Marketing Service Approach Is Simple
 

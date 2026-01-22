@@ -51,29 +51,41 @@ We will provide detailed, insightful report calls to give you a comprehensive un
 
 ## Steps On Social Media Ads
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### On-Boarding Meeting
 
 During the onboarding phase, we'll work closely with you to understand your brand, goals, and target audience, laying the foundation for a successful social media ad strategy.
+</div>
 
-![Step 1](/uploads/2024/04/01-icon.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Research and Creative
 
 While our creative team builds your ad, your dedicated strategist will conduct an in-depth analysis of your industry landscape, audience demographics, and current trends.
+</div>
 
-![Step 2](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Execution
 
 Once you've approved your ad, we will begin pushing out your campaign. During the lifetime of your campaign, we will continuously optimize your campaign to maximize impact and drive leads.
+</div>
 
-![Step 3](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### Reporting
 
 At the end of your campaign, we will provide you with a thorough report of the campaign's performance, delivering comprehensive insights and metrics for tracking progress and refining future strategies.
+</div>
 
-![Step 4](/uploads/2024/04/4.png)
+</div>
 
 ## Our Marketing Service Approach Is Simple
 

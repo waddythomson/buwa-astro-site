@@ -7,8 +7,6 @@ slug: "social-media-management"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# Social Media Management
-
 Improve the performance, engagement, and audience reach of your social media profiles.
 
 [Get In Touch](/contact-us)
@@ -51,29 +49,41 @@ By analyzing performance metrics and monitoring market trends, we can make infor
 
 ## Steps on Social Media Management
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### Onboarding
 
 During this initial step, we'll meet to gather essential information about your brand, goals, and audience.
+</div>
 
-![Step 1](/uploads/2024/04/1-1.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Research + Strategy
 
 In this phase, we'll dive into research about your audience research and competitors to craft a strategy that aligns with your brand identity and objectives.
+</div>
 
-![Step 2](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Content Development
 
 We'll develop creative content for the upcoming month as we translate our strategy into engaging posts, graphics, and captions that align with your goals.
+</div>
 
-![Step 3](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### Reports and Optimization
 
 As we progress, we'll have regular performance reports detailing key metrics and insights for continuous optimization.
+</div>
 
-![Step 4](/uploads/2024/04/4.png)
+</div>
 
 > **Want to get more out of your Social Media Management?** Boost your SMM package with targeted paid amplification!
 

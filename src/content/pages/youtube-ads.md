@@ -51,29 +51,41 @@ YouTube advertising offers you the opportunity to showcase your brand story thro
 
 ## Your Pathway to Visibility with YouTube Advertising
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### On-Boarding Meeting
 
 We start by understanding your objectives and target audience. This will help us ensure that we're on target with both your ad creation and reach parameters.
+</div>
 
-![On-Boarding Meeting](/uploads/2024/04/01-icon.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Creative Development
 
 Our team will craft compelling video ads tailored to your brand's messaging and audience preferences. You'll have the ability to review and approve the ad before launch.
+</div>
 
-![Creative Development](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Launch
 
 With your approval, we deploy your ads across targeted YouTube channels and videos, reaching your desired audience at scale.
+</div>
 
-![Launch](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### Reporting
 
 We provide detailed reports on the performance of your YouTube ads, offering actionable insights to optimize future campaigns and drive better results.
+</div>
 
-![Reporting](/uploads/2024/04/4.png)
+</div>
 
 ## Our Marketing Service Approach Is Simple
 

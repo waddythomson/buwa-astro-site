@@ -51,29 +51,41 @@ Pre-Roll ads gives you the ability to capture your viewers' attention at the mos
 
 ## Steps for Pre-Roll
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### On-Boarding Meeting
 
 During your onboarding call, we'll gather important information about your target audience, campaign goals, and budget. From here, we'll discuss the best strategy for you.
+</div>
 
-![Step 1](/uploads/2024/04/01-icon.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Ad Creation & Approval
 
 During this stage, our creative team will build an engaging video tailored to your brand and messaging. From voiceover to editing, we'll handle everything. All you'll need to do is approve the ad.
+</div>
 
-![Step 2](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Deployment
 
 During this phase, we'll strategically place your ads in front of your target audience. As your campaign continues, we'll leverage audience demographics and analytics to optimize your campaign throughout its duration.
+</div>
 
-![Step 3](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### Reporting
 
 Through comprehensive analytics tracking, we'll break down key metrics to help you understand the efficacy of your campaigns and recommend improvements for future and ongoing campaigns.
+</div>
 
-![Step 4](/uploads/2024/04/4.png)
+</div>
 
 ## Our Marketing Service Approach Is Simple
 

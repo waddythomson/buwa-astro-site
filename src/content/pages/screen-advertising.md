@@ -57,29 +57,41 @@ It's the perfect addition to other marketing channels, this integrated strategy 
 
 ## Process of Joining Our Screen Network
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### Consultation
 
 Before we begin creating your Ad we'll take time to get to know your brand, messaging, and any important images you would like us to include.
+</div>
 
-![Step 1](/uploads/2024/04/01-icon.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Ad Creation
 
 Once we have gathered your assets, we'll get to work developing your ad. Once we've completed your full-motion ad, we'll send it back to you for approval and refinement.
+</div>
 
-![Step 2](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Campaign Launch
 
 After you've approved your ad, we'll deploy your ad across the screens that are most relevant to your target audience.
+</div>
 
-![Step 3](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### Maintenance + Updates
 
 Throughout the lifetime of your contract, we'll be in regular contact to ensure that your ad is up-to-date and engaging to your audience.
+</div>
 
-![Step 4](/uploads/2024/04/4.png)
+</div>
 
 ## Check Out Our Locations
 

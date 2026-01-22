@@ -7,8 +7,6 @@ slug: "search-engine-marketing"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# Search Engine Marketing
-
 Focuses on the traffic generation aspect.
 
 [Get In Touch](/contact-us)
