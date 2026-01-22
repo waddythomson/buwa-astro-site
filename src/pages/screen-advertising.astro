@@ -22,7 +22,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
       <h2>Screen Network Ads</h2>
       <div class="two-column">
         <div class="text-content">
-          <p>Your personalized full-motion ads will be showcased repeatedly across BuWa TV, our local digital screen network, reaching potential customers as they navigate their daily routines. With your name, brand, and logo prominently displayed, you'll stay at the forefront of existing customers' minds while building brand awareness with new customers.</p>
+          <p class="intro-text">Your personalized full-motion ads will be showcased repeatedly across BuWa TV, our local digital screen network, reaching potential customers as they navigate their daily routines. With your name, brand, and logo prominently displayed, you'll stay at the forefront of existing customers' minds while building brand awareness with new customers.</p>
         </div>
         <div class="image-content">
           <img src="/uploads/2024/04/Ad-Screen.jpg" alt="Ad Screen" class="featured-image" />
@@ -35,7 +35,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <section class="content-section alt-bg">
     <div class="container">
       <h2>Our BuWa TV Network can Increase Your Brand Recognition</h2>
-      <p>Repeated exposure to your brand message, visuals, and logo, helps your brand stay top of mind with local patrons. The BuWa TV Network gives you the unique ability to reach viewers on a platform where you can't be paused skipped or blocked. Build your brand even faster by pairing the screen advertising with various other marketing channels such as <a href="/social-media-ads/">Social Media Ads</a>, <a href="/geofencing/">Display Advertising</a>, or a <a href="/website-design/">Custom Website</a>.</p>
+      <p class="intro-text">Repeated exposure to your brand message, visuals, and logo, helps your brand stay top of mind with local patrons. The BuWa TV Network gives you the unique ability to reach viewers on a platform where you can't be paused skipped or blocked. Build your brand even faster by pairing the screen advertising with various other marketing channels such as <a href="/social-media-ads/">Social Media Ads</a>, <a href="/geofencing/">Display Advertising</a>, or a <a href="/website-design/">Custom Website</a>.</p>
     </div>
   </section>
 
@@ -252,6 +252,12 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     color: #444;
   }
 
+  /* Intro paragraphs - 25% larger */
+  .intro-text {
+    font-size: 1.25rem;
+    line-height: 1.9;
+  }
+
   /* Two Column Layout */
   .two-column {
     display: grid;
@@ -396,12 +402,17 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   .cta-section .btn-navy {
     position: relative;
     z-index: 1;
-    background: white;
-    color: #1a1a2e;
+    background: linear-gradient(to bottom, #ffffff 0%, #e8e8e8 100%) !important;
+    color: #17246c !important;
+    box-shadow: 
+      0 4px 6px rgba(0,0,0,0.2),
+      0 1px 3px rgba(0,0,0,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.8);
   }
 
   .cta-section .btn-navy:hover {
-    background: #f0f0f0;
+    background: linear-gradient(to bottom, #f5f5f5 0%, #dcdcdc 100%) !important;
+    transform: translateY(-2px);
   }
 
   /* Partner Section */
