@@ -1,0 +1,298 @@
+---
+const solutionsDropdown = [
+  {
+    heading: 'Foundational',
+    items: [
+      { label: 'Website Design', href: '/website-design/', icon: 'fa-solid fa-object-ungroup' },
+      { label: 'Google Business Profile', href: '/google-business-profile/', icon: 'fa-brands fa-google' },
+      { label: 'Social Media Management', href: '/social-media-management/', icon: 'fa-solid fa-laptop' },
+      { label: 'Design Services', href: '/design/', icon: 'fa-solid fa-pen-ruler' },
+    ]
+  },
+  {
+    heading: 'Lead Gen',
+    items: [
+      { label: 'Social Media Advertising', href: '/social-media-ads/', icon: 'fa-solid fa-photo-film' },
+      { label: 'Pay Per Click', href: '/pay-per-click-ppc/', icon: 'fa-solid fa-hand-point-up' },
+    ]
+  },
+  {
+    heading: 'Branding & Awareness',
+    items: [
+      { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott-ads/', icon: 'fa-solid fa-tv' },
+      { label: 'Display | Geofencing', href: '/geofencing/', icon: 'fa-solid fa-location-dot' },
+      { label: 'Streaming Audio', href: '/streaming-audio/', icon: 'fa-solid fa-headphones' },
+      { label: 'Pre-roll Ads', href: '/pre-roll-advertising/', icon: 'fa-brands fa-square-youtube' },
+      { label: 'Youtube Advertising', href: '/youtube-ads/', icon: 'fa-brands fa-youtube' },
+    ]
+  }
+];
+
+const indoorBillboardsDropdown = [
+  { label: 'Become a Network Partner', href: '/host-partner-network/', icon: 'fa-regular fa-handshake' },
+  { label: 'Locations', href: '/locations/', icon: 'fa-solid fa-location-dot' },
+  { label: 'Screen Advertising', href: '/screen-advertising/', icon: 'fa-solid fa-rectangle-ad' },
+];
+---
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<header class="site-header">
+  <div class="header-container">
+    <a href="/" class="logo">
+      <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital" height="50" />
+    </a>
+
+    <nav class="main-nav">
+      <!-- Solutions with sectioned dropdown -->
+      <div class="nav-item has-mega-dropdown">
+        <a href="/solutions/">Solutions</a>
+        <div class="mega-dropdown">
+          {solutionsDropdown.map(section => (
+            <div class="dropdown-section">
+              <h4>{section.heading}</h4>
+              {section.items.map(item => (
+                <a href={item.href}><i class={item.icon}></i> {item.label}</a>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Indoor Billboards with simple dropdown -->
+      <div class="nav-item">
+        <span class="dropdown-trigger">Indoor Billboards</span>
+        <div class="dropdown">
+          {indoorBillboardsDropdown.map(item => (
+            <a href={item.href}><i class={item.icon}></i> {item.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <!-- About Us - no dropdown -->
+      <div class="nav-item">
+        <a href="/about-us/">About Us</a>
+      </div>
+    </nav>
+
+    <a href="/contact-us/" class="header-cta">Schedule A Call</a>
+
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    height: 50px;
+    width: auto;
+  }
+
+  .main-nav {
+    display: flex;
+    gap: 2rem;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .nav-item {
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .nav-item > a,
+  .nav-item > .dropdown-trigger {
+    text-decoration: none;
+    color: #1a1a2e;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-item > a:hover,
+  .nav-item > .dropdown-trigger:hover {
+    color: #a01c2b;
+  }
+
+  /* Simple dropdown (Indoor Billboards) */
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 1rem 0;
+    min-width: 320px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s;
+  }
+
+  .nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .dropdown a:hover {
+    background: #f8f9fa;
+    color: #a01c2b;
+  }
+
+  /* Mega dropdown (Solutions) */
+  .mega-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-top: 10px;
+    transform: translateX(-50%) translateY(10px);
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 3rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    min-width: 720px;
+  }
+
+  .has-mega-dropdown:hover .mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .dropdown-section {
+    min-width: 200px;
+    white-space: nowrap;
+  }
+
+  .dropdown-section h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a01c2b;
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #a01c2b;
+    font-weight: 700;
+  }
+
+  .dropdown-section a {
+    display: block;
+    padding: 0.4rem 0;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .dropdown-section a:hover {
+    color: #a01c2b;
+  }
+
+  /* Dropdown icons */
+  .dropdown a i,
+  .dropdown-section a i {
+    width: 1.25em;
+    margin-right: 0.5rem;
+    color: #17246c;
+    text-align: center;
+  }
+
+  .dropdown a:hover i,
+  .dropdown-section a:hover i {
+    color: #a01c2b;
+  }
+
+  .header-cta {
+    background: #a01c2b;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .header-cta:hover {
+    background: #7d1521;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #1a1a2e;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .mega-dropdown {
+      flex-direction: column;
+      min-width: 220px;
+      gap: 1.5rem;
+      left: 0;
+      transform: translateY(10px);
+    }
+
+    .has-mega-dropdown:hover .mega-dropdown {
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .main-nav, .header-cta {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: flex;
+    }
+  }
+</style>
