@@ -7,8 +7,6 @@ slug: "google-business-profile"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# Google Business Profile
-
 Boost the performance of your Google Business Profile so you appear on more relevant search result pages.
 
 [Get In Touch](/contact-us)
@@ -61,29 +59,41 @@ We'll optimize your online presence by claiming and verifying your business list
 
 ## Steps to Setting Up Your Google Business Profile
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### On-Boarding
 
 We'll gather essential business information, claim and verify ownership of your listing across platforms.
+</div>
 
-![Step 1](/uploads/2024/04/01-icon.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Accessibility
 
 We'll ensure your Google Business Profile is visible, up-to-date, and accurately represents important business details such as address and hours of operation.
+</div>
 
-![Step 2](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Management
 
 We'll actively manage and post fresh content, offers, and updates to keep your listing active and engaging for customers.
+</div>
 
-![Step 3](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### Report Calls and Continued Optimization
 
 You'll receive regular reports on your profile's performance. We'll continually refine and update your listing based on data and algorithm changes.
+</div>
 
-![Step 4](/uploads/2024/04/4.png)
+</div>
 
 ## Our Marketing Service Approach Is Simple
 
