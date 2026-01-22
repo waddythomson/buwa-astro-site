@@ -7,8 +7,6 @@ slug: "website-design"
 ogImage: "/uploads/2024/04/Maintenance-and-Support.jpg"
 ---
 
-# Website Design
-
 Custom website design & development to achieve your unique goals and maximize results.
 
 [Get In Touch](/contact-us)
@@ -51,29 +49,41 @@ Ongoing maintenance and technical support services ensure that the website remai
 
 ## Website Design Process
 
+<div class="process-steps">
+
+<div class="process-step">
+<span class="step-number">1</span>
+
 ### On-Boarding Meeting
 
 We begin with a thorough consultation to understand your goals, preferences, and vision.
+</div>
 
-![On-Boarding Meeting](/uploads/2024/04/01-icon.png)
+<div class="process-step">
+<span class="step-number">2</span>
 
 ### Research and Development
 
 Our team will do a deep dive into your industry and target audience. From here, we'll begin to craft a website that is optimized for maximum impact.
+</div>
 
-![Research and Development](/uploads/2024/04/2-1.png)
+<div class="process-step">
+<span class="step-number">3</span>
 
 ### Site Review
 
 We'll present the proposed website designs and gather your valuable feedback to refine the finished product.
+</div>
 
-![Site Review](/uploads/2024/04/3.png)
+<div class="process-step">
+<span class="step-number">4</span>
 
 ### SEO Optimization and Publication
 
 Our strategic SEO and seamless publishing process ensures your website content is easily discoverable and effective across all digital platforms.
+</div>
 
-![SEO Optimization and Publication](/uploads/2024/04/4.png)
+</div>
 
 ## Our Marketing Service Approach Is Simple
 

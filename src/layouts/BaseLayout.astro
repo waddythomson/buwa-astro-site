@@ -219,20 +219,95 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
-  /* Auto-style "Get In Touch" links to /contact-us as navy buttons */
+  /* Auto-style "Get In Touch" links to /contact-us as navy 3D buttons */
   .content-page a[href="/contact-us"] {
     display: inline-block;
-    background: #17246c;
+    background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
     color: white !important;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.2s;
     margin: 1rem 0;
+    box-shadow: 
+      0 4px 6px rgba(23, 36, 108, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .content-page a[href="/contact-us"]:hover {
-    background: #111b52;
+    background: linear-gradient(to bottom, #2439a0 0%, #1e2f8a 50%, #17246c 100%);
+    box-shadow: 
+      0 6px 10px rgba(23, 36, 108, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .content-page a[href="/contact-us"]:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 3px rgba(23, 36, 108, 0.3),
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Process Steps with numbered circles */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .process-step {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.08),
+      0 2px 6px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(23, 36, 108, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .process-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.12),
+      0 4px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1e2f8a 0%, #17246c 100%);
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    box-shadow: 
+      0 4px 10px rgba(23, 36, 108, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .process-step h3 {
+    color: #17246c;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .process-step p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 </style>
