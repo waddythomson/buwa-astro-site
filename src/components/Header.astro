@@ -152,6 +152,16 @@ const indoorBillboardsDropdown = [
     transition: all 0.2s;
   }
 
+  /* Hover bridge - invisible area that maintains hover state across the gap */
+  .dropdown::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    right: 0;
+    height: 15px;
+  }
+
   .nav-item:hover .dropdown {
     opacity: 1;
     visibility: visible;
@@ -189,6 +199,16 @@ const indoorBillboardsDropdown = [
     visibility: hidden;
     transition: all 0.2s;
     min-width: 720px;
+  }
+
+  /* Hover bridge for mega dropdown */
+  .mega-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    right: 0;
+    height: 15px;
   }
 
   .has-mega-dropdown:hover .mega-dropdown {

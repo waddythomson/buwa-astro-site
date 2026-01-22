@@ -136,13 +136,13 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <section class="content-section alt-bg">
     <div class="container">
       <h2>Our Marketing Service Approach Is Simple</h2>
-      <ul class="approach-list">
-        <li><strong>Discovery</strong><span>Understanding your business and goals</span></li>
-        <li><strong>Strategy</strong><span>Developing a tailored marketing plan</span></li>
-        <li><strong>Execution</strong><span>Implementing your campaigns</span></li>
-        <li><strong>Evaluation</strong><span>Measuring results and performance</span></li>
-        <li><strong>Optimization</strong><span>Continuous improvement for better results</span></li>
-      </ul>
+      <ol class="approach-list">
+        <li><div class="step-content"><strong>Discovery</strong><span>Understanding your business and goals</span></div></li>
+        <li><div class="step-content"><strong>Strategy</strong><span>Developing a tailored marketing plan</span></div></li>
+        <li><div class="step-content"><strong>Execution</strong><span>Implementing your campaigns</span></div></li>
+        <li><div class="step-content"><strong>Evaluation</strong><span>Measuring results and performance</span></div></li>
+        <li><div class="step-content"><strong>Optimization</strong><span>Continuous improvement for better results</span></div></li>
+      </ol>
     </div>
   </section>
 
@@ -444,18 +444,45 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   .approach-list {
     list-style: none;
     padding: 0;
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
+    margin-left: auto;
+    margin-right: 20%;
     text-align: left;
+    counter-reset: step-counter;
   }
 
   .approach-list li {
     font-family: 'Montserrat', sans-serif;
-    padding: 0.75rem 0;
+    padding: 1rem 0;
     border-bottom: 1px solid #e0e0e0;
     color: #444;
     display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    counter-increment: step-counter;
+  }
+
+  .approach-list li::before {
+    content: counter(step-counter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #17246c 100%);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .approach-list .step-content {
+    display: flex;
     align-items: baseline;
+    flex: 1;
   }
 
   .approach-list li strong {
@@ -474,8 +501,15 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     border-bottom: none;
   }
 
+  @media (max-width: 768px) {
+    .approach-list {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
   @media (max-width: 600px) {
-    .approach-list li {
+    .approach-list .step-content {
       flex-direction: column;
       gap: 0.25rem;
     }
