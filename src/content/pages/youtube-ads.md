@@ -7,9 +7,7 @@ slug: "youtube-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# YouTube Advertising
-
-Reach an engaged audience on the world's most utilized search engine.
+**Reach an engaged audience on the world's most utilized search engine.**
 
 [Get In Touch](/contact-us)
 
