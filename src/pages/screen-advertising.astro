@@ -42,7 +42,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <!-- 5 Benefits -->
   <section class="content-section">
     <div class="container">
-      <h2>5 Benefits of Screen Network</h2>
+      <h2>Benefits of BuWa TV Advertising</h2>
       
       <div class="benefit-cards">
         <div class="benefit-card">
@@ -137,11 +137,11 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     <div class="container">
       <h2>Our Marketing Service Approach Is Simple</h2>
       <ul class="approach-list">
-        <li><strong>Discovery</strong> - Understanding your business and goals</li>
-        <li><strong>Strategize</strong> - Developing a tailored marketing plan</li>
-        <li><strong>Execution</strong> - Implementing your campaigns</li>
-        <li><strong>Evaluate</strong> - Measuring results and performance</li>
-        <li><strong>Optimize</strong> - Continuous improvement for better results</li>
+        <li><strong>Discovery</strong><span>Understanding your business and goals</span></li>
+        <li><strong>Strategy</strong><span>Developing a tailored marketing plan</span></li>
+        <li><strong>Execution</strong><span>Implementing your campaigns</span></li>
+        <li><strong>Evaluation</strong><span>Measuring results and performance</span></li>
+        <li><strong>Optimization</strong><span>Continuous improvement for better results</span></li>
       </ul>
     </div>
   </section>
@@ -283,13 +283,16 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
 
   /* Benefit Cards */
   .benefit-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     margin-top: 2rem;
   }
 
   .benefit-card {
+    flex: 0 1 300px;
+    max-width: 350px;
     background: white;
     border-radius: 12px;
     overflow: hidden;
@@ -299,6 +302,13 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
       0 1px 3px rgba(0,0,0,0.1);
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .benefit-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
   }
 
   .benefit-card:hover {
@@ -434,8 +444,9 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   .approach-list {
     list-style: none;
     padding: 0;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
+    text-align: left;
   }
 
   .approach-list li {
@@ -443,10 +454,38 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     padding: 0.75rem 0;
     border-bottom: 1px solid #e0e0e0;
     color: #444;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .approach-list li strong {
+    min-width: 130px;
+    flex-shrink: 0;
+    color: #1a1a2e;
+  }
+
+  .approach-list li strong::after {
+    content: ' —';
+    font-weight: normal;
+    margin-right: 0.5rem;
   }
 
   .approach-list li:last-child {
     border-bottom: none;
+  }
+
+  @media (max-width: 600px) {
+    .approach-list li {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .approach-list li strong {
+      min-width: auto;
+    }
+    .approach-list li strong::after {
+      content: '';
+      margin-right: 0;
+    }
   }
 
   /* FAQ */
