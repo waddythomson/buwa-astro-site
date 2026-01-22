@@ -1,13 +1,11 @@
 ---
-title: "Social Media Ads"
+title: "Social Media Advertising"
 description: "Drive engagement and growth with Social Media Advertising. Position your brand on the platforms your audience loves most."
 date: "2024-04-11T19:42:12"
 modified: "2024-08-15T00:35:27"
 slug: "social-media-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
-
-# Social Media Advertising
 
 Drive engagement and growth with Social Media Advertising.
 
