@@ -7,9 +7,7 @@ slug: "design"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-## Design Services
-
-From logos to flyers and product packaging, our team can create what you need to make your business stand out.
+From eye-catching social media graphics to memorable logos and professional print materials, great design is what transforms a business into a brand. Our experienced in-house design team brings your vision to life with creativity, precision, and a deep understanding of what makes your audience take notice. Whether you're launching something new or refreshing your current look, we're here to make your business stand out in all the right ways.
 
 [Get In Touch](/contact-us)
 
