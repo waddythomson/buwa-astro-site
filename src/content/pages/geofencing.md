@@ -1,15 +1,12 @@
 ---
-title: "GeoFencing"
+title: "Display Advertising | GeoFencing"
 description: "Use location data to reach your audience on the websites they love most with Display Advertising and Geofencing technology."
 date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "geofencing"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
-
-## Display Advertising
-
-Use location data to reach your audience on the websites they love most.
+**Use location data to reach your audience on the websites they love most.**
 
 [Get In Touch](/contact-us)
 
