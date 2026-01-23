@@ -7,7 +7,7 @@ slug: "website-design"
 ogImage: "/uploads/2024/04/Maintenance-and-Support.jpg"
 ---
 
-We'll build a custom website to achieve your unique goals and maximize results.
+**We'll build a custom website to achieve your unique goals.**
 
 ## Custom Websites
 
@@ -107,6 +107,6 @@ Our optional maintenance service covers essential tasks to keep your website up-
 
 <div style="text-align: center; margin-top: 3rem;">
 
-[Schedule a Call to Learn More](/contact-us){.cta-button .schedule-call}
+[Schedule a Call to Learn More](/contact-us)
 
 </div>
