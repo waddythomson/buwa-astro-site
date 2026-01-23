@@ -9,15 +9,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 Boost the performance of your Google Business Profile so you appear on more relevant search result pages.
 
-[Get In Touch](/contact-us)
-
-## Ask for a free scan of your business directory listings
-
-By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt out of further messaging.
-
-Scan will be sent once completed
-
-![Business Map](/uploads/2024/04/business-map.jpg)
+[Ask For A Free Scan](#open-scan-popup)
 
 ## Google Business Profile Management
 
@@ -98,10 +90,10 @@ You'll receive regular reports on your profile's performance. We'll continually 
 ## Our Marketing Service Approach Is Simple
 
 - **Discovery** - Understanding your business needs
-- **Strategize** - Developing a tailored plan
+- **Strategy** - Developing a tailored plan
 - **Execution** - Implementing the strategy
-- **Evaluate** - Measuring results
-- **Optimize** - Continuous improvement
+- **Evaluation** - Measuring results
+- **Optimization** - Continuous improvement
 
 ## Common Questions About Google Business Profile
 

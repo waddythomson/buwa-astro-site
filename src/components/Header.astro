@@ -182,12 +182,11 @@ const indoorBillboardsDropdown = [
     color: #a01c2b;
   }
 
-  /* Mega dropdown (Solutions) */
+  /* Mega dropdown (Solutions) - centered on viewport */
   .mega-dropdown {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 70px;
     left: 50%;
-    margin-top: 10px;
     transform: translateX(-50%) translateY(10px);
     background: white;
     box-shadow: 0 10px 40px rgba(0,0,0,0.15);
@@ -197,8 +196,9 @@ const indoorBillboardsDropdown = [
     gap: 3rem;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s;
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
     min-width: 720px;
+    max-width: calc(100vw - 2rem);
   }
 
   /* Hover bridge for mega dropdown */
@@ -295,14 +295,14 @@ const indoorBillboardsDropdown = [
   @media (max-width: 900px) {
     .mega-dropdown {
       flex-direction: column;
-      min-width: 220px;
+      min-width: 280px;
       gap: 1.5rem;
-      left: 0;
-      transform: translateY(10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
     }
 
     .has-mega-dropdown:hover .mega-dropdown {
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
   }
 

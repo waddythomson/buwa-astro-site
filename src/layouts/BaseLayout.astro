@@ -99,29 +99,44 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
   <script>
     // Only show popup on Google Business Profile page
     if (window.location.pathname.includes('google-business-profile')) {
-      setTimeout(() => {
-        const popup = document.getElementById('gbp-popup');
-        const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
-        
-        if (popup && !hasSeenPopup) {
+      const popup = document.getElementById('gbp-popup');
+      
+      const openPopup = () => {
+        if (popup) {
           popup.style.display = 'flex';
           document.body.style.overflow = 'hidden';
         }
+      };
+
+      const closePopup = () => {
+        if (popup) {
+          popup.style.display = 'none';
+          document.body.style.overflow = '';
+          sessionStorage.setItem('gbp-popup-seen', 'true');
+        }
+      };
+
+      // Auto-show popup after 1.5s if not seen before
+      setTimeout(() => {
+        const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
+        if (!hasSeenPopup) {
+          openPopup();
+        }
       }, 1500);
+
+      // Handle "Ask For A Free Scan" button clicks
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href="#open-scan-popup"]');
+        if (link) {
+          e.preventDefault();
+          openPopup();
+        }
+      });
 
       // Close popup handlers
       document.addEventListener('DOMContentLoaded', () => {
-        const popup = document.getElementById('gbp-popup');
         const closeBtn = popup?.querySelector('.popup-close');
         
-        const closePopup = () => {
-          if (popup) {
-            popup.style.display = 'none';
-            document.body.style.overflow = '';
-            sessionStorage.setItem('gbp-popup-seen', 'true');
-          }
-        };
-
         closeBtn?.addEventListener('click', closePopup);
         popup?.addEventListener('click', (e) => {
           if (e.target === popup) closePopup();
