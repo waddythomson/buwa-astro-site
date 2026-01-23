@@ -31,6 +31,23 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     </div>
   </section>
 
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="container">
+      <h2>See BuWa TV In Action</h2>
+      <p class="video-subtitle">Watch how our indoor digital billboards capture attention in local businesses.</p>
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/3WE3H1OuaGo?rel=0" 
+          title="BuWa TV - When There's A Choice Choose Local"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- Brand Recognition -->
   <section class="content-section alt-bg">
     <div class="container">
@@ -43,7 +60,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <section class="content-section">
     <div class="container">
       <h2>Benefits of BuWa TV Advertising</h2>
-      
+
       <div class="benefit-cards">
         <div class="benefit-card">
           <img src="/uploads/2024/05/Screen-Network-Local-Reach.jpg" alt="Ad Screens - Local Reach" />
@@ -82,7 +99,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <section class="content-section alt-bg">
     <div class="container">
       <h2>Process of Joining Our Screen Network</h2>
-      
+
       <div class="process-grid">
         <div class="process-step">
           <span class="step-number">1</span>
@@ -150,7 +167,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <section class="content-section">
     <div class="container">
       <h2>Screen Network Common Questions</h2>
-      
+
       <div class="faq-list">
         <div class="faq-item">
           <h3>What if I want a screen inside my location?</h3>
@@ -226,6 +243,72 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     opacity: 0.9;
   }
 
+  /* Video Section */
+  .video-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+
+  .video-section .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .video-section h2 {
+    color: white;
+    font-family: 'Inter', system-ui, sans-serif;
+    margin-bottom: 0.75rem;
+  }
+
+  .video-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2rem;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 8px 16px rgba(0, 0, 0, 0.3),
+      0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+  }
+
   /* Content Sections */
   .content-section {
     padding: 4rem 2rem;
@@ -276,7 +359,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   .featured-image {
     width: 100%;
     border-radius: 20px 60px 20px 60px;
-    box-shadow: 
+    box-shadow:
       0 4px 6px rgba(0,0,0,0.1),
       0 10px 20px rgba(0,0,0,0.1),
       0 1px 3px rgba(0,0,0,0.08);
@@ -297,7 +380,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 
+    box-shadow:
       0 4px 6px rgba(0,0,0,0.07),
       0 10px 20px rgba(0,0,0,0.05),
       0 1px 3px rgba(0,0,0,0.1);
@@ -314,7 +397,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
 
   .benefit-card:hover {
     transform: translateY(-5px);
-    box-shadow: 
+    box-shadow:
       0 8px 12px rgba(0,0,0,0.1),
       0 20px 40px rgba(0,0,0,0.08),
       0 2px 6px rgba(0,0,0,0.12);
@@ -415,7 +498,7 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     z-index: 1;
     background: linear-gradient(to bottom, #ffffff 0%, #e8e8e8 100%) !important;
     color: #17246c !important;
-    box-shadow: 
+    box-shadow:
       0 4px 6px rgba(0,0,0,0.2),
       0 1px 3px rgba(0,0,0,0.1),
       inset 0 1px 0 rgba(255,255,255,0.8);
