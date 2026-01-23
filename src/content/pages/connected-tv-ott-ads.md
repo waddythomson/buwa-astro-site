@@ -6,14 +6,11 @@ modified: "2024-08-15T00:37:46"
 slug: "connected-tv-ott-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
-
-## Connected TV | OTT
-
-Capture the attention of a streaming audience with dynamic video ads.
+**Capture the attention of a streaming audience with dynamic video ads.**
 
 [Get In Touch](/contact-us)
 
-**Connected TV (CTV) and Over-The-Top video (OTT) advertising allows you to make an impact with stunning video ads. Target TV streaming audiences on popular channels like ESPN, CNN, and Fox. These non-skippable ads are designed to leave a lasting impression and keep you top-of-mind.**
+Connected TV (CTV) and Over-The-Top video (OTT) advertising allows you to make an impact with stunning video ads. Target TV streaming audiences on popular channels like ESPN, CNN, and Fox. These non-skippable ads are designed to leave a lasting impression and keep you top-of-mind.
 
 ![CTV OTT](/uploads/2024/05/CTV-OTT.png)
 
