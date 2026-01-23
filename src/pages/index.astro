@@ -86,24 +86,83 @@ const description = "Reach more customers where they eat, shop, work, and play. 
       <h2>Marketing Solutions</h2>
       <div class="solution-grid">
         <a href="/google-business-profile/" class="solution-card">
+          <i class="fa-brands fa-google solution-icon"></i>
           <h3>Google Business Profile</h3>
           <p>Optimize your profile to increase online visibility, improve local search rankings, and attract more customers to your business</p>
         </a>
         <a href="/pay-per-click-ppc/" class="solution-card">
+          <i class="fa-solid fa-hand-point-up solution-icon"></i>
           <h3>Pay-Per-Click (PPC)</h3>
           <p>Drive immediate traffic and convert more leads with strategic, budget-friendly online advertising</p>
         </a>
         <a href="/website-design/" class="solution-card">
+          <i class="fa-solid fa-object-ungroup solution-icon"></i>
           <h3>Website Design</h3>
           <p>Create a positive first impression, increase customer engagement and conversions</p>
         </a>
         <a href="/geofencing/" class="solution-card">
+          <i class="fa-solid fa-location-dot solution-icon"></i>
           <h3>Geofencing</h3>
           <p>Increase foot traffic and boost sales by sending personalized ads to customers when they are near your business</p>
         </a>
       </div>
       <div class="solutions-cta">
         <a href="/solutions/" class="cta-button">Browse all Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2>What Our Clients Say</h2>
+      <p class="testimonials-subtitle">Don't just take our word for it — hear from local business owners we've helped grow.</p>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Incredible service and team. Buck and Waddy have nailed it when it comes to business-to-business advertising that is visually appealing, fresh and fun. This has been a great way to advertise events, news and company info. It's easy to tell they love and support the small business community."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Christina Nelson</span>
+            <span class="author-company">The Greater CWC Chamber of Commerce</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Buwa Digital is the real deal when it comes to helping local businesses grow in today's digital world. Their indoor digital billboards are a game-changer for visibility. What I appreciate most is their passion for empowering small businesses here in Columbia. It feels less like hiring a vendor and more like gaining a partner who's invested in your success."</p>
+          <div class="testimonial-author">
+            <span class="author-name">David Medley</span>
+            <span class="author-company">Better Homes and Gardens Real Estate Medley</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Buwa Digital has been a tremendous help in improving my business's online presence. They made the process of setting up and optimizing my Google Business page simple and effective. Their team was responsive, professional, and delivered exactly what they promised. I've already noticed a difference in how clients are finding us online."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Zach Coggins</span>
+            <span class="author-company">Milestone Wealth Advisors</span>
+          </div>
+        </div>
+      </div>
+      <div class="google-attribution">
+        <i class="fa-brands fa-google"></i> Reviews from Google
       </div>
     </div>
   </section>
@@ -378,6 +437,18 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     line-height: 1.6;
   }
 
+  .solution-icon {
+    font-size: 2.5rem;
+    color: #17246c;
+    margin-bottom: 1rem;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .solution-card:hover .solution-icon {
+    color: #a01c2b;
+  }
+
   .solutions-cta {
     margin-top: 2rem;
   }
@@ -423,6 +494,103 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     margin-right: auto;
   }
 
+  /* Testimonials Section */
+  .testimonials {
+    background: white;
+    text-align: center;
+  }
+
+  .testimonials h2 {
+    color: #1a1a2e;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .testimonials-subtitle {
+    color: #666;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .testimonial-card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 4px 8px rgba(0,0,0,0.06),
+      0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .testimonial-card .stars {
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card .stars i {
+    color: #f4b400;
+    font-size: 1rem;
+    margin-right: 2px;
+  }
+
+  .testimonial-text {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+  }
+
+  .author-name {
+    display: block;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 0.25rem;
+  }
+
+  .author-company {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .google-attribution {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .google-attribution i {
+    color: #4285f4;
+    font-size: 1.1rem;
+  }
+
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 1.75rem;
@@ -443,6 +611,10 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     }
 
     .solution-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonial-grid {
       grid-template-columns: 1fr;
     }
   }
