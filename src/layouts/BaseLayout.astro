@@ -69,6 +69,70 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
   </main>
 
   <Footer />
+
+  <!-- Lead Capture Popup (only on Google Business Profile page) -->
+  <div id="gbp-popup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close popup">&times;</button>
+      <div class="popup-grid">
+        <div class="popup-form-side">
+          <h2>Elevate Your Online Reputation</h2>
+          <p class="popup-subtitle">Ask for a free scan of your business directory listings</p>
+          <form action="https://formspree.io/f/xreekwzk" method="POST" class="popup-form">
+            <input type="hidden" name="_subject" value="Free GBP Scan Request" />
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <input type="tel" name="phone" placeholder="Phone Number" />
+            <input type="text" name="business" placeholder="Business Name" />
+            <button type="submit" class="popup-submit">Get Started</button>
+          </form>
+          <p class="popup-disclaimer">By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt out.</p>
+        </div>
+        <div class="popup-image-side">
+          <img src="/uploads/2024/04/business-map.jpg" alt="Business Directory Scan" />
+          <p class="popup-note">Scan will be sent once completed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Only show popup on Google Business Profile page
+    if (window.location.pathname.includes('google-business-profile')) {
+      setTimeout(() => {
+        const popup = document.getElementById('gbp-popup');
+        const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
+        
+        if (popup && !hasSeenPopup) {
+          popup.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      }, 1500);
+
+      // Close popup handlers
+      document.addEventListener('DOMContentLoaded', () => {
+        const popup = document.getElementById('gbp-popup');
+        const closeBtn = popup?.querySelector('.popup-close');
+        
+        const closePopup = () => {
+          if (popup) {
+            popup.style.display = 'none';
+            document.body.style.overflow = '';
+            sessionStorage.setItem('gbp-popup-seen', 'true');
+          }
+        };
+
+        closeBtn?.addEventListener('click', closePopup);
+        popup?.addEventListener('click', (e) => {
+          if (e.target === popup) closePopup();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closePopup();
+        });
+      });
+    }
+  </script>
 </body>
 </html>
 
@@ -315,5 +379,175 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
     color: #555;
     font-size: 0.95rem;
     line-height: 1.6;
+  }
+
+  /* Lead Capture Popup */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
+  }
+
+  .popup-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.3),
+      0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f0f0f0;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+
+  .popup-close:hover {
+    background: #17246c;
+    color: white;
+  }
+
+  .popup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+  }
+
+  .popup-form-side {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popup-form-side h2 {
+    color: #17246c;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .popup-subtitle {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .popup-form input {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.2s;
+  }
+
+  .popup-form input:focus {
+    outline: none;
+    border-color: #17246c;
+  }
+
+  .popup-submit {
+    background: linear-gradient(to bottom, #c4232e 0%, #a01c2b 50%, #8a1825 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    box-shadow: 
+      0 4px 6px rgba(160, 28, 43, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+  }
+
+  .popup-submit:hover {
+    background: linear-gradient(to bottom, #d42a36 0%, #c4232e 50%, #a01c2b 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 10px rgba(160, 28, 43, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .popup-disclaimer {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+
+  .popup-image-side {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .popup-image-side img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .popup-note {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    .popup-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .popup-image-side {
+      display: none;
+    }
+
+    .popup-form-side {
+      padding: 2rem 1.5rem;
+    }
+
+    .popup-form-side h2 {
+      font-size: 1.4rem;
+    }
   }
 </style>
