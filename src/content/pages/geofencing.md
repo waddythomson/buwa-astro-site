@@ -7,15 +7,13 @@ slug: "geofencing"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-## Display Advertising | Geofencing
+## Display Advertising
 
 Use location data to reach your audience on the websites they love most.
 
 [Get In Touch](/contact-us)
 
-## Display Advertising
-
-Leveraging Geofencing technology, Display Advertising targets precise geographic regions, delivering personalized ads to users within and near those locations. Your audience will encounter these tailored messages seamlessly integrated as dynamic, full-motion ads across their favorite websites and online platforms.
+**Leveraging Geofencing technology, Display Advertising targets precise geographic regions, delivering personalized ads to users within and near those locations. Your audience will encounter these tailored messages seamlessly integrated as dynamic, full-motion ads across their favorite websites and online platforms.**
 
 ![Geofencing](/uploads/2024/04/Geofencing.jpg)
 

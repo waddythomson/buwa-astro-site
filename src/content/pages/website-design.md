@@ -1,5 +1,5 @@
 ---
-title: "Website Design"
+title: "Website Design & Development"
 description: "Custom website design and development to achieve your unique goals and maximize results."
 date: "2024-04-11T19:50:07"
 modified: "2024-08-15T21:58:55"
@@ -7,9 +7,7 @@ slug: "website-design"
 ogImage: "/uploads/2024/04/Maintenance-and-Support.jpg"
 ---
 
-Custom website design & development to achieve your unique goals and maximize results.
-
-[Get In Touch](/contact-us)
+We'll build a custom website to achieve your unique goals and maximize results.
 
 ## Custom Websites
 
@@ -88,18 +86,16 @@ Our strategic SEO and seamless publishing process ensures your website content i
 ## Our Marketing Service Approach Is Simple
 
 - **Discovery** - Understanding your business and goals
-- **Strategize** - Developing a tailored plan
+- **Strategy** - Developing a tailored plan
 - **Execution** - Building and implementing your website
-- **Evaluate** - Measuring results and performance
-- **Optimize** - Continuous improvement for better results
+- **Evaluation** - Measuring results and performance
+- **Optimization** - Continuous improvement for better results
 
 ## Website Common Questions
 
 ### Why do websites vary so much in price?
 
 The pricing of a website is dependent on several factors including keyword research, content development, and plugin requirements.
-
-[**Schedule a call to learn more.**](/contact-us)
 
 ### What if I want to add more pages later?
 
@@ -108,3 +104,9 @@ We can always add more pages to your website. Expanding the number of pages on y
 ### What if I need assistance later with maintenance or changing of content?
 
 Our optional maintenance service covers essential tasks to keep your website up-to-date and secure. This includes backend updates to maintain site security and making minor changes such as image replacements and text updates as needed. From start to finish, we're dedicated to supporting your online presence and ensuring its smooth operation.
+
+<div style="text-align: center; margin-top: 3rem;">
+
+[Schedule a Call to Learn More](/contact-us){.cta-button .schedule-call}
+
+</div>
