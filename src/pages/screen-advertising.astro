@@ -16,10 +16,10 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     </div>
   </section>
 
-  <!-- Screen Network Ads -->
+  <!-- Indoor Digital Billboard Advertising -->
   <section class="content-section">
     <div class="container">
-      <h2>Screen Network Ads</h2>
+      <h2>Indoor Digital Billboard Advertising</h2>
       <div class="two-column">
         <div class="text-content">
           <p class="intro-text">Your personalized full-motion ads will be showcased repeatedly across BuWa TV, our local digital screen network, reaching potential customers as they navigate their daily routines. With your name, brand, and logo prominently displayed, you'll stay at the forefront of existing customers' minds while building brand awareness with new customers.</p>
@@ -34,10 +34,16 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <!-- Video Section -->
   <section class="video-section">
     <div class="container">
+      <div class="video-tabs">
+        <button class="video-tab active" data-video="yatLBgtde2c" data-title="BuWa TV Bumper">BuWa TV Bumper</button>
+        <button class="video-tab" data-video="tTqVOj7yptg" data-title="Sample Host Partner Ad">Sample Host Partner Ad</button>
+        <button class="video-tab" data-video="37swzrQ82qY" data-title="Sample Trivia">Sample Trivia</button>
+      </div>
       <div class="video-wrapper">
         <iframe 
+          id="video-player"
           src="https://www.youtube.com/embed/yatLBgtde2c?rel=0" 
-          title="BuWa TV - When There's A Choice Choose Local"
+          title="BuWa TV Bumper"
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
@@ -45,6 +51,23 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
       </div>
     </div>
   </section>
+
+  <script>
+    document.querySelectorAll('.video-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Update active tab
+        document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Update video
+        const videoId = tab.dataset.video;
+        const title = tab.dataset.title;
+        const iframe = document.getElementById('video-player');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+        iframe.title = title;
+      });
+    });
+  </script>
 
   <!-- Brand Recognition -->
   <section class="content-section alt-bg">
@@ -283,6 +306,40 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.85);
     margin-bottom: 2rem;
+  }
+
+  .video-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .video-tab {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .video-tab:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .video-tab.active {
+    background: white;
+    color: #17246c;
+    border-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   .video-wrapper {
