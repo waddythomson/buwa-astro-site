@@ -69,21 +69,45 @@ const partners = [
     </div>
     
     <div class="carousel-wrapper">
-      <div class="carousel-track">
-        <!-- First set of logos -->
+      <div class="carousel-track" id="carousel-track">
         {partners.map((partner) => (
           <div class="logo-item">
-            <img src={partner.src} alt={partner.name} />
-          </div>
-        ))}
-        <!-- Duplicate for seamless loop -->
-        {partners.map((partner) => (
-          <div class="logo-item">
-            <img src={partner.src} alt={partner.name} />
+            <img src={partner.src} alt={partner.name} loading="lazy" />
           </div>
         ))}
       </div>
     </div>
+    
+    <script>
+      // Seamless infinite scroll carousel
+      document.addEventListener('DOMContentLoaded', () => {
+        const track = document.getElementById('carousel-track');
+        if (!track) return;
+        
+        // Clone content for seamless loop
+        const content = track.innerHTML;
+        track.innerHTML = content + content;
+        
+        // Get the width of one set of logos (half the total)
+        const singleSetWidth = track.scrollWidth / 2;
+        
+        // Create dynamic keyframes with exact pixel values
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+          @keyframes carouselScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-${singleSetWidth}px); }
+          }
+        `;
+        document.head.appendChild(styleSheet);
+        
+        // Calculate duration (pixels / speed = seconds)
+        const speed = 50; // pixels per second
+        const duration = singleSetWidth / speed;
+        
+        track.style.animation = `carouselScroll ${duration}s linear infinite`;
+      });
+    </script>
   </section>
 </BaseLayout>
 
@@ -185,24 +209,13 @@ const partners = [
   .carousel-track {
     display: flex;
     gap: 3rem;
-    animation: scroll 40s linear infinite;
     width: max-content;
     /* GPU acceleration for smoother animation */
     will-change: transform;
     backface-visibility: hidden;
-    transform: translateZ(0);
   }
 
-  /* No pause on hover - continuous scroll */
-
-  @keyframes scroll {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(-50%, 0, 0);
-    }
-  }
+  /* Animation keyframes injected by JavaScript with exact pixel values */
 
   .logo-item {
     flex-shrink: 0;
@@ -244,7 +257,6 @@ const partners = [
 
     .carousel-track {
       gap: 1.5rem;
-      animation-duration: 25s;
     }
 
     .logo-item {
