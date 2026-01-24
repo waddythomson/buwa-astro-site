@@ -378,21 +378,19 @@ const indoorBillboardsDropdown = [
     display: none;
     flex-direction: column;
     background: white;
-    padding: 1rem 2rem 2rem;
+    padding: 0 2rem;
     border-top: 1px solid #eee;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
   }
 
-  .mobile-nav.open {
-    max-height: 100vh;
-    overflow-y: auto;
-  }
-
   @media (max-width: 768px) {
-    .mobile-nav {
+    .mobile-nav.open {
       display: flex;
+      max-height: 100vh;
+      padding: 1rem 2rem 2rem;
+      overflow-y: auto;
     }
   }
 
