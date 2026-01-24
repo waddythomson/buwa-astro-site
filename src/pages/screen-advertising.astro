@@ -34,18 +34,19 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   <!-- Video Section -->
   <section class="video-section">
     <div class="container">
-      <div class="video-tabs">
+      <div class="video-tabs" id="video-tabs">
+        <!-- Tabs populated by JavaScript -->
         <button class="video-tab active" data-video="yatLBgtde2c" data-title="BuWa TV Bumper">BuWa TV Bumper</button>
         <button class="video-tab" data-video="tTqVOj7yptg" data-title="Sample Host Partner Ad">Sample Host Partner Ad</button>
         <button class="video-tab" data-video="37swzrQ82qY" data-title="Sample Trivia">Sample Trivia</button>
       </div>
       <div class="video-wrapper">
-        <iframe 
+        <iframe
           id="video-player"
-          src="https://www.youtube.com/embed/yatLBgtde2c?rel=0" 
+          src="https://www.youtube.com/embed/yatLBgtde2c?rel=0"
           title="BuWa TV Bumper"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
       </div>
@@ -53,20 +54,70 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
   </section>
 
   <script>
-    document.querySelectorAll('.video-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Update active tab
-        document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        // Update video
-        const videoId = tab.dataset.video;
-        const title = tab.dataset.title;
-        const iframe = document.getElementById('video-player');
-        iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
-        iframe.title = title;
+    // Fallback videos (used if config fetch fails)
+    let videos = [
+      { id: 'yatLBgtde2c', title: 'BuWa TV Bumper' },
+      { id: 'tTqVOj7yptg', title: 'Sample Host Partner Ad' },
+      { id: '37swzrQ82qY', title: 'Sample Trivia' }
+    ];
+
+    // Fetch config and update videos
+    fetch('/config.json')
+      .then(res => res.json())
+      .then(config => {
+        if (config.screenAdvertisingVideos?.length) {
+          videos = config.screenAdvertisingVideos;
+          renderTabs();
+        }
+      })
+      .catch(() => {}); // Use fallback if fetch fails
+
+    function renderTabs() {
+      const tabsContainer = document.getElementById('video-tabs');
+      const iframe = document.getElementById('video-player');
+      
+      // Clear existing tabs
+      tabsContainer.innerHTML = '';
+      
+      // Create new tabs from config
+      videos.forEach((video, index) => {
+        const tab = document.createElement('button');
+        tab.className = 'video-tab' + (index === 0 ? ' active' : '');
+        tab.dataset.video = video.id;
+        tab.dataset.title = video.title;
+        tab.textContent = video.title;
+        tabsContainer.appendChild(tab);
       });
-    });
+
+      // Set first video
+      if (videos.length > 0) {
+        iframe.src = `https://www.youtube.com/embed/${videos[0].id}?rel=0`;
+        iframe.title = videos[0].title;
+      }
+
+      // Re-attach click handlers
+      attachTabHandlers();
+    }
+
+    function attachTabHandlers() {
+      document.querySelectorAll('.video-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Update active tab
+          document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          // Update video
+          const videoId = tab.dataset.video;
+          const title = tab.dataset.title;
+          const iframe = document.getElementById('video-player');
+          iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+          iframe.title = title;
+        });
+      });
+    }
+
+    // Attach handlers for initial fallback tabs
+    attachTabHandlers();
   </script>
 
   <!-- Brand Recognition -->

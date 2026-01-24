@@ -239,7 +239,17 @@ const description = "Reach more customers where they eat, shop, work, and play. 
   const openBtn = document.getElementById('openVideoPopup');
   const closeBtn = document.getElementById('closeVideoPopup');
   const youtubePlayer = document.getElementById('youtubePlayer');
-  const youtubeVideoId = 'WN3qbqm1WGI';
+  let youtubeVideoId = 'WN3qbqm1WGI'; // fallback
+
+  // Fetch video config
+  fetch('/config.json')
+    .then(res => res.json())
+    .then(config => {
+      if (config.heroVideo?.id) {
+        youtubeVideoId = config.heroVideo.id;
+      }
+    })
+    .catch(() => {}); // Use fallback if fetch fails
 
   openBtn?.addEventListener('click', () => {
     youtubePlayer.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1`;
