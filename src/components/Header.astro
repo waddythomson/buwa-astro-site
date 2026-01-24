@@ -90,7 +90,58 @@ const indoorBillboardsDropdown = [
       <span></span>
     </button>
   </div>
+
+  <!-- Mobile Menu Panel -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-section">
+      <h4>Solutions</h4>
+      <a href="/solutions/">All Solutions</a>
+      {solutionsDropdown.map(section => (
+        section.items.map(item => (
+          <a href={item.href}><i class={item.icon}></i> {item.label}</a>
+        ))
+      ))}
+    </div>
+    
+    <div class="mobile-nav-section">
+      <h4>Indoor Billboards</h4>
+      {indoorBillboardsDropdown.map(item => (
+        <a href={item.href}><i class={item.icon}></i> {item.label}</a>
+      ))}
+    </div>
+    
+    <div class="mobile-nav-section">
+      <h4>Who We Are</h4>
+      <a href="/about-us/"><i class="fa-solid fa-users"></i> About Us</a>
+      <a href="/#testimonials"><i class="fa-solid fa-comments"></i> What Our Partners Say</a>
+      <a href="/contact-us/"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+      <a href="https://g.page/r/CaCY12nNkQppEBM/review" target="_blank" rel="noopener"><i class="fa-solid fa-star"></i> Leave a Review</a>
+    </div>
+    
+    <a href="/contact-us/" class="mobile-cta">Schedule A Call</a>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const header = document.querySelector('.site-header');
+  
+  toggle?.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    mobileNav?.classList.toggle('open');
+    header?.classList.toggle('menu-open');
+  });
+  
+  // Close menu when clicking a link
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle?.classList.remove('active');
+      mobileNav?.classList.remove('open');
+      header?.classList.remove('menu-open');
+    });
+  });
+</script>
 
 <style>
   .site-header {
@@ -320,5 +371,100 @@ const indoorBillboardsDropdown = [
     .mobile-menu-toggle {
       display: flex;
     }
+  }
+
+  /* Mobile Menu Panel */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    padding: 1rem 2rem 2rem;
+    border-top: 1px solid #eee;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .mobile-nav.open {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-nav {
+      display: flex;
+    }
+  }
+
+  .mobile-nav-section {
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-nav-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .mobile-nav-section h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a01c2b;
+    margin: 0 0 0.75rem 0;
+    font-weight: 700;
+  }
+
+  .mobile-nav-section a {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-section a:hover {
+    color: #a01c2b;
+  }
+
+  .mobile-nav-section a i {
+    width: 1.5em;
+    margin-right: 0.5rem;
+    color: #17246c;
+    text-align: center;
+  }
+
+  .mobile-cta {
+    display: block;
+    background: #a01c2b;
+    color: white !important;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+    transition: background 0.2s;
+  }
+
+  .mobile-cta:hover {
+    background: #7d1521;
+  }
+
+  /* Hamburger Animation */
+  .mobile-menu-toggle span {
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
   }
 </style>
