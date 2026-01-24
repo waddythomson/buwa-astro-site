@@ -20,12 +20,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="intro-text">Ready to grow your business? Fill out the form below and we'll be in touch.</p>
 
       <div class="form-container">
-        <form action="https://formsubmit.co/info@buwadigital.com" method="POST" class="contact-form">
-          <!-- FormSubmit configuration -->
-          <input type="hidden" name="_cc" value="waddy@buwadigital.com" />
-          <input type="hidden" name="_subject" value="New Contact Form Submission - BuWa Digital" />
-          <input type="hidden" name="_next" value="https://www.buwadigital.com/contact-us?submitted=true" />
-          <input type="hidden" name="_captcha" value="true" />
+        <form action="https://script.google.com/a/macros/buwadigital.com/s/AKfycbzhi6c5-mctCXsQalCn0MdeaY-AA1v5i8AS0YIVhgmkqctHwfZchqXOy7_F2bE5GWU/exec" method="POST" class="contact-form">
+          <!-- Honeypot spam protection -->
+          <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
           
           <div class="form-group">
             <label for="name">Name *</label>

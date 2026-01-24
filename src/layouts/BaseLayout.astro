@@ -78,11 +78,9 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
         <div class="popup-form-side">
           <h2>Elevate Your Online Reputation</h2>
           <p class="popup-subtitle">Ask for a free scan of your business directory listings</p>
-          <form action="https://formsubmit.co/info@buwadigital.com" method="POST" class="popup-form">
-            <input type="hidden" name="_cc" value="waddy@buwadigital.com" />
-            <input type="hidden" name="_subject" value="Free GBP Scan Request - BuWa Digital" />
-            <input type="hidden" name="_next" value="https://www.buwadigital.com/google-business-profile?scan-requested=true" />
-            <input type="hidden" name="_captcha" value="true" />
+          <form action="https://script.google.com/a/macros/buwadigital.com/s/AKfycbzhi6c5-mctCXsQalCn0MdeaY-AA1v5i8AS0YIVhgmkqctHwfZchqXOy7_F2bE5GWU/exec" method="POST" class="popup-form">
+            <input type="hidden" name="form_type" value="scan_request" />
+            <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
             <input type="text" name="name" placeholder="Your Name" required />
             <input type="email" name="email" placeholder="Email Address" required />
             <input type="tel" name="phone" placeholder="Phone Number" />
