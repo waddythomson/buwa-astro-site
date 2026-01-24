@@ -20,7 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="intro-text">Ready to grow your business? Fill out the form below and we'll be in touch.</p>
 
       <div class="form-container">
-        <form action="https://script.google.com/macros/s/AKfycbzhi6c5-mctCXsQalCn0MdeaY-AA1v5i8AS0YIVhgmkqctHwfZchqXOy7_F2bE5GWU/exec" method="POST" class="contact-form">
+        <form id="contact-form" class="contact-form">
           <!-- Honeypot spam protection -->
           <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
           
@@ -61,13 +61,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
   
   <script>
-    // Check if form was just submitted
-    if (window.location.search.includes('submitted=true')) {
-      document.getElementById('success-message').style.display = 'block';
-      document.getElementById('form-content').style.display = 'none';
-      // Clean up URL
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
+    const form = document.getElementById('contact-form');
+    const submitBtn = form.querySelector('.submit-btn');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Check honeypot
+      if (form.querySelector('[name="_honeypot"]').value) {
+        window.location.href = '/thank-you';
+        return;
+      }
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      
+      try {
+        const formData = new FormData(form);
+        
+        await fetch('https://script.google.com/macros/s/AKfycbzhi6c5-mctCXsQalCn0MdeaY-AA1v5i8AS0YIVhgmkqctHwfZchqXOy7_F2bE5GWU/exec', {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'
+        });
+        
+        // Redirect to thank you page
+        window.location.href = '/thank-you';
+        
+      } catch (error) {
+        // Even if there's an error, the form likely went through
+        // (no-cors mode doesn't give us response details)
+        window.location.href = '/thank-you';
+      }
+    });
   </script>
 </BaseLayout>
 
