@@ -8,11 +8,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <section class="contact-page">
     <div class="container">
-      <h1>Let's Work Together</h1>
-      <p class="intro-text">Ready to grow your business? Fill out the form below and we'll be in touch.</p>
+      <!-- Success message (shown after form submission) -->
+      <div id="success-message" class="success-message" style="display: none;">
+        <div class="success-icon">✓</div>
+        <h2>Thank You!</h2>
+        <p>Your message has been sent successfully. We'll be in touch soon!</p>
+      </div>
+      
+      <div id="form-content">
+        <h1>Let's Work Together</h1>
+        <p class="intro-text">Ready to grow your business? Fill out the form below and we'll be in touch.</p>
 
       <div class="form-container">
-        <form action="https://formspree.io/f/xreekwzk" method="POST" class="contact-form">
+        <form action="https://formsubmit.co/info@buwadigital.com" method="POST" class="contact-form">
+          <!-- FormSubmit configuration -->
+          <input type="hidden" name="_cc" value="waddy@buwadigital.com" />
+          <input type="hidden" name="_subject" value="New Contact Form Submission - BuWa Digital" />
+          <input type="hidden" name="_next" value="https://www.buwadigital.com/contact-us?submitted=true" />
+          <input type="hidden" name="_captcha" value="true" />
+          
           <div class="form-group">
             <label for="name">Name *</label>
             <input type="text" id="name" name="name" required />
@@ -45,8 +59,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <button type="submit" class="submit-btn">Submit</button>
         </form>
       </div>
+      </div><!-- end form-content -->
     </div>
   </section>
+  
+  <script>
+    // Check if form was just submitted
+    if (window.location.search.includes('submitted=true')) {
+      document.getElementById('success-message').style.display = 'block';
+      document.getElementById('form-content').style.display = 'none';
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  </script>
 </BaseLayout>
 
 <style>
@@ -54,6 +79,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: 4rem 2rem;
     max-width: 650px;
     margin: 0 auto;
+  }
+
+  .success-message {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 12px;
+    color: white;
+  }
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 auto 1.5rem;
+  }
+
+  .success-message h2 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+
+  .success-message p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
   }
 
   h1 {

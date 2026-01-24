@@ -78,8 +78,11 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
         <div class="popup-form-side">
           <h2>Elevate Your Online Reputation</h2>
           <p class="popup-subtitle">Ask for a free scan of your business directory listings</p>
-          <form action="https://formspree.io/f/xreekwzk" method="POST" class="popup-form">
-            <input type="hidden" name="_subject" value="Free GBP Scan Request" />
+          <form action="https://formsubmit.co/info@buwadigital.com" method="POST" class="popup-form">
+            <input type="hidden" name="_cc" value="waddy@buwadigital.com" />
+            <input type="hidden" name="_subject" value="Free GBP Scan Request - BuWa Digital" />
+            <input type="hidden" name="_next" value="https://www.buwadigital.com/google-business-profile?scan-requested=true" />
+            <input type="hidden" name="_captcha" value="true" />
             <input type="text" name="name" placeholder="Your Name" required />
             <input type="email" name="email" placeholder="Email Address" required />
             <input type="tel" name="phone" placeholder="Phone Number" />
@@ -101,6 +104,26 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
     if (window.location.pathname.includes('google-business-profile')) {
       const popup = document.getElementById('gbp-popup');
       
+      // Check if scan was just requested (returning from form submission)
+      if (window.location.search.includes('scan-requested=true')) {
+        const formSide = document.querySelector('.popup-form-side');
+        if (formSide) {
+          formSide.innerHTML = `
+            <div style="text-align: center; padding: 2rem 0;">
+              <div style="width: 60px; height: 60px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin: 0 auto 1rem;">✓</div>
+              <h2 style="color: white; margin-bottom: 0.5rem;">Thank You!</h2>
+              <p style="color: rgba(255,255,255,0.9);">We'll send your free scan once completed.</p>
+            </div>
+          `;
+        }
+        // Show the popup with thank you message
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        sessionStorage.setItem('gbp-popup-seen', 'true');
+        // Clean up URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+      
       const openPopup = () => {
         if (popup) {
           popup.style.display = 'flex';
@@ -116,13 +139,15 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
         }
       };
 
-      // Auto-show popup after 1.5s if not seen before
-      setTimeout(() => {
-        const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
-        if (!hasSeenPopup) {
-          openPopup();
-        }
-      }, 1500);
+      // Auto-show popup after 1.5s if not seen before (and not returning from submission)
+      if (!window.location.search.includes('scan-requested=true')) {
+        setTimeout(() => {
+          const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
+          if (!hasSeenPopup) {
+            openPopup();
+          }
+        }, 1500);
+      }
 
       // Handle "Ask For A Free Scan" button clicks
       document.addEventListener('click', (e) => {
