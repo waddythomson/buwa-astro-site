@@ -25,8 +25,20 @@ const description = "Reach more customers where they eat, shop, work, and play. 
   <div class="video-modal" id="videoModal">
     <div class="video-modal-content">
       <button type="button" class="video-modal-close" id="closeVideoPopup">&times;</button>
-      <div class="video-wrapper">
-        <div id="youtubePlayer"></div>
+      <div class="tv-frame">
+        <div class="tv-bezel">
+          <div class="tv-screen">
+            <div class="video-wrapper">
+              <div id="youtubePlayer"></div>
+            </div>
+            <div class="tv-reflection"></div>
+          </div>
+        </div>
+        <div class="tv-brand">BuWa TV</div>
+        <div class="tv-stand">
+          <div class="tv-stand-neck"></div>
+          <div class="tv-stand-base"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -51,7 +63,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
             <h3>Be Seen. Be Trusted. Be Chosen!</h3>
             <p>Customers trust brands that they recognize. By using vibrant visuals to tell your story, you gain valuable local exposure and <strong>turn recognition into trust</strong>— the trust that ultimately leads to being chosen. It's time to discover the power of BuWa TV!</p>
           </div>
-          <a href="/contact-us/" class="cta-button cta-button-red">Schedule A Call</a>
+          <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-phone"></i> Schedule A Call</a>
         </div>
       </div>
     </div>
@@ -424,7 +436,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.92);
     z-index: 10000;
     justify-content: center;
     align-items: center;
@@ -445,25 +457,104 @@ const description = "Reach more customers where they eat, shop, work, and play. 
 
   .video-modal-content {
     position: relative;
-    width: min(90vw, 900px);
+    width: min(95vw, 980px);
   }
 
   .video-modal-close {
     position: absolute;
-    top: -40px;
-    right: 0;
+    top: -50px;
+    right: -10px;
     background: none;
     border: none;
     color: white;
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
     padding: 0.5rem;
     line-height: 1;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.2s;
+    z-index: 10;
   }
 
   .video-modal-close:hover {
     color: #a01c2b;
+    transform: scale(1.1);
+  }
+
+  /* TV Frame Styles */
+  .tv-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tv-bezel {
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 50%, #0d0d0d 100%);
+    width: 100%;
+    padding: 12px 12px 20px 12px;
+    border-radius: 12px;
+    box-shadow: 
+      0 0 0 2px rgba(60, 60, 60, 0.5),
+      0 20px 60px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .tv-screen {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .tv-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .tv-brand {
+    color: #666;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: -12px;
+    padding: 4px 12px;
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .tv-stand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .tv-stand-neck {
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    border-radius: 2px;
+  }
+
+  .tv-stand-base {
+    width: 140px;
+    height: 12px;
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   }
 
   .video-wrapper {
@@ -472,8 +563,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    background: #000;
   }
 
   .video-wrapper iframe {
@@ -482,6 +572,29 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  /* Mobile adjustments for TV */
+  @media (max-width: 768px) {
+    .tv-bezel {
+      padding: 8px 8px 14px 8px;
+      border-radius: 8px;
+    }
+    
+    .tv-brand {
+      font-size: 0.6rem;
+      margin-top: -8px;
+    }
+    
+    .tv-stand-neck {
+      width: 40px;
+      height: 20px;
+    }
+    
+    .tv-stand-base {
+      width: 100px;
+      height: 8px;
+    }
   }
 
   .container {
