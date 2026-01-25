@@ -13,7 +13,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
       <h1>Stop Flying Under The Radar!</h1>
       <p class="hero-subtitle">Reach more customers where they eat, shop, work, and play. We'll help your business maintain a prominent community presence with reasonably priced, locally targeted exposure that keeps you top-of-mind and delivers real results.</p>
       <div class="hero-buttons">
-        <a href="/contact-us/" class="cta-button cta-button-red">Get In Touch</a>
+        <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
         <button type="button" class="cta-button cta-button-white" id="openVideoPopup">
           <i class="fa-solid fa-play"></i> See BuWa TV in Action
         </button>
@@ -26,14 +26,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     <div class="video-modal-content">
       <button type="button" class="video-modal-close" id="closeVideoPopup">&times;</button>
       <div class="video-wrapper">
-        <iframe 
-          id="youtubePlayer"
-          src="" 
-          title="BuWa TV in Action"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
+        <div id="youtubePlayer"></div>
       </div>
     </div>
   </div>
@@ -238,8 +231,9 @@ const description = "Reach more customers where they eat, shop, work, and play. 
   const videoModal = document.getElementById('videoModal');
   const openBtn = document.getElementById('openVideoPopup');
   const closeBtn = document.getElementById('closeVideoPopup');
-  const youtubePlayer = document.getElementById('youtubePlayer');
   let youtubeVideoId = 'WN3qbqm1WGI'; // fallback
+  const videoWrapper = document.querySelector('.video-wrapper');
+  let revealTimer;
 
   // Fetch video config
   fetch('/config.json')
@@ -251,17 +245,53 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     })
     .catch(() => {}); // Use fallback if fetch fails
 
-  openBtn?.addEventListener('click', () => {
-    youtubePlayer.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1`;
-    videoModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-
   const closeModal = () => {
     videoModal.classList.remove('active');
-    youtubePlayer.src = '';
+    videoModal.classList.remove('ready');
     document.body.style.overflow = '';
+    if (revealTimer) {
+      clearTimeout(revealTimer);
+      revealTimer = undefined;
+    }
+    if (videoWrapper) {
+      videoWrapper.innerHTML = '<div id="youtubePlayer"></div>';
+    }
   };
+
+  const revealModal = () => {
+    if (!videoModal?.classList.contains('active')) {
+      videoModal?.classList.add('active');
+    }
+    videoModal?.classList.add('ready');
+  };
+
+  const openVideoModal = () => {
+    videoModal.classList.remove('active', 'ready');
+    document.body.style.overflow = 'hidden';
+    if (revealTimer) {
+      clearTimeout(revealTimer);
+    }
+    revealTimer = setTimeout(revealModal, 500);
+
+    if (videoWrapper) {
+      videoWrapper.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${youtubeVideoId}"
+          title="BuWa TV in Action"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;">
+        </iframe>
+      `;
+      const iframe = videoWrapper.querySelector('iframe');
+      if (iframe) {
+        iframe.addEventListener('load', revealModal, { once: true });
+      }
+    }
+  };
+
+  openBtn?.addEventListener('click', openVideoModal);
 
   closeBtn?.addEventListener('click', closeModal);
 
@@ -399,16 +429,23 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
   }
 
   .video-modal.active {
     display: flex;
   }
 
+  .video-modal.ready {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .video-modal-content {
     position: relative;
-    width: 100%;
-    max-width: 900px;
+    width: min(90vw, 900px);
   }
 
   .video-modal-close {
@@ -431,6 +468,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
 
   .video-wrapper {
     position: relative;
+    width: 100%;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;

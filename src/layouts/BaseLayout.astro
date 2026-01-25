@@ -98,9 +98,20 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
   </div>
 
   <script>
+    const popup = document.getElementById('gbp-popup');
+    const isGbpPage = window.location.pathname.includes('google-business-profile');
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+    // Ensure popup never blocks non-GBP pages
+    if (!isGbpPage || isLocalhost) {
+      if (popup) {
+        popup.style.display = 'none';
+      }
+      document.body.style.overflow = '';
+    }
+
     // Only show popup on Google Business Profile page
-    if (window.location.pathname.includes('google-business-profile')) {
-      const popup = document.getElementById('gbp-popup');
+    if (isGbpPage && popup && !isLocalhost) {
       
       // Check if scan was just requested (returning from form submission)
       if (window.location.search.includes('scan-requested=true')) {
