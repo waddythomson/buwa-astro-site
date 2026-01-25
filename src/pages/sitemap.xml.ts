@@ -4,13 +4,14 @@ import { getCollection } from 'astro:content';
 export const GET: APIRoute = async ({ site }) => {
   const pages = await getCollection('pages');
   const siteUrl = site?.href || 'https://buwadigital.com';
+  const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile']);
   
   const staticPages = [
     { url: '/', priority: '1.0' },
   ];
   
   const contentPages = pages
-    .filter(page => page.data.slug !== 'home')
+    .filter(page => !reservedSlugs.has(page.data.slug || page.slug))
     .map(page => ({
       url: `/${page.data.slug || page.slug}/`,
       priority: '0.8',

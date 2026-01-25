@@ -16,7 +16,8 @@ export default defineConfig({
   // Redirects for any changed URLs (add here if needed)
   redirects: {
     // Example: '/old-url': '/new-url'
-    '/host/': '/venue-partner/',
+    '/host/': '/host-partner/',
+    '/venue-partner/': '/host-partner/',
     '/ppc-pay-per-click/': '/pay-per-click-ppc/',
   },
   

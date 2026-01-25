@@ -4,8 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
+  const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile']);
   return pages
-    .filter(page => page.data.slug !== 'home') // Homepage handled by index.astro
+    .filter(page => !reservedSlugs.has(page.data.slug || page.slug)) // Avoid conflicts with static routes
     .map(page => ({
       params: { slug: page.data.slug || page.slug },
       props: { page }
