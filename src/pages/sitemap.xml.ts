@@ -2,7 +2,9 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async ({ site }) => {
-  const pages = await getCollection('pages');
+  const archivePattern = /(?:^|\/)archive\//i;
+  const pages = (await getCollection('pages'))
+    .filter(page => !archivePattern.test(page.id)); // ignore archived content
   const siteUrl = site?.href || 'https://buwadigital.com';
   const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile']);
   

@@ -70,6 +70,39 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
 
   <Footer />
 
+  <!-- Global Contact Popup -->
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-modal-content">
+      <button type="button" class="contact-modal-close" id="closeContactPopup">&times;</button>
+      <div class="contact-modal-inner">
+        <div class="contact-modal-header">
+          <h2>Let's Connect!</h2>
+          <p>Tell us about your business and we'll reach out to discuss how we can help.</p>
+        </div>
+        <form id="contact-popup-form" class="contact-popup-form">
+          <input type="hidden" name="form_type" value="contact_popup" />
+          <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name *" required />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address *" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone Number *" required />
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="How can we help? (optional)" rows="3"></textarea>
+          </div>
+          <button type="submit" class="contact-popup-submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+          <p class="contact-popup-disclaimer">By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt out.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Lead Capture Popup (only on Google Business Profile page) -->
   <div id="gbp-popup" class="popup-overlay" style="display: none;">
     <div class="popup-content">
@@ -98,20 +131,94 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
   </div>
 
   <script>
-    const popup = document.getElementById('gbp-popup');
-    const isGbpPage = window.location.pathname.includes('google-business-profile');
-    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    // Global Contact Popup Handler
+    (function() {
+      const contactModal = document.getElementById('contactModal');
+      const closeBtn = document.getElementById('closeContactPopup');
+      const contactForm = document.getElementById('contact-popup-form');
+      
+      const openContactPopup = () => {
+        if (!contactModal) return;
+        contactModal.classList.add('active');
+        // Trigger reflow for animation
+        requestAnimationFrame(() => {
+          contactModal.classList.add('ready');
+        });
+        document.body.style.overflow = 'hidden';
+      };
 
-    // Ensure popup never blocks non-GBP pages
-    if (!isGbpPage || isLocalhost) {
-      if (popup) {
-        popup.style.display = 'none';
-      }
-      document.body.style.overflow = '';
-    }
+      const closeContactPopup = () => {
+        if (!contactModal) return;
+        contactModal.classList.remove('ready');
+        setTimeout(() => {
+          contactModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }, 200);
+      };
 
+      // Handle all "Get In Touch" links/buttons across the site
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href="/contact-us"], a[href="/contact-us/"], button[data-contact-popup]');
+        // Also check for buttons with the get-in-touch class
+        const getInTouchBtn = e.target.closest('.get-in-touch-popup');
+        
+        if (link || getInTouchBtn) {
+          e.preventDefault();
+          openContactPopup();
+        }
+      });
+
+      // Close handlers
+      closeBtn?.addEventListener('click', closeContactPopup);
+      
+      contactModal?.addEventListener('click', (e) => {
+        if (e.target === contactModal) closeContactPopup();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactModal?.classList.contains('active')) {
+          closeContactPopup();
+        }
+      });
+
+      // Form submission
+      contactForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Check honeypot
+        if (contactForm.querySelector('[name="_honeypot"]').value) {
+          window.location.href = '/thank-you/';
+          return;
+        }
+        
+        const submitBtn = contactForm.querySelector('.contact-popup-submit');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        
+        try {
+          const formData = new FormData(contactForm);
+          
+          await fetch('https://script.google.com/macros/s/AKfycbzhi6c5-mctCXsQalCn0MdeaY-AA1v5i8AS0YIVhgmkqctHwfZchqXOy7_F2bE5GWU/exec', {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+          });
+          
+          window.location.href = '/thank-you/';
+          
+        } catch (error) {
+          // Still redirect on error (no-cors doesn't give us response status)
+          window.location.href = '/thank-you/';
+        }
+      });
+    })();
+  </script>
+
+  <script>
     // Only show popup on Google Business Profile page
-    if (isGbpPage && popup && !isLocalhost) {
+    if (window.location.pathname.includes('google-business-profile')) {
+      const popup = document.getElementById('gbp-popup');
       
       // Check if scan was just requested (returning from form submission)
       if (window.location.search.includes('scan-requested=true')) {
@@ -188,7 +295,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
             
             // Check honeypot
             if (popupForm.querySelector('[name="_honeypot"]').value) {
-              window.location.href = '/thank-you';
+              window.location.href = '/thank-you/';
               return;
             }
             
@@ -205,10 +312,10 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
                 mode: 'no-cors'
               });
               
-              window.location.href = '/thank-you';
+              window.location.href = '/thank-you/';
               
             } catch (error) {
-              window.location.href = '/thank-you';
+              window.location.href = '/thank-you/';
             }
           });
         }
@@ -630,6 +737,169 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
 
     .popup-form-side h2 {
       font-size: 1.4rem;
+    }
+  }
+
+  /* Global Contact Modal - matches video popup styling */
+  .contact-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .contact-modal.active {
+    display: flex;
+  }
+
+  .contact-modal.ready {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .contact-modal-content {
+    position: relative;
+    width: min(95vw, 500px);
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-modal-close {
+    position: absolute;
+    top: -50px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+    z-index: 10;
+  }
+
+  .contact-modal-close:hover {
+    color: #a01c2b;
+    transform: scale(1.1);
+  }
+
+  .contact-modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-modal-header h2 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-modal-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+  }
+
+  .contact-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-popup-form .form-group input,
+  .contact-popup-form .form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(255, 255, 255, 0.95);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-popup-form .form-group input:focus,
+  .contact-popup-form .form-group textarea:focus {
+    outline: none;
+    border-color: #a01c2b;
+    box-shadow: 0 0 0 3px rgba(160, 28, 43, 0.2);
+  }
+
+  .contact-popup-form .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .contact-popup-submit {
+    background: linear-gradient(to bottom, #c4222e 0%, #a01c2b 50%, #7d1521 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    box-shadow: 
+      0 4px 6px rgba(160, 28, 43, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .contact-popup-submit:hover:not(:disabled) {
+    background: linear-gradient(to bottom, #d62a38 0%, #c4222e 50%, #a01c2b 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 10px rgba(160, 28, 43, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .contact-popup-submit:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  .contact-popup-disclaimer {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  @media (max-width: 500px) {
+    .contact-modal-content {
+      padding: 1.5rem;
+    }
+
+    .contact-modal-header h2 {
+      font-size: 1.4rem;
+    }
+
+    .contact-modal-close {
+      top: -45px;
+      right: 0;
     }
   }
 </style>

@@ -1,0 +1,612 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Network Host Partner";
+const description = "We all share the same customers, so why not work together? BuWa TV Network Partners enjoy free advertising, cross-network promotion and more!";
+
+const benefits = [
+  {
+    title: "Network Advertising on BuWa TV",
+    description: "One of the most enticing advantages of joining the network is that you'll get free advertising in your location, and your full motion ads can be showcased in other locations, enabling you to reach customers in other network locations. This greatly enhances your brand awareness, helps you bring in new customers, sparks word-of-mouth referrals, and keeps your business top-of-mind.",
+    image: "/uploads/2024/04/Network-Advertising.jpg"
+  },
+  {
+    title: "Internal Advertising",
+    description: "Participating in the BuWa TV network provides you with the opportunity to engage with your customers while they are inside your establishment. You can utilize screen time to inform, promote, or educate your customers about ongoing specials, promotions, or helpful tips.",
+    image: "/uploads/2024/04/Internal-Advertising.jpg"
+  },
+  {
+    title: "Content Creation",
+    description: "We handle all graphic content creation for our Partners. We learn the story you want to tell your existing and prospective customers. We will design and develop your video ads, get your approval, and begin playing them on BuWa TV. Additionally, the ads are yours to keep and use on social media, websites, etc. And this is all at no cost.",
+    image: "/uploads/2024/04/Graphics-Design-Access-to-Expertise.jpg"
+  },
+  {
+    title: "Access to Marketing Services",
+    description: "Being part of our network also provides you with access to a variety of different marketing services, and our highly talented, trained marketing staff who manage them. We cover everything from website design and social media management to pay-per-click advertising, geofencing, and everything in between.",
+    image: "/uploads/2024/04/Marketing-Services.jpg"
+  },
+  {
+    title: "Local Support",
+    description: "Whether it's simple technical questions, advertising ideas, or inquiries about different marketing campaign options, we are partners in your success! Not just screens, we'd love to strategize on any way we can help grow your business. Call us or text us any time.",
+    image: "/uploads/2024/10/confident-mature-broker-explaining-his-idea-to-you.jpg"
+  },
+  {
+    title: "More Than Ads",
+    description: "We go beyond continuous promotion of your business within the BuWa TV network. We also provide engaging content for viewers, including weather updates, trivia, and fun facts, creating a more enjoyable experience for your customers.",
+    image: "/uploads/2024/05/More-Than-Ads.jpg"
+  }
+];
+
+const steps = [
+  {
+    number: 1,
+    title: "Contact Us",
+    image: "/uploads/2024/05/Contact-Us.webp"
+  },
+  {
+    number: 2,
+    title: "Setup a Free Consultation",
+    image: "/uploads/2024/05/Discovery-Meeting.webp"
+  },
+  {
+    number: 3,
+    title: "Approve Your Ad and Installation Date",
+    image: "/uploads/2024/05/Calendar-Date.webp"
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Network Host Partner</h1>
+      <p class="hero-subtitle">We all share the same customers, so why not work together?</p>
+      <a href="/contact-us" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-content">
+        <div class="intro-text">
+          <h2>Become a Network Host Partner</h2>
+          <p class="intro-lead">Our network of indoor digital billboards is located within local businesses across your community. BuWa TV Host Partners enjoy the benefits of free in-location advertising, cross-network promotion and much more!</p>
+        </div>
+        <div class="intro-image">
+          <img src="/uploads/2024/04/Host.jpg" alt="BuWa TV Host Partner" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2>Why Local Businesses Want to Join Our Network</h2>
+      <div class="benefits-grid">
+        {benefits.map((benefit, index) => (
+          <div class={`benefit-card ${index % 2 === 1 ? 'reverse' : ''}`}>
+            <div class="benefit-image">
+              <img src={benefit.image} alt={benefit.title} />
+            </div>
+            <div class="benefit-content">
+              <h3>{benefit.title}</h3>
+              <p>{benefit.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps Section -->
+  <section class="steps-section">
+    <div class="container">
+      <h2>How Do I Become a Host Partner?</h2>
+      <p class="steps-intro">Hosting an indoor digital billboard is easy! We'll take care of everything from the professional installation of the screen to the ad creation.</p>
+      <p class="steps-tagline">It's as easy as 1-2-3</p>
+      <div class="steps-grid">
+        {steps.map((step) => (
+          <div class="step-card">
+            <div class="step-number">{step.number}</div>
+            <div class="step-image">
+              <img src={step.image} alt={step.title} />
+            </div>
+            <h3>{step.title}</h3>
+          </div>
+        ))}
+      </div>
+      <div class="steps-cta">
+        <a href="/contact-us" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+        <a href="/solutions/" class="btn-navy">Browse All Solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Partner Section -->
+  <section class="partner-section">
+    <div class="container">
+      <h2>Featured Partner</h2>
+      <div class="partner-content">
+        <div class="partner-logo">
+          <a href="https://raveinstallation.com/" target="_blank" rel="noopener">
+            <img src="/uploads/2024/09/RaveInstallationLLC-black.png" alt="Rave Installation LLC" />
+          </a>
+        </div>
+        <div class="partner-text">
+          <p>Rave provides professional installation for our BuWa TV screens. They are a local company that offers low voltage solutions, designing, installing, and maintaining state of the art electrical residential and commercial systems.</p>
+          <a href="https://raveinstallation.com/" target="_blank" rel="noopener" class="btn-navy">Visit Rave Installation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Join Our Network?</h2>
+      <p>Let's discuss how becoming a Host Partner can benefit your business.</p>
+      <a href="/contact-us" class="btn-white"><i class="fa-solid fa-phone"></i> Schedule a Call</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 3rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.03) 10px,
+      rgba(255,255,255,0.03) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Buttons */
+  .btn-red {
+    display: inline-block;
+    background: linear-gradient(to bottom, #b82232, #a01c2b);
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-red:hover {
+    background: linear-gradient(to bottom, #c4283a, #b82232);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25), 0 3px 6px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  
+  .btn-navy {
+    display: inline-block;
+    background: linear-gradient(to bottom, #1e3080, #17246c);
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-navy:hover {
+    background: linear-gradient(to bottom, #253a94, #1e3080);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25), 0 3px 6px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  
+  .btn-white {
+    display: inline-block;
+    background: white;
+    color: #17246c;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25), 0 3px 6px rgba(0,0,0,0.15);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Intro Section */
+  .intro-section {
+    padding: 4rem 0;
+    background: #f8f9fa;
+  }
+  
+  .intro-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .intro-text h2 {
+    color: #17246c;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .intro-lead {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #333;
+  }
+  
+  .intro-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  /* Benefits Section */
+  .benefits-section {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .benefits-section h2 {
+    text-align: center;
+    color: #17246c;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .benefits-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .benefit-card {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  }
+  
+  .benefit-card.reverse {
+    grid-template-columns: 1.5fr 1fr;
+  }
+  
+  .benefit-card.reverse .benefit-image {
+    order: 2;
+  }
+  
+  .benefit-card.reverse .benefit-content {
+    order: 1;
+  }
+  
+  .benefit-image img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+  }
+  
+  .benefit-content {
+    padding: 2rem;
+  }
+  
+  .benefit-content h3 {
+    color: #17246c;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .benefit-content p {
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* Steps Section */
+  .steps-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+  
+  .steps-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .steps-section .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .steps-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .steps-intro {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto 0.5rem;
+  }
+  
+  .steps-tagline {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+  
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .step-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  .step-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.15);
+  }
+  
+  .step-number {
+    width: 60px;
+    height: 60px;
+    background: #a01c2b;
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 10px rgba(160, 28, 43, 0.4);
+  }
+  
+  .step-image {
+    margin-bottom: 1rem;
+  }
+  
+  .step-image img {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  .step-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .steps-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Featured Partner Section */
+  .partner-section {
+    padding: 4rem 0;
+    background: #f8f9fa;
+  }
+  
+  .partner-section h2 {
+    text-align: center;
+    color: #17246c;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .partner-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  }
+  
+  .partner-logo img {
+    max-width: 200px;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .partner-logo img:hover {
+    transform: scale(1.05);
+  }
+  
+  .partner-text p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 0;
+    text-align: center;
+    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
+    color: white;
+    position: relative;
+  }
+  
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .cta-section .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section p {
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .intro-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .intro-text {
+      text-align: center;
+    }
+    
+    .benefit-card,
+    .benefit-card.reverse {
+      grid-template-columns: 1fr;
+    }
+    
+    .benefit-card.reverse .benefit-image,
+    .benefit-card.reverse .benefit-content {
+      order: unset;
+    }
+    
+    .benefit-image img {
+      height: 220px;
+    }
+    
+    .steps-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .partner-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .partner-logo {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+    
+    .benefit-content {
+      padding: 1.5rem;
+    }
+    
+    .steps-cta {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

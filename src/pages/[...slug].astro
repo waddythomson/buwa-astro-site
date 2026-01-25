@@ -3,7 +3,10 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
-  const pages = await getCollection('pages');
+  const archivePattern = /(?:^|\/)archive\//i;
+  const pages = (await getCollection('pages'))
+    .filter(page => !archivePattern.test(page.id)); // ignore anything in an Archive folder
+
   const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile']);
   return pages
     .filter(page => !reservedSlugs.has(page.data.slug || page.slug)) // Avoid conflicts with static routes
