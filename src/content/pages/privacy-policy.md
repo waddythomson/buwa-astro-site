@@ -6,9 +6,6 @@ modified: "2024-07-05T18:50:34"
 slug: "privacy-policy"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
-
-## Privacy Policy
-
 The following Privacy Policy provides information and notice to you of Buwa Digital ("Buwa", "Buwa Digital", "we", "our" or "us") policies and practices regarding the collection, use, disclosure, transfer, and sharing of information from or about you in connection with your use of the Buwa Digital services, which includes our digital advertising service, digital marketing services, all content developed and supplied through our platforms, our website, account portal, applications, software, branded products and related services (collectively, the "Services"). You, other visitors to our website and application, and other end users of our Services are collectively referred to as "you", "your" and "Users".
 
 By accessing and using any of our Services, you agree and accept the terms and conditions of this Privacy Policy and consent to the collection and use of information from or about you that is explained in this Privacy Policy. This Privacy Policy applies to data and private information collected by us through the Services, which includes personal information and non-personal information (such as certain persistent identifiers and aggregated information).

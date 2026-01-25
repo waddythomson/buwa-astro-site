@@ -7,7 +7,7 @@ slug: "search-engine-marketing"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-Focuses on the traffic generation aspect.
+**Focuses on the traffic generation aspect.**
 
 [Get In Touch](/contact-us)
 

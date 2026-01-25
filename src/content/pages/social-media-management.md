@@ -7,7 +7,7 @@ slug: "social-media-management"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-Improve the performance, engagement, and audience reach of your social media profiles.
+**Improve the performance, engagement, and audience reach of your social media profiles.**
 
 [Get In Touch](/contact-us)
 

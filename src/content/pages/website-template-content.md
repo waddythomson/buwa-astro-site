@@ -7,9 +7,7 @@ slug: "website-template-content"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# Social Media Management
-
-Engage fans on social media. Less time, more results.
+**Engage fans on social media. Less time, more results.**
 
 [Get In Touch](/contact-us)
 

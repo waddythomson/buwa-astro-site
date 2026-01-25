@@ -5,8 +5,6 @@ slug: "about"
 ogImage: "/uploads/about-hero.jpg"
 ---
 
-# About Our Company
-
 This is an example of a migrated WordPress page.
 
 ## Our Mission

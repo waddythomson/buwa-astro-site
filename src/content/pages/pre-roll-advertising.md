@@ -6,14 +6,11 @@ modified: "2024-08-15T00:43:39"
 slug: "pre-roll-advertising"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
-
-## Pre-Roll Advertising
-
-Create a memorable brand experience with engaging online video content.
+**Create a memorable brand experience with engaging online video content.**
 
 [Get In Touch](/contact-us)
 
-**Pre-Roll ads are short videos that appear before online videos. Lasting 15 to 30 seconds, these non-skippable ads effectively tell your unique brand story. Generate powerful brand awareness with Pre-Roll Video Ads.**
+Pre-Roll ads are short videos that appear before online videos. Lasting 15 to 30 seconds, these non-skippable ads effectively tell your unique brand story. Generate powerful brand awareness with Pre-Roll Video Ads.
 
 ## Pre-Roll Ads can Increase Your Brand Awareness and Traffic
 

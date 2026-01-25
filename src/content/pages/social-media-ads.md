@@ -6,8 +6,7 @@ modified: "2024-08-15T00:35:27"
 slug: "social-media-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
-
-Drive engagement and growth with Social Media Advertising.
+**Drive engagement and growth with Social Media Advertising.**
 
 [Get In Touch](/contact-us)
 
