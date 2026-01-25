@@ -34,7 +34,7 @@ const description = "Reach more customers where they eat, shop, work, and play. 
             <div class="tv-reflection"></div>
           </div>
         </div>
-        <div class="tv-brand">BuWa TV</div>
+        <div class="tv-brand"><img src="/uploads/logos/TrademarkBuWaTV_grey.png" alt="BuWa TV" /></div>
         <div class="tv-stand">
           <div class="tv-stand-neck"></div>
           <div class="tv-stand-base"></div>
@@ -523,16 +523,16 @@ const description = "Reach more customers where they eat, shop, work, and play. 
   }
 
   .tv-brand {
-    color: #666;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     margin-top: -12px;
-    padding: 4px 12px;
+    padding: 6px 12px;
     background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
     border-radius: 0 0 4px 4px;
+  }
+
+  .tv-brand img {
+    height: 18px;
+    width: auto;
+    display: block;
   }
 
   .tv-stand {
@@ -582,8 +582,11 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     }
     
     .tv-brand {
-      font-size: 0.6rem;
       margin-top: -8px;
+    }
+    
+    .tv-brand img {
+      height: 14px;
     }
     
     .tv-stand-neck {
