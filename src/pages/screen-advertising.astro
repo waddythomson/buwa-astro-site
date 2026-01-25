@@ -11,8 +11,11 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     <div class="hero-content">
       <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="hero-logo" />
       <h2>Indoor Digital Billboard Advertising</h2>
-      <p>Connecting brands with audiences everywhere.</p>
-      <a href="/contact-us/" class="btn-red">Get In Touch</a>
+      <p>Reach more customers where they eat, shop, work, and play.</p>
+      <div class="hero-buttons">
+        <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+        <button class="btn-white" id="video-popup-btn"><i class="fa-solid fa-play"></i> BuWa TV In Action</button>
+      </div>
     </div>
   </section>
 
@@ -258,6 +261,82 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
       </div>
     </div>
   </section>
+
+  <!-- Video Popup Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="closeVideoModal">&times;</button>
+      <div class="tv-frame">
+        <div class="tv-bezel">
+          <div class="tv-screen" id="tvScreen">
+            <!-- YouTube iframe inserted dynamically -->
+          </div>
+          <div class="tv-reflection"></div>
+        </div>
+        <div class="tv-brand"><img src="/uploads/logos/TrademarkBuWaTV_grey.png" alt="BuWa TV" /></div>
+        <div class="tv-stand">
+          <div class="tv-stand-neck"></div>
+          <div class="tv-stand-base"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Video Popup
+    let youtubeVideoId = 'WN3qbqm1WGI'; // fallback
+    
+    // Load config for video ID
+    fetch('/config.json')
+      .then(res => res.json())
+      .then(config => {
+        if (config.heroVideo?.id) {
+          youtubeVideoId = config.heroVideo.id;
+        }
+      })
+      .catch(() => console.log('Using default video ID'));
+
+    const videoModal = document.getElementById('videoModal');
+    const tvScreen = document.getElementById('tvScreen');
+    const openBtn = document.getElementById('video-popup-btn');
+    const closeBtn = document.getElementById('closeVideoModal');
+
+    function openVideoPopup() {
+      tvScreen.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${youtubeVideoId}"
+          title="BuWa TV In Action"
+          frameborder="0"
+          width="100%"
+          height="100%"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      `;
+      videoModal.classList.add('active');
+      setTimeout(() => videoModal.classList.add('ready'), 10);
+    }
+
+    function closeVideoPopup() {
+      videoModal.classList.remove('ready');
+      setTimeout(() => {
+        videoModal.classList.remove('active');
+        tvScreen.innerHTML = '';
+      }, 300);
+    }
+
+    openBtn?.addEventListener('click', openVideoPopup);
+    closeBtn?.addEventListener('click', closeVideoPopup);
+    videoModal?.addEventListener('click', (e) => {
+      if (e.target === videoModal) closeVideoPopup();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && videoModal?.classList.contains('active')) {
+        closeVideoPopup();
+      }
+    });
+  </script>
 </BaseLayout>
 
 <style>
@@ -313,6 +392,71 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     font-weight: 700;
     margin-bottom: 2rem;
     opacity: 0.9;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(180deg, #c42030 0%, #a01c2b 50%, #8a1825 100%);
+    color: white;
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', system-ui, sans-serif;
+    border: none;
+    cursor: pointer;
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 4px 8px rgba(0,0,0,0.25),
+      0 8px 16px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%);
+    color: #17246c;
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', system-ui, sans-serif;
+    border: none;
+    cursor: pointer;
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.5);
+    transition: all 0.2s ease;
+  }
+
+  .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 4px 8px rgba(0,0,0,0.25),
+      0 8px 16px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.5);
   }
 
   /* Video Section */
@@ -734,5 +878,173 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
 
   .faq-item a:hover {
     text-decoration: underline;
+  }
+
+  /* Video Modal */
+  .video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .video-modal.active {
+    display: flex;
+  }
+
+  .video-modal.ready {
+    opacity: 1;
+  }
+
+  .video-modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+  }
+
+  .video-modal.ready .video-modal-content {
+    transform: scale(1);
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10001;
+    line-height: 1;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .video-modal-close:hover {
+    transform: scale(1.2);
+  }
+
+  .tv-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tv-bezel {
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 50%, #0d0d0d 100%);
+    padding: 12px 12px 18px 12px;
+    border-radius: 12px;
+    box-shadow: 
+      0 10px 40px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.1),
+      inset 0 -1px 0 rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+  .tv-screen {
+    width: 640px;
+    max-width: 80vw;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tv-screen iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .tv-reflection {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    height: 40%;
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.08) 0%,
+      rgba(255,255,255,0.02) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .tv-brand {
+    margin-top: -12px;
+    padding: 6px 12px;
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .tv-brand img {
+    height: 18px;
+    width: auto;
+    display: block;
+  }
+
+  .tv-stand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .tv-stand-neck {
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    border-radius: 2px;
+  }
+
+  .tv-stand-base {
+    width: 140px;
+    height: 10px;
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 600px) {
+    .tv-bezel {
+      padding: 8px 8px 14px 8px;
+      border-radius: 8px;
+    }
+    
+    .tv-brand {
+      margin-top: -8px;
+    }
+    
+    .tv-brand img {
+      height: 14px;
+    }
+    
+    .tv-stand-neck {
+      width: 40px;
+      height: 20px;
+    }
+    
+    .tv-stand-base {
+      width: 100px;
+      height: 8px;
+    }
   }
 </style>
