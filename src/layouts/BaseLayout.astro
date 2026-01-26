@@ -158,7 +158,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
 
       // Handle all "Get In Touch" links/buttons across the site
       document.addEventListener('click', (e) => {
-        const link = e.target.closest('a[href="/contact-us"], a[href="/contact-us/"], button[data-contact-popup]');
+        const link = e.target.closest('a[href="/contact-us/"], a[href="/contact-us/"], button[data-contact-popup]');
         // Also check for buttons with the get-in-touch class
         const getInTouchBtn = e.target.closest('.get-in-touch-popup');
         
@@ -479,7 +479,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
   }
 
   /* Auto-style "Get In Touch" links to /contact-us as navy 3D buttons */
-  .content-page a[href="/contact-us"] {
+  .content-page a[href="/contact-us/"] {
     display: inline-block;
     background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
     color: white !important;
@@ -496,7 +496,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
-  .content-page a[href="/contact-us"]:hover {
+  .content-page a[href="/contact-us/"]:hover {
     background: linear-gradient(to bottom, #2439a0 0%, #1e2f8a 50%, #17246c 100%);
     box-shadow: 
       0 6px 10px rgba(23, 36, 108, 0.5),
@@ -505,7 +505,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
     transform: translateY(-2px);
   }
 
-  .content-page a[href="/contact-us"]:active {
+  .content-page a[href="/contact-us/"]:active {
     transform: translateY(1px);
     box-shadow: 
       0 2px 3px rgba(23, 36, 108, 0.3),
