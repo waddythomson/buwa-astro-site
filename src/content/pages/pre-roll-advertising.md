@@ -8,15 +8,15 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 **Create a memorable brand experience with engaging online video content.**
 
-[Get In Touch](/contact-us)
+[Get In Touch](/contact-us/)
 
 Pre-Roll ads are short videos that appear before online videos. Lasting 15 to 30 seconds, these non-skippable ads effectively tell your unique brand story. Generate powerful brand awareness with Pre-Roll Video Ads.
 
 ## Pre-Roll Ads can Increase Your Brand Awareness and Traffic
 
-Pre-Roll advertising gives you the ability to stand out in the increasingly competitive digital landscape. With the explosive growth of online video consumption, Pre-Roll ads provide direct access to highly targeted audiences. These visually captivating ads are a great way to drive brand awareness and are a powerful addition to [Google Business Profile](/google-business-profile) strategies, [Social Media Advertising](/social-media-ads), or [CTV | OTT](/connected-tv-ott-ads) campaigns.
+Pre-Roll advertising gives you the ability to stand out in the increasingly competitive digital landscape. With the explosive growth of online video consumption, Pre-Roll ads provide direct access to highly targeted audiences. These visually captivating ads are a great way to drive brand awareness and are a powerful addition to [Google Business Profile](/google-business-profile/) strategies, [Social Media Advertising](/social-media-ads/), or [CTV | OTT](/connected-tv-ott-ads/) campaigns.
 
-[Learn More](/contact-us)
+[Learn More](/contact-us/)
 
 ## Benefits of Pre-Roll Advertising
 
@@ -94,7 +94,7 @@ Through comprehensive analytics tracking, we'll break down key metrics to help y
 
 ### How long are pre-roll ads?
 
-All pre-roll ads are either 15 or 30 seconds. [Let us help you](/contact-us) determine which duration is the right fit for you.
+All pre-roll ads are either 15 or 30 seconds. [Let us help you](/contact-us/) determine which duration is the right fit for you.
 
 ### How effective are pre-roll ads?
 

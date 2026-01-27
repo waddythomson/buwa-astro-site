@@ -8,7 +8,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 **Reach an engaged audience on the world's most utilized search engine.**
 
-[Get In Touch](/contact-us)
+[Get In Touch](/contact-us/)
 
 ## Driving Targeted Traffic to Your Website
 
@@ -20,7 +20,7 @@ Google Pay-Per-Click (PPC) Advertising is key to remaining top-of-mind and at th
 
 Incorporating Pay-Per-Click (PPC) advertising into a marketing strategy offers your business immediate visibility and potential conversions, thanks to its ability to generate traffic and prospective leads. By leveraging keywords, audience interest, and more, you can be certain your business is appearing as a top choice for prospective leads as they research your niche on Google.
 
-[Learn More](/contact-us)
+[Learn More](/contact-us/)
 
 ## Generate Leads With Pay-Per-Click Advertising
 
@@ -78,7 +78,7 @@ We will provide transparent insights for your campaign performance, equipping yo
 
 ### How much should I spend on PPC?
 
-The cost can vary according to a business's needs, goals, and the overall scope of the project. You can find out more about how we can address your specific needs by [contacting us](/contact-us).
+The cost can vary according to a business's needs, goals, and the overall scope of the project. You can find out more about how we can address your specific needs by [contacting us](/contact-us/).
 
 ### What factors influence PPC prices?
 

@@ -8,7 +8,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 **Capture the attention of a streaming audience with dynamic video ads.**
 
-[Get In Touch](/contact-us)
+[Get In Touch](/contact-us/)
 
 Connected TV (CTV) and Over-The-Top video (OTT) advertising allows you to make an impact with stunning video ads. Target TV streaming audiences on popular channels like ESPN, CNN, and Fox. These non-skippable ads are designed to leave a lasting impression and keep you top-of-mind.
 
@@ -16,7 +16,7 @@ Connected TV (CTV) and Over-The-Top video (OTT) advertising allows you to make a
 
 ## Make an Impact With Connected TV and Over-The-Top Advertising
 
-CTV | OTT advertising stands out in the marketing landscape by delivering compelling brand experiences to audiences captivated by streaming services. CTV | OTT ads are non-skippable ensuring that every CTV | OTT campaign achieves maximum visibility and meaningful results. Add CTV | OTT to existing efforts such as **[Social Media Advertising](/social-media-ads)**, **[Google Business Profile](/google-business-profile)**, or **[Pay-Per-Click](/pay-per-click-ppc)** efforts for a well-rounded multichannel strategy.
+CTV | OTT advertising stands out in the marketing landscape by delivering compelling brand experiences to audiences captivated by streaming services. CTV | OTT ads are non-skippable ensuring that every CTV | OTT campaign achieves maximum visibility and meaningful results. Add CTV | OTT to existing efforts such as **[Social Media Advertising](/social-media-ads/)**, **[Google Business Profile](/google-business-profile/)**, or **[Pay-Per-Click](/pay-per-click-ppc/)** efforts for a well-rounded multichannel strategy.
 
 ## Tell Your Brand Story in Full Motion
 

@@ -8,7 +8,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 **Drive engagement and growth with Social Media Advertising.**
 
-[Get In Touch](/contact-us)
+[Get In Touch](/contact-us/)
 
 ## Social Media Ads
 
@@ -18,7 +18,7 @@ Social Media Advertising (SMA) allows you to position your brand on the platform
 
 ## Social Media Ads are Essential in Your Marketing Mix
 
-With unparalleled demographic information, engaging visuals, and powerful retargeting features, Social Media Advertising is one of the most effective forms of marketing available. By leveraging SMA, you can effectively generate leads and engage with your audience on the world's most powerful social platforms. Leverage SMA alongside [Display Ads](/geofencing), [Google Business Profile](/google-business-profile), or [Social Media Advertising](/social-media-ads).
+With unparalleled demographic information, engaging visuals, and powerful retargeting features, Social Media Advertising is one of the most effective forms of marketing available. By leveraging SMA, you can effectively generate leads and engage with your audience on the world's most powerful social platforms. Leverage SMA alongside [Display Ads](/geofencing/), [Google Business Profile](/google-business-profile/), or [Social Media Advertising](/social-media-ads/).
 
 ## Why You Need To Incorporate Social Media Ads
 
@@ -96,7 +96,7 @@ At the end of your campaign, we will provide you with a thorough report of the c
 
 ### How much do social media ads cost?
 
-The costs of advertising on platforms like Meta and LinkedIn may vary due to several factors such as the day of the week, demographics, and time of day. [Contact Us](/contact-us) for current pricing and questions regarding your social media ad needs.
+The costs of advertising on platforms like Meta and LinkedIn may vary due to several factors such as the day of the week, demographics, and time of day. [Contact Us](/contact-us/) for current pricing and questions regarding your social media ad needs.
 
 ### How do you ensure our ads reach the right audience?
 

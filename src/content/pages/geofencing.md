@@ -8,7 +8,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 **Use location data to reach your audience on the websites they love most.**
 
-[Get In Touch](/contact-us)
+<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Leveraging Geofencing technology, Display Advertising targets precise geographic regions, delivering personalized ads to users within and near those locations. Your audience will encounter these tailored messages seamlessly integrated as dynamic, full-motion ads across their favorite websites and online platforms.
 
@@ -16,7 +16,7 @@ Leveraging Geofencing technology, Display Advertising targets precise geographic
 
 ## Display Advertising is a Boost to Your Marketing Efforts
 
-Display Advertising is an effective marketing tool for businesses hoping to amplify brand awareness. With Geofencing capabilities, you can share your message within specific communities or with niche demographics. Maximize your Display Ad Campaign's impact by integrating it into existing marketing efforts such as **[Google Business Profile](/google-business-profile)**, **[Social Media Advertising](/social-media-ads)**, or **[Pay-Per-Click](/pay-per-click-ppc)** campaigns.
+Display Advertising is an effective marketing tool for businesses hoping to amplify brand awareness. With Geofencing capabilities, you can share your message within specific communities or with niche demographics. Maximize your Display Ad Campaign's impact by integrating it into existing marketing efforts such as **[Google Business Profile](/google-business-profile/)**, **[Social Media Advertising](/social-media-ads/)**, or **[Pay-Per-Click](/pay-per-click-ppc/)** campaigns.
 
 ## Four Advantages of Display Advertising
 
@@ -74,7 +74,7 @@ As your campaign draws to a close, we'll hop on a call for a comprehensive post-
 
 ### Will Display Ads with Geofencing help me generate leads?
 
-Display | Geofencing is suited for brands looking to increase Brand Awareness and visibility. If your goal is to generate leads, products such as [**Social Media Advertising**](/social-media-ads) or [**Pay-Per-Click**](/pay-per-click-ppc) will be a better fit.
+Display | Geofencing is suited for brands looking to increase Brand Awareness and visibility. If your goal is to generate leads, products such as [**Social Media Advertising**](/social-media-ads/) or [**Pay-Per-Click**](/pay-per-click-ppc/) will be a better fit.
 
 ### Can you place a fence around any location?
 
@@ -86,4 +86,4 @@ No. The industry adheres to specific privacy standards, and the only information
 
 ### How do I know if a display campaign is right for me?
 
-A Display | Geofencing campaign is a good option for brands that have an established online presence and an existing foundation of marketing. If you're unsure, [**Contact Us**](/contact-us), and we'll provide a free consultation to help you decide what's best for you and your business.
+A Display | Geofencing campaign is a good option for brands that have an established online presence and an existing foundation of marketing. If you're unsure, [**Contact Us**](/contact-us/), and we'll provide a free consultation to help you decide what's best for you and your business.

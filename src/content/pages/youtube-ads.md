@@ -9,7 +9,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 **Reach an engaged audience on the world's most utilized search engine.**
 
-[Get In Touch](/contact-us)
+[Get In Touch](/contact-us/)
 
 ## YouTube
 
@@ -19,7 +19,7 @@ Strategically place ads on the world's largest video-sharing platform, YouTube. 
 
 ## Become Memorable with YouTube Advertising
 
-Advertising on YouTube allows you to connect with a highly engaged audience in the immersive environment of the world's largest video platform. Cut through a noisy digital landscape with the platform's robust targeting options and flexible ad formats. This powerful advertising method is the perfect way to increase brand awareness and works well as an addition to lead-generating and Foundational products such as [Pay-Per-Click](/pay-per-click-ppc) and [Google Business Profile](/google-business-profile) management.
+Advertising on YouTube allows you to connect with a highly engaged audience in the immersive environment of the world's largest video platform. Cut through a noisy digital landscape with the platform's robust targeting options and flexible ad formats. This powerful advertising method is the perfect way to increase brand awareness and works well as an addition to lead-generating and Foundational products such as [Pay-Per-Click](/pay-per-click-ppc/) and [Google Business Profile](/google-business-profile/) management.
 
 ## Drive Brand Visibility with YouTube Advertising
 
@@ -105,4 +105,4 @@ Success metrics for YouTube advertising campaigns include views, watch time, cli
 
 ### What are the best practices for integrating YouTube advertising into my overall marketing strategy?
 
-YouTube Advertising is a powerful medium for increasing brand awareness with a global audience. YouTube advertising should be an addition to Foundation Marketing Products and Lead Generation solutions. Let us help you determine if YouTube advertising is right for you. [Contact Us](/contact-us) today.
+YouTube Advertising is a powerful medium for increasing brand awareness with a global audience. YouTube advertising should be an addition to Foundation Marketing Products and Lead Generation solutions. Let us help you determine if YouTube advertising is right for you. [Contact Us](/contact-us/) today.
