@@ -1,0 +1,962 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "BuWa Digital - Indoor Digital Billboard Advertising";
+const description = "Reach more customers where they eat, shop, work, and play. Discover the power of BuWa TV: The indoor digital billboard network that makes your message impossible to ignore.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="/uploads/2024/BuWaTV_white.png" alt="BuWa TV" class="hero-logo" />
+      <h1>Stop Flying Under The Radar!</h1>
+      <p class="hero-subtitle">We'll help your business maintain a prominent community presence with reasonably priced, locally targeted exposure that keeps you top-of-mind and delivers real results.</p>
+      <div class="hero-buttons">
+        <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+        <button type="button" class="cta-button cta-button-white" id="openVideoPopup">
+          <i class="fa-solid fa-play"></i> See BuWa TV in Action
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Popup Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button type="button" class="video-modal-close" id="closeVideoPopup">&times;</button>
+      <div class="tv-frame">
+        <div class="tv-bezel">
+          <div class="tv-screen">
+            <div class="video-wrapper">
+              <div id="youtubePlayer"></div>
+            </div>
+            <div class="tv-reflection"></div>
+          </div>
+        </div>
+        <div class="tv-brand"><img src="/uploads/logos/TrademarkBuWaTV_grey.png" alt="BuWa TV" /></div>
+        <div class="tv-stand">
+          <div class="tv-stand-neck"></div>
+          <div class="tv-stand-base"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problem/Solution Section -->
+  <section class="features">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature-image">
+          <img src="/uploads/2024/Indoor-Billboards.webp" alt="Indoor Billboards" loading="lazy" />
+        </div>
+        <div class="feature-content">
+          <div class="feature-item">
+            <h3>Tired Of Blowing The Budget On Advertising?</h3>
+            <p>We understand how difficult – and expensive — it can be to get customers to pay attention.</p>
+          </div>
+          <div class="feature-item">
+            <h3>We Can Help!</h3>
+            <p>We help local business owners stop wasting money on underperforming ads by telling their story through locally targeted, full-motion video that delivers real results — without breaking the bank.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Be Seen. Be Trusted. Be Chosen!</h3>
+            <p>Customers trust brands that they recognize. By using vibrant visuals to tell your story, you gain valuable local exposure and <strong>turn recognition into trust</strong>— the trust that ultimately leads to being chosen. It's time to discover the power of BuWa TV!</p>
+          </div>
+          <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-phone"></i> Schedule A Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <span class="stat-number" data-count="400">400%</span>
+          <span class="stat-label">More Impactful Than Static Advertising</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="30">30%</span>
+          <span class="stat-label">Increase in Average Ticket Value</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="83">83%</span>
+          <span class="stat-label">Recall Among Consumers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Host Partner Network -->
+  <section class="network">
+    <div class="network-bg"></div>
+    <div class="container">
+      <div class="network-grid">
+        <div class="network-content">
+          <h2>Host Partner Network</h2>
+          <p>Our mission is to help local businesses like yours reach their audience. Every month, millions of consumers see our screens and remember them.</p>
+          <p>Join the network of businesses that are prioritizing hyper-local advertising!</p>
+          <a href="/host-partner/" class="cta-button cta-button-red">Learn More</a>
+        </div>
+        <div class="network-image">
+          <img src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="Venue Network" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marketing Solutions -->
+  <section class="solutions">
+    <div class="container">
+      <h2>Marketing Solutions</h2>
+      <div class="solution-grid">
+        <a href="/google-business-profile/" class="solution-card">
+          <i class="fa-brands fa-google solution-icon"></i>
+          <h3>Google Business Profile</h3>
+          <p>Optimize your profile to increase online visibility, improve local search rankings, and attract more customers to your business</p>
+        </a>
+        <a href="/pay-per-click-ppc/" class="solution-card">
+          <i class="fa-solid fa-hand-point-up solution-icon"></i>
+          <h3>Pay-Per-Click (PPC)</h3>
+          <p>Drive immediate traffic and convert more leads with strategic, budget-friendly online advertising</p>
+        </a>
+        <a href="/website-design/" class="solution-card">
+          <i class="fa-solid fa-object-ungroup solution-icon"></i>
+          <h3>Website Design</h3>
+          <p>Create a positive first impression, increase customer engagement and conversions</p>
+        </a>
+        <a href="/geofencing/" class="solution-card">
+          <i class="fa-solid fa-location-dot solution-icon"></i>
+          <h3>Geofencing</h3>
+          <p>Increase foot traffic and boost sales by sending personalized ads to customers when they are near your business</p>
+        </a>
+      </div>
+      <div class="solutions-cta">
+        <a href="/solutions/" class="cta-button">Browse all Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2>What Our Partners Are Saying</h2>
+      <p class="testimonials-subtitle">Don't just take our word for it.</p>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Incredible service and team. Buck and Waddy have nailed it when it comes to business-to-business advertising that is visually appealing, fresh and fun. This has been a great way to advertise events, news and company info. It's easy to tell they love and support the small business community."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Christina Nelson</span>
+            <span class="author-company">The Greater CWC Chamber of Commerce</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Buwa Digital is the real deal when it comes to helping local businesses grow in today's digital world. Their indoor digital billboards are a game-changer for visibility. What I appreciate most is their passion for empowering small businesses here in Columbia. It feels less like hiring a vendor and more like gaining a partner who's invested in your success."</p>
+          <div class="testimonial-author">
+            <span class="author-name">David Medley</span>
+            <span class="author-company">Better Homes and Gardens Real Estate Medley</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Buwa Digital has been a tremendous help in improving my business's online presence. They made the process of setting up and optimizing my Google Business page simple and effective. Their team was responsive, professional, and delivered exactly what they promised. I've already noticed a difference in how clients are finding us online."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Zach Coggins</span>
+            <span class="author-company">Milestone Wealth Advisors</span>
+          </div>
+        </div>
+      </div>
+      <div class="google-attribution">
+        <i class="fa-brands fa-google"></i> Reviews from Google
+      </div>
+    </div>
+  </section>
+
+  <!-- Write Us a Review -->
+  <section class="review">
+    <div class="review-bg"></div>
+    <div class="container">
+      <h2>Write Us a Review</h2>
+      <p>We'd love to hear about your experience working with us!</p>
+      <a href="https://g.page/r/CaCY12nNkQppEBM/review" class="cta-button cta-button-red" target="_blank" rel="noopener">Leave One Now</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Stats animation
+  const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+  const animateCount = (el) => {
+    const target = Number(el.dataset.count || '0');
+    const duration = 1200;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const value = Math.round(progress * target);
+      el.textContent = `${value}%`;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        if (el.dataset.animated) return;
+        el.dataset.animated = 'true';
+        animateCount(el);
+        obs.unobserve(el);
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  statNumbers.forEach((el) => observer.observe(el));
+
+  // Video popup functionality
+  const videoModal = document.getElementById('videoModal');
+  const openBtn = document.getElementById('openVideoPopup');
+  const closeBtn = document.getElementById('closeVideoPopup');
+  let youtubeVideoId = 'WN3qbqm1WGI'; // fallback
+  const videoWrapper = document.querySelector('.video-wrapper');
+  let revealTimer;
+
+  // Fetch video config
+  fetch('/config.json')
+    .then(res => res.json())
+    .then(config => {
+      if (config.heroVideo?.id) {
+        youtubeVideoId = config.heroVideo.id;
+      }
+    })
+    .catch(() => {}); // Use fallback if fetch fails
+
+  const closeModal = () => {
+    videoModal.classList.remove('active');
+    videoModal.classList.remove('ready');
+    document.body.style.overflow = '';
+    if (revealTimer) {
+      clearTimeout(revealTimer);
+      revealTimer = undefined;
+    }
+    if (videoWrapper) {
+      videoWrapper.innerHTML = '<div id="youtubePlayer"></div>';
+    }
+  };
+
+  const revealModal = () => {
+    if (!videoModal?.classList.contains('active')) {
+      videoModal?.classList.add('active');
+    }
+    videoModal?.classList.add('ready');
+  };
+
+  const openVideoModal = () => {
+    videoModal.classList.remove('active', 'ready');
+    document.body.style.overflow = 'hidden';
+    if (revealTimer) {
+      clearTimeout(revealTimer);
+    }
+    revealTimer = setTimeout(revealModal, 500);
+
+    if (videoWrapper) {
+      videoWrapper.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${youtubeVideoId}"
+          title="BuWa TV in Action"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;">
+        </iframe>
+      `;
+      const iframe = videoWrapper.querySelector('iframe');
+      if (iframe) {
+        iframe.addEventListener('load', revealModal, { once: true });
+      }
+    }
+  };
+
+  openBtn?.addEventListener('click', openVideoModal);
+
+  closeBtn?.addEventListener('click', closeModal);
+
+  videoModal?.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal?.classList.contains('active')) {
+      closeModal();
+    }
+  });
+</script>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 3rem 2rem 6rem;
+    text-align: center;
+  }
+
+  .hero-logo {
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto 2rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(to bottom, #2a3a8c 0%, #17246c 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.25),
+      0 8px 16px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .cta-button:active {
+    transform: translateY(1px);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+
+  .cta-button.cta-button-red {
+    background: linear-gradient(to bottom, #c42535 0%, #a01c2b 100%);
+  }
+
+  .cta-button.cta-button-red:hover {
+    background: linear-gradient(to bottom, #b22030 0%, #7d1521 100%);
+  }
+
+  .cta-button.cta-button-white {
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 100%);
+    color: #17246c;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .cta-button.cta-button-white:hover {
+    background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.25),
+      0 8px 16px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    border: 2px solid #17246c;
+    color: #17246c;
+    box-shadow: none;
+  }
+
+  .cta-button.secondary:hover {
+    background: #17246c;
+    color: white;
+  }
+
+  /* Video Modal */
+  .video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .video-modal.active {
+    display: flex;
+  }
+
+  .video-modal.ready {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .video-modal-content {
+    position: relative;
+    width: min(95vw, 980px);
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: -50px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+    z-index: 10;
+  }
+
+  .video-modal-close:hover {
+    color: #a01c2b;
+    transform: scale(1.1);
+  }
+
+  /* TV Frame Styles */
+  .tv-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tv-bezel {
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 50%, #0d0d0d 100%);
+    width: 100%;
+    padding: 12px 12px 20px 12px;
+    border-radius: 12px;
+    box-shadow: 
+      0 0 0 2px rgba(60, 60, 60, 0.5),
+      0 20px 60px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .tv-screen {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .tv-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .tv-brand {
+    margin-top: -12px;
+    padding: 6px 12px;
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .tv-brand img {
+    height: 18px;
+    width: auto;
+    display: block;
+  }
+
+  .tv-stand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .tv-stand-neck {
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    border-radius: 2px;
+  }
+
+  .tv-stand-base {
+    width: 140px;
+    height: 12px;
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Mobile adjustments for TV */
+  @media (max-width: 768px) {
+    .tv-bezel {
+      padding: 8px 8px 14px 8px;
+      border-radius: 8px;
+    }
+    
+    .tv-brand {
+      margin-top: -8px;
+    }
+    
+    .tv-brand img {
+      height: 14px;
+    }
+    
+    .tv-stand-neck {
+      width: 40px;
+      height: 20px;
+    }
+    
+    .tv-stand-base {
+      width: 100px;
+      height: 8px;
+    }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 4rem 0;
+  }
+
+  .features {
+    background: #f8f9fa;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .feature-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    display: block;
+  }
+
+  .feature-item {
+    margin-bottom: 2rem;
+  }
+
+  .feature-item h3 {
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-item p {
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .stats {
+    background: #1a1a2e;
+    color: white;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #a01c2b;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  /* Host Partner Network with diagonal stripes */
+  .network {
+    position: relative;
+    overflow: hidden;
+    background: #17246c;
+  }
+
+  .network-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
+      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
+      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
+      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
+    pointer-events: none;
+  }
+
+  .network .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .network-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .network h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .network p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .network-image img {
+    width: 100%;
+    border-radius: 50% 50% 50% 10%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+
+  .solutions {
+    background: #f8f9fa;
+    text-align: center;
+  }
+
+  .solutions h2 {
+    color: #1a1a2e;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .solution-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .solution-card h3 {
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .solution-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .solution-icon {
+    font-size: 2.5rem;
+    color: #17246c;
+    margin-bottom: 1rem;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .solution-card:hover .solution-icon {
+    color: #a01c2b;
+  }
+
+  .solutions-cta {
+    margin-top: 2rem;
+  }
+
+  /* Write Us a Review Section */
+  .review {
+    position: relative;
+    overflow: hidden;
+    background: #17246c;
+    color: white;
+    text-align: center;
+  }
+
+  .review-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
+      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
+      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
+      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
+    pointer-events: none;
+  }
+
+  .review .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .review h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .review p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Testimonials Section */
+  .testimonials {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    text-align: center;
+    scroll-margin-top: 150px;
+  }
+
+  .testimonials h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .testimonials-subtitle {
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .testimonial-card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.06),
+      0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .testimonial-card .stars {
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card .stars i {
+    color: #f4b400;
+    font-size: 1rem;
+    margin-right: 2px;
+  }
+
+  .testimonial-text {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+  }
+
+  .author-name {
+    display: block;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 0.25rem;
+  }
+
+  .author-company {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .google-attribution {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .google-attribution i {
+    color: #4285f4;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .hero-logo {
+      max-width: 220px;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature-grid,
+    .network-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .solution-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
