@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = "Locations";
-const description = "Check out where you could be seen in the community. View our network of host locations and partners.";
+const title = "Locations | BuWa Digital";
+const description = "Find BuWa TV screens at popular locations throughout the community.";
 
 const partners = [
   { name: "Beckett Financial", src: "/uploads/2025/10/Beckett-Financial-Logo.png" },
@@ -29,32 +29,35 @@ const partners = [
   { name: "Century 21", src: "/uploads/2025/05/Century-21.png" },
   { name: "Touchdowns", src: "/uploads/2025/10/Touchdowns-Logo.jpg" },
   { name: "Milestone Wealth Advisors", src: "/uploads/2025/05/Milestone-Wealth-Advisors.jpg" },
+  { name: "Roxanne's Market", src: "/uploads/2026/01/Roxanne-logo-up.png" },
 ];
+
+const partnerCount = partners.length;
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
       <h1>Our Network Partners</h1>
-      <p class="hero-subtitle">Check out where you could be seen in the community.</p>
-      <a href="/contact-us/" class="cta-button"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+      <p class="subtitle"><strong>Check out where you could be seen in the community.</strong></p>
+      <a href="/contact-us/" class="btn btn-cta">
+        <i class="fa-solid fa-paper-plane"></i> Get In Touch
+      </a>
     </div>
   </section>
 
-  <!-- Our Locations Section with Map -->
   <section class="locations-section">
     <div class="container">
       <h2>Our Locations</h2>
-      <p>Our screens can be found in many popular locations throughout the community. Our screens offer a unique format - keeping you in front of your customers in your business, even when other ads are playing.</p>
+      <p class="intro">Our screens can be found in many popular locations throughout the community. Our screens offer a unique format - keeping you in front of your customers in your business, even when other ads are playing.</p>
       
       <div class="map-container">
         <iframe 
-          src="https://www.google.com/maps/d/embed?mid=1XGVatlmUL7p9iJ9cFjk7LxkEtQXPdrI&ehbc=2E312F"
+          src="https://www.google.com/maps/d/embed?mid=1XGVatlmUL7p9iJ9cFjk7LxkEtQXPdrI&ehbc=2E312F" 
           width="100%" 
-          height="480" 
-          style="border:0;" 
-          allowfullscreen="" 
+          height="480"
+          style="border:0;"
+          allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
@@ -62,211 +65,249 @@ const partners = [
     </div>
   </section>
 
-  <!-- Partners Logo Carousel -->
   <section class="partners-section">
     <div class="container">
       <h2>Our Partners</h2>
     </div>
-    
     <div class="carousel-wrapper">
-      <div class="carousel-track" id="carousel-track">
-        {partners.map((partner) => (
-          <div class="logo-item">
+      <div class="carousel-track" data-partner-count={partnerCount}>
+        {partners.map(partner => (
+          <div class="carousel-item">
+            <img src={partner.src} alt={partner.name} loading="lazy" />
+          </div>
+        ))}
+        {partners.map(partner => (
+          <div class="carousel-item">
             <img src={partner.src} alt={partner.name} loading="lazy" />
           </div>
         ))}
       </div>
     </div>
-    
-    <script>
-      // Seamless infinite scroll carousel
-      document.addEventListener('DOMContentLoaded', () => {
-        const track = document.getElementById('carousel-track');
-        if (!track) return;
-        
-        // Clone content for seamless loop
-        const content = track.innerHTML;
-        track.innerHTML = content + content;
-        
-        // Get the width of one set of logos (half the total)
-        const singleSetWidth = track.scrollWidth / 2;
-        
-        // Create dynamic keyframes with exact pixel values
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = `
-          @keyframes carouselScroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-${singleSetWidth}px); }
-          }
-        `;
-        document.head.appendChild(styleSheet);
-        
-        // Calculate duration (pixels / speed = seconds)
-        const speed = 50; // pixels per second
-        const duration = singleSetWidth / speed;
-        
-        track.style.animation = `carouselScroll ${duration}s linear infinite`;
-      });
-    </script>
   </section>
 </BaseLayout>
 
 <style>
-  /* Hero Section */
   .hero {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 4rem 2rem;
+    padding: 3rem 2rem 4rem;
     text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
   }
-
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+  
+  .hero .container {
+    position: relative;
+    z-index: 1;
+  }
+  
   .hero h1 {
+    font-family: 'Inter', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
-
-  .hero p {
+  
+  .hero .subtitle {
     font-size: 1.25rem;
-    font-weight: 700;
     margin-bottom: 2rem;
-    opacity: 0.9;
+    color: rgba(255,255,255,0.9);
   }
-
-  .cta-button {
-    display: inline-block;
-    background: #17246c;
-    color: white;
-    padding: 0.875rem 2rem;
-    border-radius: 4px;
-    text-decoration: none;
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
     font-weight: 600;
-    border: 2px solid white;
+    text-decoration: none;
+    border-radius: 8px;
     transition: all 0.3s ease;
   }
-
-  .cta-button:hover {
-    background: white;
-    color: #17246c;
+  
+  .btn-cta {
+    background: linear-gradient(180deg, #c42536 0%, #a01c2b 100%);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
-
+  
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
-
-  /* Locations Section */
+  
   .locations-section {
-    padding: 4rem 2rem;
+    padding: 4rem 0;
     background: #f8f9fa;
   }
-
+  
   .locations-section h2 {
-    text-align: center;
+    font-family: 'Inter', sans-serif;
     font-size: 2rem;
+    color: #1a1a2e;
     margin-bottom: 1rem;
-    color: #17246c;
+    text-align: center;
   }
-
-  .locations-section p {
+  
+  .locations-section .intro {
     text-align: center;
     max-width: 800px;
     margin: 0 auto 2rem;
-    color: #555;
+    color: #4a5568;
     line-height: 1.7;
   }
-
+  
   .map-container {
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
   }
-
-  .map-container iframe {
-    display: block;
-  }
-
-  /* Partners Section */
+  
   .partners-section {
     padding: 4rem 0;
     background: white;
     overflow: hidden;
   }
-
+  
   .partners-section h2 {
-    text-align: center;
+    font-family: 'Inter', sans-serif;
     font-size: 2rem;
+    color: #1a1a2e;
     margin-bottom: 2rem;
-    color: #17246c;
+    text-align: center;
   }
-
-  /* Carousel */
+  
   .carousel-wrapper {
     overflow: hidden;
     width: 100%;
-    padding: 1rem 0;
   }
-
+  
   .carousel-track {
     display: flex;
-    gap: 3rem;
     width: max-content;
-    /* GPU acceleration for smoother animation */
-    will-change: transform;
-    backface-visibility: hidden;
   }
-
-  /* Animation keyframes injected by JavaScript with exact pixel values */
-
-  .logo-item {
-    flex-shrink: 0;
+  
+  .carousel-item {
+    flex: 0 0 180px;
+    height: 120px;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
-    padding: 0.5rem;
+    box-sizing: border-box;
   }
-
-  .logo-item img {
-    max-width: 150px;
-    max-height: 80px;
-    width: auto;
-    height: auto;
+  
+  .carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     filter: grayscale(20%);
     opacity: 0.85;
+    transition: all 0.3s ease;
   }
-
-  /* Mobile */
+  
+  .carousel-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  
   @media (max-width: 768px) {
     .hero h1 {
-      font-size: 1.75rem;
+      font-size: 2rem;
     }
-
-    .hero p {
-      font-size: 1rem;
-    }
-
-    .locations-section h2,
-    .partners-section h2 {
-      font-size: 1.5rem;
-    }
-
-    .map-container iframe {
-      height: 350px;
-    }
-
-    .carousel-track {
-      gap: 1.5rem;
-    }
-
-    .logo-item {
-      height: 70px;
-    }
-
-    .logo-item img {
-      max-width: 100px;
-      max-height: 50px;
+    
+    .carousel-item {
+      flex: 0 0 140px;
+      height: 100px;
     }
   }
 </style>
+
+<script>
+  // Smooth infinite carousel with calculated scroll distance
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+    
+    const partnerCount = parseInt(track.dataset.partnerCount) || 25;
+    const items = track.querySelectorAll('.carousel-item');
+    
+    // Wait for images to load to get accurate measurements
+    const images = track.querySelectorAll('img');
+    let loadedCount = 0;
+    
+    const initCarousel = () => {
+      // Calculate the width of the first set of items (half the track)
+      const itemWidth = items[0].offsetWidth;
+      const scrollDistance = itemWidth * partnerCount;
+      
+      // Calculate duration based on number of items (roughly 1.2 seconds per item)
+      const duration = partnerCount * 1.2;
+      
+      // Create and inject the animation
+      const styleSheet = document.createElement('style');
+      styleSheet.textContent = `
+        @keyframes smoothScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${scrollDistance}px); }
+        }
+        .carousel-track {
+          animation: smoothScroll ${duration}s linear infinite;
+        }
+        .carousel-track:hover {
+          animation-play-state: paused;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+    };
+    
+    // Initialize after all images load, or after 2 seconds (whichever comes first)
+    const checkLoaded = () => {
+      loadedCount++;
+      if (loadedCount >= images.length) {
+        initCarousel();
+      }
+    };
+    
+    images.forEach(img => {
+      if (img.complete) {
+        checkLoaded();
+      } else {
+        img.addEventListener('load', checkLoaded);
+        img.addEventListener('error', checkLoaded);
+      }
+    });
+    
+    // Fallback: initialize after 2 seconds regardless
+    setTimeout(() => {
+      if (!document.querySelector('style[data-carousel]')) {
+        initCarousel();
+      }
+    }, 2000);
+  });
+</script>
