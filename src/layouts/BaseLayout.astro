@@ -60,6 +60,37 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- LocalBusiness Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "BuWa Digital",
+    "description": "Local isn't just our market—it's our mission. We help local businesses reach more neighbors with affordable, high-impact digital advertising including indoor digital billboards, geofencing, social media, and streaming TV ads.",
+    "url": "https://buwadigital.com",
+    "logo": "https://buwadigital.com/uploads/2024/buwa-logo.png",
+    "image": "https://buwadigital.com/uploads/2024/buwa-logo.png",
+    "telephone": "+1-803-200-1614",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1926 Augusta Rd.",
+      "addressLocality": "West Columbia",
+      "addressRegion": "SC",
+      "postalCode": "29169",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    ],
+    "sameAs": []
+  }
+  </script>
 </head>
 <body>
   <Header />
