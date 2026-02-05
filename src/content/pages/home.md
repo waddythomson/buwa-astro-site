@@ -1,6 +1,6 @@
 ---
-title: "Home"
-description: "Discover BuWa TV: The indoor digital billboard network that makes your message impossible to ignore."
+title: "BuWa Digital - Indoor Digital Billboard Advertising in Columbia, SC"
+description: "Reach more customers where they eat, shop, work, and play. BuWa TV is the indoor digital billboard network in Columbia, SC that makes your message impossible to ignore."
 date: "2025-07-24T10:22:01"
 modified: "2025-11-08T03:52:22"
 slug: "home"
