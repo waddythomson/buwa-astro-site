@@ -1,34 +1,41 @@
 ---
-title: "About BuWa Digital"
-description: "BuWa Digital helps local businesses grow with affordable, high-impact digital advertising solutions in the Columbia, SC area."
+title: "About BuWa Digital | Local Advertising in Columbia, SC"
+description: "BuWa Digital helps local businesses grow with affordable, high-impact digital advertising solutions in the Columbia, SC area. Strengthening the local business scene is our mission."
+date: "2024-04-11T19:41:37"
+modified: "2025-02-05T10:00:00"
 slug: "about"
-ogImage: "/uploads/about-hero.jpg"
+ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-## What Makes Us Different
+# About BuWa Digital
 
-Local isn't just our market—it's our mission. We're here to help local businesses support each other, reach more neighbors, and build something stronger together. When you grow, the community grows with you.
+We help local businesses reach more customers through affordable, high-impact digital advertising.
 
 ## Our Mission
 
 To help strengthen the local business scene by providing more affordable, high-impact exposure that delivers real results.
 
-We believe every local business deserves access to powerful advertising—not just the big players with massive budgets. That's why we've built solutions that put your message in front of the right people, at the right time, in the right places.
+## What Makes Us Different
 
-## What We Do
+**Local isn't just our market—it's our mission.** We're here to help local businesses support each other, reach more neighbors, and build something stronger together. When you grow, the community grows with you.
 
-From our indoor digital billboard network (BuWa TV) to targeted digital advertising, we help businesses reach customers where they eat, shop, work, and play.
+## Our Services
 
-Our services include:
+We offer a range of marketing solutions designed specifically for local businesses:
 
-- **BuWa TV** — Indoor digital billboards that make your message impossible to ignore
-- **Geofencing & Targeted Ads** — Reach customers based on where they go
-- **Social Media Advertising** — Connect with your audience on the platforms they use
-- **Streaming & Connected TV** — Get your brand on the screens people watch
-- **Search & PPC Advertising** — Capture customers when they're actively searching
+- **BuWa TV** — Indoor digital billboard advertising that puts your business in front of local customers where they eat, shop, work, and play
+- **Social Media Advertising** — Targeted campaigns on the platforms your customers use most
+- **Geofencing** — Location-based advertising that reaches customers near your business
+- **Website Design** — Professional websites that convert visitors into customers
+- **Pay-Per-Click** — Strategic Google ads that drive qualified traffic
+- **Design Services** — Eye-catching graphics for your brand
 
-## Local Roots, Real Results
+## Why Local Matters
 
-Based in West Columbia, South Carolina, we're proud to serve businesses throughout the Midlands and beyond. We're not a faceless agency—we're your neighbors, and we're invested in seeing local businesses thrive.
+We believe that when local businesses thrive, the whole community wins. That's why we focus exclusively on helping businesses in the Columbia, SC area reach their neighbors and build lasting customer relationships.
 
-Ready to grow your business? [Get in touch](/contact-us/) and let's talk about what's possible.
+## Get In Touch
+
+Ready to strengthen your local presence? We'd love to hear about your business and discuss how we can help.
+
+[Contact Us](/contact-us/)

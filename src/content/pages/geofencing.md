@@ -1,6 +1,6 @@
 ---
-title: "Display Advertising | GeoFencing"
-description: "Use location data to reach your audience on the websites they love most with Display Advertising and Geofencing technology."
+title: "Geofencing & Display Ads | BuWa Digital - Columbia, SC"
+description: "Target customers near your Columbia, SC business with geofencing and display advertising. BuWa Digital uses location data to reach your ideal audience online."
 date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "geofencing"

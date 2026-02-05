@@ -1,112 +1,63 @@
 ---
-title: "Website Design & Development"
-description: "Custom website design and development to achieve your unique goals and maximize results."
-date: "2024-04-11T19:50:07"
-modified: "2024-08-15T21:58:55"
+title: "Website Design & Development | BuWa Digital - Columbia, SC"
+description: "Custom website design for Columbia, SC businesses. BuWa Digital creates professional, mobile-friendly websites that convert visitors into customers."
+date: "2024-04-11T19:41:37"
+modified: "2024-08-15T00:40:13"
 slug: "website-design"
-ogImage: "/uploads/2024/04/Maintenance-and-Support.jpg"
+ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-**We'll build a custom website to achieve your unique goals.**
+**Custom website design and development to achieve your unique goals and maximize results.**
 
-## Custom Websites
+<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
-Your brand story is unique and your website should reflect that. Our website design services prioritize functionality and adherence to your brand identity. Our team creates websites tailored to your target audience, ensuring user-friendly navigation and a seamless experience across devices.
+Your website is often the first impression potential customers have of your business. We create professional, mobile-friendly websites designed to convert visitors into customers.
 
-![Website Design](/uploads/2024/04/Website-Design.jpg)
+## What We Build
 
-## Your Site is the Cornerstone of Your Online Presence
+### Business Websites
 
-Your website is a foundational marketing tool. It drives brand awareness and helps ensure you're capturing sales across all digital platforms. Our team prioritizes aspects such as SEO and comprehensive UX/UI design to help ensure your website is findable and engaging. With a well-developed website, you're positioned for multichannel success via [**Social Media**](/social-media-ads), **[Display Advertising](/geofencing)**, or **[CTV | OTT](/connected-tv-ott-ads)** campaigns.
+Professional sites that showcase your services and establish credibility with potential customers.
 
-## Website Solutions: Guiding You from Start to Finish
+### E-Commerce Sites
 
-### UI/UX Design
+Online stores that make it easy for customers to browse and purchase your products.
 
-The user interface (UI) and user experience (UX) design are the most important aspects of a website. Our in-house development team will ensure that every visitor has an intuitive, easy to navigate, and visually engaging experience on your website.
+### Landing Pages
 
-![Website Design - UI/UX Design](/uploads/2024/04/UIUX-Design.jpg)
+Focused pages designed to convert traffic from your advertising campaigns.
 
-### Search Engine Optimization (SEO)
+### Website Redesigns
 
-Implementing SEO best practices ensures that the website ranks well in search engine results, driving organic traffic and increasing visibility.
+Modernize your existing site with fresh design and improved functionality.
 
-![Website Design - Search Engine Optimization (SEO)](/uploads/2024/04/SEO.jpg)
+## Our Approach
 
-### Analytics and Tracking
+### Discovery
 
-Implementation of tools like Google Analytics helps to track website traffic, user behavior, and other metrics for continuous optimization and improvement.
+We learn about your business, goals, and target customers to inform the design direction.
 
-![Website Design - Analytics and Tracking](/uploads/2024/04/Analytics-and-Tracking.jpg)
+### Design
 
-### Maintenance and Support
+Custom designs that reflect your brand and appeal to your audience—not templates.
 
-Ongoing maintenance and technical support services ensure that the website remains secure, up-to-date, and functioning optimally at all times.
+### Development
 
-![Website Design - Maintenance and Support](/uploads/2024/04/Maintenance-and-Support.jpg)
+Clean, fast-loading code built with modern best practices.
 
-## Website Design Process
+### Launch & Support
 
-<div class="process-steps">
+Smooth launch process and ongoing support to keep your site running great.
 
-<div class="process-step">
-<span class="step-number">1</span>
+## Why Choose BuWa Digital?
 
-### On-Boarding Meeting
+- **Local Focus** — We understand the Columbia, SC market and design with local customers in mind
+- **Full-Service** — Website plus marketing under one roof
+- **Mobile-First** — Sites that look great on every device
+- **SEO-Ready** — Built with search visibility in mind from the start
 
-We begin with a thorough consultation to understand your goals, preferences, and vision.
-</div>
+## Ready for a Website That Works?
 
-<div class="process-step">
-<span class="step-number">2</span>
+Let's discuss how a professional website can help grow your business.
 
-### Research and Development
-
-Our team will do a deep dive into your industry and target audience. From here, we'll begin to craft a website that is optimized for maximum impact.
-</div>
-
-<div class="process-step">
-<span class="step-number">3</span>
-
-### Site Review
-
-We'll present the proposed website designs and gather your valuable feedback to refine the finished product.
-</div>
-
-<div class="process-step">
-<span class="step-number">4</span>
-
-### SEO Optimization and Publication
-
-Our strategic SEO and seamless publishing process ensures your website content is easily discoverable and effective across all digital platforms.
-</div>
-
-</div>
-
-## Our Marketing Service Approach Is Simple
-
-- **Discovery** - Understanding your business and goals
-- **Strategy** - Developing a tailored plan
-- **Execution** - Building and implementing your website
-- **Evaluation** - Measuring results and performance
-- **Optimization** - Continuous improvement for better results
-
-## Website Common Questions
-
-### Why do websites vary so much in price?
-
-The pricing of a website is dependent on several factors including keyword research, content development, and plugin requirements.
-
-### What if I want to add more pages later?
-
-We can always add more pages to your website. Expanding the number of pages on your website can help elevate your online presence and improve search ranking.
-
-### What if I need assistance later with maintenance or changing of content?
-
-Our optional maintenance service covers essential tasks to keep your website up-to-date and secure. This includes backend updates to maintain site security and making minor changes such as image replacements and text updates as needed. From start to finish, we're dedicated to supporting your online presence and ensuring its smooth operation.
-
-<div style="text-align: center; margin-top: 3rem;">
-
-[Schedule a Call to Learn More](/contact-us)
-
-</div>
+[Get In Touch](/contact-us/)

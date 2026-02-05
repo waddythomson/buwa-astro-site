@@ -1,88 +1,41 @@
 ---
-title: "Search Engine Marketing"
-description: "Search Engine Marketing (SEM) encompasses all digital marketing strategies aimed at increasing website visibility in search engine results through organic SEO and paid advertising."
-date: "2024-04-23T20:30:41"
-modified: "2024-06-04T17:35:53"
+title: "Search Engine Marketing | BuWa Digital - Columbia, SC"
+description: "Increase your visibility in search results with comprehensive search engine marketing. BuWa Digital helps Columbia, SC businesses get found online through SEO and paid search."
+date: "2024-04-11T19:41:37"
+modified: "2024-08-15T00:40:13"
 slug: "search-engine-marketing"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-**Focuses on the traffic generation aspect.**
+**Search Engine Marketing (SEM) encompasses all digital marketing strategies aimed at increasing website visibility in search engine results through organic SEO and paid advertising.**
 
-[Get In Touch](/contact-us)
+<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
-## SEM
+When customers search for products or services like yours, will they find you? Search Engine Marketing ensures your business appears in front of people actively looking for what you offer.
 
-Search Engine Marketing (SEM) is the umbrella term encompassing all digital marketing strategies aimed at increasing a website's visibility in search engine results pages (SERPs). It includes both organic methods, such as Search Engine Optimization (SEO), which focuses on optimizing website content and structure to improve unpaid search rankings, and paid methods, such as Pay-Per-Click (PPC) advertising. SEM aims to drive targeted traffic, increase brand visibility, and generate conversions through a combination of organic and paid search tactics.
+## SEM Services We Offer
 
-![PPC Marketing](/uploads/2024/04/PPC1.jpg)
+### Pay-Per-Click (PPC)
 
-## Organic SEO
-
-*Search Engine Optimization*
+Get immediate visibility at the top of search results. [Learn more about our PPC services](/pay-per-click-ppc/).
 
 ### Local SEO
 
-#### Google Business Profile
+Optimize your presence for "near me" searches and local results in the Columbia, SC area.
 
-![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
+### Google Business Profile
 
-#### Citation Management
+Maximize your visibility in Google Maps and local search with an optimized business profile.
 
-### On Page SEO
+## Why Search Engine Marketing?
 
-#### Web Design
+- **Reach High-Intent Customers** — Connect with people actively searching for your services
+- **Measurable Results** — Track every click, call, and conversion
+- **Local Focus** — Target customers specifically in the Columbia, SC area
+- **Flexible Budget** — Start small and scale as you see results
 
-![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
+## Ready to Get Found Online?
 
-#### URL Structure
+Let's discuss how search engine marketing can drive more customers to your business.
 
-#### Keyword Strategy
-
-#### Interlinking
-
-#### Proper use of H1, H2 and H3 tags
-
-### Off Page SEO
-
-#### Link Building
-
-![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
-
-#### Social Media
-
-#### Review Management
-
-### Technical SEO
-
-#### Site Security
-
-![SEO Icon](/uploads/2024/04/SEO-icon-1.png)
-
-#### Sitemaps
-
-#### Crawlability & Indexability
-
-#### Google Console
-
-#### Meta Tag Descriptions
-
-### Paid
-
-*Traffic / Exposure*
-
-#### Social Media Advertising
-
-![Paid Icon](/uploads/2024/04/Paid-icon.png)
-
-#### PPC Pay Per Click
-
-#### CTV / OTT
-
-#### Pre-Roll Ads
-
-#### Geofencing
-
-#### YouTube Ads
-
-#### Streaming Audio
+[Get In Touch](/contact-us/)
