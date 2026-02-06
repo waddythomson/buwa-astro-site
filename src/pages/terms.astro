@@ -1,0 +1,320 @@
+---
+// Terms & Conditions page for BuWa TV
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions | BuWa TV</title>
+  <meta name="description" content="Terms and conditions for BuWa TV messaging program and services.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-G2ckSejgBZ8fG_9U33pzh.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+      min-height: 100vh;
+      color: #ffffff;
+    }
+
+    /* Header */
+    .header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      margin-right: 20px;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffd700;
+    }
+
+    /* Main Content */
+    .content-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .program-name {
+      font-size: 1.2rem;
+      color: #ffd700;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .terms-content {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    .terms-section {
+      margin-bottom: 30px;
+    }
+
+    .terms-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+
+    .terms-section p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #e0e0e0;
+      margin-bottom: 10px;
+    }
+
+    .terms-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 10px;
+    }
+
+    .terms-section ul li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #e0e0e0;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+
+    .terms-section ul li::before {
+      content: "•";
+      color: #ffd700;
+      position: absolute;
+      left: 0;
+    }
+
+    .keyword {
+      display: inline-block;
+      background: rgba(255, 215, 0, 0.2);
+      color: #ffd700;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-family: monospace;
+      font-size: 1.1rem;
+    }
+
+    .terms-section a {
+      color: #ffd700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .terms-section a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .intro-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #e0e0e0;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Footer */
+    .footer {
+      background: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      height: 40px;
+      margin-bottom: 15px;
+    }
+
+    .footer-text {
+      color: #17246c;
+      font-size: 0.9rem;
+    }
+
+    .footer-text a {
+      color: #17246c;
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        gap: 15px;
+        margin-right: 10px;
+      }
+
+      .nav-links a {
+        font-size: 0.85rem;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      .content-container {
+        padding: 30px 15px 60px;
+      }
+
+      .page-title {
+        font-size: 1.8rem;
+      }
+
+      .program-name {
+        font-size: 1rem;
+      }
+
+      .terms-content {
+        padding: 25px 20px;
+      }
+
+      .terms-section h2 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <a href="/" class="logo">
+      <img src="/images/buwa-tv-white.png" alt="BuWa TV">
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/signup/">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content-container">
+    <h1 class="page-title">Terms & Conditions</h1>
+    <p class="program-name">BuWa Messaging Communications</p>
+
+    <div class="terms-content">
+      <p class="intro-text">
+        By providing your phone number and opting in, you agree to receive SMS communications from BuWa Digital and BuWa TV related to:
+      </p>
+
+      <div class="terms-section">
+        <ul>
+          <li>Advertising inquiries</li>
+          <li>Screen hosting opportunities</li>
+          <li>Marketing services</li>
+          <li>Follow-up communications related to your requests</li>
+        </ul>
+      </div>
+
+      <div class="terms-section">
+        <h2>Message Frequency</h2>
+        <p>Message frequency varies based on your interaction and inquiry.</p>
+      </div>
+
+      <div class="terms-section">
+        <h2>Message & Data Rates</h2>
+        <p>Message and data rates may apply depending on your mobile carrier plan.</p>
+      </div>
+
+      <div class="terms-section">
+        <h2>Opt-Out Instructions</h2>
+        <p>You may opt out at any time by replying:</p>
+        <p><span class="keyword">STOP</span></p>
+        <p>to any message received.</p>
+        <p>You will receive confirmation of your unsubscribe request and will no longer receive SMS messages.</p>
+      </div>
+
+      <div class="terms-section">
+        <h2>Help Instructions</h2>
+        <p>For assistance, reply:</p>
+        <p><span class="keyword">HELP</span></p>
+        <p>or contact us at:</p>
+        <p>
+          <a href="mailto:info@buwatv.com">info@buwatv.com</a><br>
+          <a href="https://buwadigital.com" target="_blank" rel="noopener noreferrer">buwadigital.com</a>
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>Consent</h2>
+        <p>SMS consent is not shared with third parties or affiliates for marketing purposes. Messaging is only sent in response to user-initiated contact or consent.</p>
+      </div>
+
+      <div class="terms-section">
+        <h2>Privacy Policy</h2>
+        <p>Please review our Privacy Policy:</p>
+        <p><a href="https://buwadigital.com/privacy-policy/" target="_blank" rel="noopener noreferrer">buwadigital.com/privacy-policy</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="/images/buwa-tv-dark.png" alt="BuWa TV">
+    </div>
+    <p class="footer-text">
+      © 2025 BuWa Digital. All rights reserved.<br>
+      <a href="/terms/">Terms & Conditions</a> · <a href="https://buwadigital.com/privacy-policy/" target="_blank">Privacy Policy</a>
+    </p>
+  </footer>
+</body>
+</html>
