@@ -1,12 +1,16 @@
 ---
+const buwaTvUrl = 'https://buwatv.com/';
+
 const solutionsDropdown = [
   {
-    heading: 'Foundational',
+    heading: 'Branding & Awareness',
     items: [
-      { label: 'Website Design', href: '/website-design/', icon: 'fa-solid fa-object-ungroup' },
-      { label: 'Google Business Profile', href: '/google-business-profile/', icon: 'fa-brands fa-google' },
-      { label: 'Social Media Management', href: '/social-media-management/', icon: 'fa-solid fa-laptop' },
-      { label: 'Design Services', href: '/design/', icon: 'fa-solid fa-pen-ruler' },
+      { label: 'Indoor Digital Billboards', href: buwaTvUrl, icon: 'fa-solid fa-rectangle-ad' },
+      { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott-ads/', icon: 'fa-solid fa-tv' },
+      { label: 'Display | Geofencing', href: '/geofencing/', icon: 'fa-solid fa-location-dot' },
+      { label: 'Streaming Audio', href: '/streaming-audio/', icon: 'fa-solid fa-headphones' },
+      { label: 'Pre-roll Ads', href: '/pre-roll-advertising/', icon: 'fa-brands fa-square-youtube' },
+      { label: 'Youtube Advertising', href: '/youtube-ads/', icon: 'fa-brands fa-youtube' },
     ]
   },
   {
@@ -17,21 +21,14 @@ const solutionsDropdown = [
     ]
   },
   {
-    heading: 'Branding & Awareness',
+    heading: 'Foundational',
     items: [
-      { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott-ads/', icon: 'fa-solid fa-tv' },
-      { label: 'Display | Geofencing', href: '/geofencing/', icon: 'fa-solid fa-location-dot' },
-      { label: 'Streaming Audio', href: '/streaming-audio/', icon: 'fa-solid fa-headphones' },
-      { label: 'Pre-roll Ads', href: '/pre-roll-advertising/', icon: 'fa-brands fa-square-youtube' },
-      { label: 'Youtube Advertising', href: '/youtube-ads/', icon: 'fa-brands fa-youtube' },
+      { label: 'Website Design', href: '/website-design/', icon: 'fa-solid fa-object-ungroup' },
+      { label: 'Google Business Profile', href: '/google-business-profile/', icon: 'fa-brands fa-google' },
+      { label: 'Social Media Management', href: '/social-media-management/', icon: 'fa-solid fa-laptop' },
+      { label: 'Design Services', href: '/design/', icon: 'fa-solid fa-pen-ruler' },
     ]
   }
-];
-
-const indoorBillboardsDropdown = [
-  { label: 'Become a Host Partner', href: '/host-partner/', icon: 'fa-regular fa-handshake' },
-  { label: 'Locations', href: '/locations/', icon: 'fa-solid fa-location-dot' },
-  { label: 'Screen Advertising', href: '/screen-advertising/', icon: 'fa-solid fa-rectangle-ad' },
 ];
 ---
 
@@ -60,15 +57,6 @@ const indoorBillboardsDropdown = [
         </div>
       </div>
 
-      <!-- Indoor Billboards with simple dropdown -->
-      <div class="nav-item">
-        <span class="dropdown-trigger">Indoor Billboards</span>
-        <div class="dropdown">
-          {indoorBillboardsDropdown.map(item => (
-            <a href={item.href}><i class={item.icon}></i> {item.label}</a>
-          ))}
-        </div>
-      </div>
 
       <!-- Who We Are - dropdown -->
       <div class="nav-item">
@@ -103,12 +91,6 @@ const indoorBillboardsDropdown = [
       ))}
     </div>
     
-    <div class="mobile-nav-section">
-      <h4>Indoor Billboards</h4>
-      {indoorBillboardsDropdown.map(item => (
-        <a href={item.href}><i class={item.icon}></i> {item.label}</a>
-      ))}
-    </div>
     
     <div class="mobile-nav-section">
       <h4>Who We Are</h4>

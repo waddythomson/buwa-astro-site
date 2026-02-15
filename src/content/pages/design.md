@@ -33,7 +33,7 @@ Social media graphics, email headers, website banners—we create digital assets
 
 ### Video Ad Creation
 
-Full-motion video ads for BuWa TV, social media, and other digital platforms that capture attention and drive action.
+Full-motion video ads for digital screens, social media, and other platforms that capture attention and drive action.
 
 ## Why Choose BuWa Digital for Design?
 

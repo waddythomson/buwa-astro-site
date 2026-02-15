@@ -1,6 +1,6 @@
 ---
-title: "BuWa Digital - Indoor Digital Billboard Advertising in Columbia, SC"
-description: "Reach more customers where they eat, shop, work, and play. BuWa TV is the indoor digital billboard network in Columbia, SC that makes your message impossible to ignore."
+title: "BuWa Digital - Marketing & Advertising in Columbia, SC"
+description: "Reach more customers where they live, work, and shop with targeted digital marketing that builds trust and drives action."
 date: "2025-07-24T10:22:01"
 modified: "2025-11-08T03:52:22"
 slug: "home"
@@ -11,7 +11,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 Where They Eat, Shop, Work, and Play.
 
-Discover the power of BuWa TV: The indoor digital billboard network that makes your message impossible to ignore.
+Discover how BuWa Digital helps local businesses stand out with coordinated marketing that makes your message impossible to ignore.
 
 ## Are you trying to grow your local business?
 
@@ -23,13 +23,13 @@ We help local business owners stop wasting money on underperforming ads by telli
 
 ## Be Seen. Be Trusted. Be Chosen!
 
-Customers trust brands that they recognize. By using vibrant visuals to tell your story, you gain valuable local exposure and **turn recognition into trust** — the trust that ultimately leads to being chosen. It's time to discover the power of BuWa TV!
+Customers trust brands that they recognize. By using vibrant visuals and smart campaigns to tell your story, you gain valuable local exposure and **turn recognition into trust** — the trust that ultimately leads to being chosen.
 
 ---
 
-Our mission is to help local businesses like yours reach their audience. Every month, millions of consumers see our screens and remember them.
+Our mission is to help local businesses like yours reach their audience with strategy-first digital marketing that drives measurable growth.
 
-**Join the network of businesses that are prioritizing hyper-local advertising!**
+**Partner with a team that prioritizes hyper-local growth.**
 
 ## Our Services
 
@@ -41,6 +41,6 @@ Our mission is to help local businesses like yours reach their audience. Every m
 
 - **Geofencing** — Increase foot traffic and boost sales by sending personalized ads to customers when they are near your business
 
-- **BuWa TV** — Advertise with indoor digital billboards and get more ads in your local community!
+- **Indoor Digital Billboards** — Learn more at [BuWaTV.com](https://buwatv.com/)
 
 [Get Started Today](/contact-us)

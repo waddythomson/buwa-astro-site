@@ -6,7 +6,9 @@ export const GET: APIRoute = async ({ site }) => {
   const siteUrl = (site?.href || 'https://buwadigital.com').replace(/\/$/, '');
   
   // Get all pages from the content collection
-  const pages = await getCollection('pages');
+  const archivePattern = /(?:^|\/)archive\//i;
+  const pages = (await getCollection('pages'))
+    .filter(page => !archivePattern.test(page.id));
   
   // Create sitemap entries for content pages
   const pageEntries = pages.map(page => {

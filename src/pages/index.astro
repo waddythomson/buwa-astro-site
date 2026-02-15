@@ -1,47 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = "BuWa Digital - Indoor Digital Billboard Advertising";
-const description = "Reach more customers where they eat, shop, work, and play. Discover the power of BuWa TV: The indoor digital billboard network that makes your message impossible to ignore.";
+const title = "BuWa Digital - Marketing & Advertising for Local Businesses";
+const description = "Reach more customers where they live, work, and shop with targeted digital marketing that builds trust and drives action.";
 ---
 
 <BaseLayout title={title} description={description}>
+  <div class="intro-video" id="introVideo" aria-hidden="true">
+    <video
+      id="introVideoEl"
+      class="intro-video-el"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+      poster="/uploads/logos/buwa-digital-white.png"
+    >
+      <source src="/uploads/BuWaSpinLogo_1_7.mp4" type="video/mp4" />
+    </video>
+  </div>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <img src="/uploads/2024/BuWaTV_white.png" alt="BuWa TV" class="hero-logo" />
+      <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" class="hero-logo" />
       <h1>Stop Flying Under The Radar!</h1>
-      <p class="hero-subtitle">We'll help your business maintain a prominent community presence with reasonably priced, locally targeted exposure that keeps you top-of-mind and delivers real results.</p>
+      <p class="hero-subtitle">We'll help your business maintain a prominent community presence using strategically targeted services that keep your business top-of-mind and deliver real results.</p>
       <div class="hero-buttons">
         <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
-        <button type="button" class="cta-button cta-button-white" id="openVideoPopup">
-          <i class="fa-solid fa-play"></i> See BuWa TV in Action
-        </button>
       </div>
     </div>
   </section>
-
-  <!-- Video Popup Modal -->
-  <div class="video-modal" id="videoModal">
-    <div class="video-modal-content">
-      <button type="button" class="video-modal-close" id="closeVideoPopup">&times;</button>
-      <div class="tv-frame">
-        <div class="tv-bezel">
-          <div class="tv-screen">
-            <div class="video-wrapper">
-              <div id="youtubePlayer"></div>
-            </div>
-            <div class="tv-reflection"></div>
-          </div>
-        </div>
-        <div class="tv-brand"><img src="/uploads/logos/TrademarkBuWaTV_grey.png" alt="BuWa TV" /></div>
-        <div class="tv-stand">
-          <div class="tv-stand-neck"></div>
-          <div class="tv-stand-base"></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Problem/Solution Section -->
   <section class="features">
@@ -54,17 +43,25 @@ const description = "Reach more customers where they eat, shop, work, and play. 
           <div class="feature-item">
             <h3>Tired Of Blowing The Budget On Advertising?</h3>
             <p>We understand how difficult – and expensive — it can be to get customers to pay attention.</p>
-          </div>
-          <div class="feature-item">
-            <h3>We Can Help!</h3>
             <p>We help local business owners stop wasting money on underperforming ads by telling their story through locally targeted, full-motion video that delivers real results — without breaking the bank.</p>
           </div>
           <div class="feature-item">
             <h3>Be Seen. Be Trusted. Be Chosen!</h3>
-            <p>Customers trust brands that they recognize. By using vibrant visuals to tell your story, you gain valuable local exposure and <strong>turn recognition into trust</strong>— the trust that ultimately leads to being chosen. It's time to discover the power of BuWa TV!</p>
+          <p>Customers trust brands that they recognize. By using vibrant visuals and smart campaigns to tell your story, you gain valuable local exposure and <strong>turn recognition into trust</strong>— the trust that ultimately leads to being chosen.</p>
           </div>
-          <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-phone"></i> Schedule A Call</a>
         </div>
+      </div>
+      <div class="feature-cta">
+        <a
+          href="https://buwatv.com/"
+          class="cta-button cta-button-navy cta-button-logo"
+          target="_blank"
+          rel="noopener"
+          aria-label="Visit BuWaTV.com"
+        >
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="cta-logo" />
+        </a>
       </div>
     </div>
   </section>
@@ -89,19 +86,19 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     </div>
   </section>
 
-  <!-- Host Partner Network -->
+  <!-- Local Growth Partners -->
   <section class="network">
     <div class="network-bg"></div>
     <div class="container">
       <div class="network-grid">
         <div class="network-content">
-          <h2>Host Partner Network</h2>
-          <p>Our mission is to help local businesses like yours reach their audience. Every month, millions of consumers see our screens and remember them.</p>
-          <p>Join the network of businesses that are prioritizing hyper-local advertising!</p>
-          <a href="/host-partner/" class="cta-button cta-button-red">Learn More</a>
+          <h2>Local Growth Partners</h2>
+          <p>Our mission is to help local businesses like yours reach the right audience with coordinated search, social, and web campaigns.</p>
+          <p>We build the strategy, creative, and execution so your brand stays visible and competitive.</p>
+          <a href="/contact-us/" class="cta-button cta-button-red">Talk With Us</a>
         </div>
         <div class="network-image">
-          <img src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="Venue Network" loading="lazy" />
+          <img src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="Local business marketing" loading="lazy" />
         </div>
       </div>
     </div>
@@ -112,6 +109,11 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     <div class="container">
       <h2>Marketing Solutions</h2>
       <div class="solution-grid">
+        <a href="https://buwatv.com/" class="solution-card" target="_blank" rel="noopener">
+          <img src="/uploads/logos/buwa-tv-logo.png" alt="BuWa TV" class="solution-icon solution-icon-image" loading="lazy" />
+          <h3>Indoor Digital Billboards</h3>
+          <p>Showcase your brand on screens in locations where customers work, shop, eat, and play.</p>
+        </a>
         <a href="/google-business-profile/" class="solution-card">
           <i class="fa-brands fa-google solution-icon"></i>
           <h3>Google Business Profile</h3>
@@ -126,11 +128,6 @@ const description = "Reach more customers where they eat, shop, work, and play. 
           <i class="fa-solid fa-object-ungroup solution-icon"></i>
           <h3>Website Design</h3>
           <p>Create a positive first impression, increase customer engagement and conversions</p>
-        </a>
-        <a href="/geofencing/" class="solution-card">
-          <i class="fa-solid fa-location-dot solution-icon"></i>
-          <h3>Geofencing</h3>
-          <p>Increase foot traffic and boost sales by sending personalized ads to customers when they are near your business</p>
         </a>
       </div>
       <div class="solutions-cta">
@@ -239,88 +236,71 @@ const description = "Reach more customers where they eat, shop, work, and play. 
 
   statNumbers.forEach((el) => observer.observe(el));
 
-  // Video popup functionality
-  const videoModal = document.getElementById('videoModal');
-  const openBtn = document.getElementById('openVideoPopup');
-  const closeBtn = document.getElementById('closeVideoPopup');
-  let youtubeVideoId = 'WN3qbqm1WGI'; // fallback
-  const videoWrapper = document.querySelector('.video-wrapper');
-  let revealTimer;
+  // Intro video splash (6 seconds)
+  const introDurationMs = 4500;
+  const introVideo = document.getElementById('introVideo');
+  const introVideoEl = document.getElementById('introVideoEl');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Fetch video config
-  fetch('/config.json')
-    .then(res => res.json())
-    .then(config => {
-      if (config.heroVideo?.id) {
-        youtubeVideoId = config.heroVideo.id;
-      }
-    })
-    .catch(() => {}); // Use fallback if fetch fails
-
-  const closeModal = () => {
-    videoModal.classList.remove('active');
-    videoModal.classList.remove('ready');
-    document.body.style.overflow = '';
-    if (revealTimer) {
-      clearTimeout(revealTimer);
-      revealTimer = undefined;
+  const hideIntro = () => {
+    if (!introVideo) return;
+    introVideo.classList.add('done');
+    document.body.classList.remove('intro-active');
+    if (introVideoEl) {
+      introVideoEl.pause();
+      introVideoEl.currentTime = 0;
     }
-    if (videoWrapper) {
-      videoWrapper.innerHTML = '<div id="youtubePlayer"></div>';
-    }
+    setTimeout(() => introVideo.remove(), 500);
   };
 
-  const revealModal = () => {
-    if (!videoModal?.classList.contains('active')) {
-      videoModal?.classList.add('active');
-    }
-    videoModal?.classList.add('ready');
+  const showIntro = () => {
+    if (!introVideo) return;
+    document.body.classList.add('intro-active');
+    introVideo.classList.add('active');
+    introVideoEl?.play().catch(() => {});
+    setTimeout(hideIntro, introDurationMs);
   };
 
-  const openVideoModal = () => {
-    videoModal.classList.remove('active', 'ready');
-    document.body.style.overflow = 'hidden';
-    if (revealTimer) {
-      clearTimeout(revealTimer);
-    }
-    revealTimer = setTimeout(revealModal, 500);
-
-    if (videoWrapper) {
-      videoWrapper.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${youtubeVideoId}"
-          title="BuWa TV in Action"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          style="position:absolute;top:0;left:0;width:100%;height:100%;">
-        </iframe>
-      `;
-      const iframe = videoWrapper.querySelector('iframe');
-      if (iframe) {
-        iframe.addEventListener('load', revealModal, { once: true });
-      }
-    }
-  };
-
-  openBtn?.addEventListener('click', openVideoModal);
-
-  closeBtn?.addEventListener('click', closeModal);
-
-  videoModal?.addEventListener('click', (e) => {
-    if (e.target === videoModal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && videoModal?.classList.contains('active')) {
-      closeModal();
-    }
-  });
+  if (!prefersReducedMotion && introVideoEl?.querySelector('source')?.getAttribute('src')) {
+    introVideoEl?.addEventListener('error', hideIntro, { once: true });
+    showIntro();
+  } else {
+    hideIntro();
+  }
 </script>
 
 <style>
+  :global(body.intro-active) {
+    overflow: hidden;
+  }
+
+  .intro-video {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .intro-video.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .intro-video.done {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro-video-el {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .hero {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: white;
@@ -416,6 +396,26 @@ const description = "Reach more customers where they eat, shop, work, and play. 
       inset 0 1px 0 rgba(255,255,255,0.8);
   }
 
+  .cta-button.cta-button-navy {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+  }
+
+  .cta-button.cta-button-navy:hover {
+    background: linear-gradient(135deg, #141427 0%, #101a33 100%);
+  }
+
+  .cta-button-logo {
+    padding: 0.5rem 2rem;
+    min-height: 3.2rem;
+  }
+
+  .cta-button-logo .cta-logo {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
   .cta-button.secondary {
     background: transparent;
     border: 2px solid #17246c;
@@ -426,178 +426,6 @@ const description = "Reach more customers where they eat, shop, work, and play. 
   .cta-button.secondary:hover {
     background: #17246c;
     color: white;
-  }
-
-  /* Video Modal */
-  .video-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.92);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-  }
-
-  .video-modal.active {
-    display: flex;
-  }
-
-  .video-modal.ready {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .video-modal-content {
-    position: relative;
-    width: min(95vw, 980px);
-  }
-
-  .video-modal-close {
-    position: absolute;
-    top: -50px;
-    right: -10px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    line-height: 1;
-    transition: color 0.2s, transform 0.2s;
-    z-index: 10;
-  }
-
-  .video-modal-close:hover {
-    color: #a01c2b;
-    transform: scale(1.1);
-  }
-
-  /* TV Frame Styles */
-  .tv-frame {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .tv-bezel {
-    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 50%, #0d0d0d 100%);
-    width: 100%;
-    padding: 12px 12px 20px 12px;
-    border-radius: 12px;
-    box-shadow: 
-      0 0 0 2px rgba(60, 60, 60, 0.5),
-      0 20px 60px rgba(0, 0, 0, 0.8),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .tv-screen {
-    position: relative;
-    width: 100%;
-    border-radius: 4px;
-    overflow: hidden;
-    background: #000;
-  }
-
-  .tv-reflection {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.03) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    pointer-events: none;
-    z-index: 5;
-  }
-
-  .tv-brand {
-    margin-top: -12px;
-    padding: 6px 12px;
-    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-    border-radius: 0 0 4px 4px;
-  }
-
-  .tv-brand img {
-    height: 18px;
-    width: auto;
-    display: block;
-  }
-
-  .tv-stand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 8px;
-  }
-
-  .tv-stand-neck {
-    width: 60px;
-    height: 30px;
-    background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
-    border-radius: 2px;
-  }
-
-  .tv-stand-base {
-    width: 140px;
-    height: 12px;
-    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  }
-
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    background: #000;
-  }
-
-  .video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Mobile adjustments for TV */
-  @media (max-width: 768px) {
-    .tv-bezel {
-      padding: 8px 8px 14px 8px;
-      border-radius: 8px;
-    }
-    
-    .tv-brand {
-      margin-top: -8px;
-    }
-    
-    .tv-brand img {
-      height: 14px;
-    }
-    
-    .tv-stand-neck {
-      width: 40px;
-      height: 20px;
-    }
-    
-    .tv-stand-base {
-      width: 100px;
-      height: 8px;
-    }
   }
 
   .container {
@@ -618,6 +446,13 @@ const description = "Reach more customers where they eat, shop, work, and play. 
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    align-items: start;
+  }
+
+  .feature-image {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     align-items: center;
   }
 
@@ -639,6 +474,11 @@ const description = "Reach more customers where they eat, shop, work, and play. 
   .feature-item p {
     color: #555;
     line-height: 1.7;
+  }
+
+  .feature-cta {
+    margin-top: 1.25rem;
+    text-align: center;
   }
 
   .stats {
@@ -771,6 +611,13 @@ const description = "Reach more customers where they eat, shop, work, and play. 
 
   .solution-card:hover .solution-icon {
     color: #a01c2b;
+  }
+
+  .solution-icon-image {
+    height: 40px;
+    width: auto;
+    display: block;
+    margin: 0 auto 1rem;
   }
 
   .solutions-cta {

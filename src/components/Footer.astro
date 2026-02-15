@@ -1,23 +1,27 @@
 ---
 const currentYear = new Date().getFullYear();
+const smsNumber = '8034032922';
+const smsMessage = "Hi, I'm interested in learning more about marketing services at BuWa Digital. My name is: ";
+const smsLink = `sms:${smsNumber}?&body=${encodeURIComponent(smsMessage)}`;
+const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(smsLink)}`;
 ---
 
 <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/uploads/2024/BuWaTV_white.png" alt="BuWa TV" height="40" />
-        <p>Helping local businesses reach their audience through the power of indoor digital billboard advertising.</p>
+        <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" height="40" />
+        <p>Helping local businesses grow through smart, results-driven digital marketing.</p>
       </div>
 
       <div class="footer-links">
         <h4>Solutions</h4>
         <ul>
-          <li><a href="/screen-advertising/">BuWa TV Advertising</a></li>
           <li><a href="/google-business-profile/">Google Business Profile</a></li>
           <li><a href="/pay-per-click-ppc/">Pay-Per-Click (PPC)</a></li>
           <li><a href="/website-design/">Website Design</a></li>
           <li><a href="/geofencing/">Geofencing</a></li>
+          <li><a href="https://buwatv.com/" target="_blank" rel="noopener">BuWaTV.com</a></li>
         </ul>
       </div>
 
@@ -25,8 +29,7 @@ const currentYear = new Date().getFullYear();
         <h4>Company</h4>
         <ul>
           <li><a href="/about-us/">About Us</a></li>
-          <li><a href="/host-partner/">Host Partner</a></li>
-          <li><a href="/locations/">Locations</a></li>
+          <li><a href="https://buwatv.com/" target="_blank" rel="noopener">BuWaTV.com</a></li>
           <li><a href="/contact-us/">Contact Us</a></li>
           <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="/terms/">Terms & Conditions</a></li>
@@ -34,8 +37,12 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="footer-contact">
-        <h4>Get In Touch</h4>
-        <a href="/contact-us/" class="footer-cta"><i class="fa-solid fa-phone"></i> Schedule A Call</a>
+        <h4>Text Us</h4>
+        <p class="footer-contact-note">Scan or tap to text us.</p>
+        <a href={smsLink} class="footer-qr-link" aria-label="Text BuWa Digital">
+          <img src={smsQrUrl} alt="QR code to text BuWa Digital" class="footer-qr" loading="lazy" />
+        </a>
+        <a href={smsLink} class="footer-cta footer-cta-text"><i class="fa-solid fa-comment-dots"></i> Text 803-403-2922</a>
       </div>
     </div>
 
@@ -84,6 +91,28 @@ const currentYear = new Date().getFullYear();
     color: white;
   }
 
+  .footer-contact-note {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-qr-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .footer-qr {
+    width: 140px;
+    height: 140px;
+    display: block;
+  }
+
   .footer-links ul {
     list-style: none;
     padding: 0;
@@ -114,6 +143,15 @@ const currentYear = new Date().getFullYear();
     text-decoration: none;
     font-weight: 600;
     transition: background 0.2s;
+  }
+
+  .footer-cta.footer-cta-text {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+
+  .footer-cta.footer-cta-text:hover {
+    background: rgba(255,255,255,0.12);
   }
 
   .footer-cta:hover {
