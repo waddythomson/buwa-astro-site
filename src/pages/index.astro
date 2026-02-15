@@ -241,11 +241,26 @@ const description = "Reach more customers where they live, work, and shop with t
   const introVideo = document.getElementById('introVideo');
   const introVideoEl = document.getElementById('introVideoEl');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let playbackTimer;
+  let maxWaitTimer;
+  let hasPlayed = false;
+
+  const clearTimers = () => {
+    if (playbackTimer) {
+      clearTimeout(playbackTimer);
+      playbackTimer = undefined;
+    }
+    if (maxWaitTimer) {
+      clearTimeout(maxWaitTimer);
+      maxWaitTimer = undefined;
+    }
+  };
 
   const hideIntro = () => {
     if (!introVideo) return;
     introVideo.classList.add('done');
     document.body.classList.remove('intro-active');
+    clearTimers();
     if (introVideoEl) {
       introVideoEl.pause();
       introVideoEl.currentTime = 0;
@@ -257,12 +272,30 @@ const description = "Reach more customers where they live, work, and shop with t
     if (!introVideo) return;
     document.body.classList.add('intro-active');
     introVideo.classList.add('active');
-    introVideoEl?.play().catch(() => {});
-    setTimeout(hideIntro, introDurationMs);
+    if (introVideoEl instanceof HTMLVideoElement) {
+      introVideoEl.muted = true;
+      introVideoEl.playsInline = true;
+      introVideoEl.addEventListener(
+        'playing',
+        () => {
+          hasPlayed = true;
+          playbackTimer = setTimeout(hideIntro, introDurationMs);
+        },
+        { once: true }
+      );
+      introVideoEl.addEventListener('error', hideIntro, { once: true });
+      maxWaitTimer = setTimeout(() => {
+        if (!hasPlayed) hideIntro();
+      }, 2000);
+      introVideoEl.play().catch(() => {
+        hideIntro();
+      });
+    } else {
+      hideIntro();
+    }
   };
 
   if (!prefersReducedMotion && introVideoEl?.querySelector('source')?.getAttribute('src')) {
-    introVideoEl?.addEventListener('error', hideIntro, { once: true });
     showIntro();
   } else {
     hideIntro();
