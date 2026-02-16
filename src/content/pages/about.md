@@ -7,8 +7,6 @@ slug: "about"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# About BuWa Digital
-
 We help local businesses reach more customers through affordable, high-impact digital advertising.
 
 ## Our Mission

@@ -3,9 +3,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "BuWa TV Advertising";
 const pageDescription = "Connect your brand with audiences everywhere through our indoor digital billboard network. Non-skippable, local reach advertising.";
+const faq = [
+  {
+    question: "What if I want a screen inside my location?",
+    answer: "Reach out to us to see if your business qualifies to join our network. We choose locations based on factors like high traffic, dwell times, brand fit, and marketing effectiveness.",
+  },
+  {
+    question: "What if I already have content for my campaigns for the year?",
+    answer: "Great. We can align your existing content with seasonal campaigns and schedule each ad when you're ready to launch.",
+  },
+  {
+    question: "What if I need to run an ad for only a short time, like for an event?",
+    answer: "We regularly support events and promotions. We'll plan a short-term campaign that aligns with your timeline and goals.",
+  },
+];
+
+const relatedServices = [
+  { label: "Google Business Profile", href: "/google-business-profile/" },
+  { label: "Display Advertising | Geofencing", href: "/geofencing/" },
+  { label: "Connected TV | OTT Ads", href: "/connected-tv-ott-ads/" },
+  { label: "Pay-Per-Click (PPC)", href: "/pay-per-click-ppc/" },
+];
+
+const partnerQuote = {
+  quote: "Buwa Digital is the real deal when it comes to helping local businesses grow in today's digital world. Their indoor digital billboards are a game-changer for visibility.",
+  name: "David Medley",
+  company: "Better Homes and Gardens Real Estate Medley",
+};
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout title={pageTitle} description={pageDescription} faq={faq}>
   <!-- Hero Section with Blue Background -->
   <section class="hero">
     <div class="hero-content">
@@ -224,6 +251,18 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
     </div>
   </section>
 
+  <!-- Partner Results -->
+  <section class="content-section alt-bg proof-section">
+    <div class="container">
+      <h2>What Local Partners Are Saying</h2>
+      <blockquote class="proof-quote">
+        <p>"{partnerQuote.quote}"</p>
+        <footer>— {partnerQuote.name}, {partnerQuote.company}</footer>
+      </blockquote>
+      <a href="/#testimonials" class="btn-navy">Read More Reviews</a>
+    </div>
+  </section>
+
   <!-- Service Approach -->
   <section class="content-section alt-bg">
     <div class="container">
@@ -244,20 +283,26 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
       <h2>Screen Network Common Questions</h2>
 
       <div class="faq-list">
-        <div class="faq-item">
-          <h3>What if I want a screen inside my location?</h3>
-          <p>Reach out to us to see if your business qualifies to join our network. We choose locations based on factors like high traffic, dwell times, brand names, or effective marketing. We're always looking to add more locations, so <a href="/contact-us/">get in touch</a> with us soon!</p>
-        </div>
+        {faq.map((item) => (
+          <div class="faq-item">
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </div>
+        ))}
+      </div>
+      <p class="faq-cta">Have more questions? <a href="/contact-us/">Contact us</a> and we’ll help you plan the right campaign.</p>
+    </div>
+  </section>
 
-        <div class="faq-item">
-          <h3>What if I already have content for my campaigns for the year?</h3>
-          <p>Even better! We can create content for the entire year matching your seasonal campaigns. When you're ready to launch your next campaign, just give us the word, and we'll start airing the pre-made ad, aligning seamlessly with your other marketing channels and efforts.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>What if I need to run an ad for only a short time, like for an event?</h3>
-          <p>Not a problem, we deal with events and promotions all the time. Just <a href="/contact-us/">contact us</a> and we can come up with an ad production plan that will align with your campaign needs.</p>
-        </div>
+  <!-- Related Services -->
+  <section class="content-section related-section">
+    <div class="container">
+      <h2>Related Services That Pair Well</h2>
+      <p>Combine screen advertising with targeted online channels to reinforce your message and improve conversion paths.</p>
+      <div class="related-links">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-link">{service.label}</a>
+        ))}
       </div>
     </div>
   </section>
@@ -878,6 +923,68 @@ const pageDescription = "Connect your brand with audiences everywhere through ou
 
   .faq-item a:hover {
     text-decoration: underline;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .proof-section .btn-navy {
+    margin-top: 1rem;
+  }
+
+  .proof-quote {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+
+  .proof-quote p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .proof-quote footer {
+    color: #555;
+    font-weight: 600;
+  }
+
+  .related-section {
+    background: #f8f9fa;
+  }
+
+  .related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .related-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    border: 2px solid #17246c;
+    color: #17246c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .related-link:hover {
+    background: #17246c;
+    color: #fff;
   }
 
   /* Video Modal */

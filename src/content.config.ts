@@ -6,6 +6,7 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
+    slug: z.string().optional(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     author: z.string().optional(),
@@ -31,10 +32,15 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
+    slug: z.string().optional(),
     pubDate: z.coerce.date().optional(),
     updatedDate: z.coerce.date().optional(),
+    date: z.coerce.date().optional(),
+    modified: z.coerce.date().optional(),
     featuredImage: z.string().optional(),
     featuredImageAlt: z.string().optional(),
+    ogImage: z.string().optional(),
+    ogImageAlt: z.string().optional(),
     // WordPress-specific fields
     wpId: z.number().optional(),
     wpSlug: z.string().optional(),

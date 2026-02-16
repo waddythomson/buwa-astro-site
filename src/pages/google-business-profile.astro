@@ -1,10 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faq = [
+  {
+    question: "Why should I claim my listing?",
+    answer: "Claiming your profile gives you control over the information Google displays and helps prevent inaccuracies that can cost you customers.",
+  },
+  {
+    question: "What if I do not have access to the previous owner's account?",
+    answer: "We can help you regain access by working through Google's verification steps and submitting the documentation needed to prove ownership.",
+  },
+  {
+    question: "How important is it to have a Google Business Profile?",
+    answer: "A claimed and optimized profile improves visibility in Search and Maps, builds trust, and drives more local actions like calls, directions, and website visits.",
+  },
+];
+
+const relatedServices = [
+  { label: "Website Design", href: "/website-design/" },
+  { label: "Pay-Per-Click (PPC)", href: "/pay-per-click-ppc/" },
+  { label: "Display Advertising | Geofencing", href: "/geofencing/" },
+  { label: "Social Media Ads", href: "/social-media-ads/" },
+];
+
+const partnerQuote = {
+  quote: "Buwa Digital has been a tremendous help in improving my business's online presence. They made the process of setting up and optimizing my Google Business page simple and effective.",
+  name: "Zach Coggins",
+  company: "Milestone Wealth Advisors",
+};
 ---
 
 <BaseLayout 
-  title="Google Business Profile" 
-  description="Boost the performance of your Google Business Profile so you appear on more relevant search result pages."
+  title="Google Business Profile Management | BuWa Digital"
+  description="Improve your Google Business Profile performance so you appear in more relevant local searches and attract more customers."
+  faq={faq}
 >
   <!-- Hero Section -->
   <section class="hero">
@@ -120,24 +149,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Partner Results -->
+  <section class="proof-section">
+    <div class="container">
+      <h2>What Local Partners Are Saying</h2>
+      <blockquote class="proof-quote">
+        <p>"{partnerQuote.quote}"</p>
+        <footer>— {partnerQuote.name}, {partnerQuote.company}</footer>
+      </blockquote>
+      <a href="/#testimonials" class="btn-red">Read More Reviews</a>
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section class="faq-section">
     <div class="container">
       <h2>Common Questions About Google Business Profile</h2>
-      
-      <div class="faq-item">
-        <h3>Why should I claim my listing?</h3>
-        <p>By claiming your profile, you gain control over the information displayed by Google. Without claiming your listing, Google may inaccurately present details about your business, potentially leading to misinformation and missed sales opportunities.</p>
-      </div>
 
-      <div class="faq-item">
-        <h3>What if I do not have access to the previous owner's account for the business?</h3>
-        <p>Regaining access can take some extra steps such as providing additional documentation to prove your ownership. We have experience working with Google to get new owners properly verified, ensuring you have full control of your digital presence.</p>
-      </div>
+      {faq.map((item) => (
+        <div class="faq-item">
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </div>
+      ))}
+      <p class="faq-cta">Have a specific question? <a href="/contact-us/">Contact us</a> and we’ll walk you through the best next steps.</p>
+    </div>
+  </section>
 
-      <div class="faq-item">
-        <h3>How important is it to have a Google Business Profile?</h3>
-        <p>Having a claimed Google Business Profile is essential to business success. An optimized profile impacts visibility in Google Search and Maps, builds trust and credibility with potential customers, and drives more foot traffic to your <a href="/website-design/">website</a>.</p>
+  <!-- Related Services -->
+  <section class="related-section">
+    <div class="container">
+      <h2>Related Services That Support Local Search</h2>
+      <p>Pair GBP management with digital channels that reinforce your local visibility and conversions.</p>
+      <div class="related-links">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-link">{service.label}</a>
+        ))}
       </div>
     </div>
   </section>
@@ -484,6 +531,73 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .faq-item a:hover {
     text-decoration: underline;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  /* Partner Results */
+  .proof-section {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    text-align: center;
+  }
+
+  .proof-quote {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  .proof-quote p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .proof-quote footer {
+    color: #555;
+    font-weight: 600;
+  }
+
+  /* Related Services */
+  .related-section {
+    padding: 4rem 2rem;
+    background: #fff;
+    text-align: center;
+  }
+
+  .related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .related-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    border: 2px solid #17246c;
+    color: #17246c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .related-link:hover {
+    background: #17246c;
+    color: #fff;
   }
 
   /* CTA Section */

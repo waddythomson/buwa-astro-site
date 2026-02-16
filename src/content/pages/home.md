@@ -7,8 +7,6 @@ slug: "home"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-# Reach More Customers
-
 Where They Eat, Shop, Work, and Play.
 
 Discover how BuWa Digital helps local businesses stand out with coordinated marketing that makes your message impossible to ignore.

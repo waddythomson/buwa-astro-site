@@ -30,16 +30,18 @@ const {
   tags,
   categories,
 } = post.data;
+
+const showUpdated = updatedDate && updatedDate.getTime() !== pubDate.getTime();
 ---
 
 <BaseLayout
   title={seoTitle || title}
   description={seoDescription || description}
-  image={featuredImage}
-  imageAlt={featuredImageAlt}
+  ogImage={featuredImage}
+  ogImageAlt={featuredImageAlt}
   canonicalUrl={canonicalUrl}
-  noIndex={noIndex}
-  type="article"
+  noindex={noIndex}
+  ogType="article"
   publishedTime={pubDate}
   modifiedTime={updatedDate}
   author={author}
@@ -58,6 +60,18 @@ const {
             day: 'numeric',
           })}
         </time>
+        {showUpdated && (
+          <span class="updated">
+            Updated{' '}
+            <time datetime={updatedDate.toISOString()}>
+              {updatedDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </span>
+        )}
       </div>
       
       {categories.length > 0 && (
@@ -114,6 +128,11 @@ const {
     font-size: 0.9rem;
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-meta .updated {
+    color: #666;
   }
   
   .categories {
