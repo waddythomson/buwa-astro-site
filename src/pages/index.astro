@@ -303,6 +303,9 @@ const partnerCount = partners.length;
   const heroVideoEl = document.querySelector('.hero-video');
   let heroPlaylist = ['/uploads/hero/1.mp4', '/uploads/hero/2.mp4', '/uploads/hero/3.mp4'];
   let heroPlaylistIndex = 0;
+  let heroErrorHandler;
+  const prefersWebm = heroVideoEl instanceof HTMLVideoElement
+    && (heroVideoEl.canPlayType('video/webm; codecs="vp9"') || heroVideoEl.canPlayType('video/webm')) !== '';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let playbackTimer;
   let maxWaitTimer;
@@ -322,12 +325,34 @@ const partnerCount = partners.length;
   const setHeroSource = (src) => {
     if (!(heroVideoEl instanceof HTMLVideoElement)) return;
     const sourceEl = heroVideoEl.querySelector('source');
-    if (sourceEl) {
-      sourceEl.src = src;
-    } else {
-      heroVideoEl.src = src;
+
+    const applySource = (sourceUrl, type) => {
+      if (sourceEl) {
+        sourceEl.src = sourceUrl;
+        sourceEl.type = type;
+      } else {
+        heroVideoEl.src = sourceUrl;
+      }
+      heroVideoEl.load();
+    };
+
+    if (heroErrorHandler) {
+      heroVideoEl.removeEventListener('error', heroErrorHandler);
+      heroErrorHandler = undefined;
     }
-    heroVideoEl.load();
+
+    if (prefersWebm && src.endsWith('.mp4')) {
+      const webmSrc = src.replace(/\.mp4(\?.*)?$/, '.webm$1');
+      heroErrorHandler = () => {
+        applySource(src, 'video/mp4');
+        heroVideoEl.play().catch(() => {});
+      };
+      heroVideoEl.addEventListener('error', heroErrorHandler, { once: true });
+      applySource(webmSrc, 'video/webm');
+      return;
+    }
+
+    applySource(src, src.endsWith('.webm') ? 'video/webm' : 'video/mp4');
   };
 
   const loadHeroPlaylist = async () => {
