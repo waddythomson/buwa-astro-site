@@ -21,7 +21,7 @@ To help strengthen the local business scene by providing more affordable, high-i
 
 We offer a range of marketing solutions designed specifically for local businesses:
 
-- **Indoor Digital Billboards** — Learn more at [BuWaTV.com](https://buwatv.com/)
+- **Indoor Digital Billboards** — Learn more at [BuWaTV](/buwatv/)
 - **Social Media Advertising** — Targeted campaigns on the platforms your customers use most
 - **Geofencing** — Location-based advertising that reaches customers near your business
 - **Website Design** — Professional websites that convert visitors into customers

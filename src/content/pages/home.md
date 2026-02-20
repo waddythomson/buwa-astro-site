@@ -7,7 +7,7 @@ slug: "home"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 
-Where They Eat, Shop, Work, and Play.
+Reach More Customers Where They Work, Eat, Shop, and Play.
 
 Discover how BuWa Digital helps local businesses stand out with coordinated marketing that makes your message impossible to ignore.
 
@@ -39,6 +39,6 @@ Our mission is to help local businesses like yours reach their audience with str
 
 - **Geofencing** — Increase foot traffic and boost sales by sending personalized ads to customers when they are near your business
 
-- **Indoor Digital Billboards** — Learn more at [BuWaTV.com](https://buwatv.com/)
+- **Indoor Digital Billboards** — Learn more at [BuWaTV](/buwatv/)
 
 [Get Started Today](/contact-us)

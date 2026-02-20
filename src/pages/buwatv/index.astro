@@ -1,0 +1,2665 @@
+---
+// BuWa TV Landing Page - buwatv.com
+// This is a standalone landing page for the BuWa TV brand
+
+import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+
+// Import partner data for logo carousel
+import partnersData from '../../data/buwatv/partners.json';
+const hostPartners = partnersData.partners ?? [];
+const communityPartners = partnersData.communityPartners ?? [];
+
+const normalizePartnerName = (value = '') =>
+  value
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const uniquePartners = (items = []) => {
+  const seen = new Set();
+  return items.filter((partner) => {
+    const key = normalizePartnerName(partner?.name ?? '');
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+};
+
+const allPartners = uniquePartners([...hostPartners, ...communityPartners]);
+const livePartners = allPartners.filter((partner) => partner.status !== 'coming-soon');
+
+// Import bumper videos configuration
+import bumpersData from '../../data/buwatv/bumpers.json';
+const bumpers = bumpersData;
+---
+
+<BaseLayout 
+  title="BuWa TV | Indoor Digital Billboard Advertising in the Midlands of SC"
+  description="Reach Midlands of SC customers with indoor digital billboards. BuWa TV places your video ads in local restaurants, shops, offices, and more."
+>
+  <!-- Header -->
+  <header slot="header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+      </a>
+      <nav class="header-nav">
+        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Advertisers <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="#advertisers" class="scroll-link">Interested in Advertising?</a>
+            <a href="#partners" class="scroll-link">Our Partners</a>
+            <a href="/buwatv/locations/">Locations</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Host Partners <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="#host-partner" class="scroll-link">Become a Host Partner</a>
+            <a href="/buwatv/locations/#host-partner-locations">Our Host Partners</a>
+            <a href="/buwatv/locations/">Locations</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="#contact" class="btn btn-red header-cta open-contact-popup">
+          <i class="fas fa-paper-plane"></i> Get In Touch
+        </a>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
+      <span class="mobile-link mobile-link-static">Advertisers</span>
+      <a href="#advertisers" class="mobile-link mobile-sub-link scroll-link">Interested in Advertising?</a>
+      <a href="#partners" class="mobile-link mobile-sub-link scroll-link">Our Partners</a>
+      <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
+      <span class="mobile-link mobile-link-static">Host Partners</span>
+      <a href="#host-partner" class="mobile-link mobile-sub-link scroll-link">Become a Host Partner</a>
+      <a href="/buwatv/locations/#host-partner-locations" class="mobile-link mobile-sub-link">Our Host Partners</a>
+      <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
+      <a href="#contact" class="btn btn-red mobile-cta open-contact-popup">
+        <i class="fas fa-paper-plane"></i> Get In Touch
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="see-it-in-action">
+    <!-- Video Background Container -->
+    <div class="hero-video-bg">
+      {bumpers.videos.map((video, index) => (
+        <video 
+          class={`hero-video ${index === 0 ? 'active' : ''}`}
+          muted 
+          playsinline
+          loop={bumpers.videos.length === 1}
+          data-index={index}
+        >
+          <source src={`/buwatv/uploads/bumpers/${video}`} type="video/mp4" />
+        </video>
+      ))}
+      <div class="hero-video-overlay"></div>
+    </div>
+    
+    <!-- Stars layer - outside video-bg so it's visible when video-bg fades out -->
+    <div class="hero-stars" id="hero-stars"></div>
+    <div class="shooting-star" id="shooting-star" aria-hidden="true"></div>
+    
+    <div class="hero-content" id="hero-content">
+      <div class="hero-mark">
+        <div class="hero-moon-surface" id="hero-moon" aria-hidden="true"></div>
+        <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="hero-logo" id="hero-logo" />
+      </div>
+      <div class="hero-text" id="hero-text">
+        <h1 class="hero-headline">Why Not You?</h1>
+        <p class="hero-subtitle">Whether a local legend or fresh startup, your business deserves attention. We'll help you command it by providing a constant reminder that keeps you top-of-mind and delivers real results.
+          <span class="hero-subtitle-tagline">
+            <span>BE SEEN.</span>
+            <span>BE TRUSTED.</span>
+            <span>BE CHOSEN.</span>
+          </span>
+        </p>
+        
+        <div class="hero-buttons">
+          <a href="/buwatv/signup/" class="btn btn-red">
+            <i class="fas fa-user-plus"></i> Sign Up Now
+          </a>
+          <a href="#see-it-in-action" class="btn btn-white" id="video-btn">
+            <i class="fas fa-play"></i> BuWa TV In Action
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator" id="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works reveal-section" data-reveal>
+    <div class="container">
+      <h2 class="section-heading"><span class="star-accent">✦</span> How BuWa TV Works <span class="star-accent">✦</span></h2>
+      <div class="steps-grid">
+        <div class="step-card reveal-item">
+          <div class="step-number">1</div>
+          <div class="step-icon"><i class="fas fa-tv"></i></div>
+          <h3>We Install Screens</h3>
+          <p>Our digital displays are placed in high-traffic locations where your target audience spends time.</p>
+        </div>
+        <div class="step-card reveal-item">
+          <div class="step-number">2</div>
+          <div class="step-icon"><i class="fas fa-film"></i></div>
+          <h3>Your Ad Plays</h3>
+          <p>Your professionally designed ad rotates throughout the day, reaching thousands of viewers.</p>
+        </div>
+        <div class="step-card reveal-item">
+          <div class="step-number">3</div>
+          <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>You Get Results</h3>
+          <p>Build brand awareness and drive customers to your business with repeated exposure.</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <a href="/buwatv/signup/" class="btn btn-red">
+          <i class="fas fa-user-plus"></i> Sign Up Now
+        </a>
+        <a href="/buwatv/pricing/" class="btn btn-navy">
+          <i class="fas fa-dollar-sign"></i> View Pricing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="benefits reveal-section section-accent-bar" id="advertisers" data-reveal>
+    <div class="container">
+      <h2 class="section-heading"><span class="star-accent">✦</span> Why Indoor Digital Billboards? <span class="star-accent">✦</span></h2>
+      <div class="stats-grid">
+        <div class="stat-card reveal-item">
+          <div class="stat-number">
+            <span class="stat-value" data-target="400">0</span><span class="stat-suffix">%</span>
+          </div>
+          <p>More Impactful Than Static Advertising</p>
+        </div>
+        <div class="stat-card reveal-item">
+          <div class="stat-number">
+            <span class="stat-value" data-target="30">0</span><span class="stat-suffix">%</span>
+          </div>
+          <p>Increase in Average Ticket Value</p>
+        </div>
+        <div class="stat-card reveal-item">
+          <div class="stat-number">
+            <span class="stat-value" data-target="83">0</span><span class="stat-suffix">%</span>
+          </div>
+          <p>Recall Among Consumers</p>
+        </div>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal-item">
+          <i class="fas fa-eye"></i>
+          <h3>Captive Audience</h3>
+          <p>People dining, waiting, or shopping have time to notice and absorb your message.</p>
+        </div>
+        <div class="benefit-card reveal-item">
+          <i class="fas fa-bullseye"></i>
+          <h3>Targeted Reach</h3>
+          <p>Choose locations that match your ideal customer demographics.</p>
+        </div>
+        <div class="benefit-card reveal-item">
+          <i class="fas fa-repeat"></i>
+          <h3>High Frequency</h3>
+          <p>Your ad plays multiple times per hour, building recognition and recall.</p>
+        </div>
+        <div class="benefit-card reveal-item">
+          <i class="fas fa-dollar-sign"></i>
+          <h3>Cost Effective</h3>
+          <p>Reach thousands of local customers for a fraction of traditional advertising costs.</p>
+        </div>
+        <div class="benefit-card reveal-item">
+          <i class="fas fa-wand-magic-sparkles"></i>
+          <h3>Dynamic Content</h3>
+          <p>Update your ads anytime—promote specials, events, or seasonal offers.</p>
+        </div>
+        <div class="benefit-card reveal-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Local Focus</h3>
+          <p>Advertise in your community where your customers eat, shop, work, and play.</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <a href="/buwatv/signup/" class="btn btn-red">
+          <i class="fas fa-user-plus"></i> Sign Up Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section reveal-section section-accent-bar" data-reveal>
+    <div class="cta-bg"></div>
+    <div class="container">
+      <h2 class="section-heading"><span class="star-accent">✦</span> Ready to Get Started? <span class="star-accent">✦</span></h2>
+      <p>Whether you want to advertise your business or host a screen at your location, we'd love to hear from you.</p>
+      
+      <div class="cta-cards">
+        <a href="/buwatv/signup/" class="cta-card reveal-item">
+          <i class="fas fa-bullhorn"></i>
+          <h3>Advertise With Us</h3>
+          <p>Get your business on our screens and reach new customers every day.</p>
+          <span class="card-link"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        
+        <a href="#host-partner" class="cta-card scroll-link reveal-item">
+          <i class="fas fa-handshake"></i>
+          <h3>Become a Host Partner</h3>
+          <p>Get free advertising and support local businesses by hosting a screen.</p>
+          <span class="card-link"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        
+        <a href="/buwatv/locations/" class="cta-card reveal-item">
+          <i class="fas fa-map-location-dot"></i>
+          <h3>View Our Locations</h3>
+          <p>See where BuWa TV screens are currently installed in your area.</p>
+          <span class="card-link"><i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+      <div class="section-cta">
+        <a href="/buwatv/signup/" class="btn btn-red">
+          <i class="fas fa-user-plus"></i> Sign Up Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Host Partner Section -->
+  <section class="host-partner reveal-section section-accent-bar" id="host-partner" data-reveal>
+    <div class="container">
+      <h2 class="section-heading"><span class="star-accent">✦</span> Become a Host Partner <span class="star-accent">✦</span></h2>
+      <p class="section-subtitle">Turn your business location or waiting room into an opportunity to entertain and speak to your customers—it's easy! We handle everything from installation to ad creation.</p>
+      
+      <div class="section-cta section-cta-top">
+        <a href="/buwatv/hostEval/" class="btn btn-red">
+          <i class="fas fa-clipboard-check"></i> See If You Qualify
+        </a>
+      </div>
+      
+      <div class="host-benefits-grid">
+        <a href="/buwatv/host-pricing/#included-free" class="host-benefit-card host-benefit-link reveal-item">
+          <div class="benefit-icon">📺</div>
+          <h3>Free Advertising</h3>
+          <p>Promote your own specials, events, and services on the screen in your location—at no cost to you.</p>
+        </a>
+        <a href="/buwatv/host-pricing/#host-partner-intro" class="host-benefit-card host-benefit-link reveal-item">
+          <div class="benefit-icon">🤝</div>
+          <h3>Support Local Business</h3>
+          <p>Help other local businesses in your community reach new customers while they do the same for you.</p>
+        </a>
+        <a href="/buwatv/host-pricing/#included-free" class="host-benefit-card host-benefit-link reveal-item">
+          <div class="benefit-icon">🎬</div>
+          <h3>Entertain Your Guests</h3>
+          <p>Give your customers something interesting to watch while they wait, improving their experience.</p>
+        </a>
+        <a href="/buwatv/host-pricing/#included-free" class="host-benefit-card host-benefit-link reveal-item">
+          <div class="benefit-icon">💰</div>
+          <h3>Zero Cost to You</h3>
+          <p>We provide the screen and all equipment. You just provide the wall space and an internet connection.</p>
+        </a>
+        <a href="/buwatv/host-pricing/#included-free" class="host-benefit-card host-benefit-link reveal-item">
+          <div class="benefit-icon">🔧</div>
+          <h3>Hassle-Free Setup</h3>
+          <p>We supply the equipment, handle the installation, create the ads, and maintain everything—you just enjoy the benefits.</p>
+        </a>
+        <a href="/buwatv/host-pricing/#host-rates" class="host-benefit-card host-benefit-link reveal-item">
+          <div class="benefit-icon">🏷️</div>
+          <h3>Exclusive Discounts</h3>
+          <p>Host partners receive special discounted rates on all BuWa Digital marketing services.</p>
+        </a>
+      </div>
+      
+      <div class="ideal-locations">
+        <p class="ideal-label">Ideal for:</p>
+        <div class="location-tags">
+          <span class="location-tag">Medical Offices</span>
+          <span class="location-tag">Nail Salons</span>
+          <span class="location-tag">Hair Salons & Barber Shops</span>
+          <span class="location-tag">Restaurants</span>
+          <span class="location-tag">Bars & Taverns</span>
+          <span class="location-tag">Liquor Stores</span>
+          <span class="location-tag">Local Grocery Stores</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Host Partner Logos Carousel -->
+  <section class="partner-logos-section reveal-section section-accent-bar" id="partners" data-reveal>
+    <div class="container">
+      <h2 class="carousel-title section-heading"><span class="star-accent">✦</span> Our Partners <span class="star-accent">✦</span></h2>
+      <p class="carousel-subtitle">Join our community of partners who are helping to strengthen the local scene today.</p>
+      
+      <div class="logo-carousel-wrapper">
+        <div class="logo-carousel">
+          <div class="logo-track">
+            <!-- Partner logos - dynamically rendered from partners.json -->
+            {livePartners.map(partner => (
+              <div class="logo-item">
+                {partner.url ? (
+                  <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                    <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                  </a>
+                ) : (
+                  <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                )}
+              </div>
+            ))}
+            <!-- Duplicate set for seamless infinite scroll -->
+            {livePartners.map(partner => (
+              <div class="logo-item">
+                {partner.url ? (
+                  <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                    <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                  </a>
+                ) : (
+                  <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Services -->
+  <section class="other-services reveal-section section-accent-bar" data-reveal>
+    <div class="container">
+      <div class="services-content">
+        <div class="services-text">
+          <h2 class="section-heading"><span class="star-accent">✦</span> Need More Than Billboard Advertising? <span class="star-accent">✦</span></h2>
+          <p>BuWa TV is part of <strong>BuWa Digital</strong>, a full-service digital marketing agency. We offer a complete suite of services to help your business grow online.</p>
+          <ul class="services-list">
+            <li><i class="fas fa-check"></i> Google Business Profile Management</li>
+            <li><i class="fas fa-check"></i> Website Design & Development</li>
+            <li><i class="fas fa-check"></i> Social Media Marketing</li>
+            <li><i class="fas fa-check"></i> Search Engine Optimization</li>
+            <li><i class="fas fa-check"></i> And More...</li>
+          </ul>
+          <a href="https://buwadigital.com/" class="btn btn-red">
+            <i class="fas fa-globe"></i> Explore All Services
+          </a>
+        </div>
+        <div class="services-logo">
+          <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Popup -->
+  <div class="video-popup-overlay" id="video-popup-overlay">
+    <div class="video-popup">
+      <button class="video-close-btn" id="video-close-btn">&times;</button>
+      <div class="tv-frame">
+        <div class="tv-screen">
+          <div class="tv-screen-inner" id="tv-screen-inner">
+            <!-- YouTube iframe inserted here -->
+          </div>
+        </div>
+        <div class="tv-stand">
+          <div class="tv-stand-neck"></div>
+          <div class="tv-stand-base">
+            <img src="/uploads/logos/TrademarkBuWaTV_grey.png" alt="BuWa TV" class="tv-brand-logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Popup -->
+  <div id="contact" class="anchor-target" aria-hidden="true"></div>
+  <div class="contact-popup-overlay" id="contact-popup-overlay">
+    <div class="contact-popup">
+      <button class="contact-close-btn" id="contact-close-btn">&times;</button>
+      <div class="contact-popup-content">
+        <h2>Hit us up!</h2>
+        <p>How can we help? Fill in your information, and we'll be in touch shortly.</p>
+        
+        <form id="contact-form" class="contact-form">
+          <div class="honeypot" aria-hidden="true">
+            <label for="fax">Fax</label>
+            <input type="text" name="fax" id="fax" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label" for="contact-sms-opt-in">
+            <input type="checkbox" id="contact-sms-opt-in" name="smsOptIn">
+            <span>I agree to receive text messages from BuWa TV regarding my inquiry. Reply STOP to opt out.</span>
+          </label>
+        </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-red submit-btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+        
+        <div class="form-success" id="form-success" style="display: none;">
+          <i class="fas fa-check-circle"></i>
+          <h3>Thank You!</h3>
+          <p>Your message has been sent. We'll be in touch soon!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Reset & Base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .anchor-target {
+    position: relative;
+    top: -90px;
+    height: 0;
+    visibility: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Scroll reveal - sections fade in with staggered items as they enter viewport */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal-section.visible .reveal-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-section.visible .steps-grid .reveal-item:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-section.visible .steps-grid .reveal-item:nth-child(2) { transition-delay: 0.15s; }
+  .reveal-section.visible .steps-grid .reveal-item:nth-child(3) { transition-delay: 0.25s; }
+  .reveal-section.visible .benefits-grid .reveal-item:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-section.visible .benefits-grid .reveal-item:nth-child(2) { transition-delay: 0.1s; }
+  .reveal-section.visible .benefits-grid .reveal-item:nth-child(3) { transition-delay: 0.15s; }
+  .reveal-section.visible .benefits-grid .reveal-item:nth-child(4) { transition-delay: 0.2s; }
+  .reveal-section.visible .benefits-grid .reveal-item:nth-child(5) { transition-delay: 0.25s; }
+  .reveal-section.visible .benefits-grid .reveal-item:nth-child(6) { transition-delay: 0.3s; }
+  .reveal-section.visible .cta-cards .reveal-item:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-section.visible .cta-cards .reveal-item:nth-child(2) { transition-delay: 0.15s; }
+  .reveal-section.visible .cta-cards .reveal-item:nth-child(3) { transition-delay: 0.25s; }
+  .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(2) { transition-delay: 0.1s; }
+  .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(3) { transition-delay: 0.15s; }
+  .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(4) { transition-delay: 0.2s; }
+  .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(5) { transition-delay: 0.25s; }
+  .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(6) { transition-delay: 0.3s; }
+
+  /* Sections without item stagger: fade in as a whole */
+  .reveal-section:not(:has(.reveal-item)) {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-section:not(:has(.reveal-item)).visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-section:has(.reveal-item) > .container > h2,
+  .reveal-section:has(.reveal-item) > .container > p {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal-section.visible:has(.reveal-item) > .container > h2,
+  .reveal-section.visible:has(.reveal-item) > .container > p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+
+  /* Star accent - recurring element inspired by hero stars */
+  .star-accent {
+    display: inline-block;
+    margin: 0 0.35em;
+    color: #a01c2b;
+    font-size: 0.85em;
+    vertical-align: 0.05em;
+  }
+
+  /* Header */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    --dropdown-bg: #fff;
+    --dropdown-border: rgba(23,36,108,0.2);
+    --dropdown-link: #17246c;
+    --dropdown-hover-bg: rgba(23,36,108,0.08);
+    --dropdown-hover-color: #a01c2b;
+    --dropdown-shadow: 0 18px 48px rgba(15,23,42,0.22);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .header-logo {
+    justify-self: start;
+  }
+
+  .header-logo img {
+    height: 45px;
+    width: auto;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    justify-self: center;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    justify-self: end;
+  }
+  .nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .nav-dropdown-toggle i {
+    font-size: 0.75rem;
+    color: currentColor;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 220px;
+    background: var(--dropdown-bg);
+    border: 1px solid var(--dropdown-border);
+    border-radius: 10px;
+    box-shadow: var(--dropdown-shadow);
+    padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 1001;
+  }
+
+  .nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+  }
+
+  .nav-dropdown-menu a {
+    padding: 10px 16px;
+    color: var(--dropdown-link);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .nav-dropdown-menu a:hover {
+    background: var(--dropdown-hover-bg);
+    color: var(--dropdown-hover-color);
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu {
+    display: flex;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-toggle i,
+  .nav-dropdown:focus-within .nav-dropdown-toggle i {
+    transform: rotate(180deg);
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #17246c;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #a01c2b;
+  }
+
+  .header-cta {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 15px 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #333;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-link-static {
+    cursor: default;
+  }
+
+  .mobile-sub-link {
+    padding-left: 14px;
+    font-size: 0.95rem;
+    color: #fff;
+    background: #17246c;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .mobile-sub-link:hover {
+    background: #a01c2b;
+    color: #fff;
+  }
+
+  .mobile-cta {
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+    box-shadow: 
+      0 4px 6px rgba(0,0,0,0.1),
+      0 2px 4px rgba(0,0,0,0.06),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 7px 14px rgba(0,0,0,0.15),
+      0 3px 6px rgba(0,0,0,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-red {
+    background: linear-gradient(to bottom, #b82232, #a01c2b);
+    color: white;
+  }
+
+  .btn-red:hover {
+    background: linear-gradient(to bottom, #c4283a, #b82232);
+  }
+
+  .btn-white {
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    color: #17246c;
+  }
+
+  .btn-white:hover {
+    background: linear-gradient(to bottom, #ffffff, #e8e8e8);
+  }
+
+  .btn-navy {
+    background: linear-gradient(to bottom, #1e3a8a, #17246c);
+    color: white;
+  }
+
+  .btn-navy:hover {
+    background: linear-gradient(to bottom, #2548a8, #1e3a8a);
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .section-cta-top {
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 120px 20px 60px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%); /* Static navy gradient - shows after videos end */
+  }
+
+  /* Video Background */
+  .hero-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: #f8f9fa; /* Light gray - blends with page during video */
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero-video-bg.hidden {
+    opacity: 0;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero-video.active {
+    opacity: 1;
+  }
+
+  .hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 15, 35, 0.4);
+    z-index: 1;
+    opacity: 0; /* Hidden during video playback */
+    transition: opacity 1s ease-in;
+  }
+
+  .hero-video-overlay.visible {
+    opacity: 1;
+  }
+
+  .hero-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .hero-mark {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .hero-moon-surface {
+    position: absolute;
+    top: calc(56% + 4px);
+    left: 51%;
+    width: 210%;
+    height: 155%;
+    opacity: 0;
+    transform: translate(-50%, 10px) scale(0.95);
+    transform-origin: top center;
+    transition: opacity 2.4s ease, transform 3.2s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-moon-surface::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.5), rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0) 75%);
+    clip-path: polygon(50% 0%, 78% 100%, 22% 100%);
+    filter: blur(2px);
+    opacity: 0.85;
+    transform-origin: top center;
+    animation: beamSweep 8.8s ease-in-out infinite;
+  }
+  .hero-moon-surface::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.5), rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0) 75%);
+    clip-path: polygon(50% 0%, 78% 100%, 22% 100%);
+    opacity: 0.85;
+    filter: blur(2px);
+    pointer-events: none;
+    transform-origin: top center;
+    animation: beamSweepAlt 8.8s ease-in-out infinite;
+  }
+  .hero-moon-surface.visible {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  .hero-logo {
+    width: 264px;
+    max-width: 85%;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    z-index: 2;
+    opacity: 0.95;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.28));
+    transform: translate(-50%, -50%) scale(1.4);
+    transform-origin: center;
+    transition: transform 2.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s, top 3.6s ease 0.1s, opacity 0.5s ease;
+    will-change: transform, opacity;
+    pointer-events: none;
+  }
+  .hero-logo.moon-shrink {
+    transform: translate(-50%, -50%) scale(1);
+    top: 48%;
+  }
+  .hero-logo.logo-fade {
+    opacity: 0;
+  }
+  .hero-text {
+    transform: translateY(-10px);
+    position: relative;
+    z-index: 2;
+  }
+  .hero-headline {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-headline::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 78%;
+    width: 360px;
+    height: 140px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.5), rgba(255,255,255,0) 70%);
+    opacity: 0;
+    filter: blur(1px);
+    transition: opacity 1s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .hero-text.spotlight-on .hero-headline::after {
+    opacity: 0.55;
+  }
+
+  :global(.star) {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in;
+  }
+
+  :global(.star.visible) {
+    animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+  @keyframes beamSweep {
+    0% { transform: rotate(-28.125deg); }
+    50% { transform: rotate(28.125deg); }
+    100% { transform: rotate(-28.125deg); }
+  }
+  @keyframes beamSweepAlt {
+    0% { transform: rotate(28.125deg); }
+    50% { transform: rotate(-28.125deg); }
+    100% { transform: rotate(28.125deg); }
+  }
+
+  /* Shooting star - tiny star with short tail, random direction after ~20s */
+  .shooting-star {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* Short tail trailing behind the head (rotation set via --tail-rotation) */
+  .shooting-star::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 1px;
+    left: -10px;
+    top: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 60%, rgba(255,255,255,0.45) 100%);
+    transform-origin: right center;
+    transform: rotate(var(--tail-rotation, -45deg));
+  }
+
+  /* Tiny bright star at the head */
+  .shooting-star::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    left: -1px;
+    top: -1px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 1.5px rgba(255,255,255,0.5);
+  }
+
+  .shooting-star.animate {
+    animation: shooting-star 1.2s ease-out forwards;
+  }
+
+  @keyframes shooting-star {
+    0% {
+      opacity: 0;
+      left: var(--start-left);
+      top: var(--start-top);
+    }
+    8% {
+      opacity: 1;
+    }
+    92% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0;
+      left: var(--end-left);
+      top: var(--end-top);
+    }
+  }
+
+  .hero-content {
+    max-width: 900px;
+    z-index: 5;
+    opacity: 0; /* Hidden during video playback */
+    transition: opacity 1s ease-in;
+  }
+
+  .hero-content.visible {
+    opacity: 1;
+  }
+
+
+  .hero-tagline {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+  }
+
+  .hero-headline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .hero-subtitle-tagline {
+    display: flex;
+    margin-top: 22px;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    text-align: center;
+  }
+
+  .hero-subtitle-tagline span {
+    white-space: nowrap;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    color: rgba(255,255,255,0.5);
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+    opacity: 0; /* Hidden during video */
+    transition: opacity 1s ease-in;
+  }
+
+  .scroll-indicator.visible {
+    opacity: 1;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
+
+  /* How It Works */
+  .how-it-works {
+    padding: 100px 0;
+    background: white;
+  }
+
+  .how-it-works h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #17246c;
+    margin-bottom: 60px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .step-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    box-shadow: 
+      0 10px 40px rgba(0,0,0,0.08),
+      0 2px 10px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 20px 60px rgba(0,0,0,0.12),
+      0 5px 20px rgba(0,0,0,0.06);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(to bottom, #b82232, #a01c2b);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .step-icon {
+    font-size: 3rem;
+    color: #17246c;
+    margin: 20px 0 25px;
+  }
+
+  .step-card h3 {
+    font-size: 1.3rem;
+    color: #17246c;
+    margin-bottom: 15px;
+  }
+
+  .step-card p {
+    color: #666;
+    font-size: 0.95rem;
+  }
+
+  /* Benefits */
+  .benefits {
+    padding: 60px 0 100px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+  }
+
+  .benefits h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 60px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: -20px 0 40px;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
+
+  .stat-number {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #a01c2b;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  .stat-suffix {
+    font-size: 1.6rem;
+    margin-left: 2px;
+  }
+
+  .stat-card p {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .benefit-card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  }
+
+  .benefit-card i {
+    font-size: 2.5rem;
+    color: #a01c2b;
+    margin-bottom: 20px;
+  }
+
+  .benefit-card h3 {
+    font-size: 1.15rem;
+    color: #17246c;
+    margin-bottom: 12px;
+  }
+
+  .benefit-card p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    position: relative;
+    padding: 100px 0;
+    color: #333;
+    text-align: center;
+    background: white;
+  }
+
+  .cta-bg {
+    display: none;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #17246c;
+  }
+
+  .cta-section > .container > p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 50px;
+  }
+
+  .cta-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .cta-card {
+    background: white;
+    color: #333;
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cta-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  }
+
+  .cta-card i {
+    font-size: 3rem;
+    color: #17246c;
+    margin-bottom: 20px;
+  }
+
+  .cta-card h3 {
+    font-size: 1.3rem;
+    color: #17246c;
+    margin-bottom: 12px;
+  }
+
+  .cta-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    color: #a01c2b;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    transition: gap 0.2s ease;
+  }
+
+  .cta-card:hover .card-link {
+    gap: 12px;
+  }
+
+  /* Host Partner Section */
+  .host-partner {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+  }
+
+  .host-partner h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  .host-partner .section-subtitle {
+    text-align: center;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 700px;
+    margin: 0 auto 50px;
+  }
+
+  .host-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .host-benefit-card {
+    background: white;
+    display: block;
+    padding: 35px 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .host-benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  }
+
+  .host-benefit-card .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .host-benefit-card h3 {
+    font-size: 1.15rem;
+    color: #17246c;
+    margin-bottom: 12px;
+  }
+
+  .host-benefit-card p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .host-benefit-link {
+    cursor: pointer;
+  }
+
+  .host-benefit-link:focus-visible {
+    outline: 3px solid #a01c2b;
+    outline-offset: 3px;
+  }
+
+  .ideal-locations {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .ideal-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+
+  .location-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .host-partner .location-tag {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* Partner Logos Carousel */
+  .partner-logos-section {
+    padding: 60px 0;
+    background: white;
+    overflow: hidden;
+  }
+
+  .carousel-title {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel-subtitle {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 40px;
+  }
+
+  .logo-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .logo-carousel-wrapper::before,
+  .logo-carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .logo-carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #f5f5f5 0%, transparent 100%);
+  }
+
+  .logo-carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #e0e0e0 0%, transparent 100%);
+  }
+
+  .logo-carousel {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .logo-track {
+    --logo-gap: 60px;
+    display: flex;
+    gap: var(--logo-gap);
+    animation: scroll-logos 60s linear infinite;
+    width: max-content;
+  }
+
+  .logo-track:hover {
+    animation-play-state: paused;
+  }
+
+  .logo-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
+  }
+
+  .logo-item img {
+    max-height: 140px;
+    max-width: 300px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  .logo-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .logo-item img:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes scroll-logos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - (var(--logo-gap) / 2)));
+    }
+  }
+
+  /* Other Services */
+  .other-services {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+  }
+
+  .services-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .services-text h2 {
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .services-text > p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 30px;
+  }
+
+  .services-list {
+    list-style: none;
+    margin-bottom: 30px;
+  }
+
+  .services-list li {
+    padding: 10px 0;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .services-list i {
+    color: #a01c2b;
+    font-size: 1.1rem;
+  }
+
+  .services-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .services-logo img {
+    max-width: 350px;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+  }
+
+  /* Video Popup */
+  .video-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .video-popup-overlay.active {
+    display: flex;
+  }
+
+  .video-popup-overlay.ready {
+    opacity: 1;
+  }
+
+  .video-popup {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+
+  .video-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+    line-height: 1;
+  }
+
+  .video-close-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .tv-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tv-screen {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 
+      0 0 0 4px #333,
+      0 0 0 8px #1a1a1a,
+      0 30px 80px rgba(0,0,0,0.6);
+  }
+
+  .tv-screen-inner {
+    position: relative;
+    width: 1100px;
+    max-width: 85vw;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .tv-screen-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.1) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .tv-screen-inner iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .tv-stand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tv-stand-neck {
+    width: 80px;
+    height: 50px;
+    background: linear-gradient(to right, #2a2a2a, #3a3a3a, #2a2a2a);
+  }
+
+  .tv-stand-base {
+    width: 260px;
+    height: 60px;
+    background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tv-brand-logo {
+    height: 30px;
+    width: auto;
+    opacity: 0.8;
+  }
+
+  /* Contact Popup */
+  .contact-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+  }
+
+  .contact-popup-overlay.active {
+    display: flex;
+  }
+
+  .contact-popup-overlay.ready {
+    opacity: 1;
+  }
+
+  .contact-popup {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+  }
+
+  .contact-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    line-height: 1;
+  }
+
+  .contact-close-btn:hover {
+    color: #fff;
+  }
+
+  .contact-popup-content {
+    padding: 40px;
+  }
+
+  .contact-popup-content h2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .contact-popup-content > p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .contact-popup-content.is-success h2,
+  .contact-popup-content.is-success > p {
+    display: none;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .checkbox-group {
+    margin-top: -4px;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  .checkbox-label input {
+    margin-top: 3px;
+  }
+
+  .form-group label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .form-group .required {
+    color: #a01c2b;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    background: #fff;
+    color: #333;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #17246c;
+  }
+
+  .submit-btn {
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .form-success {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .form-success i {
+    font-size: 4rem;
+    color: #22c55e;
+    margin-bottom: 20px;
+  }
+
+  .form-success h3 {
+    font-size: 1.5rem;
+    color: #17246c;
+    margin-bottom: 10px;
+  }
+
+  .form-success p {
+    color: #666;
+  }
+
+  .contact-popup .form-success h3 {
+    color: #fff;
+  }
+
+  .contact-popup .form-success p {
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .header-nav {
+      display: none;
+    }
+
+    .header-cta {
+      display: inline-flex;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .mobile-cta {
+      display: none;
+    }
+
+    .steps-grid,
+    .benefits-grid,
+    .stats-grid,
+    .cta-cards,
+    .host-benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .services-list {
+      display: inline-block;
+      text-align: left;
+    }
+
+    .services-logo {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-cta {
+      display: none;
+    }
+
+    .mobile-cta {
+      display: inline-flex;
+    }
+
+    .hero {
+      padding-top: 100px;
+    }
+
+    .hero-mark {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 4px;
+    }
+    .hero-moon-surface {
+      top: calc(60% + 4px);
+      left: 51%;
+      width: 220%;
+      height: 175%;
+    }
+    .hero-moon-surface::before {
+      inset: 0;
+    }
+    .hero-moon-surface::after {
+      inset: 0;
+    }
+    .hero-logo {
+      width: 168px;
+      top: 56%;
+      transform: translate(-50%, -50%) scale(1.18);
+    }
+    .hero-logo.moon-shrink {
+      transform: translate(-50%, -50%) scale(1);
+      top: 50%;
+    }
+    .hero-text {
+      transform: translateY(-8px);
+    }
+    .hero-headline::after {
+      width: 240px;
+      height: 110px;
+      top: 80%;
+    }
+
+    .hero-headline {
+      font-size: 1.8rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .steps-grid,
+    .benefits-grid,
+    .stats-grid,
+    .cta-cards,
+    .host-benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .how-it-works h2,
+    .benefits h2,
+    .cta-section h2,
+    .services-text h2,
+    .host-partner h2 {
+      font-size: 1.8rem;
+    }
+
+    .video-popup {
+      width: 90vw;
+      max-width: 90vw;
+    }
+
+    .tv-frame {
+      width: 100%;
+    }
+
+    .tv-screen {
+      padding: 10px;
+      width: 100%;
+    }
+
+    .tv-screen-inner {
+      width: 100%;
+      min-width: 200px;
+      max-width: none;
+    }
+
+    .tv-stand-neck {
+      width: 40px;
+      height: 25px;
+    }
+
+    .tv-stand-base {
+      width: 120px;
+      height: 35px;
+    }
+
+    .tv-brand-logo {
+      height: 16px;
+    }
+
+    .video-close-btn {
+      top: -35px;
+      font-size: 2rem;
+    }
+
+    .contact-popup-content {
+      padding: 30px 25px;
+    }
+
+    .location-tags {
+      gap: 8px;
+    }
+
+    .location-tag {
+      padding: 6px 14px;
+      font-size: 0.85rem;
+    }
+
+    .partner-logos-section {
+      padding: 40px 0;
+    }
+
+    .carousel-title {
+      font-size: 1.8rem;
+    }
+
+    .logo-track {
+      --logo-gap: 40px;
+      animation-duration: 40s;
+    }
+
+    .logo-item {
+      height: 120px;
+    }
+
+    .logo-item img {
+      max-height: 100px;
+      max-width: 240px;
+    }
+
+    .logo-carousel-wrapper::before,
+    .logo-carousel-wrapper::after {
+      width: 50px;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 400px) {
+    .video-popup {
+      width: 95vw;
+    }
+
+    .tv-screen {
+      padding: 6px;
+      border-radius: 8px;
+    }
+
+    .tv-screen-inner {
+      border-radius: 4px;
+    }
+
+    .tv-stand-neck {
+      width: 30px;
+      height: 20px;
+    }
+
+    .tv-stand-base {
+      width: 100px;
+      height: 30px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .tv-brand-logo {
+      height: 14px;
+    }
+
+    .video-close-btn {
+      top: -30px;
+      right: -5px;
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<script define:vars={{ displayDuration: bumpers.displayDuration, fadeDuration: bumpers.fadeDuration, webhookUrl: '/api/webhook/' }}>
+  // Hero Video - plays ONE random video, then reveals hero content
+  // Timing controlled via src/data/bumpers.json
+  (function() {
+    const videos = document.querySelectorAll('.hero-video');
+    const videoBg = document.querySelector('.hero-video-bg');
+    const heroContent = document.getElementById('hero-content');
+    const heroText = document.getElementById('hero-text');
+    const heroOverlay = document.querySelector('.hero-video-overlay');
+    const heroStars = document.getElementById('hero-stars');
+    const heroMoon = document.getElementById('hero-moon');
+    const heroLogo = document.getElementById('hero-logo');
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    const shootingStar = document.getElementById('shooting-star');
+    
+    // Config from bumpers.json
+    const crossfadeDelayMs = displayDuration * 1000;
+    
+    // Generate random stars
+    function generateStars() {
+      if (!heroStars) return;
+      const starCount = 50; // Number of stars
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Random position
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        
+        // Random size (1-3px)
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        
+        // Random twinkle timing (slower, more subtle)
+        star.style.setProperty('--twinkle-duration', (Math.random() * 4 + 4) + 's');
+        star.style.setProperty('--twinkle-delay', (Math.random() * 5) + 's');
+        
+        heroStars.appendChild(star);
+      }
+    }
+    
+    // Generate stars on load
+    generateStars();
+    
+    // Shooting star: first at 20s, then every 10s, random direction (always downward, never same twice in a row)
+    const directions = [
+      { startLeft: '-40px', startTop: '-20px', endLeft: 'calc(100% + 40px)', endTop: 'calc(100% + 20px)', tail: '-45deg' },
+      { startLeft: 'calc(100% + 40px)', startTop: '-20px', endLeft: '-40px', endTop: 'calc(100% + 20px)', tail: '135deg' },
+      { startLeft: '-60px', startTop: '-15px', endLeft: 'calc(100% + 60px)', endTop: 'calc(100% + 30px)', tail: '-38deg' },
+      { startLeft: 'calc(100% + 60px)', startTop: '-25px', endLeft: '-60px', endTop: 'calc(100% + 25px)', tail: '142deg' },
+      { startLeft: '10%', startTop: '-25px', endLeft: 'calc(90% + 30px)', endTop: 'calc(100% + 20px)', tail: '-35deg' },
+      { startLeft: '90%', startTop: '-20px', endLeft: 'calc(10% - 30px)', endTop: 'calc(100% + 25px)', tail: '145deg' },
+      { startLeft: '38%', startTop: '-20px', endLeft: 'calc(70% + 40px)', endTop: 'calc(100% + 25px)', tail: '-32deg' },
+      { startLeft: '62%', startTop: '-25px', endLeft: 'calc(30% - 40px)', endTop: 'calc(100% + 20px)', tail: '148deg' }
+    ];
+    let lastDirectionIndex = -1;
+    function triggerShootingStar() {
+      if (!shootingStar) return;
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * directions.length);
+      } while (idx === lastDirectionIndex && directions.length > 1);
+      lastDirectionIndex = idx;
+      const d = directions[idx];
+      shootingStar.style.setProperty('--start-left', d.startLeft);
+      shootingStar.style.setProperty('--start-top', d.startTop);
+      shootingStar.style.setProperty('--end-left', d.endLeft);
+      shootingStar.style.setProperty('--end-top', d.endTop);
+      shootingStar.style.setProperty('--tail-rotation', d.tail);
+      shootingStar.classList.remove('animate');
+      void shootingStar.offsetWidth;
+      shootingStar.classList.add('animate');
+      setTimeout(() => shootingStar.classList.remove('animate'), 1400);
+    }
+    setTimeout(triggerShootingStar, 20000);
+    setTimeout(() => setInterval(triggerShootingStar, 10000), 20000);
+    setTimeout(() => {
+      heroMoon?.classList.add('visible');
+      if (heroLogo) {
+        heroLogo.classList.add('moon-shrink');
+      }
+      heroText?.classList.add('spotlight-on');
+    }, 15000);
+    
+    // Staggered star reveal - stars appear a few at a time
+    function revealStars() {
+      const stars = heroStars?.querySelectorAll('.star');
+      if (!stars || stars.length === 0) return;
+      
+      // Shuffle the stars array for random reveal order
+      const shuffled = Array.from(stars).sort(() => Math.random() - 0.5);
+      
+      // Reveal stars in small batches over ~3 seconds
+      const totalDuration = 3000; // 3 seconds to reveal all
+      const delayPerStar = totalDuration / shuffled.length;
+      
+      shuffled.forEach((star, index) => {
+        setTimeout(() => {
+          star.classList.add('visible');
+        }, index * delayPerStar);
+      });
+    }
+    
+    // Helper to reveal all hero elements
+    function revealHeroContent() {
+      if (videoBg) videoBg.classList.add('hidden'); // Fade out light gray bg
+      if (heroOverlay) heroOverlay.classList.add('visible');
+      if (heroContent) heroContent.classList.add('visible');
+      if (scrollIndicator) scrollIndicator.classList.add('visible');
+      
+      // Stars appear 3 seconds after content, then stagger in
+      setTimeout(revealStars, 3000);
+    }
+    
+    // If no videos, show content immediately
+    if (videos.length === 0) {
+      revealHeroContent();
+      return;
+    }
+    
+    // Pick a random video
+    const randomIndex = Math.floor(Math.random() * videos.length);
+    const chosenVideo = videos[randomIndex];
+    
+    // Hide all videos, show only the chosen one
+    videos.forEach((v, i) => {
+      if (i === randomIndex) {
+        v.classList.add('active');
+      } else {
+        v.classList.remove('active');
+        v.style.display = 'none'; // Hide others completely
+      }
+    });
+    
+    // Track if crossfade has started
+    let crossfadeStarted = false;
+    
+    function startCrossfade() {
+      if (crossfadeStarted) return; // Only trigger once
+      crossfadeStarted = true;
+      
+      // Start content fading IN slightly before video fades out (crossfade effect)
+      revealHeroContent();
+      
+      // Video starts fading out 200ms after content starts appearing
+      setTimeout(() => {
+        if (videoBg) {
+          videoBg.style.transition = 'opacity 1.2s ease-out';
+          videoBg.style.opacity = '0';
+        }
+        chosenVideo.classList.remove('active');
+      }, 200);
+    }
+    
+    // Main timing: start crossfade based on bumpers.json displayDuration
+    const crossfadeTimer = setTimeout(() => {
+      startCrossfade();
+    }, crossfadeDelayMs);
+    
+    // Safety timeout - ensure content shows after displayDuration + 8 seconds no matter what
+    const safetyTimeout = setTimeout(() => {
+      console.log('Safety timeout: revealing content');
+      startCrossfade();
+    }, crossfadeDelayMs + 8000);
+    
+    // Start the chosen video
+    chosenVideo.play().catch(e => {
+      // Autoplay blocked - show content immediately
+      console.log('Autoplay prevented:', e);
+      clearTimeout(crossfadeTimer);
+      clearTimeout(safetyTimeout);
+      if (videoBg) videoBg.style.opacity = '0';
+      revealHeroContent();
+    });
+    
+    // If video ends before 10s (shorter video), trigger crossfade
+    chosenVideo.addEventListener('ended', () => {
+      clearTimeout(crossfadeTimer);
+      clearTimeout(safetyTimeout);
+      startCrossfade();
+    });
+  })();
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('.scroll-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (mobileMenu.classList.contains('active')) {
+            mobileMenuBtn.classList.remove('active');
+            mobileMenu.classList.remove('active');
+          }
+        }
+      }
+    });
+  });
+
+  // Video Popup
+  const videoBtn = document.getElementById('video-btn');
+  const videoOverlay = document.getElementById('video-popup-overlay');
+  const videoCloseBtn = document.getElementById('video-close-btn');
+  const tvScreenInner = document.getElementById('tv-screen-inner');
+
+  // Default video ID (fallback if config.json fails to load)
+  let VIDEO_ID = 'Cbe947yG9og'; // BuWa TV demo
+
+  // Load video ID from config.json
+  fetch('/buwatv/config.json')
+    .then(res => res.json())
+    .then(config => {
+      const id = config.videos?.hero || config.heroVideoId;
+      if (id) VIDEO_ID = id;
+    })
+    .catch(() => console.log('Using default video ID'));
+
+  function openVideoPopup() {
+    // Create iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&rel=0`;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    // Ensure iframe fills the container
+    iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;';
+    tvScreenInner.appendChild(iframe);
+
+    // Show popup with animation
+    videoOverlay.classList.add('active');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        videoOverlay.classList.add('ready');
+      });
+    });
+  }
+
+  function closeVideoPopup() {
+    videoOverlay.classList.remove('ready');
+    setTimeout(() => {
+      videoOverlay.classList.remove('active');
+      // Remove iframe
+      const iframe = tvScreenInner.querySelector('iframe');
+      if (iframe) iframe.remove();
+    }, 300);
+  }
+
+  videoBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openVideoPopup();
+  });
+
+  videoCloseBtn.addEventListener('click', closeVideoPopup);
+
+  videoOverlay.addEventListener('click', (e) => {
+    if (e.target === videoOverlay) closeVideoPopup();
+  });
+
+  // Contact Popup
+  const contactOverlay = document.getElementById('contact-popup-overlay');
+  const contactCloseBtn = document.getElementById('contact-close-btn');
+  const contactForm = document.getElementById('contact-form');
+  const formSuccess = document.getElementById('form-success');
+  const contactContent = document.querySelector('.contact-popup-content');
+  const openContactBtns = document.querySelectorAll('.open-contact-popup');
+
+  function openContactPopup() {
+    if (contactForm) contactForm.style.display = 'flex';
+    if (formSuccess) formSuccess.style.display = 'none';
+    contactContent?.classList.remove('is-success');
+    contactOverlay.classList.add('active');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        contactOverlay.classList.add('ready');
+      });
+    });
+  }
+
+  function closeContactPopup() {
+    contactContent?.classList.remove('is-success');
+    contactOverlay.classList.remove('ready');
+    setTimeout(() => {
+      contactOverlay.classList.remove('active');
+    }, 300);
+  }
+
+  openContactBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openContactPopup();
+    });
+  });
+
+  contactCloseBtn.addEventListener('click', closeContactPopup);
+
+  contactOverlay.addEventListener('click', (e) => {
+    if (e.target === contactOverlay) closeContactPopup();
+  });
+
+  // Form submission
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    
+    const formData = new FormData(contactForm);
+    const data = {
+      formType: 'contact',
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+        smsOptIn: formData.get('smsOptIn') ? 'yes' : 'no',
+      message: formData.get('message') || '(No message provided)',
+      source: 'BuWa TV Website'
+    };
+    
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      if (!response.ok) throw new Error(`Server returned ${response.status}`);
+      contactForm.style.display = 'none';
+      formSuccess.style.display = 'block';
+      contactContent?.classList.add('is-success');
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      alert('There was an error sending your message. Please try again.');
+    }
+  });
+
+  // Escape key closes popups
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (videoOverlay.classList.contains('active')) {
+        closeVideoPopup();
+      }
+      if (contactOverlay.classList.contains('active')) {
+        closeContactPopup();
+      }
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking a link
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    });
+  });
+
+  // Scroll reveal - add .visible when section enters viewport
+  const revealSections = document.querySelectorAll('.reveal-section[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { rootMargin: '0px 0px -80px 0px', threshold: 0 });
+
+  revealSections.forEach(section => revealObserver.observe(section));
+
+  // Stats count-up (Advertisers section)
+  const statsGrid = document.querySelector('.stats-grid');
+  const statValues = document.querySelectorAll('.stat-value');
+  const animateStats = () => {
+    statValues.forEach((el) => {
+      if (el.dataset.animated === 'true') return;
+      const target = Number(el.getAttribute('data-target') || '0');
+      const duration = 1200;
+      const start = performance.now();
+      const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.round(target * progress);
+        el.textContent = value.toString();
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.dataset.animated = 'true';
+        }
+      };
+      requestAnimationFrame(step);
+    });
+  };
+
+  if (statsGrid) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    statsObserver.observe(statsGrid);
+  }
+</script>

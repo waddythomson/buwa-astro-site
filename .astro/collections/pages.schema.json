@@ -10,6 +10,9 @@
         "description": {
           "type": "string"
         },
+        "slug": {
+          "type": "string"
+        },
         "pubDate": {
           "anyOf": [
             {
@@ -42,10 +45,48 @@
             }
           ]
         },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "modified": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
         "featuredImage": {
           "type": "string"
         },
         "featuredImageAlt": {
+          "type": "string"
+        },
+        "ogImage": {
+          "type": "string"
+        },
+        "ogImageAlt": {
           "type": "string"
         },
         "wpId": {

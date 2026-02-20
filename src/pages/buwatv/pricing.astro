@@ -1,0 +1,744 @@
+---
+import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+const pricingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'BuWa TV Indoor Digital Billboard Advertising',
+  areaServed: 'Midlands of SC',
+  provider: {
+    '@type': 'Organization',
+    name: 'BuWa TV',
+    url: 'https://buwadigital.com/buwatv/'
+  },
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Foundation',
+      price: '250',
+      priceCurrency: 'USD',
+      url: 'https://buwadigital.com/buwatv/signup/'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Premium 10',
+      price: '300',
+      priceCurrency: 'USD',
+      url: 'https://buwadigital.com/buwatv/signup/'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Premium 20',
+      price: '450',
+      priceCurrency: 'USD',
+      url: 'https://buwadigital.com/buwatv/signup/'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Premium 30',
+      price: '600',
+      priceCurrency: 'USD',
+      url: 'https://buwadigital.com/buwatv/signup/'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Pinnacle Partner',
+      price: '1500',
+      priceCurrency: 'USD',
+      url: 'https://buwadigital.com/buwatv/signup/'
+    }
+  ]
+};
+---
+
+<BaseLayout 
+  title="Pricing | BuWa TV Indoor Digital Billboard Advertising"
+  description="BuWa TV advertising plans start at $250/month for 5 screens. Reach local Midlands customers with indoor digital billboards. View packages and request a custom quote."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">
+      {JSON.stringify(pricingSchema)}
+    </script>
+  </Fragment>
+  <!-- Header -->
+  <header slot="header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+      </a>
+      <nav class="header-nav">
+        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
+        <a href="/buwatv/about/" class="nav-link">About</a>
+        <a href="/buwatv/locations/" class="nav-link">Locations</a>
+        <a href="/buwatv/faq/" class="nav-link">FAQ</a>
+        <a href="/buwatv/signup/" class="btn btn-red header-cta">
+          <i class="fas fa-paper-plane"></i> Get Started
+        </a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
+      <a href="/buwatv/about/" class="mobile-link">About</a>
+      <a href="/buwatv/locations/" class="mobile-link">Locations</a>
+      <a href="/buwatv/faq/" class="mobile-link">FAQ</a>
+      <a href="/buwatv/signup/" class="btn btn-red mobile-cta">
+        <i class="fas fa-paper-plane"></i> Get Started
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Video Ad Packages</h1>
+      <p class="hero-subtitle">Reach thousands of local customers across the Midlands. Full motion, high impact video advertising that provides thousands of impressions every day. Be seen, trusted, and chosen.</p>
+    </div>
+  </section>
+
+  <!-- Pricing Grid -->
+  <section class="pricing-section">
+    <div class="container">
+      <div class="pricing-grid">
+        <!-- Foundation -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3>Foundation</h3>
+            <div class="price">
+              <span class="amount">$250</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="features">
+            <li><i class="fas fa-check"></i> 5 locations</li>
+            <li><i class="fas fa-check"></i> Full-motion video ads</li>
+            <li><i class="fas fa-check"></i> Perfect for getting started</li>
+          </ul>
+          <a href="/buwatv/signup/" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <!-- Premium 10 -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3>Premium 10</h3>
+            <div class="price">
+              <span class="amount">$300</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="features">
+            <li><i class="fas fa-check"></i> 10 locations</li>
+            <li><i class="fas fa-check"></i> Full-motion video ads</li>
+            <li><i class="fas fa-check"></i> 2x the reach, better value</li>
+          </ul>
+          <a href="/buwatv/signup/" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <!-- Premium 20 - Popular -->
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="card-header">
+            <h3>Premium 20</h3>
+            <div class="price">
+              <span class="amount">$450</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="features">
+            <li><i class="fas fa-check"></i> 20 locations</li>
+            <li><i class="fas fa-check"></i> Full-motion video ads</li>
+            <li><i class="fas fa-check"></i> Ideal for growing businesses</li>
+          </ul>
+          <a href="/buwatv/signup/" class="btn btn-red">Get Started</a>
+        </div>
+
+        <!-- Premium 30 -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3>Premium 30</h3>
+            <div class="price">
+              <span class="amount">$600</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="features">
+            <li><i class="fas fa-check"></i> 30 locations</li>
+            <li><i class="fas fa-check"></i> Full-motion video ads</li>
+            <li><i class="fas fa-check"></i> Maximum local coverage</li>
+          </ul>
+          <a href="/buwatv/signup/" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <!-- Pinnacle Partner -->
+        <div class="pricing-card pinnacle">
+          <div class="card-header">
+            <h3>Pinnacle Partner</h3>
+            <p class="card-subtitle">Community Sponsor</p>
+            <div class="price">
+              <span class="amount">$1,500</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="features">
+            <li><i class="fas fa-check"></i> 20 locations</li>
+            <li><i class="fas fa-check"></i> Full screen video ads</li>
+            <li><i class="fas fa-check"></i> Two banner ads playing every minute</li>
+            <li><i class="fas fa-check"></i> Co-branded content opportunities</li>
+            <li><i class="fas fa-check"></i> Priority support</li>
+            <li><i class="fas fa-check"></i> Community sponsor recognition</li>
+            <li><i class="fas fa-check"></i> One of only two in this category</li>
+          </ul>
+          <a href="/buwatv/signup/" class="btn btn-red">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Custom Note -->
+      <div class="custom-note">
+        <i class="fas fa-lightbulb"></i>
+        <p><strong>Need a custom solution?</strong> If none of these packages meets your needs, we can create a custom proposal tailored to your business goals.</p>
+        <a href="/buwatv/signup/" class="btn btn-outline">Request Custom Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section class="included-section">
+    <div class="container">
+      <h2>What's Included With Every Plan</h2>
+      <div class="included-grid">
+        <div class="included-item">
+          <i class="fas fa-film"></i>
+          <h3>Professional Ad Creation</h3>
+          <p>We help you create compelling full-motion video ads that tell your story.</p>
+        </div>
+        <div class="included-item">
+          <i class="fas fa-sync-alt"></i>
+          <h3>Unlimited Updates</h3>
+          <p>Change your ad anytime — promote specials, events, or seasonal offers.</p>
+        </div>
+        <div class="included-item">
+          <i class="fas fa-calendar-check"></i>
+          <h3>Flexible Terms</h3>
+          <p>No long-term contracts. Adjust your plan or cancel anytime.</p>
+        </div>
+        <div class="included-item">
+          <i class="fas fa-headset"></i>
+          <h3>Dedicated Support</h3>
+          <p>Our team is here to help you succeed with your advertising.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="comparison-section">
+    <div class="container">
+      <h2>How BuWa TV Compares</h2>
+      <div class="table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>BuWa TV</th>
+              <th>Traditional Billboards</th>
+              <th>Social Media Ads</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cost</strong></td>
+              <td class="highlight">From $250/mo</td>
+              <td>$1,000+/mo</td>
+              <td>Varies widely</td>
+            </tr>
+            <tr>
+              <td><strong>Local Targeting</strong></td>
+              <td class="highlight"><i class="fas fa-check text-green"></i> Hyper-local</td>
+              <td><i class="fas fa-times text-red"></i> Broad</td>
+              <td><i class="fas fa-exclamation-triangle text-yellow"></i> Algorithm-dependent</td>
+            </tr>
+            <tr>
+              <td><strong>Format</strong></td>
+              <td class="highlight">Full-motion video</td>
+              <td>Static image</td>
+              <td>Various</td>
+            </tr>
+            <tr>
+              <td><strong>Trust Factor</strong></td>
+              <td class="highlight">High (in-person)</td>
+              <td>Medium</td>
+              <td>Low</td>
+            </tr>
+            <tr>
+              <td><strong>Captive Audience</strong></td>
+              <td class="highlight"><i class="fas fa-check text-green"></i> Yes</td>
+              <td><i class="fas fa-times text-red"></i> No</td>
+              <td><i class="fas fa-times text-red"></i> No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Get Started?</h2>
+      <p>Join the BuWa TV network and reach thousands of local customers.</p>
+      <a href="/buwatv/signup/" class="btn btn-red">
+        <i class="fas fa-user-plus"></i> Sign Up Now
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Page Hero */
+  .page-hero {
+    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
+    color: white;
+    padding: 140px 20px 80px;
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 15px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Header Styles */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo img {
+    height: 45px;
+    width: auto;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #a01c2b;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+  .mobile-link {
+    padding: 15px 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #333;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-cta {
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-red {
+    background: linear-gradient(to bottom, #b82232, #a01c2b);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #17246c;
+    border: 2px solid #17246c;
+  }
+
+  .btn-outline:hover {
+    background: #17246c;
+    color: white;
+  }
+
+  .header-cta {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Pricing Section */
+  .pricing-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+  }
+
+  .pricing-card {
+    background: white;
+    border-radius: 16px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  .pricing-card.popular {
+    border: 3px solid #a01c2b;
+  }
+
+  .pricing-card.pinnacle {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
+    color: white;
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #a01c2b;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .card-header h3 {
+    font-size: 1.5rem;
+    color: #17246c;
+    margin-bottom: 5px;
+  }
+
+  .pinnacle .card-header h3 {
+    color: white;
+  }
+
+  .card-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 10px;
+  }
+
+  .price {
+    margin: 15px 0 25px;
+  }
+
+  .amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #a01c2b;
+  }
+
+  .pinnacle .amount {
+    color: white;
+  }
+
+  .period {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .pinnacle .period {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+    text-align: left;
+  }
+
+  .features li {
+    padding: 10px 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pinnacle .features li {
+    color: rgba(255,255,255,0.9);
+  }
+
+  .features i {
+    color: #22c55e;
+    font-size: 0.9rem;
+  }
+
+  /* Custom Note */
+  .custom-note {
+    background: white;
+    border-radius: 16px;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .custom-note i {
+    font-size: 2.5rem;
+    color: #f59e0b;
+  }
+
+  .custom-note p {
+    flex: 1;
+    min-width: 250px;
+    color: #555;
+    font-size: 1.05rem;
+  }
+
+  /* Included Section */
+  .included-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .included-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #17246c;
+    margin-bottom: 50px;
+  }
+
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .included-item {
+    text-align: center;
+  }
+
+  .included-item i {
+    font-size: 2.5rem;
+    color: #a01c2b;
+    margin-bottom: 15px;
+  }
+
+  .included-item h3 {
+    font-size: 1.1rem;
+    color: #17246c;
+    margin-bottom: 10px;
+  }
+
+  .included-item p {
+    font-size: 0.95rem;
+    color: #666;
+  }
+
+  /* Comparison Section */
+  .comparison-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+  }
+
+  .comparison-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #17246c;
+    margin-bottom: 40px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .comparison-table thead {
+    background: #17246c;
+    color: white;
+  }
+
+  .comparison-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+  }
+
+  .comparison-table td:first-child {
+    text-align: left;
+  }
+
+  .comparison-table .highlight {
+    color: #17246c;
+    font-weight: 600;
+  }
+
+  .text-green { color: #22c55e; }
+  .text-red { color: #ef4444; }
+  .text-yellow { color: #f59e0b; }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .cta-section > .container > p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .header-nav {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .pricing-card.pinnacle {
+      grid-column: span 1;
+    }
+
+    .included-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-hero {
+      padding: 120px 20px 60px;
+    }
+
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .custom-note {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    mobileMenu?.classList.toggle('active');
+  });
+</script>

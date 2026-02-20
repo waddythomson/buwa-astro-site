@@ -1,0 +1,907 @@
+---
+import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sign Up | BuWa TV"
+  description="Sign up to advertise your business or celebrate a special moment on BuWa TV indoor digital billboards."
+>
+  <header slot="header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+      </a>
+      <nav class="header-nav">
+        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
+        <a href="https://buwadigital.com/" class="nav-link">BuWa Digital</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
+      <a href="https://buwadigital.com/" class="mobile-link">BuWa Digital</a>
+    </div>
+  </header>
+
+  <div class="signup-page-wrapper">
+    <main class="signup-page">
+    <div class="container">
+      <div class="signup-header">
+        <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="signup-logo">
+        <h1>Local Exposure That Works</h1>
+        <p class="signup-intro">What would you like to promote?</p>
+      </div>
+
+      <!-- Type Toggle -->
+      <div class="type-toggle">
+        <button class="toggle-btn active" data-type="business">
+          <i class="fas fa-store"></i>
+          My Business
+        </button>
+        <button class="toggle-btn" data-type="personal">
+          <i class="fas fa-gift"></i>
+          An Event or Celebration
+        </button>
+      </div>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="signup-form">
+        <input type="hidden" name="formType" id="form-type" value="business">
+        <div class="honeypot" aria-hidden="true">
+          <label for="fax">Fax</label>
+          <input type="text" name="fax" id="fax" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- Contact Information (Both Types) -->
+        <div class="form-section">
+          <h2><i class="fas fa-user"></i> Contact Information</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Your Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+          </div>
+          <div class="form-group full-width checkbox-group">
+            <label class="checkbox-label" for="signup-sms-opt-in">
+              <input type="checkbox" id="signup-sms-opt-in" name="smsOptIn">
+              <span>I agree to receive text messages from BuWa TV regarding my inquiry. Reply STOP to opt out.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Business Fields -->
+        <div id="business-fields" class="form-section">
+          <h2><i class="fas fa-building"></i> Business Information</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="business-name">Business Name <span class="required">*</span></label>
+              <input type="text" id="business-name" name="businessName">
+            </div>
+            <div class="form-group">
+              <label for="business-type">Business Type <span class="required">*</span></label>
+              <select id="business-type" name="businessType">
+                <option value="">Select a type...</option>
+                <option value="Restaurant/Bar">Restaurant/Bar</option>
+                <option value="Retail">Retail</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Professional Services">Professional Services</option>
+                <option value="Home Services">Home Services</option>
+                <option value="Automotive">Automotive</option>
+                <option value="Beauty/Salon/Spa">Beauty/Salon/Spa</option>
+                <option value="Fitness/Gym">Fitness/Gym</option>
+                <option value="Real Estate">Real Estate</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="business-address">Business Address <span class="required">*</span></label>
+              <input type="text" id="business-address" name="businessAddress">
+            </div>
+            <div class="form-group">
+              <label for="website">Website <span class="optional">(optional)</span></label>
+              <input type="text" id="website" name="website" placeholder="www.example.com">
+            </div>
+            <div class="form-group" id="website-feeling-group" style="display: none;">
+              <label for="website-feeling">How do you feel about your website?</label>
+              <select id="website-feeling" name="websiteFeeling">
+                <option value="">Select...</option>
+                <option value="Love it">Love it</option>
+                <option value="It's okay">It's okay</option>
+                <option value="Could use some work">Could use some work</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <label for="differentiator">What sets your business apart? <span class="optional">(optional)</span></label>
+            <textarea id="differentiator" name="differentiator" rows="3" placeholder="Tell us what makes your business unique..."></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label for="reputation">What do you want people saying about you? <span class="optional">(optional)</span></label>
+            <textarea id="reputation" name="reputation" rows="3" placeholder="What impression do you want to leave?"></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label>Logo & Images <span class="optional">(optional)</span></label>
+            <p class="upload-hint">Upload your logo and any images you'd like us to use in your ad.</p>
+            <input type="hidden" id="business-images" name="businessImages">
+            <label class="file-upload-btn">
+              <input type="file" id="business-file-input" multiple>
+              <i class="fas fa-cloud-upload-alt"></i> <span id="business-btn-text">Choose Files</span>
+            </label>
+            <div id="business-upload-status" class="upload-status" style="display: none;">
+              <i class="fas fa-check-circle"></i> <span></span>
+            </div>
+            <div id="business-upload-progress" class="upload-progress" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i> <span>Uploading...</span>
+            </div>
+            <label class="link-label">Or provide links to your files in the cloud</label>
+            <p class="link-hint">(i.e., Dropbox, iCloud, OneDrive, Google Drive, etc.)</p>
+            <textarea id="business-links" name="businessLinks" class="link-input" rows="2" placeholder="Paste your file links here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Qualification Section (Business only) -->
+        <div id="qualification-fields" class="form-section">
+          <h2><i class="fas fa-bullseye"></i> Your Goals</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="primary-goal">What's your primary goal? <span class="optional">(optional)</span></label>
+              <select id="primary-goal" name="primaryGoal">
+                <option value="">Select...</option>
+                <option value="Brand awareness">Brand awareness</option>
+                <option value="Promote specific offer">Promote specific offer</option>
+                <option value="Increase foot traffic">Increase foot traffic</option>
+                <option value="General exposure">General exposure</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="timeline">When are you looking to start? <span class="optional">(optional)</span></label>
+              <select id="timeline" name="timeline">
+                <option value="">Select...</option>
+                <option value="ASAP">ASAP</option>
+                <option value="Within 30 days">Within 30 days</option>
+                <option value="Exploring options">Exploring options</option>
+                <option value="Just curious">Just curious</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="budget-range">Monthly marketing comfort range <span class="optional">(optional)</span></label>
+              <select id="budget-range" name="budgetRange">
+                <option value="">Select...</option>
+                <option value="Under $200">Under $200</option>
+                <option value="$200–500">$200–500</option>
+                <option value="$500–1k">$500–1k</option>
+                <option value="$1k+">$1k+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="referral-source">How did you hear about us? <span class="optional">(optional)</span></label>
+              <select id="referral-source" name="referralSource">
+                <option value="">Select...</option>
+                <option value="Saw screens">Saw our screens</option>
+                <option value="Referral">Referral</option>
+                <option value="Networking event">Networking event</option>
+                <option value="Website">Website</option>
+                <option value="Social media">Social media</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal/Celebration Fields -->
+        <div id="personal-fields" class="form-section" style="display: none;">
+          <h2><i class="fas fa-calendar-star"></i> Celebration Details</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="celebration-type">What are you celebrating? <span class="required">*</span></label>
+              <select id="celebration-type" name="celebrationType">
+                <option value="">Select a type...</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Anniversary">Anniversary</option>
+                <option value="Graduation">Graduation</option>
+                <option value="Wedding/Engagement">Wedding/Engagement</option>
+                <option value="New Baby">New Baby</option>
+                <option value="Memorial">Memorial</option>
+                <option value="School/Team Support">School/Team Support</option>
+                <option value="Community Event">Community Event</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="event-date">Event/Display Date <span class="optional">(optional)</span></label>
+              <input type="date" id="event-date" name="eventDate">
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <label for="celebration-details">Tell us about it! <span class="required">*</span></label>
+            <textarea id="celebration-details" name="celebrationDetails" rows="4" placeholder="Share the details of your celebration or message..."></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label>Photos <span class="optional">(optional)</span></label>
+            <p class="upload-hint">Upload photos you'd like included in your message.</p>
+            <input type="hidden" id="personal-images" name="personalImages">
+            <label class="file-upload-btn">
+              <input type="file" id="personal-file-input" multiple>
+              <i class="fas fa-cloud-upload-alt"></i> <span id="personal-btn-text">Choose Files</span>
+            </label>
+            <div id="personal-upload-status" class="upload-status" style="display: none;">
+              <i class="fas fa-check-circle"></i> <span></span>
+            </div>
+            <div id="personal-upload-progress" class="upload-progress" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i> <span>Uploading...</span>
+            </div>
+            <label class="link-label">Or provide links to your files in the cloud</label>
+            <p class="link-hint">(i.e., Dropbox, iCloud, OneDrive, Google Drive, etc.)</p>
+            <textarea id="personal-links" name="personalLinks" class="link-input" rows="2" placeholder="Paste your file links here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-submit">
+          <button type="submit" class="btn btn-red btn-large">
+            <i class="fas fa-paper-plane"></i> Submit Your Request
+          </button>
+          <p class="form-note">We'll be in touch soon!</p>
+        </div>
+      </form>
+    </div>
+  </main>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .signup-page-wrapper {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+    min-height: 100vh;
+    color: #fff;
+  }
+
+  .signup-page-wrapper .signup-page .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .site-header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo img {
+      height: 45px;
+      width: auto;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-right: 10px;
+    }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #a01c2b;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .mobile-menu-btn span {
+      width: 100%;
+      height: 3px;
+      background: #333;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      padding: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-link {
+      padding: 12px 0;
+      color: #333;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* Signup Page - Navy Background */
+    .signup-page-wrapper .signup-page {
+      padding: 120px 0 60px;
+    }
+
+    .signup-page-wrapper .signup-header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+
+    .signup-page-wrapper .signup-logo {
+      height: 80px;
+      width: auto;
+      max-width: 200px;
+      margin-bottom: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .signup-header h1 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+  .signup-page-wrapper .signup-intro {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Type Toggle - Updated colors for navy background */
+  .signup-page-wrapper .type-toggle {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+  .signup-page-wrapper .toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border: 2px solid #fff;
+      border-radius: 50px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+  .signup-page-wrapper .toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+  .signup-page-wrapper .toggle-btn.active {
+      background: #fff;
+      color: #17246c;
+    }
+
+  .signup-page-wrapper .toggle-btn i {
+      font-size: 1.1rem;
+    }
+
+    /* Form Card */
+    .signup-form {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      padding: 40px;
+    }
+
+    .form-section {
+      margin-bottom: 35px;
+    }
+
+    .form-section h2 {
+      font-size: 1.3rem;
+      color: #17246c;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e9ecef;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-section h2 i {
+      color: #a01c2b;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .checkbox-group {
+      margin-top: 10px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .checkbox-label input {
+      margin-top: 3px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .required {
+      color: #a01c2b;
+    }
+
+    .optional {
+      color: #999;
+      font-weight: 400;
+      font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #17246c;
+      box-shadow: 0 0 0 3px rgba(23, 36, 108, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .upload-hint {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    /* File Upload Button (styled label) */
+    .file-upload-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: #17246c !important;
+      color: #fff !important;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .file-upload-btn:hover {
+      background: #0f1a4a !important;
+    }
+
+    .file-upload-btn input[type="file"] {
+      display: none;
+    }
+
+    .file-upload-btn i,
+    .file-upload-btn span {
+      color: #fff !important;
+    }
+
+    .upload-status {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #28a745;
+    }
+
+    .upload-status i {
+      margin-right: 5px;
+    }
+
+    .upload-progress {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #17246c;
+    }
+
+    .upload-progress i {
+      margin-right: 5px;
+    }
+
+    /* Link input for large files */
+    .link-label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #333;
+      margin-top: 20px;
+      margin-bottom: 5px;
+    }
+    
+    .link-hint {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .link-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      color: #333;
+      font-size: 0.95rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+
+    .link-input::placeholder {
+      color: #999;
+    }
+
+    .link-input:focus {
+      outline: none;
+      border-color: #17246c;
+      box-shadow: 0 0 0 3px rgba(23, 36, 108, 0.1);
+    }
+
+    /* Submit Button */
+    .form-submit {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 2px solid #e9ecef;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 35px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-red {
+      background: linear-gradient(to bottom, #c42535, #a01c2b);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(160, 28, 43, 0.3);
+    }
+
+    .btn-red:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(160, 28, 43, 0.4);
+    }
+
+    .btn-large {
+      padding: 16px 45px;
+      font-size: 1.1rem;
+    }
+
+    .form-note {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .header-nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .signup-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .signup-page-wrapper .type-toggle {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .signup-page-wrapper .toggle-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+
+      .signup-form {
+        padding: 25px 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-section h2 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+
+  <script define:vars={{ webhookUrl: '/api/webhook/' }}>
+    // Cloudinary configuration
+    const cloudName = 'dl1ilvc1x';
+    const uploadPreset = 'BuWaTV_Signup';
+    const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;
+
+    // Set up file upload handlers
+    function setupFileUpload(fileInputId, hiddenInputId, statusId, progressId, btnTextId) {
+      const fileInput = document.getElementById(fileInputId);
+      const hiddenInput = document.getElementById(hiddenInputId);
+      const status = document.getElementById(statusId);
+      const progress = document.getElementById(progressId);
+      const btnText = document.getElementById(btnTextId);
+      const statusText = status?.querySelector('span');
+      
+      if (!fileInput || !hiddenInput) return;
+      
+      let uploadedUrls = [];
+
+      fileInput.addEventListener('change', async (e) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        // Show progress, hide status
+        if (progress) progress.style.display = 'block';
+        if (status) status.style.display = 'none';
+        if (btnText) btnText.textContent = 'Uploading...';
+        
+        // Upload each file
+        for (const file of files) {
+          // Check file size (10MB limit)
+          if (file.size > 10 * 1024 * 1024) {
+            alert(`File "${file.name}" is too large. Maximum size is 10MB. Please use the link option for larger files.`);
+            continue;
+          }
+          
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('upload_preset', uploadPreset);
+          
+          try {
+            const response = await fetch(cloudinaryUrl, {
+              method: 'POST',
+              body: formData
+            });
+            
+            if (!response.ok) {
+              const errorData = await response.json();
+              console.error('Cloudinary upload error:', errorData);
+              throw new Error(errorData.error?.message || 'Upload failed');
+            }
+            
+            const data = await response.json();
+            uploadedUrls.push(data.secure_url);
+            hiddenInput.value = uploadedUrls.join(', ');
+            
+          } catch (err) {
+            console.error('Upload failed:', err);
+            alert(`Failed to upload "${file.name}". Please use the link option instead.`);
+          }
+        }
+        
+        // Hide progress, show status
+        if (progress) progress.style.display = 'none';
+        if (btnText) btnText.textContent = 'Choose Files';
+        
+        if (uploadedUrls.length > 0) {
+          if (status) status.style.display = 'block';
+          if (statusText) statusText.textContent = `${uploadedUrls.length} file${uploadedUrls.length > 1 ? 's' : ''} uploaded`;
+        }
+      });
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initUploads);
+    } else {
+      initUploads();
+    }
+
+    function initUploads() {
+      setupFileUpload('business-file-input', 'business-images', 'business-upload-status', 'business-upload-progress', 'business-btn-text');
+      setupFileUpload('personal-file-input', 'personal-images', 'personal-upload-status', 'personal-upload-progress', 'personal-btn-text');
+    }
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileBtn?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('active');
+      mobileBtn.classList.toggle('active');
+    });
+
+    // Form type toggle
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    const formType = document.getElementById('form-type');
+    const businessFields = document.getElementById('business-fields');
+    const qualificationFields = document.getElementById('qualification-fields');
+    const personalFields = document.getElementById('personal-fields');
+
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-type');
+        toggleBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        if (formType) formType.value = type || 'business';
+        
+        if (type === 'business') {
+          if (businessFields) businessFields.style.display = 'block';
+          if (qualificationFields) qualificationFields.style.display = 'block';
+          if (personalFields) personalFields.style.display = 'none';
+          setRequired('business');
+        } else {
+          if (businessFields) businessFields.style.display = 'none';
+          if (qualificationFields) qualificationFields.style.display = 'none';
+          if (personalFields) personalFields.style.display = 'block';
+          setRequired('personal');
+        }
+      });
+    });
+
+    function setRequired(type) {
+      const businessName = document.getElementById('business-name');
+      const businessType = document.getElementById('business-type');
+      const businessAddress = document.getElementById('business-address');
+      const celebrationType = document.getElementById('celebration-type');
+      const celebrationDetails = document.getElementById('celebration-details');
+
+      if (type === 'business') {
+        businessName.required = true;
+        businessType.required = true;
+        businessAddress.required = true;
+        celebrationType.required = false;
+        celebrationDetails.required = false;
+      } else {
+        businessName.required = false;
+        businessType.required = false;
+        businessAddress.required = false;
+        celebrationType.required = true;
+        celebrationDetails.required = true;
+      }
+    }
+
+    // Website feeling conditional
+    const websiteInput = document.getElementById('website');
+    const websiteFeelingGroup = document.getElementById('website-feeling-group');
+    
+    websiteInput?.addEventListener('input', () => {
+      if (websiteInput.value.trim() && websiteFeelingGroup) {
+        websiteFeelingGroup.style.display = 'block';
+      } else if (websiteFeelingGroup) {
+        websiteFeelingGroup.style.display = 'none';
+      }
+    });
+
+    // Form submission
+    const form = document.getElementById('signup-form');
+    
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.disabled = true;
+      
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value.toString();
+      });
+      data.smsOptIn = formData.get('smsOptIn') ? 'yes' : 'no';
+      
+      try {
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) throw new Error(`Server returned ${response.status}`);
+        window.location.href = '/buwatv/signupThanks/';
+      } catch (error) {
+        console.error('Error:', error);
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        alert('There was an error submitting the form. Please try again.');
+      }
+    });
+
+    // Initialize required fields
+    setRequired('business');
+  </script>

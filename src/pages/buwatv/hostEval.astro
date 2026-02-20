@@ -1,0 +1,624 @@
+---
+import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Host Partner Evaluation | BuWa TV"
+  description="Find out if your business is a great fit for a BuWa TV screen. Free evaluation for potential host partners."
+>
+  <header slot="header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+      </a>
+      <nav class="header-nav">
+        <a href="/buwatv/#host-partner" class="nav-link">Host Partner</a>
+        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
+        <a href="https://buwadigital.com/" class="nav-link">BuWa Digital</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/buwatv/#host-partner" class="mobile-link">Host Partner</a>
+      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
+      <a href="https://buwadigital.com/" class="mobile-link">BuWa Digital</a>
+    </div>
+  </header>
+
+  <div class="evaluation-page-wrapper">
+    <main class="evaluation-page">
+      <div class="container">
+        <div class="evaluation-header">
+          <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="evaluation-logo">
+          <h1>Host Partner Evaluation</h1>
+          <p class="evaluation-intro">Find out if your business is a great fit for a BuWa TV screen. It only takes a minute!</p>
+        </div>
+      
+      <form id="hostEvaluationForm" class="evaluation-form">
+        <div class="honeypot" aria-hidden="true">
+          <label for="fax">Fax</label>
+          <input type="text" name="fax" id="fax" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-section">
+          <h2><i class="fas fa-user"></i> Contact Information</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name <span class="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name <span class="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" required>
+              <label class="checkbox-label" for="hosteval-sms-opt-in">
+                <input type="checkbox" id="hosteval-sms-opt-in" name="smsOptIn">
+                <span>I agree to receive text messages from BuWa TV regarding my inquiry. Reply STOP to opt out.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-section">
+          <h2><i class="fas fa-store"></i> Business Information</h2>
+          <div class="form-group">
+            <label for="businessName">Business Name <span class="required">*</span></label>
+            <input type="text" id="businessName" name="businessName" required>
+          </div>
+          <div class="form-group">
+            <label for="businessType">Type of Business <span class="required">*</span></label>
+            <select id="businessType" name="businessType" required>
+              <option value="">Select your business type...</option>
+              <option value="medical">Medical Office / Doctor / Dentist</option>
+              <option value="nail-salon">Nail Salon</option>
+              <option value="hair-salon">Hair Salon / Barber Shop</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="bar">Bar / Tavern</option>
+              <option value="liquor-store">Liquor Store</option>
+              <option value="grocery">Local Grocery Store</option>
+              <option value="automotive">Automotive Shop</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="businessAddress">Business Address <span class="required">*</span></label>
+            <input type="text" id="businessAddress" name="businessAddress" placeholder="Street address, city, state" required>
+          </div>
+        </div>
+        
+        <div class="form-section">
+          <h2><i class="fas fa-clipboard-check"></i> A Few Quick Questions</h2>
+          <div class="form-group">
+            <label for="footTraffic">How many customers visit your location per week? <span class="required">*</span></label>
+            <select id="footTraffic" name="footTraffic" required>
+              <option value="">Select estimated weekly visitors...</option>
+              <option value="under-100">Under 100</option>
+              <option value="100-200">100 - 200</option>
+              <option value="200-300">200 - 300</option>
+              <option value="300-500">300 - 500</option>
+              <option value="500-plus">500+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dwellTime">How long does the average customer spend at your location? <span class="required">*</span></label>
+            <select id="dwellTime" name="dwellTime" required>
+              <option value="">Select average time spent...</option>
+              <option value="under-5">Under 5 minutes</option>
+              <option value="5-15">5 - 15 minutes</option>
+              <option value="15-30">15 - 30 minutes</option>
+              <option value="30-60">30 minutes - 1 hour</option>
+              <option value="60-plus">Over 1 hour</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hasWaitingArea">Do you have a waiting area? <span class="required">*</span></label>
+              <select id="hasWaitingArea" name="hasWaitingArea" required>
+                <option value="">Select...</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="hasInternet">Do you have WiFi or wired internet? <span class="required">*</span></label>
+              <select id="hasInternet" name="hasInternet" required>
+                <option value="">Select...</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-red submit-btn">
+          <i class="fas fa-paper-plane"></i> See If You Qualify
+        </button>
+      </form>
+      
+      <div class="result-message qualified" id="result-qualified" style="display: none;">
+        <i class="fas fa-check-circle"></i>
+        <h3>Great News!</h3>
+        <p>Your business looks like an excellent candidate for a BuWa TV screen. We'll be in touch within 48 hours to discuss next steps!</p>
+        <a href="/buwatv/" class="btn btn-navy">Back to Home</a>
+      </div>
+      
+      <div class="result-message followup" id="result-followup" style="display: none;">
+        <i class="fas fa-envelope"></i>
+        <h3>Thanks for Your Interest!</h3>
+        <p>We've received your information and will be in touch soon.</p>
+        <a href="/buwatv/" class="btn btn-navy">Back to Home</a>
+      </div>
+    </div>
+  </main>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .evaluation-page-wrapper {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+    min-height: 100vh;
+    color: #fff;
+  }
+
+  .evaluation-page-wrapper .evaluation-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo img {
+    height: 45px;
+    width: auto;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #a01c2b;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: white;
+    border-top: 1px solid #eee;
+    padding: 20px;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+  .mobile-link {
+    padding: 12px 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #333;
+    border-bottom: 1px solid #eee;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn-red {
+    background: linear-gradient(to bottom, #b82232, #a01c2b);
+    color: white;
+    box-shadow: 0 4px 15px rgba(160, 28, 43, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(160, 28, 43, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-navy {
+    background: linear-gradient(to bottom, #1e3a8a, #17246c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(23, 36, 108, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-navy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(23, 36, 108, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .evaluation-page-wrapper .evaluation-page {
+    padding: 120px 0 80px;
+    min-height: 100vh;
+  }
+
+  .evaluation-page-wrapper .evaluation-header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #fff;
+  }
+
+  .evaluation-page-wrapper .evaluation-logo {
+    height: 80px;
+    width: auto;
+    max-width: 200px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .evaluation-page-wrapper .evaluation-header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  .evaluation-page-wrapper .evaluation-intro {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .evaluation-page-wrapper .evaluation-form {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+
+  .form-section {
+    margin-bottom: 35px;
+  }
+
+  .form-section h2 {
+    font-size: 1.3rem;
+    color: #17246c;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .form-section h2 i {
+    color: #a01c2b;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .required {
+    color: #a01c2b;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: white;
+  }
+
+  .form-group label.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+
+  .form-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    padding: 0;
+    border: 0;
+    flex: 0 0 16px;
+    display: inline-block;
+    appearance: auto;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #17246c;
+    box-shadow: 0 0 0 3px rgba(23, 36, 108, 0.1);
+  }
+
+  .form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px 28px;
+    font-size: 1.1rem;
+    margin-top: 10px;
+  }
+
+  .evaluation-page-wrapper .result-message {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px 40px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+
+  .evaluation-page-wrapper .result-message i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  .evaluation-page-wrapper .result-message.qualified i {
+    color: #28a745;
+  }
+
+  .evaluation-page-wrapper .result-message.followup i {
+    color: #17246c;
+  }
+
+  .evaluation-page-wrapper .result-message h3 {
+    font-size: 1.8rem;
+    color: #17246c;
+    margin-bottom: 15px;
+  }
+
+  .evaluation-page-wrapper .result-message p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+
+  .evaluation-page-wrapper .dev-note {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .header-nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .evaluation-page-wrapper .evaluation-header h1 { font-size: 2rem; }
+    .evaluation-page-wrapper .evaluation-form { padding: 30px 20px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script define:vars={{ webhookUrl: '/api/webhook/' }}>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenuBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('active'));
+
+  const form = document.getElementById('hostEvaluationForm');
+  const resultQualified = document.getElementById('result-qualified');
+  const resultFollowup = document.getElementById('result-followup');
+  const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    const businessType = data.businessType;
+    const footTraffic = data.footTraffic;
+    const hasWaitingArea = data.hasWaitingArea === 'yes';
+    const hasInternet = data.hasInternet === 'yes';
+    const smsOptIn = data.smsOptIn ? 'yes' : 'no';
+    
+    if (!hasInternet) {
+      submitForm(data, false, 'No internet available');
+      return;
+    }
+    
+    let qualified = false;
+    let reason = '';
+    
+    const highDwellTypes = ['medical', 'nail-salon', 'hair-salon'];
+    const trafficMap = {
+      'under-100': 50,
+      '100-200': 150,
+      '200-300': 250,
+      '300-500': 400,
+      '500-plus': 600
+    };
+    const trafficNum = trafficMap[footTraffic] || 0;
+    
+    if (highDwellTypes.includes(businessType)) {
+      if (trafficNum >= 100) {
+        qualified = true;
+        reason = `${businessType} with ${footTraffic} weekly visitors - high dwell time business`;
+      } else {
+        reason = `${businessType} with low foot traffic (${footTraffic})`;
+      }
+    } else if (businessType === 'automotive') {
+      if (trafficNum >= 300) {
+        qualified = true;
+        reason = `Automotive shop with ${footTraffic} weekly visitors`;
+      } else if (trafficNum >= 200 && hasWaitingArea) {
+        qualified = true;
+        reason = `Automotive shop with ${footTraffic} weekly visitors and waiting area`;
+      } else if (trafficNum >= 200 && !hasWaitingArea) {
+        reason = `Automotive shop with ${footTraffic} weekly visitors but no waiting area`;
+      } else {
+        reason = `Automotive shop with low foot traffic (${footTraffic})`;
+      }
+    } else {
+      if (trafficNum >= 300) {
+        qualified = true;
+        reason = `${businessType} with ${footTraffic} weekly visitors`;
+      } else {
+        reason = `${businessType} with foot traffic under 300/week (${footTraffic})`;
+      }
+    }
+    
+    submitForm(data, qualified, reason);
+  });
+  
+  async function submitForm(data, qualified, reason) {
+    const submitBtn = form?.querySelector('.submit-btn');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    }
+    
+    try {
+      const payload = {
+        formType: 'hostEvaluation',
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        phone: data.phone,
+        businessName: data.businessName,
+        businessType: data.businessType,
+        businessAddress: data.businessAddress,
+        footTraffic: data.footTraffic,
+        dwellTime: data.dwellTime,
+        hasWaitingArea: data.hasWaitingArea,
+        hasInternet: data.hasInternet,
+        qualified,
+        qualificationReason: reason,
+        smsOptIn,
+      };
+      
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      
+      if (!response.ok) throw new Error('Submission failed');
+      
+      form.style.display = 'none';
+      resultQualified.style.display = qualified ? 'block' : 'none';
+      resultFollowup.style.display = qualified ? 'none' : 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      if (isLocal) {
+        console.warn('Local mode: submission failed, showing result without sending.', err);
+        resultQualified.style.display = qualified ? 'block' : 'none';
+        resultFollowup.style.display = qualified ? 'none' : 'block';
+        const target = qualified ? resultQualified : resultFollowup;
+        if (target && !target.querySelector('.dev-note')) {
+          const note = document.createElement('p');
+          note.className = 'dev-note';
+          note.textContent = 'Local mode: submission was not sent.';
+          target.appendChild(note);
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> See If You Qualify';
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      alert('Something went wrong. Please try again or contact us directly.');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> See If You Qualify';
+      }
+    }
+  }
+</script>

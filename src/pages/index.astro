@@ -3,6 +3,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "BuWa Digital - Marketing & Advertising for Local Businesses";
 const description = "Reach more customers where they live, work, and shop with targeted digital marketing that builds trust and drives action.";
+const partners = [
+  { name: "Beckett Financial", src: "/uploads/2025/10/Beckett-Financial-Logo.png" },
+  { name: "Sharpe Leventis LLC", src: "/uploads/2025/05/Sharpe-Leventis-LLC.png" },
+  { name: "TLC", src: "/uploads/2025/10/TLC-Wedsite-Logo-2025-1-2.webp" },
+  { name: "Warrior Axe CrossFit", src: "/uploads/2025/10/Warrior-Axe-CrossFit-Green.webp" },
+  { name: "Greedy Rascals", src: "/uploads/2025/12/greedy-rascals.png" },
+  { name: "Sully's Steamers", src: "/uploads/2025/12/sullys-steamers.png" },
+  { name: "True Pharmacy", src: "/uploads/2024/10/TrueLogoBig.png" },
+  { name: "Triangle Pharmacy", src: "/uploads/2024/10/TriangleSquareLogo.png" },
+  { name: "San Jose", src: "/uploads/2024/10/SanJoseLogo.png" },
+  { name: "Que Bueno", src: "/uploads/2024/10/QueBuenoLogo.png" },
+  { name: "Gervais Nail Spa", src: "/uploads/2024/10/GervNailSpa.png" },
+  { name: "Gadgetboy", src: "/uploads/2024/10/GB.png" },
+  { name: "Devine Nails", src: "/uploads/2024/10/DevineNails.png" },
+  { name: "The Collective", src: "/uploads/2024/10/CollectiveLogo.png" },
+  { name: "Bierkeller", src: "/uploads/2024/10/Bierkeller_logo.jpg" },
+  { name: "BHGRE Medley", src: "/uploads/2024/10/BHGRE_MEDLEY.jpg" },
+  { name: "Spa On Devine", src: "/uploads/2025/05/Spa-On-Devine.jpg" },
+  { name: "Veritas", src: "/uploads/2025/05/Veritas-scaled.png" },
+  { name: "Genova Family Karate", src: "/uploads/2025/05/Genova-Family-Karate.png" },
+  { name: "Whetzel's Automotive", src: "/uploads/2025/05/Whetzels-Automotive.jpg" },
+  { name: "Blue Moon Ballroom", src: "/uploads/2025/10/Blue-Moon-Ballroom-Logo.jpg" },
+  { name: "Century 21", src: "/uploads/2025/05/Century-21.png" },
+  { name: "Touchdowns", src: "/uploads/2025/10/Touchdowns-Logo.jpg" },
+  { name: "Milestone Wealth Advisors", src: "/uploads/2025/05/Milestone-Wealth-Advisors.jpg" },
+  { name: "Roxanne's Market", src: "/uploads/2026/01/Roxanne-logo-up.png" },
+  { name: "Covenant Fence", src: "/uploads/2026/01/Covenant-Fence-Logo.png" },
+  { name: "Polar Express Heating & Air", src: "/uploads/2026/01/Polar-Express-Heating-Air.webp" },
+  { name: "Bill's Music Shop", src: "/uploads/2026/01/Bills-Music-Shop.png" },
+  { name: "Salvation Army", src: "/uploads/2026/01/Salvation-Army.png" },
+  { name: "Classic Roofing", src: "/uploads/2026/01/Classic-Roofing.png" },
+  { name: "Lifetime Insurance", src: "/uploads/2026/01/Lifetime-Insurance.png" },
+];
+const partnerCount = partners.length;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -22,10 +56,16 @@ const description = "Reach more customers where they live, work, and shop with t
 
   <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" muted playsinline preload="metadata">
+        <source src="/uploads/hero/1.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
     <div class="hero-content">
       <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" class="hero-logo" />
       <h1>Stop Flying Under The Radar!</h1>
-      <p class="hero-subtitle">We'll help your business maintain a prominent community presence using strategically targeted services that keep your business top-of-mind and deliver real results.</p>
+      <p class="hero-subtitle">We'll help you maintain a prominent community presence using strategically targeted services that keep your business top-of-mind and deliver real results.</p>
       <div class="hero-buttons">
         <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
       </div>
@@ -53,11 +93,9 @@ const description = "Reach more customers where they live, work, and shop with t
       </div>
       <div class="feature-cta">
         <a
-          href="https://buwatv.com/"
+          href="/buwatv/"
           class="cta-button cta-button-navy cta-button-logo"
-          target="_blank"
-          rel="noopener"
-          aria-label="Visit BuWaTV.com"
+          aria-label="Visit BuWaTV"
         >
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
           <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="cta-logo" />
@@ -109,7 +147,7 @@ const description = "Reach more customers where they live, work, and shop with t
     <div class="container">
       <h2>Marketing Solutions</h2>
       <div class="solution-grid">
-        <a href="https://buwatv.com/" class="solution-card" target="_blank" rel="noopener">
+        <a href="/buwatv/" class="solution-card">
           <img src="/uploads/logos/buwa-tv-logo.png" alt="BuWa TV" class="solution-icon solution-icon-image" loading="lazy" />
           <h3>Indoor Digital Billboards</h3>
           <p>Showcase your brand on screens in locations where customers work, shop, eat, and play.</p>
@@ -132,6 +170,28 @@ const description = "Reach more customers where they live, work, and shop with t
       </div>
       <div class="solutions-cta">
         <a href="/solutions/" class="cta-button">Browse all Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Partners -->
+  <section class="partners-section">
+    <div class="container">
+      <h2>Our Partners</h2>
+      <p class="partners-subtitle">A few of the local brands we’re proud to work with.</p>
+    </div>
+    <div class="partners-carousel">
+      <div class="partners-track" data-partner-count={partnerCount}>
+        {partners.map(partner => (
+          <div class="partners-item">
+            <img src={partner.src} alt={partner.name} loading="lazy" />
+          </div>
+        ))}
+        {partners.map(partner => (
+          <div class="partners-item">
+            <img src={partner.src} alt={partner.name} loading="lazy" />
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -240,6 +300,9 @@ const description = "Reach more customers where they live, work, and shop with t
   const introDurationMs = 4500;
   const introVideo = document.getElementById('introVideo');
   const introVideoEl = document.getElementById('introVideoEl');
+  const heroVideoEl = document.querySelector('.hero-video');
+  let heroPlaylist = ['/uploads/hero/1.mp4', '/uploads/hero/2.mp4', '/uploads/hero/3.mp4'];
+  let heroPlaylistIndex = 0;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let playbackTimer;
   let maxWaitTimer;
@@ -256,6 +319,50 @@ const description = "Reach more customers where they live, work, and shop with t
     }
   };
 
+  const setHeroSource = (src) => {
+    if (!(heroVideoEl instanceof HTMLVideoElement)) return;
+    const sourceEl = heroVideoEl.querySelector('source');
+    if (sourceEl) {
+      sourceEl.src = src;
+    } else {
+      heroVideoEl.src = src;
+    }
+    heroVideoEl.load();
+  };
+
+  const loadHeroPlaylist = async () => {
+    try {
+      const response = await fetch('/uploads/hero/playlist.json', { cache: 'no-store' });
+      if (!response.ok) return;
+      const data = await response.json();
+      if (Array.isArray(data.videos) && data.videos.length > 0) {
+        heroPlaylist = data.videos;
+      }
+    } catch {
+      // Keep default list if playlist fails to load
+    }
+  };
+
+  const startHeroVideo = async () => {
+    if (prefersReducedMotion) return;
+    if (!(heroVideoEl instanceof HTMLVideoElement)) return;
+
+    await loadHeroPlaylist();
+    if (heroPlaylist.length === 0) return;
+
+    heroVideoEl.muted = true;
+    heroVideoEl.playsInline = true;
+
+    heroVideoEl.addEventListener('ended', () => {
+      heroPlaylistIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
+      setHeroSource(heroPlaylist[heroPlaylistIndex]);
+      heroVideoEl.play().catch(() => {});
+    });
+
+    setHeroSource(heroPlaylist[heroPlaylistIndex]);
+    heroVideoEl.play().catch(() => {});
+  };
+
   const hideIntro = () => {
     if (!introVideo) return;
     introVideo.classList.add('done');
@@ -266,6 +373,7 @@ const description = "Reach more customers where they live, work, and shop with t
       introVideoEl.currentTime = 0;
     }
     setTimeout(() => introVideo.remove(), 500);
+    startHeroVideo();
   };
 
   const showIntro = () => {
@@ -299,6 +407,62 @@ const description = "Reach more customers where they live, work, and shop with t
     showIntro();
   } else {
     hideIntro();
+  }
+
+  // Partners carousel
+  const partnersTrack = document.querySelector('.partners-track');
+  if (partnersTrack) {
+    const partnerCount = parseInt(partnersTrack.dataset.partnerCount || '0');
+    const items = partnersTrack.querySelectorAll('.partners-item');
+    const images = partnersTrack.querySelectorAll('img');
+    let loadedCount = 0;
+
+    const initCarousel = () => {
+      if (!partnerCount || !items.length || partnersTrack.dataset.carouselInit === 'true') {
+        return;
+      }
+      partnersTrack.dataset.carouselInit = 'true';
+      const itemWidth = items[0].offsetWidth;
+      const scrollDistance = itemWidth * partnerCount;
+      const duration = partnerCount * 1.2;
+      const styleSheet = document.createElement('style');
+      styleSheet.setAttribute('data-partners-carousel', 'true');
+      styleSheet.textContent = `
+        @keyframes partnersScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${scrollDistance}px); }
+        }
+        .partners-track {
+          animation: partnersScroll ${duration}s linear infinite;
+        }
+        .partners-track:hover {
+          animation-play-state: paused;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+    };
+
+    const checkLoaded = () => {
+      loadedCount++;
+      if (loadedCount >= images.length) {
+        initCarousel();
+      }
+    };
+
+    images.forEach((img) => {
+      if (img.complete) {
+        checkLoaded();
+      } else {
+        img.addEventListener('load', checkLoaded);
+        img.addEventListener('error', checkLoaded);
+      }
+    });
+
+    setTimeout(() => {
+      if (!partnersTrack.dataset.carouselInit) {
+        initCarousel();
+      }
+    }, 2000);
   }
 </script>
 
@@ -339,6 +503,27 @@ const description = "Reach more customers where they live, work, and shop with t
     color: white;
     padding: 3rem 2rem 6rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(23, 36, 108, 0.6);
   }
 
   .hero-logo {
@@ -347,6 +532,10 @@ const description = "Reach more customers where they live, work, and shop with t
     margin: 0 auto 2rem;
   }
 
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
   .hero h1 {
     font-size: 2.5rem;
     max-width: 800px;
@@ -653,6 +842,59 @@ const description = "Reach more customers where they live, work, and shop with t
     margin: 0 auto 1rem;
   }
 
+  .partners-section {
+    padding: 4rem 0;
+    background: #fff;
+    text-align: center;
+  }
+
+  .partners-section h2 {
+    color: #1a1a2e;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .partners-subtitle {
+    color: #555;
+    max-width: 640px;
+    margin: 0 auto 2rem;
+  }
+
+  .partners-carousel {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .partners-track {
+    display: flex;
+    width: max-content;
+  }
+
+  .partners-item {
+    flex: 0 0 180px;
+    height: 140px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .partners-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(20%);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+  }
+
+  .partners-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
   .solutions-cta {
     margin-top: 2rem;
   }
@@ -698,7 +940,7 @@ const description = "Reach more customers where they live, work, and shop with t
     margin-right: auto;
   }
 
-  html {
+  :global(html) {
     scroll-behavior: smooth;
   }
 
@@ -830,6 +1072,11 @@ const description = "Reach more customers where they live, work, and shop with t
 
     .testimonial-grid {
       grid-template-columns: 1fr;
+    }
+
+    .partners-item {
+      flex: 0 0 140px;
+      height: 120px;
     }
   }
 </style>

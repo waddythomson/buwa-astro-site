@@ -19,12 +19,22 @@ export default defineConfig({
   // Redirects for any changed URLs (add here if needed)
   redirects: {
     // Example: '/old-url': '/new-url'
-    '/host/': 'https://buwatv.com/host-partner/',
-    '/venue-partner/': 'https://buwatv.com/host-partner/',
+    '/host/': '/buwatv/#host-partner',
+    '/venue-partner/': '/buwatv/#host-partner',
     '/ppc-pay-per-click/': '/pay-per-click-ppc/',
-    '/screen-advertising/': 'https://buwatv.com/screen-advertising/',
-    '/host-partner/': 'https://buwatv.com/host-partner/',
-    '/locations/': 'https://buwatv.com/locations/',
+    '/screen-advertising/': '/buwatv/',
+    '/host-partner/': '/buwatv/#host-partner',
+    '/locations/': '/buwatv/locations/',
+    '/about/': '/buwatv/about/',
+    '/pricing/': '/buwatv/pricing/',
+    '/host-pricing/': '/buwatv/host-pricing/',
+    '/faq/': '/buwatv/faq/',
+    '/signup/': '/buwatv/signup/',
+    '/signupThanks/': '/buwatv/signupThanks/',
+    '/signup/thank-you/': '/buwatv/signupThanks/',
+    '/hostEval/': '/buwatv/hostEval/',
+    '/host-evaluation/': '/buwatv/hostEval/',
+    '/privacy/': '/buwatv/privacy/',
   },
   
   // Vite configuration

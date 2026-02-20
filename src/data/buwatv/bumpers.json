@@ -1,0 +1,16 @@
+{
+  "videos": [
+    "BUWA_1.mp4",
+    "BUWA_2.mp4",
+    "BUWA_3.mp4",
+    "BUWA_4.mp4",
+    "BUWA_5.mp4",
+    "BUWA_6.mp4",
+    "BUWA_7.mp4",
+    "BUWA_9.mp4",
+    "BUWA_8.mp4",
+    "BUWA_10.mp4"
+  ],
+  "displayDuration": 7,
+  "fadeDuration": 0.75
+}

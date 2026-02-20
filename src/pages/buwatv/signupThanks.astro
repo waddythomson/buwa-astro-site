@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thank You | BuWa TV"
+  description="Thank you for signing up with BuWa TV!"
+  noindex={true}
+>
+  <header slot="header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+      </a>
+      <nav class="header-nav">
+        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
+        <a href="https://buwadigital.com" target="_blank" rel="noopener" class="nav-link">BuWa Digital</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
+      <a href="https://buwadigital.com" target="_blank" rel="noopener" class="mobile-link">BuWa Digital</a>
+    </div>
+  </header>
+
+  <div class="thanks-page-wrapper">
+    <main class="main-content">
+      <div class="thank-you-card">
+        <div class="thank-you-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <h1>Thank You!</h1>
+        <p>We've received your information and we're excited to help you shine on BuWa TV. Our team will be in touch soon to discuss your advertising goals and get you started.</p>
+        <a href="/buwatv/" class="btn btn-navy">
+          <i class="fas fa-home"></i>
+          Back to Home
+        </a>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .thanks-page-wrapper {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+    min-height: 100vh;
+  }
+
+  .site-header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo img {
+    height: 45px;
+    width: auto;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .nav-link:hover {
+    color: #a01c2b;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-menu-btn span {
+    width: 100%;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    padding: 20px;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+  .mobile-link {
+    padding: 12px 0;
+    color: #333;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+  }
+
+  .main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 60px;
+  }
+
+  .thank-you-card {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 50px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .thank-you-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+  }
+
+  .thank-you-icon i {
+    font-size: 40px;
+    color: white;
+  }
+
+  .thank-you-card h1 {
+    color: #17246c;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .thank-you-card p {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .btn-navy {
+    background: linear-gradient(to bottom, #1e3a8a, #17246c);
+    color: white;
+  }
+
+  .btn-navy:hover {
+    background: linear-gradient(to bottom, #2548a8, #1e3a8a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 768px) {
+    .header-nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .thank-you-card {
+      padding: 40px 25px;
+      margin: 0 15px;
+    }
+    .thank-you-card h1 { font-size: 1.8rem; }
+    .thank-you-card p { font-size: 1rem; }
+    .thank-you-icon {
+      width: 70px;
+      height: 70px;
+    }
+    .thank-you-icon i { font-size: 32px; }
+  }
+</style>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenuBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('active'));
+</script>
