@@ -2,6 +2,8 @@
 // BaseLayout.astro - Shared layout for BuWa TV pages
 // Provides common head elements, footer, and slots for page content
 
+import SpeedInsights from '@vercel/speed-insights/astro';
+
 interface Props {
   title: string;
   description: string;
@@ -144,6 +146,7 @@ const structuredData = {
       </div>
     </div>
   </footer>
+  <SpeedInsights />
 </body>
 </html>
 
