@@ -1,42 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import partnersData from '../data/buwatv/partners.json';
 
 const title = "Locations | BuWa Digital";
 const description = "Find BuWa TV screens at popular locations throughout the community.";
 
-const partners = [
-  { name: "Beckett Financial", src: "/uploads/2025/10/Beckett-Financial-Logo.png" },
-  { name: "Sharpe Leventis LLC", src: "/uploads/2025/05/Sharpe-Leventis-LLC.png" },
-  { name: "TLC", src: "/uploads/2025/10/TLC-Wedsite-Logo-2025-1-2.webp" },
-  { name: "Warrior Axe CrossFit", src: "/uploads/2025/10/Warrior-Axe-CrossFit-Green.webp" },
-  { name: "Greedy Rascals", src: "/uploads/2025/12/greedy-rascals.png" },
-  { name: "Sully's Steamers", src: "/uploads/2025/12/sullys-steamers.png" },
-  { name: "True Pharmacy", src: "/uploads/2024/10/TrueLogoBig.png" },
-  { name: "Triangle Pharmacy", src: "/uploads/2024/10/TriangleSquareLogo.png" },
-  { name: "San Jose", src: "/uploads/2024/10/SanJoseLogo.png" },
-  { name: "Que Bueno", src: "/uploads/2024/10/QueBuenoLogo.png" },
-  { name: "Gervais Nail Spa", src: "/uploads/2024/10/GervNailSpa.png" },
-  { name: "Gadgetboy", src: "/uploads/2024/10/GB.png" },
-  { name: "Devine Nails", src: "/uploads/2024/10/DevineNails.png" },
-  { name: "The Collective", src: "/uploads/2024/10/CollectiveLogo.png" },
-  { name: "Bierkeller", src: "/uploads/2024/10/Bierkeller_logo.jpg" },
-  { name: "BHGRE Medley", src: "/uploads/2024/10/BHGRE_MEDLEY.jpg" },
-  { name: "Spa On Devine", src: "/uploads/2025/05/Spa-On-Devine.jpg" },
-  { name: "Veritas", src: "/uploads/2025/05/Veritas-scaled.png" },
-  { name: "Genova Family Karate", src: "/uploads/2025/05/Genova-Family-Karate.png" },
-  { name: "Whetzel's Automotive", src: "/uploads/2025/05/Whetzels-Automotive.jpg" },
-  { name: "Blue Moon Ballroom", src: "/uploads/2025/10/Blue-Moon-Ballroom-Logo.jpg" },
-  { name: "Century 21", src: "/uploads/2025/05/Century-21.png" },
-  { name: "Touchdowns", src: "/uploads/2025/10/Touchdowns-Logo.jpg" },
-  { name: "Milestone Wealth Advisors", src: "/uploads/2025/05/Milestone-Wealth-Advisors.jpg" },
-  { name: "Roxanne's Market", src: "/uploads/2026/01/Roxanne-logo-up.png" },
-  { name: "Covenant Fence", src: "/uploads/2026/01/Covenant-Fence-Logo.png" },
-  { name: "Polar Express Heating & Air", src: "/uploads/2026/01/Polar-Express-Heating-Air.webp" },
-  { name: "Bill's Music Shop", src: "/uploads/2026/01/Bills-Music-Shop.png" },
-  { name: "Salvation Army", src: "/uploads/2026/01/Salvation-Army.png" },
-  { name: "Classic Roofing", src: "/uploads/2026/01/Classic-Roofing.png" },
-  { name: "Lifetime Insurance", src: "/uploads/2026/01/Lifetime-Insurance.png" },
-];
+const hostPartners = partnersData.partners ?? [];
+const communityPartners = partnersData.communityPartners ?? [];
+
+const normalizePartnerName = (value = '') =>
+  value
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const uniquePartners = (items = []) => {
+  const seen = new Set();
+  return items.filter((partner) => {
+    const key = normalizePartnerName(partner?.name ?? '');
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+};
+
+const partners = uniquePartners([
+  ...hostPartners.map((partner) => ({
+    name: partner.name,
+    src: partner.logo ? `/buwatv/uploads/partners/hosts/${partner.logo}` : ''
+  })),
+  ...communityPartners.map((partner) => ({
+    name: partner.name,
+    src: partner.logo ? `/buwatv/uploads/partners/non-hosts/${partner.logo}` : ''
+  }))
+]).filter((partner) => partner.name && partner.src);
 
 const partnerCount = partners.length;
 ---

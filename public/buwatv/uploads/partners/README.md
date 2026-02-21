@@ -1,35 +1,31 @@
-# Partner Logos for Carousel
+# Partner Logos
 
-Copy these files to `public/uploads/partners/` in your BuWa TV project.
+This folder is the source of truth for partner logos used across the site.
 
-## Current Logos
+## Folder structure
 
-| File | Business |
-|------|----------|
-| `roxannes-market.png` | Roxanne's Market ✅ |
-| `devine-nail-spa.png` | Devine Nail Spa (need logo) |
-| `true-pharmacy.png` | True Pharmacy (need logo) |
-| `triangle-pharmacy.png` | Triangle Pharmacy (need logo) |
-| `san-jose.png` | San Jose Mexican Restaurant (need logo) |
-| `que-bueno.png` | Que Bueno (need logo) |
-| `gervais-nail-spa.png` | Gervais Nail Spa (need logo) |
-| `bierkeller.png` | Bierkeller Brewing (need logo) |
+- `hosts/`: Host partners (locations that host screens)
+- `non-hosts/`: Non-host partners / community partners
 
-## Adding New Logos
+## Where the partner list comes from
 
-1. Save the logo file to `public/uploads/partners/` with a kebab-case filename
-2. Add a `<div class="logo-item">` entry in both the original AND duplicate sets in the carousel HTML
-3. The logo should be a PNG or WebP with transparent background for best results
+Partner names + logo filenames are defined in:
+
+- `src/data/buwatv/partners.json`
+  - `partners`: host partners (logos should live in `hosts/`)
+  - `communityPartners`: non-host partners (logos should live in `non-hosts/`)
+
+Pages render logos dynamically from this data (no manual duplication in markup).
+
+## Adding / updating a logo
+
+1. Drop the file into the correct folder:
+   - Host → `public/buwatv/uploads/partners/hosts/`
+   - Non-host → `public/buwatv/uploads/partners/non-hosts/`
+2. Add/update the entry in `src/data/buwatv/partners.json` so `logo` matches the filename exactly.
 
 ## Recommended Logo Specs
 
 - Format: PNG or WebP (transparent background preferred)
 - Max height: ~200px (will be scaled down to 70px)
 - Max width: ~400px (will be scaled down to 150px)
-
-## Carousel Behavior
-
-- Logos appear grayscale and slightly faded by default
-- On hover: full color, full opacity, slight scale up
-- Carousel pauses on hover
-- Loops infinitely (that's why each logo appears twice in the HTML)

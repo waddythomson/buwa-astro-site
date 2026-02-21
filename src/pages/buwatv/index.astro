@@ -8,6 +8,15 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 import partnersData from '../../data/buwatv/partners.json';
 const hostPartners = partnersData.partners ?? [];
 const communityPartners = partnersData.communityPartners ?? [];
+const hostLogoSet = new Set(hostPartners.map((partner) => partner?.logo).filter(Boolean));
+
+const partnerLogoSrc = (partner) => {
+  const logo = partner?.logo;
+  if (!logo) return '';
+  return hostLogoSet.has(logo)
+    ? `/buwatv/uploads/partners/hosts/${logo}`
+    : `/buwatv/uploads/partners/non-hosts/${logo}`;
+};
 
 const normalizePartnerName = (value = '') =>
   value
@@ -63,7 +72,7 @@ const bumpers = bumpersData;
           </button>
           <div class="nav-dropdown-menu">
             <a href="#host-partner" class="scroll-link">Become a Host Partner</a>
-            <a href="/buwatv/locations/#host-partner-locations">Our Host Partners</a>
+            <a href="/buwatv/hostpartners/">Our Host Partners</a>
             <a href="/buwatv/locations/">Locations</a>
           </div>
         </div>
@@ -88,7 +97,7 @@ const bumpers = bumpersData;
       <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
       <span class="mobile-link mobile-link-static">Host Partners</span>
       <a href="#host-partner" class="mobile-link mobile-sub-link scroll-link">Become a Host Partner</a>
-      <a href="/buwatv/locations/#host-partner-locations" class="mobile-link mobile-sub-link">Our Host Partners</a>
+      <a href="/buwatv/hostpartners/" class="mobile-link mobile-sub-link">Our Host Partners</a>
       <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
       <a href="#contact" class="btn btn-red mobile-cta open-contact-popup">
         <i class="fas fa-paper-plane"></i> Get In Touch
@@ -358,10 +367,10 @@ const bumpers = bumpersData;
               <div class="logo-item">
                 {partner.url ? (
                   <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                    <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                    <img src={partnerLogoSrc(partner)} alt={partner.name} />
                   </a>
                 ) : (
-                  <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                  <img src={partnerLogoSrc(partner)} alt={partner.name} />
                 )}
               </div>
             ))}
@@ -370,10 +379,10 @@ const bumpers = bumpersData;
               <div class="logo-item">
                 {partner.url ? (
                   <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                    <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                    <img src={partnerLogoSrc(partner)} alt={partner.name} />
                   </a>
                 ) : (
-                  <img src={`/buwatv/uploads/partners/${partner.logo}`} alt={partner.name} />
+                  <img src={partnerLogoSrc(partner)} alt={partner.name} />
                 )}
               </div>
             ))}

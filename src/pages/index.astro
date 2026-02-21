@@ -3,40 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "BuWa Digital - Marketing & Advertising for Local Businesses";
 const description = "Reach more customers where they live, work, and shop with targeted digital marketing that builds trust and drives action.";
-const partners = [
-  { name: "Beckett Financial", src: "/uploads/2025/10/Beckett-Financial-Logo.png" },
-  { name: "Sharpe Leventis LLC", src: "/uploads/2025/05/Sharpe-Leventis-LLC.png" },
-  { name: "TLC", src: "/uploads/2025/10/TLC-Wedsite-Logo-2025-1-2.webp" },
-  { name: "Warrior Axe CrossFit", src: "/uploads/2025/10/Warrior-Axe-CrossFit-Green.webp" },
-  { name: "Greedy Rascals", src: "/uploads/2025/12/greedy-rascals.png" },
-  { name: "Sully's Steamers", src: "/uploads/2025/12/sullys-steamers.png" },
-  { name: "True Pharmacy", src: "/uploads/2024/10/TrueLogoBig.png" },
-  { name: "Triangle Pharmacy", src: "/uploads/2024/10/TriangleSquareLogo.png" },
-  { name: "San Jose", src: "/uploads/2024/10/SanJoseLogo.png" },
-  { name: "Que Bueno", src: "/uploads/2024/10/QueBuenoLogo.png" },
-  { name: "Gervais Nail Spa", src: "/uploads/2024/10/GervNailSpa.png" },
-  { name: "Gadgetboy", src: "/uploads/2024/10/GB.png" },
-  { name: "Devine Nails", src: "/uploads/2024/10/DevineNails.png" },
-  { name: "The Collective", src: "/uploads/2024/10/CollectiveLogo.png" },
-  { name: "Bierkeller", src: "/uploads/2024/10/Bierkeller_logo.jpg" },
-  { name: "BHGRE Medley", src: "/uploads/2024/10/BHGRE_MEDLEY.jpg" },
-  { name: "Spa On Devine", src: "/uploads/2025/05/Spa-On-Devine.jpg" },
-  { name: "Veritas", src: "/uploads/2025/05/Veritas-scaled.png" },
-  { name: "Genova Family Karate", src: "/uploads/2025/05/Genova-Family-Karate.png" },
-  { name: "Whetzel's Automotive", src: "/uploads/2025/05/Whetzels-Automotive.jpg" },
-  { name: "Blue Moon Ballroom", src: "/uploads/2025/10/Blue-Moon-Ballroom-Logo.jpg" },
-  { name: "Century 21", src: "/uploads/2025/05/Century-21.png" },
-  { name: "Touchdowns", src: "/uploads/2025/10/Touchdowns-Logo.jpg" },
-  { name: "Milestone Wealth Advisors", src: "/uploads/2025/05/Milestone-Wealth-Advisors.jpg" },
-  { name: "Roxanne's Market", src: "/uploads/2026/01/Roxanne-logo-up.png" },
-  { name: "Covenant Fence", src: "/uploads/2026/01/Covenant-Fence-Logo.png" },
-  { name: "Polar Express Heating & Air", src: "/uploads/2026/01/Polar-Express-Heating-Air.webp" },
-  { name: "Bill's Music Shop", src: "/uploads/2026/01/Bills-Music-Shop.png" },
-  { name: "Salvation Army", src: "/uploads/2026/01/Salvation-Army.png" },
-  { name: "Classic Roofing", src: "/uploads/2026/01/Classic-Roofing.png" },
-  { name: "Lifetime Insurance", src: "/uploads/2026/01/Lifetime-Insurance.png" },
-];
-const partnerCount = partners.length;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -171,28 +137,6 @@ const partnerCount = partners.length;
       </div>
       <div class="solutions-cta">
         <a href="/solutions/" class="cta-button">Browse all Services</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Partners -->
-  <section class="partners-section">
-    <div class="container">
-      <h2>Our Partners</h2>
-      <p class="partners-subtitle">A few of the local brands we’re proud to work with.</p>
-    </div>
-    <div class="partners-carousel">
-      <div class="partners-track" data-partner-count={partnerCount}>
-        {partners.map(partner => (
-          <div class="partners-item">
-            <img src={partner.src} alt={partner.name} loading="lazy" />
-          </div>
-        ))}
-        {partners.map(partner => (
-          <div class="partners-item">
-            <img src={partner.src} alt={partner.name} loading="lazy" />
-          </div>
-        ))}
       </div>
     </div>
   </section>
@@ -435,61 +379,6 @@ const partnerCount = partners.length;
     hideIntro();
   }
 
-  // Partners carousel
-  const partnersTrack = document.querySelector('.partners-track');
-  if (partnersTrack) {
-    const partnerCount = parseInt(partnersTrack.dataset.partnerCount || '0');
-    const items = partnersTrack.querySelectorAll('.partners-item');
-    const images = partnersTrack.querySelectorAll('img');
-    let loadedCount = 0;
-
-    const initCarousel = () => {
-      if (!partnerCount || !items.length || partnersTrack.dataset.carouselInit === 'true') {
-        return;
-      }
-      partnersTrack.dataset.carouselInit = 'true';
-      const itemWidth = items[0].offsetWidth;
-      const scrollDistance = itemWidth * partnerCount;
-      const duration = partnerCount * 1.2;
-      const styleSheet = document.createElement('style');
-      styleSheet.setAttribute('data-partners-carousel', 'true');
-      styleSheet.textContent = `
-        @keyframes partnersScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-${scrollDistance}px); }
-        }
-        .partners-track {
-          animation: partnersScroll ${duration}s linear infinite;
-        }
-        .partners-track:hover {
-          animation-play-state: paused;
-        }
-      `;
-      document.head.appendChild(styleSheet);
-    };
-
-    const checkLoaded = () => {
-      loadedCount++;
-      if (loadedCount >= images.length) {
-        initCarousel();
-      }
-    };
-
-    images.forEach((img) => {
-      if (img.complete) {
-        checkLoaded();
-      } else {
-        img.addEventListener('load', checkLoaded);
-        img.addEventListener('error', checkLoaded);
-      }
-    });
-
-    setTimeout(() => {
-      if (!partnersTrack.dataset.carouselInit) {
-        initCarousel();
-      }
-    }, 2000);
-  }
 </script>
 
 <style>
@@ -868,59 +757,6 @@ const partnerCount = partners.length;
     margin: 0 auto 1rem;
   }
 
-  .partners-section {
-    padding: 4rem 0;
-    background: #fff;
-    text-align: center;
-  }
-
-  .partners-section h2 {
-    color: #1a1a2e;
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .partners-subtitle {
-    color: #555;
-    max-width: 640px;
-    margin: 0 auto 2rem;
-  }
-
-  .partners-carousel {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .partners-track {
-    display: flex;
-    width: max-content;
-  }
-
-  .partners-item {
-    flex: 0 0 180px;
-    height: 140px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-
-  .partners-item img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: grayscale(20%);
-    opacity: 0.85;
-    transition: all 0.3s ease;
-  }
-
-  .partners-item img:hover {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.05);
-  }
-
   .solutions-cta {
     margin-top: 2rem;
   }
@@ -1100,9 +936,5 @@ const partnerCount = partners.length;
       grid-template-columns: 1fr;
     }
 
-    .partners-item {
-      flex: 0 0 140px;
-      height: 120px;
-    }
   }
 </style>

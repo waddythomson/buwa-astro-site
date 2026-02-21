@@ -1,0 +1,426 @@
+---
+import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+import partnersData from '../../data/buwatv/partners.json';
+
+const hostPartners = partnersData.partners ?? [];
+
+const normalizePartnerName = (value = '') =>
+  value
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const uniquePartners = (items = []) => {
+  const seen = new Set();
+  return items.filter((partner) => {
+    const key = normalizePartnerName(partner?.name ?? '');
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+};
+
+const hostsUnique = uniquePartners(hostPartners);
+const liveHosts = hostsUnique.filter((partner) => partner.status !== 'coming-soon');
+const comingSoonHosts = hostsUnique.filter((partner) => partner.status === 'coming-soon');
+
+const logoSrc = (partner) =>
+  partner?.logo ? `/buwatv/uploads/partners/hosts/${partner.logo}` : '';
+---
+
+<BaseLayout
+  title="Host Partners | BuWa TV"
+  description="Meet the local businesses hosting BuWa TV screens across the Midlands of South Carolina."
+>
+  <header slot="header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+      </a>
+      <nav class="header-nav">
+        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
+        <a href="/buwatv/locations/" class="nav-link">Locations</a>
+        <a href="/buwatv/hostEval/" class="nav-link">Become a Host</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
+      <a href="/buwatv/locations/" class="mobile-link">Locations</a>
+      <a href="/buwatv/hostEval/" class="mobile-link">Become a Host</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Our Host Partners</h1>
+        <p class="subtitle">
+          These local businesses host BuWa TV screens and help keep the community connected.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="/buwatv/hostEval/">
+            <i class="fas fa-clipboard-check"></i> See If You Qualify
+          </a>
+          <a class="btn btn-white" href="/buwatv/locations/">
+            <i class="fas fa-map-location-dot"></i> View Locations Map
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hosts">
+      <div class="container">
+        <h2 class="section-heading"><span class="star-accent">✦</span> Host Locations <span class="star-accent">✦</span></h2>
+        <p class="section-subtitle">A snapshot of businesses currently hosting screens.</p>
+
+        <div class="host-grid">
+          {liveHosts.map((partner) => {
+            const src = logoSrc(partner);
+            const Wrapper = partner.url ? 'a' : 'div';
+            const wrapperProps = partner.url
+              ? { href: partner.url, target: '_blank', rel: 'noopener noreferrer' }
+              : {};
+
+            return (
+              <Wrapper class="host-card" {...wrapperProps}>
+                {src && (
+                  <img
+                    src={src}
+                    alt={`${partner.name} logo`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                <div class="host-name">{partner.name}</div>
+              </Wrapper>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    {comingSoonHosts.length > 0 && (
+      <section class="coming-soon">
+        <div class="container">
+          <h2 class="section-heading"><span class="star-accent">✦</span> Coming Soon <span class="star-accent">✦</span></h2>
+          <p class="section-subtitle">New host locations being added to the network.</p>
+          <div class="host-grid">
+            {comingSoonHosts.map((partner) => {
+              const src = logoSrc(partner);
+              return (
+                <div class="host-card host-card-soon">
+                  {src && (
+                    <img
+                      src={src}
+                      alt={`${partner.name} logo`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  <div class="host-name">{partner.name}</div>
+                  <div class="host-badge">Coming soon</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo img {
+    height: 42px;
+    width: auto;
+    display: block;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    color: #a01c2b;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 18px 24px;
+    background: white;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+  .mobile-link {
+    padding: 14px 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+  }
+
+  .mobile-link:hover {
+    color: #a01c2b;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 150px 0 70px;
+    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 4.6vw, 3.2rem);
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    max-width: 760px;
+    margin: 0 auto 26px;
+    opacity: 0.9;
+    font-size: 1.12rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-red {
+    background: linear-gradient(to bottom, #b82232, #a01c2b);
+    color: white;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+  }
+
+  .btn-white {
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    color: #17246c;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+  }
+
+  /* Sections */
+  .hosts,
+  .coming-soon {
+    padding: 70px 0;
+    background: #fff;
+  }
+
+  .coming-soon {
+    background: #f8f9fa;
+  }
+
+  .section-heading {
+    font-family: 'Outfit', sans-serif;
+    color: #17246c;
+    text-align: center;
+    font-size: clamp(1.9rem, 3vw, 2.2rem);
+    margin: 0 0 10px;
+  }
+
+  .star-accent {
+    color: #a01c2b;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    margin: 0 auto 34px;
+    max-width: 760px;
+    color: #5a6472;
+    line-height: 1.7;
+  }
+
+  .host-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .host-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(23,36,108,0.10);
+    padding: 18px 16px 16px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    min-height: 170px;
+  }
+
+  .host-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.12);
+  }
+
+  .host-card img {
+    max-width: 210px;
+    max-height: 74px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(0,0,0,0.14));
+  }
+
+  .host-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #17246c;
+    text-align: center;
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+
+  .host-card-soon {
+    position: relative;
+    opacity: 0.92;
+  }
+
+  .host-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(23,36,108,0.08);
+    color: #17246c;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+  }
+
+  @media (max-width: 1000px) {
+    .host-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .header-nav {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .host-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .host-card img {
+      max-width: 190px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .host-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    mobileMenu?.classList.toggle('active');
+  });
+</script>
+
