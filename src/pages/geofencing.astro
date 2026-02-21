@@ -1,0 +1,674 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faq = [
+  {
+    question: "Will Display Ads with Geofencing help me generate leads?",
+    answer: "Display | Geofencing is suited for brands looking to increase Brand Awareness and visibility. If your goal is to generate leads, products such as Social Media Advertising or Pay-Per-Click will be a better fit.",
+  },
+  {
+    question: "Can you place a fence around any location?",
+    answer: "Location service restrictions may vary from state to state; however, federal law prevents the targeting of schools and medical facilities. Typically, businesses focus on their location and nearby areas to reach existing and potential customers. Another common practice involves fencing competitors' locations to attract similar customer demographics.",
+  },
+  {
+    question: "Can you target phone numbers?",
+    answer: "No. The industry adheres to specific privacy standards, and the only information collected is typically limited to what's known as a device ID or MAID.",
+  },
+  {
+    question: "How do I know if a display campaign is right for me?",
+    answer: "A Display | Geofencing campaign is a good option for brands that have an established online presence and an existing foundation of marketing. If you're unsure, contact us and we'll provide a free consultation to help you decide what's best for you and your business.",
+  },
+];
+
+const advantages = [
+  {
+    title: "Precision Targeting",
+    description: "Display Advertising with geofencing capabilities offers you the advantage of reaching highly specific audiences at the right time and place. With these dynamic ads, you can be certain your message resonates with the most relevant demographics.",
+    image: "/uploads/2024/04/Customer-Reach.jpg",
+    alt: "Geofencing - Precision Targeting",
+    icon: "fa-solid fa-location-crosshairs",
+  },
+  {
+    title: "Brand Awareness",
+    description: "Position your brand where it is most powerful — in front of your target audience. With engaging messages and full-motion banner ads, Display Advertising gives you the power to keep your brand Top-of-Mind.",
+    image: "/uploads/2024/04/Amplify-Local-Campaigns.jpg",
+    alt: "Geofencing - Brand Awareness",
+    icon: "fa-solid fa-bullhorn",
+  },
+  {
+    title: "Competitive Advantage",
+    description: "One of the advantages of Display Advertising with Geofencing is the ability to encircle your competitor's establishment. When someone steps into a pre-defined geofence, you can remind them of your business or service, encouraging them to view you before deciding.",
+    image: "/uploads/2024/04/Promote-Brand-Awareness.jpg",
+    alt: "Geofencing - Competitive Advantage",
+    icon: "fa-solid fa-chess-knight",
+  },
+  {
+    title: "Real-Time Insights",
+    description: "With access to real-time user behavior data, your dedicated Geofencing specialist can continuously refine your advertising strategy throughout your campaign's duration, ensuring ongoing optimization to achieve maximum ROI.",
+    image: "/uploads/2024/06/managers-working-with-financial-chart-2023-11-27-05-06-27-utc-scaled.jpg",
+    alt: "Real Time Insights",
+    icon: "fa-solid fa-chart-line",
+  },
+];
+
+const processSteps = [
+  {
+    number: "1",
+    title: "On-Boarding Meeting",
+    description: "During your onboarding call, we'll work to understand your brand, target demographic, competitors, and goals. Together we'll outline a strategy for success.",
+  },
+  {
+    number: "2",
+    title: "Creative Development",
+    description: "Our talented creative team will design visually enticing display ads tailored to your target audience. You'll have the ability to review each ad before the campaign launches.",
+  },
+  {
+    number: "3",
+    title: "Campaign Launch",
+    description: "We'll begin deploying your display ads within the defined geofenced areas, continuously monitoring performance and making data-driven adjustments to optimize targeting, creative, and budget.",
+  },
+  {
+    number: "4",
+    title: "Reporting",
+    description: "As your campaign draws to a close, we'll hop on a call for a comprehensive post-campaign analysis, evaluating results against initial objectives.",
+  },
+];
+
+const relatedServices = [
+  { label: "Social Media Advertising", href: "/social-media-ads/" },
+  { label: "Pay-Per-Click (PPC)", href: "/pay-per-click-ppc/" },
+  { label: "Google Business Profile", href: "/google-business-profile/" },
+  { label: "Indoor Digital Billboards", href: "/buwatv/" },
+];
+---
+
+<BaseLayout
+  title="Geofencing & Display Ads | BuWa Digital - Columbia, SC"
+  description="Target customers near your Columbia, SC business with geofencing and display advertising. BuWa Digital uses location data to reach your ideal audience online."
+  faq={faq}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Display Advertising | Geofencing</h1>
+      <p>Use location data to reach your audience on the websites they love most.</p>
+      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>Reach the Right People, in the Right Place</h2>
+      <p class="intro-text">
+        Leveraging Geofencing technology, Display Advertising targets precise geographic regions, delivering
+        personalized ads to users within and near those locations. Your audience will encounter these tailored
+        messages seamlessly integrated as dynamic, full-motion ads across their favorite websites and online platforms.
+      </p>
+      <img src="/uploads/2024/04/Geofencing.jpg" alt="Geofencing Display Advertising" class="feature-image" />
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="impact-section">
+    <div class="container">
+      <h2>A Boost to Your Marketing Efforts</h2>
+      <p>
+        Display Advertising is an effective marketing tool for businesses hoping to amplify brand awareness.
+        With Geofencing capabilities, you can share your message within specific communities or with niche demographics.
+        Maximize your Display Ad Campaign's impact by integrating it with
+        <a href="/google-business-profile/">Google Business Profile</a>,
+        <a href="/social-media-ads/">Social Media Advertising</a>, or
+        <a href="/pay-per-click-ppc/">Pay-Per-Click</a> campaigns.
+      </p>
+    </div>
+  </section>
+
+  <!-- Advantages Section -->
+  <section class="advantages-section">
+    <div class="container">
+      <h2>Four Advantages of Display Advertising</h2>
+      <div class="advantages-grid">
+        {advantages.map(item => (
+          <div class="advantage-card">
+            <img src={item.image} alt={item.alt} />
+            <div class="advantage-content">
+              <div class="advantage-icon">
+                <i class={item.icon}></i>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="process-section">
+    <div class="container">
+      <h2>Your Path to Powerful Branding and Awareness</h2>
+      <div class="process-steps">
+        {processSteps.map(step => (
+          <div class="process-step">
+            <span class="step-number">{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Marketing Service Approach Is Simple</h2>
+      <ul class="approach-list">
+        <li><strong>Discovery</strong> – Understanding your business and goals</li>
+        <li><strong>Strategize</strong> – Building a custom plan</li>
+        <li><strong>Execution</strong> – Launching your campaign</li>
+        <li><strong>Evaluate</strong> – Measuring results</li>
+        <li><strong>Optimize</strong> – Continuous improvement</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Common Questions About Display Advertising and Geofencing</h2>
+      {faq.map(item => (
+        <div class="faq-item">
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </div>
+      ))}
+      <p class="faq-cta">Have a specific question? <a href="/contact-us/">Contact us</a> and we'll walk you through the best next steps.</p>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="related-section">
+    <div class="container">
+      <h2>Services That Work Well With Geofencing</h2>
+      <p>Pair Display | Geofencing with channels that reinforce your brand visibility and drive conversions.</p>
+      <div class="related-links">
+        {relatedServices.map(service => (
+          <a href={service.href} class="related-link">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Put Your Brand on the Map?</h2>
+      <p>Let us build a geofencing strategy that puts your message in front of the right people at the right time.</p>
+      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+    </div>
+  </section>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 3rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  /* Buttons */
+  .btn-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(to bottom, #b82232 0%, #a01c2b 50%, #8a1825 100%);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.25),
+      0 6px 12px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-red:active {
+    transform: translateY(0);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Sections */
+  section {
+    padding: 4rem 0;
+  }
+
+  section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #1a1a2e;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  /* Intro Section */
+  .intro-section {
+    background: #f8f9fa;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .feature-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow:
+      0 4px 6px rgba(0,0,0,0.1),
+      0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  /* Impact Section */
+  .impact-section {
+    background: white;
+  }
+
+  .impact-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .impact-section a {
+    color: #a01c2b;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .impact-section a:hover {
+    text-decoration: underline;
+  }
+
+  /* Advantages Section */
+  .advantages-section {
+    background: #f8f9fa;
+  }
+
+  .advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .advantage-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.08),
+      0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .advantage-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.12),
+      0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .advantage-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .advantage-content {
+    padding: 1.5rem;
+  }
+
+  .advantage-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: #a01c2b;
+    color: white;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .advantage-content h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .advantage-content p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Process Steps */
+  .process-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    position: relative;
+  }
+
+  .process-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+
+  .process-section h2 {
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-step {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    color: #2d3748;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #a01c2b;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  .process-step h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #1a202c;
+  }
+
+  .process-step p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a5568;
+  }
+
+  /* Approach Section */
+  .approach-section {
+    background: white;
+  }
+
+  .approach-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .approach-list li {
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #a01c2b;
+    font-size: 1.1rem;
+  }
+
+  .approach-list strong {
+    color: #1a1a2e;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    background: #f8f9fa;
+  }
+
+  .faq-item {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .faq-item h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-item p {
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .faq-cta a {
+    color: #a01c2b;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .faq-cta a:hover {
+    text-decoration: underline;
+  }
+
+  /* Related Services */
+  .related-section {
+    padding: 4rem 2rem;
+    background: white;
+    text-align: center;
+  }
+
+  .related-section p {
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .related-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    border: 2px solid #17246c;
+    color: #17246c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .related-link:hover {
+    background: #17246c;
+    color: #fff;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section .btn-red {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .advantages-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+    }
+
+    .process-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</BaseLayout>

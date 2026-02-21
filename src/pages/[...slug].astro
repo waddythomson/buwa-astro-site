@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   const pages = (await getCollection('pages'))
     .filter(page => !archivePattern.test(page.id)); // ignore anything in an Archive folder
 
-  const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile']);
+  const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile', 'geofencing']);
   return pages
     .filter(page => !reservedSlugs.has(page.data.slug || page.slug)) // Avoid conflicts with static routes
     .map(page => ({
