@@ -12,7 +12,7 @@ This folder is the source of truth for partner logos used across the site.
 Partner names + logo filenames are defined in:
 
 - `src/data/buwatv/partners.json`
-  - `partners`: host partners (logos should live in `hosts/`)
+  - `hostPartners`: host partners (logos should live in `hosts/`)
   - `communityPartners`: non-host partners (logos should live in `non-hosts/`)
 
 Pages render logos dynamically from this data (no manual duplication in markup).

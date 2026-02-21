@@ -6,7 +6,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
 // Import partner data for logo carousel
 import partnersData from '../../data/buwatv/partners.json';
-const hostPartners = partnersData.partners ?? [];
+const hostPartners = partnersData.hostPartners ?? partnersData.partners ?? [];
 const communityPartners = partnersData.communityPartners ?? [];
 const hostLogoSet = new Set(hostPartners.map((partner) => partner?.logo).filter(Boolean));
 

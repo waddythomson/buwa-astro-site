@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 import partnersData from '../../data/buwatv/partners.json';
 
-const hostPartners = partnersData.partners ?? [];
+const hostPartners = partnersData.hostPartners ?? partnersData.partners ?? [];
 
 const normalizePartnerName = (value = '') =>
   value

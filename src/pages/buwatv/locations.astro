@@ -2,7 +2,7 @@
 export const prerender = false;
 import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 import partnersData from '../../data/buwatv/partners.json';
-const partners = partnersData.partners;
+const partners = partnersData.hostPartners ?? partnersData.partners ?? [];
 const mapId = '1XGVatlmUL7p9iJ9cFjk7LxkEtQXPdrI';
 const mapKmlUrl = `https://www.google.com/maps/d/kml?mid=${mapId}&forcekml=1`;
 const partnerBadgeHtml = `<a href="https://buwadigital.com/buwatv/" target="_blank" rel="noopener noreferrer">

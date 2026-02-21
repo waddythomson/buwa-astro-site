@@ -5,7 +5,7 @@ import partnersData from '../data/buwatv/partners.json';
 const title = "Locations | BuWa Digital";
 const description = "Find BuWa TV screens at popular locations throughout the community.";
 
-const hostPartners = partnersData.partners ?? [];
+const hostPartners = partnersData.hostPartners ?? partnersData.partners ?? [];
 const communityPartners = partnersData.communityPartners ?? [];
 
 const normalizePartnerName = (value = '') =>
