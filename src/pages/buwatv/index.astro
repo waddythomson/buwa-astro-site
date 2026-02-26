@@ -111,6 +111,7 @@ const bumpers = bumpersData;
           class={`hero-video ${index === 0 ? 'active' : ''}`}
           muted 
           playsinline
+          preload="auto"
           loop={bumpers.videos.length === 1}
           data-index={index}
         >
@@ -2249,7 +2250,7 @@ const bumpers = bumpersData;
   }
 </style>
 
-<script define:vars={{ displayDuration: bumpers.displayDuration, fadeDuration: bumpers.fadeDuration, webhookUrl: '/api/webhook/' }}>
+<script define:vars={{ displayDuration: bumpers.displayDuration, fadeDuration: bumpers.fadeDuration, webhookUrl: '/api/webhook/', isDev: import.meta.env.DEV }}>
   // Hero Video - plays ONE random video, then reveals hero content
   // Timing controlled via src/data/bumpers.json
   (function() {
@@ -2368,7 +2369,7 @@ const bumpers = bumpersData;
     
     // Skip splash if already seen this session or no videos
     const splashKey = 'buwatv-splash-seen';
-    const splashSeen = sessionStorage.getItem(splashKey);
+    const splashSeen = isDev ? null : sessionStorage.getItem(splashKey);
 
     if (videos.length === 0 || splashSeen) {
       if (videoBg) videoBg.style.display = 'none';
@@ -2410,29 +2411,49 @@ const bumpers = bumpersData;
       }, 200);
     }
     
-    // Main timing: start crossfade based on bumpers.json displayDuration
-    const crossfadeTimer = setTimeout(() => {
-      startCrossfade();
-    }, crossfadeDelayMs);
-    
-    // Safety timeout - ensure content shows after displayDuration + 8 seconds no matter what
-    const safetyTimeout = setTimeout(() => {
-      console.log('Safety timeout: revealing content');
-      startCrossfade();
-    }, crossfadeDelayMs + 8000);
+    let crossfadeTimer = null;
+    let safetyTimeout = null;
+    let splashPlaybackStarted = false;
+
+    const scheduleCrossfadeTimers = () => {
+      if (crossfadeTimer || safetyTimeout) return;
+      // Start crossfade timing once playback is actually ready.
+      crossfadeTimer = setTimeout(() => {
+        startCrossfade();
+      }, crossfadeDelayMs);
+
+      // Safety timeout - ensure content shows after displayDuration + 8 seconds no matter what
+      safetyTimeout = setTimeout(() => {
+        console.log('Safety timeout: revealing content');
+        startCrossfade();
+      }, crossfadeDelayMs + 8000);
+    };
     
     // Mark splash as seen for this session
-    sessionStorage.setItem(splashKey, '1');
+    if (!isDev) sessionStorage.setItem(splashKey, '1');
 
-    // Start the chosen video
-    chosenVideo.play().catch(e => {
-      // Autoplay blocked - show content immediately
-      console.log('Autoplay prevented:', e);
-      clearTimeout(crossfadeTimer);
-      clearTimeout(safetyTimeout);
-      if (videoBg) videoBg.style.opacity = '0';
-      revealHeroContent();
-    });
+    const startSplashPlayback = () => {
+      if (splashPlaybackStarted) return;
+      splashPlaybackStarted = true;
+      scheduleCrossfadeTimers();
+      chosenVideo.play().catch((e) => {
+        // Autoplay blocked - show content immediately
+        console.log('Autoplay prevented:', e);
+        clearTimeout(crossfadeTimer);
+        clearTimeout(safetyTimeout);
+        if (videoBg) videoBg.style.opacity = '0';
+        revealHeroContent();
+      });
+    };
+
+    // Start playback as soon as enough data is available, with a short fallback.
+    if (chosenVideo.readyState >= 2) {
+      startSplashPlayback();
+    } else {
+      chosenVideo.addEventListener('loadeddata', startSplashPlayback, { once: true });
+      chosenVideo.addEventListener('canplay', startSplashPlayback, { once: true });
+      setTimeout(startSplashPlayback, 600);
+    }
     
     // If video ends before 10s (shorter video), trigger crossfade
     chosenVideo.addEventListener('ended', () => {
