@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import partnersData from '../data/buwatv/partners.json';
 
 const title = "Our Partners | BuWa Digital";
-const description = "Meet some of the local brands we’re proud to work with across the community.";
+const description = "Meet some of the local brands we're proud to work with across the community.";
 
 const hostPartners = partnersData.hostPartners ?? partnersData.partners ?? [];
 const communityPartners = partnersData.communityPartners ?? [];
@@ -29,11 +29,11 @@ const uniquePartners = (items = []) => {
 const partners = uniquePartners([
   ...hostPartners.map((partner) => ({
     name: partner.name,
-    src: partner.logo ? `/buwatv/uploads/partners/hosts/${partner.logo}` : ''
+    src: partner.logo ? `/uploads/partners/${partner.logo}` : ''
   })),
   ...communityPartners.map((partner) => ({
     name: partner.name,
-    src: partner.logo ? `/buwatv/uploads/partners/non-hosts/${partner.logo}` : ''
+    src: partner.logo ? `/uploads/partners/${partner.logo}` : ''
   }))
 ]).filter((partner) => partner.name && partner.src);
 
@@ -44,7 +44,7 @@ const partnerCount = partners.length;
   <section class="hero">
     <div class="container">
       <h1>Our Partners</h1>
-      <p class="subtitle">Local brands we’re proud to work with across the community.</p>
+      <p class="subtitle">Local brands we're proud to work with across the community.</p>
       <a href="/contact-us/" class="btn btn-cta">
         <i class="fa-solid fa-paper-plane"></i> Get In Touch
       </a>
