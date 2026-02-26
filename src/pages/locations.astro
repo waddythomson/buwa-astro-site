@@ -29,11 +29,11 @@ const uniquePartners = (items = []) => {
 const partners = uniquePartners([
   ...hostPartners.map((partner) => ({
     name: partner.name,
-    src: partner.logo ? `/buwatv/uploads/partners/hosts/${partner.logo}` : ''
+    src: partner.logo ? `/uploads/partners/${partner.logo}` : ''
   })),
   ...communityPartners.map((partner) => ({
     name: partner.name,
-    src: partner.logo ? `/buwatv/uploads/partners/non-hosts/${partner.logo}` : ''
+    src: partner.logo ? `/uploads/partners/${partner.logo}` : ''
   }))
 ]).filter((partner) => partner.name && partner.src);
 

@@ -8,14 +8,11 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 import partnersData from '../../data/buwatv/partners.json';
 const hostPartners = partnersData.hostPartners ?? partnersData.partners ?? [];
 const communityPartners = partnersData.communityPartners ?? [];
-const hostLogoSet = new Set(hostPartners.map((partner) => partner?.logo).filter(Boolean));
 
 const partnerLogoSrc = (partner) => {
   const logo = partner?.logo;
   if (!logo) return '';
-  return hostLogoSet.has(logo)
-    ? `/buwatv/uploads/partners/hosts/${logo}`
-    : `/buwatv/uploads/partners/non-hosts/${logo}`;
+  return `/uploads/partners/${logo}`;
 };
 
 const normalizePartnerName = (value = '') =>
