@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * validate-partners.js
- * Validates src/data/partners.json against the BuWa Digital partner naming convention.
+ * Validates src/data/buwatv/partners.json against the BuWa Digital partner naming convention.
  *
  * Checks:
  *   1. Every logo referenced in JSON exists in public/uploads/partners/
@@ -19,7 +19,7 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 
-const JSON_PATH = resolve(ROOT, 'src/data/partners.json');
+const JSON_PATH = resolve(ROOT, 'src/data/buwatv/partners.json');
 const LOGOS_DIR = resolve(ROOT, 'public/uploads/partners');
 
 const KEBAB_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*\.(png|jpg|jpeg|webp|svg|gif)$/;
@@ -114,7 +114,7 @@ function toKebab(filename) {
 console.log('\n══════════════════════════════════════════');
 console.log('  BuWa Digital — Partner Data Validator');
 console.log('══════════════════════════════════════════\n');
-console.log(`  JSON:      src/data/partners.json`);
+console.log(`  JSON:      src/data/buwatv/partners.json`);
 console.log(`  Logos dir: public/uploads/partners/`);
 console.log(`  Partners:  ${hostPartners.length} host + ${communityPartners.length} community = ${allPartners.length} total\n`);
 
