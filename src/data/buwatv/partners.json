@@ -1,33 +1,13 @@
 {
   "hostPartners": [
     {
-      "name": "Rave Installation",
-      "logo": "RaveLogo.png",
-      "url": "https://raveinstallation.com/"
-    },
-    {
-      "name": "REDBIRD Paper & Chemical",
-      "logo": "RedbirdLogo.png",
-      "url": "http://redbirdpaperchem.com"
-    },
-    {
-      "name": "CablesEtc",
-      "logo": "CablesEtcLogo.jpg",
-      "url": null
-    },
-    {
-      "name": "The Palmetto Shop",
-      "logo": "PalmettoShopLogo.png",
-      "url": "https://thepalmettoshop.com"
-    },
-    {
       "name": "Roxanne's Market",
       "logo": "roxannes-market.png",
       "url": "https://www.roxannesmarket.com/"
     },
     {
       "name": "Devine Nail Spa",
-      "logo": "devine-nails.png",
+      "logo": "devine-nail-spa.png",
       "url": "https://devinenailspasc.com/"
     },
     {
@@ -66,7 +46,7 @@
     },
     {
       "name": "Bierkeller Brewing",
-      "logo": "bierkeller.jpg",
+      "logo": "bierkeller-brewing.jpg",
       "url": "https://www.bierkellercolumbia.com/"
     },
     {
@@ -81,8 +61,12 @@
     },
     {
       "name": "Stacked",
-      "logo": "StackedLogo1.png",
-      "url": "https://welovestacked.com"
+      "logo": "stacked.png",
+      "url": "https://welovestacked.com",
+      "mapNames": [
+        "Sully's Steamers",
+        "Stacked"
+      ]
     },
     {
       "name": "Gadgetboy",
@@ -106,7 +90,7 @@
     },
     {
       "name": "Bill's Music Shop",
-      "logo": "Bill's Logo.png",
+      "logo": "bills-music-shop.png",
       "url": null,
       "status": "live",
       "mapNames": [
@@ -117,82 +101,77 @@
     },
     {
       "name": "The Original Gym",
-      "logo": "OriginalGymlogo.jpg",
+      "logo": "the-original-gym.jpg",
       "url": null
     },
     {
       "name": "Habitat for Humanity ReStore",
-      "logo": "CentralSouthCarolinaHFH_Black.jpg",
+      "logo": "habitat-for-humanity.jpg",
       "url": null
     },
     {
       "name": "Carpet One Floor & Home",
-      "logo": "Carpet_One_Logo256.jpg",
+      "logo": "carpet-one.jpg",
       "url": null
     },
     {
       "name": "Pawmetto Lifeline",
-      "logo": "PawmettoLogo.png",
+      "logo": "pawmetto-lifeline.png",
       "url": null
     },
     {
       "name": "Buddy's Liquor & Wine",
-      "logo": "BuddysLogo.jpeg",
+      "logo": "buddys-liquor-wine.jpeg",
       "url": null
     },
     {
       "name": "BJ'S XCLUSIVE KUTZ",
-      "logo": "BJ'sXclusiveKutzLogo.png",
+      "logo": "bjs-xclusive-kutz.png",
       "url": null
     },
     {
       "name": "Play It Again Sports",
-      "logo": "PlayItAgainSportsLogo.jpeg",
+      "logo": "play-it-again-sports.png",
       "url": null
     },
     {
       "name": "Kar Kare of West Columbia",
-      "logo": "KarKareLogo.png",
+      "logo": "kar-kare.png",
       "url": null
     },
     {
       "name": "Salvation Army",
-      "logo": "SalvationLogo.png",
+      "logo": "salvation-army.png",
       "url": null
     },
     {
       "name": "Level Up Healthcare Academy",
-      "logo": "LevelUpLogo.jpeg",
+      "logo": "level-up-healthcare.jpeg",
       "url": null
     },
     {
       "name": "Vitali Family Karate",
-      "logo": "VitaliLogo.jpeg",
+      "logo": "vitali-family-karate.jpeg",
       "url": null
     },
     {
       "name": "Chile Caliente",
-      "logo": "ChileCalLogo.png",
+      "logo": "chile-caliente.png",
       "url": "https://chilecalientewestcolumbia.com"
     },
     {
-      "name": "Roxanne's USC",
-      "logo": "roxannes-market.png",
-      "url": "https://www.roxannesmarket.com/"
-    },
-    {
       "name": "Chapin Pharmacy",
-      "logo": "ChapinPharmLogo.png",
+      "logo": "chapin-pharmacy.png",
       "url": "https://www.chapinpharmacy.com"
     },
     {
       "name": "Greater Cayce West Columbia Chamber of Commerce",
-      "logo": "cwcLogo.webp",
+      "logo": "cwc-chamber.webp",
       "url": "https://www.cwcchamber.com"
     },
     {
       "name": "On The Line Training",
-      "logo": "OTL-logo.jpg",
+      "logo": "on-the-line-training.jpg",
       "url": "https://otltraining365.com",
       "mapNames": [
         "On The Line Fitness",
@@ -201,12 +180,12 @@
     },
     {
       "name": "3 Fold Fitness",
-      "logo": "3FFLogo.png",
+      "logo": "3-fold-fitness.png",
       "url": "https://www.3foldfitness.com"
     },
     {
       "name": "ColaKicks - Five Points",
-      "logo": "ColaKicksLogo.png",
+      "logo": "cola-kicks.png",
       "url": "https://www.colakicks.com"
     },
     {
@@ -216,12 +195,12 @@
     },
     {
       "name": "Veritas Urgent Care",
-      "logo": "veritas.png",
+      "logo": "veritas-urgent-care.png",
       "url": null
     },
     {
       "name": "Genova Family Karate",
-      "logo": "genova-karate.png",
+      "logo": "genova-family-karate.png",
       "url": "https://genovakarate.com/"
     },
     {
@@ -236,54 +215,84 @@
     },
     {
       "name": "Century 21",
-      "logo": "Century-21.png",
+      "logo": "century-21.png",
       "url": "https://c21803realty.com/"
     },
     {
       "name": "Touchdowns",
       "logo": "touchdowns.jpg",
       "url": "https://touchdowns5points.com/"
+    },
+    {
+      "name": "Robinson Neal Boxing",
+      "logo": "robinson-neal-boxing.png",
+      "url": null
     }
   ],
   "communityPartners": [
     {
       "name": "Beckett Financial",
-      "logo": "Beckett-Financial-Logo.png",
+      "logo": "beckett-financial.png",
       "url": null
     },
     {
+      "name": "Rave Installation",
+      "logo": "rave-installation.png",
+      "url": "https://raveinstallation.com/"
+    },
+    {
       "name": "Sharpe Leventis LLC",
-      "logo": "Sharpe-Leventis-LLC.png",
+      "logo": "sharpe-leventis.png",
       "url": null
     },
     {
       "name": "TLC",
-      "logo": "TLC-Wedsite-Logo-2025-1-2.webp",
+      "logo": "tlc.webp",
       "url": null
     },
     {
       "name": "Milestone Wealth Advisors",
-      "logo": "MilestoneLogo.jpg",
+      "logo": "milestone-wealth-advisors.jpg",
       "url": null
     },
     {
       "name": "Lifetime Insurance Agency",
-      "logo": "LifeTime-scnc-logo-2024.png",
+      "logo": "lifetime-insurance.png",
       "url": "https://ltins.com/"
     },
     {
       "name": "Covenant Fence",
-      "logo": "Covenant-Fence-Logo.png",
+      "logo": "covenant-fence.png",
       "url": null
     },
     {
       "name": "Polar Express Heating & Air",
-      "logo": "Polar-Express-Heating-Air.webp",
+      "logo": "polar-express-heating-air.webp",
       "url": null
     },
     {
       "name": "Classic Roofing",
-      "logo": "Classic-Roofing.png",
+      "logo": "classic-roofing.png",
+      "url": null
+    },
+    {
+      "name": "REDBIRD Paper & Chemical",
+      "logo": "redbird-paper-chemical.png",
+      "url": "http://redbirdpaperchem.com"
+    },
+    {
+      "name": "CablesEtc",
+      "logo": "cables-etc.jpg",
+      "url": null
+    },
+    {
+      "name": "The Palmetto Shop",
+      "logo": "the-palmetto-shop.png",
+      "url": "https://thepalmettoshop.com"
+    },
+    {
+      "name": "Pop Up Par-Tee",
+      "logo": "pop-up-par-tee.png",
       "url": null
     }
   ]

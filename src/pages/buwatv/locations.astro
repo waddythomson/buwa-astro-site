@@ -105,27 +105,32 @@ const findPartnerByName = (name = '') => {
 };
 
 const toDisplayList = (names = []) => {
+  const counts = new Map();
+  const resolved = names.map((name) => {
+    const match = findPartnerByName(name);
+    const key = match ? normalizeName(match.name) : normalizeName(name);
+    counts.set(key, (counts.get(key) || 0) + 1);
+    if (!match) return { name, key };
+    return {
+      name: match.name,
+      url: match.url,
+      city: match.city,
+      logo: match.logo,
+      key
+    };
+  });
+
   const seen = new Set();
-  return names
-    .map((name) => {
-      const match = findPartnerByName(name);
-      if (!match) {
-        return { name, key: normalizeName(name) };
-      }
-      return {
-        name: match.name,
-        url: match.url,
-        city: match.city,
-        logo: match.logo,
-        key: normalizeName(match.name)
-      };
-    })
+  return resolved
     .filter((item) => {
       if (!item.key || seen.has(item.key)) return false;
       seen.add(item.key);
       return true;
     })
-    .map(({ key, ...item }) => item);
+    .map(({ key, ...item }) => ({
+      ...item,
+      locationCount: counts.get(key) || 1
+    }));
 };
 
 let mapLocations = { live: [], comingSoon: [] };
@@ -281,7 +286,9 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
                     />
                   )}
                   <span class="location-name">{partner.name}</span>
-                  {partner.city && <span class="location-city">{partner.city}</span>}
+                  {partner.locationCount > 1 && (
+                    <span class="location-count">{partner.locationCount} locations</span>
+                  )}
                 </a>
               ) : (
                 <div class="location-text">
@@ -295,7 +302,9 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
                     />
                   )}
                   <span class="location-name">{partner.name}</span>
-                  {partner.city && <span class="location-city">{partner.city}</span>}
+                  {partner.locationCount > 1 && (
+                    <span class="location-count">{partner.locationCount} locations</span>
+                  )}
                 </div>
               )}
             </li>
@@ -314,7 +323,9 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
                   />
                 )}
                 <span class="location-name">{partner.name}</span>
-                {partner.city && <span class="location-city">{partner.city}</span>}
+                {partner.locationCount > 1 && (
+                  <span class="location-count">{partner.locationCount} locations</span>
+                )}
               </div>
             </li>
           ))}
@@ -781,8 +792,10 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     padding: 6px 0;
     margin: 0;
     display: flex;
-    gap: 18px;
+    --locations-gap: 18px;
+    gap: var(--locations-gap);
     width: max-content;
+    --loop-width: 50%;
     animation: locations-scroll var(--scroll-duration, 50s) linear infinite;
     will-change: transform;
     transform: translateZ(0);
@@ -842,6 +855,13 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     color: #666;
   }
 
+  .location-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #a01c2b;
+    opacity: 0.9;
+  }
+
   .location-link:hover .location-name {
     color: #a01c2b;
   }
@@ -851,7 +871,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(calc(-1 * var(--loop-width)));
     }
   }
 
@@ -1324,6 +1344,36 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
       return false;
     }
   };
+
+  const track = document.querySelector('.locations-track');
+  if (track) {
+    const updateLoopWidth = () => {
+      const items = track.querySelectorAll('.location-item:not(.is-duplicate)');
+      if (items.length === 0) return;
+      const gap = parseFloat(getComputedStyle(track).gap) || 18;
+      const width = Array.from(items)
+        .reduce((sum, item) => sum + item.getBoundingClientRect().width, 0)
+        + gap * items.length;
+      if (width > 0) {
+        track.style.setProperty('--loop-width', `${width}px`);
+      }
+    };
+
+    const images = track.querySelectorAll('img');
+    let loadedCount = 0;
+    const checkLoaded = () => {
+      loadedCount++;
+      if (loadedCount >= images.length) updateLoopWidth();
+    };
+    images.forEach((img) => {
+      if (img.complete) checkLoaded();
+      else {
+        img.addEventListener('load', checkLoaded);
+        img.addEventListener('error', checkLoaded);
+      }
+    });
+    setTimeout(updateLoopWidth, 1500);
+  }
 
   if (badgeCopyButton && badgeCode) {
     const defaultLabel = badgeCopyButton.textContent?.trim() || 'Copy';

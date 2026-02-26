@@ -72,7 +72,7 @@ const bumpers = bumpersData;
           </button>
           <div class="nav-dropdown-menu">
             <a href="#host-partner" class="scroll-link">Become a Host Partner</a>
-            <a href="/buwatv/hostpartners/">Our Host Partners</a>
+            <a href="/buwatv/locations/#host-partner-locations">Our Host Partners</a>
             <a href="/buwatv/locations/">Locations</a>
           </div>
         </div>
@@ -97,7 +97,7 @@ const bumpers = bumpersData;
       <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
       <span class="mobile-link mobile-link-static">Host Partners</span>
       <a href="#host-partner" class="mobile-link mobile-sub-link scroll-link">Become a Host Partner</a>
-      <a href="/buwatv/hostpartners/" class="mobile-link mobile-sub-link">Our Host Partners</a>
+      <a href="/buwatv/locations/#host-partner-locations" class="mobile-link mobile-sub-link">Our Host Partners</a>
       <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
       <a href="#contact" class="btn btn-red mobile-cta open-contact-popup">
         <i class="fas fa-paper-plane"></i> Get In Touch
@@ -106,7 +106,7 @@ const bumpers = bumpersData;
   </header>
 
   <!-- Hero Section -->
-  <section class="hero" id="see-it-in-action">
+  <section class="hero section-accent-bar-bottom" id="see-it-in-action">
     <!-- Video Background Container -->
     <div class="hero-video-bg">
       {bumpers.videos.map((video, index) => (
@@ -896,6 +896,17 @@ const bumpers = bumpersData;
     padding: 120px 20px 60px;
     overflow: hidden;
     background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%); /* Static navy gradient - shows after videos end */
+  }
+  .hero.section-accent-bar-bottom::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #a01c2b, #b82232);
+    z-index: 6;
+    pointer-events: none;
   }
 
   /* Video Background */
@@ -2326,7 +2337,7 @@ const bumpers = bumpersData;
         heroLogo.classList.add('moon-shrink');
       }
       heroText?.classList.add('spotlight-on');
-    }, 15000);
+    }, 10000);
     
     // Staggered star reveal - stars appear a few at a time
     function revealStars() {
@@ -2358,8 +2369,12 @@ const bumpers = bumpersData;
       setTimeout(revealStars, 3000);
     }
     
-    // If no videos, show content immediately
-    if (videos.length === 0) {
+    // Skip splash if already seen this session or no videos
+    const splashKey = 'buwatv-splash-seen';
+    const splashSeen = sessionStorage.getItem(splashKey);
+
+    if (videos.length === 0 || splashSeen) {
+      if (videoBg) videoBg.style.display = 'none';
       revealHeroContent();
       return;
     }
@@ -2409,6 +2424,9 @@ const bumpers = bumpersData;
       startCrossfade();
     }, crossfadeDelayMs + 8000);
     
+    // Mark splash as seen for this session
+    sessionStorage.setItem(splashKey, '1');
+
     // Start the chosen video
     chosenVideo.play().catch(e => {
       // Autoplay blocked - show content immediately
