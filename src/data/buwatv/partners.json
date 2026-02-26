@@ -219,6 +219,15 @@
       "url": "https://c21803realty.com/"
     },
     {
+      "name": "Number 1 Liquor and Wine",
+      "logo": "number-one.jpg",
+      "url": null,
+      "mapNames": [
+        "Number 1 Liquor and Wine",
+        "Number 1 Liquor and wine"
+      ]
+    },
+    {
       "name": "Touchdowns",
       "logo": "touchdowns.jpg",
       "url": "https://touchdowns5points.com/"
