@@ -2397,18 +2397,28 @@ const bumpers = bumpersData;
     function startCrossfade() {
       if (crossfadeStarted) return; // Only trigger once
       crossfadeStarted = true;
-      
-      // Start content fading IN slightly before video fades out (crossfade effect)
-      revealHeroContent();
-      
-      // Video starts fading out 200ms after content starts appearing
+
+      const fadeMs = Math.max(Math.round((Number(fadeDuration) || 0.75) * 1000), 450);
+      const contentDelayMs = Math.round(fadeMs * 0.35);
+
+      if (heroOverlay) {
+        heroOverlay.style.transition = `opacity ${Math.max(Math.round(fadeMs * 0.9), 350)}ms ease`;
+        heroOverlay.classList.add('visible');
+      }
+
+      // Fade video layer out first, then bring in text/content for a softer handoff.
       setTimeout(() => {
         if (videoBg) {
-          videoBg.style.transition = 'opacity 1.2s ease-out';
+          videoBg.style.transition = `opacity ${fadeMs}ms ease-out`;
           videoBg.style.opacity = '0';
         }
+        chosenVideo.style.transition = `opacity ${fadeMs}ms ease-out`;
         chosenVideo.classList.remove('active');
-      }, 200);
+      }, 80);
+
+      setTimeout(() => {
+        revealHeroContent();
+      }, contentDelayMs);
     }
     
     let crossfadeTimer = null;
