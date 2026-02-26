@@ -1128,7 +1128,7 @@ const bumpers = bumpersData;
   }
 
   .shooting-star.animate {
-    animation: shooting-star 1.2s ease-out forwards;
+    animation: shooting-star 1.4s ease-out forwards;
   }
 
   @keyframes shooting-star {
@@ -2268,34 +2268,64 @@ const bumpers = bumpersData;
     // Config from bumpers.json
     const crossfadeDelayMs = displayDuration * 1000;
     
-    // Generate random stars
-    function generateStars() {
+    const initialStarCount = 50;
+    const targetStarCount = initialStarCount * 3;
+    const starGrowthBatchSize = 8;
+    const starGrowthIntervalMs = 3000;
+    let starsAreVisible = false;
+    let starGrowthIntervalId = null;
+
+    function createStar() {
+      const star = document.createElement('div');
+      star.className = 'star';
+
+      // Random position
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+
+      // Random size (1-3px)
+      const size = Math.random() * 2 + 1;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+
+      // Random twinkle timing (slower, more subtle)
+      star.style.setProperty('--twinkle-duration', (Math.random() * 4 + 4) + 's');
+      star.style.setProperty('--twinkle-delay', (Math.random() * 5) + 's');
+      return star;
+    }
+
+    // Generate initial stars
+    function generateStars(count = initialStarCount) {
       if (!heroStars) return;
-      const starCount = 50; // Number of stars
-      
-      for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        
-        // Random position
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        
-        // Random size (1-3px)
-        const size = Math.random() * 2 + 1;
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-        
-        // Random twinkle timing (slower, more subtle)
-        star.style.setProperty('--twinkle-duration', (Math.random() * 4 + 4) + 's');
-        star.style.setProperty('--twinkle-delay', (Math.random() * 5) + 's');
-        
-        heroStars.appendChild(star);
+      for (let i = 0; i < count; i++) {
+        heroStars.appendChild(createStar());
       }
     }
-    
-    // Generate stars on load
     generateStars();
+
+    // Gradually increase star count up to 3x over time
+    function startStarGrowth() {
+      if (!heroStars || starGrowthIntervalId) return;
+      starGrowthIntervalId = setInterval(() => {
+        const currentCount = heroStars.querySelectorAll('.star').length;
+        if (currentCount >= targetStarCount) {
+          clearInterval(starGrowthIntervalId);
+          starGrowthIntervalId = null;
+          return;
+        }
+
+        const starsToAdd = Math.min(starGrowthBatchSize, targetStarCount - currentCount);
+        for (let i = 0; i < starsToAdd; i++) {
+          const star = createStar();
+          heroStars.appendChild(star);
+          if (starsAreVisible) {
+            setTimeout(() => {
+              star.classList.add('visible');
+            }, i * 180);
+          }
+        }
+      }, starGrowthIntervalMs);
+    }
     
     // Shooting star: first at 20s, then every 10s, random direction (always downward, never same twice in a row)
     const directions = [
@@ -2325,10 +2355,10 @@ const bumpers = bumpersData;
       shootingStar.classList.remove('animate');
       void shootingStar.offsetWidth;
       shootingStar.classList.add('animate');
-      setTimeout(() => shootingStar.classList.remove('animate'), 1400);
+      setTimeout(() => shootingStar.classList.remove('animate'), 1600);
     }
     setTimeout(triggerShootingStar, 20000);
-    setTimeout(() => setInterval(triggerShootingStar, 10000), 20000);
+    setTimeout(() => setInterval(triggerShootingStar, 8000), 20000);
     setTimeout(() => {
       heroMoon?.classList.add('visible');
       if (heroLogo) {
@@ -2354,6 +2384,7 @@ const bumpers = bumpersData;
           star.classList.add('visible');
         }, index * delayPerStar);
       });
+      starsAreVisible = true;
     }
     
     // Helper to reveal all hero elements
@@ -2365,6 +2396,8 @@ const bumpers = bumpersData;
       
       // Stars appear 3 seconds after content, then stagger in
       setTimeout(revealStars, 3000);
+      // Keep slowly adding stars until we reach 3x density
+      setTimeout(startStarGrowth, 3500);
     }
     
     // Skip splash if already seen this session or no videos
