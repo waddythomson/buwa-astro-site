@@ -123,15 +123,18 @@ const bumpers = bumpersData;
     
     <!-- Stars layer - outside video-bg so it's visible when video-bg fades out -->
     <div class="hero-stars" id="hero-stars"></div>
-    <div class="shooting-star" id="shooting-star" aria-hidden="true"></div>
+    <div class="constellation-layer" id="constellation-layer" aria-hidden="true"></div>
+    <div class="shooting-star" id="shooting-star-1" aria-hidden="true"></div>
+    <div class="shooting-star" id="shooting-star-2" aria-hidden="true"></div>
+    <div class="shooting-star" id="shooting-star-3" aria-hidden="true"></div>
     
     <div class="hero-content" id="hero-content">
-      <div class="hero-mark">
+      <div class="hero-mark" id="hero-mark">
         <div class="hero-moon-surface" id="hero-moon" aria-hidden="true"></div>
         <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="hero-logo" id="hero-logo" />
       </div>
       <div class="hero-text" id="hero-text">
-        <h1 class="hero-headline">Why Not You?</h1>
+        <h1 class="hero-headline" id="hero-headline">Why Not You?</h1>
         <p class="hero-subtitle">Whether a local legend or fresh startup, your business deserves attention. We'll help you command it by providing a constant reminder that keeps you top-of-mind and delivers real results.
           <span class="hero-subtitle-tagline">
             <span>BE SEEN.</span>
@@ -957,6 +960,22 @@ const bumpers = bumpersData;
     pointer-events: none;
     overflow: hidden;
   }
+  .constellation-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .constellation-line {
+    position: absolute;
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.72), rgba(255,255,255,0));
+    opacity: 0;
+    transform-origin: left center;
+    animation: constellationTrace 2.2s ease-in-out forwards;
+    box-shadow: 0 0 8px rgba(255,255,255,0.34);
+  }
   .hero-mark {
     position: relative;
     width: 280px;
@@ -967,6 +986,32 @@ const bumpers = bumpersData;
     justify-content: center;
     z-index: 4;
     pointer-events: none;
+    --beam-origin-x: 51%;
+    --beam-origin-y: calc(56% + 4px);
+  }
+  .hero-mark::before,
+  .hero-mark::after {
+    content: '';
+    position: absolute;
+    left: var(--beam-origin-x);
+    top: var(--beam-origin-y);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.55);
+    box-shadow: 0 0 10px rgba(255,255,255,0.35);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
+    transform-origin: center;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-mark.broadcast-ping::before {
+    animation: broadcastPing 1.9s ease-out 2;
+  }
+  .hero-mark.broadcast-ping::after {
+    animation: broadcastPing 1.9s ease-out 2;
+    animation-delay: 0.55s;
   }
   .hero-moon-surface {
     position: absolute;
@@ -1043,6 +1088,10 @@ const bumpers = bumpersData;
   .hero-headline {
     position: relative;
     z-index: 2;
+    transform-origin: center;
+  }
+  .hero-text.headline-focus .hero-headline {
+    animation: headlineFocusPulse 2.2s ease-in-out 1;
   }
   .hero-headline::after {
     content: '';
@@ -1062,6 +1111,9 @@ const bumpers = bumpersData;
   .hero-text.spotlight-on .hero-headline::after {
     opacity: 0.55;
   }
+  .hero-text.headline-focus .hero-headline::after {
+    animation: headlinePoolPulse 2.2s ease-in-out 1;
+  }
 
   :global(.star) {
     position: absolute;
@@ -1072,13 +1124,23 @@ const bumpers = bumpersData;
   }
 
   :global(.star.visible) {
-    animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
-    animation-delay: var(--twinkle-delay, 0s);
+    animation:
+      twinkle var(--twinkle-duration, 3s) ease-in-out infinite,
+      star-drift var(--drift-duration, 24s) ease-in-out infinite alternate;
+    animation-delay: var(--twinkle-delay, 0s), var(--drift-delay, 0s);
   }
 
   @keyframes twinkle {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
+  }
+  @keyframes star-drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)); }
+  }
+  @keyframes constellationTrace {
+    0%, 100% { opacity: 0; }
+    28%, 72% { opacity: 0.62; }
   }
   @keyframes beamSweep {
     0% { transform: rotate(-28.125deg); }
@@ -1089,6 +1151,41 @@ const bumpers = bumpersData;
     0% { transform: rotate(28.125deg); }
     50% { transform: rotate(-28.125deg); }
     100% { transform: rotate(28.125deg); }
+  }
+  @keyframes headlineFocusPulse {
+    0%, 100% {
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      transform: scale(1);
+      filter: brightness(1);
+    }
+    50% {
+      text-shadow: 0 0 18px rgba(255,255,255,0.75), 0 2px 26px rgba(0,0,0,0.55);
+      transform: scale(1.06);
+      filter: brightness(1.14);
+    }
+  }
+  @keyframes headlinePoolPulse {
+    0%, 100% {
+      opacity: 0.55;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.92;
+      transform: translate(-50%, -50%) scale(1.22);
+    }
+  }
+  @keyframes broadcastPing {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.25);
+    }
+    12% {
+      opacity: 0.65;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(4.6);
+    }
   }
 
   /* Shooting star - tiny star with short tail, random direction after ~20s */
@@ -2076,6 +2173,8 @@ const bumpers = bumpersData;
       width: 200px;
       height: 200px;
       margin-bottom: 4px;
+      --beam-origin-x: 51%;
+      --beam-origin-y: calc(60% + 4px);
     }
     .hero-moon-surface {
       top: calc(60% + 4px);
@@ -2260,10 +2359,13 @@ const bumpers = bumpersData;
     const heroText = document.getElementById('hero-text');
     const heroOverlay = document.querySelector('.hero-video-overlay');
     const heroStars = document.getElementById('hero-stars');
+    const constellationLayer = document.getElementById('constellation-layer');
     const heroMoon = document.getElementById('hero-moon');
+    const heroMark = document.getElementById('hero-mark');
     const heroLogo = document.getElementById('hero-logo');
+    const heroHeadline = document.getElementById('hero-headline');
     const scrollIndicator = document.getElementById('scroll-indicator');
-    const shootingStar = document.getElementById('shooting-star');
+    const shootingStars = Array.from(document.querySelectorAll('.shooting-star'));
     
     // Config from bumpers.json
     const crossfadeDelayMs = displayDuration * 1000;
@@ -2274,6 +2376,7 @@ const bumpers = bumpersData;
     const starGrowthIntervalMs = 3000;
     let starsAreVisible = false;
     let starGrowthIntervalId = null;
+    let constellationTimerStarted = false;
 
     function createStar() {
       const star = document.createElement('div');
@@ -2291,6 +2394,13 @@ const bumpers = bumpersData;
       // Random twinkle timing (slower, more subtle)
       star.style.setProperty('--twinkle-duration', (Math.random() * 4 + 4) + 's');
       star.style.setProperty('--twinkle-delay', (Math.random() * 5) + 's');
+      // Parallax drift - varied distances/timing for layered depth
+      const driftX = (Math.random() * 24 - 12).toFixed(2);
+      const driftY = (Math.random() * 16 - 8).toFixed(2);
+      star.style.setProperty('--drift-x', `${driftX}px`);
+      star.style.setProperty('--drift-y', `${driftY}px`);
+      star.style.setProperty('--drift-duration', (Math.random() * 12 + 18).toFixed(2) + 's');
+      star.style.setProperty('--drift-delay', (Math.random() * -20).toFixed(2) + 's');
       return star;
     }
 
@@ -2326,6 +2436,68 @@ const bumpers = bumpersData;
         }
       }, starGrowthIntervalMs);
     }
+
+    function drawConstellationTrace() {
+      if (!heroStars || !constellationLayer || constellationLayer.childElementCount > 0) return;
+      const starNodes = Array.from(heroStars.querySelectorAll('.star.visible'));
+      if (starNodes.length < 4) return;
+
+      const containerRect = heroStars.getBoundingClientRect();
+      const points = starNodes.map((star) => {
+        const r = star.getBoundingClientRect();
+        return {
+          x: r.left - containerRect.left + r.width / 2,
+          y: r.top - containerRect.top + r.height / 2
+        };
+      });
+
+      const anchor = points[Math.floor(Math.random() * points.length)];
+      const nearby = points
+        .filter((p) => p !== anchor)
+        .map((p) => ({ p, d: Math.hypot(p.x - anchor.x, p.y - anchor.y) }))
+        .filter(({ d }) => d < 340)
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 4)
+        .map(({ p }) => p);
+
+      if (nearby.length < 2) return;
+
+      const chain = [anchor, ...nearby];
+      const traceGroup = document.createElement('div');
+
+      for (let i = 0; i < chain.length - 1; i++) {
+        const a = chain[i];
+        const b = chain[i + 1];
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance < 20) continue;
+
+        const line = document.createElement('div');
+        line.className = 'constellation-line';
+        line.style.left = `${a.x}px`;
+        line.style.top = `${a.y}px`;
+        line.style.width = `${distance}px`;
+        line.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+        line.style.animationDelay = `${i * 0.12}s`;
+        traceGroup.appendChild(line);
+      }
+
+      if (traceGroup.childElementCount === 0) return;
+      constellationLayer.appendChild(traceGroup);
+      setTimeout(() => {
+        traceGroup.remove();
+      }, 2200);
+    }
+
+    function startConstellationTraces() {
+      if (constellationTimerStarted) return;
+      constellationTimerStarted = true;
+      setTimeout(() => {
+        drawConstellationTrace();
+        setInterval(drawConstellationTrace, 24000);
+      }, 20000);
+    }
     
     // Shooting star: first at 20s, then every 10s, random direction (always downward, never same twice in a row)
     const directions = [
@@ -2338,27 +2510,39 @@ const bumpers = bumpersData;
       { startLeft: '38%', startTop: '-20px', endLeft: 'calc(70% + 40px)', endTop: 'calc(100% + 25px)', tail: '-32deg' },
       { startLeft: '62%', startTop: '-25px', endLeft: 'calc(30% - 40px)', endTop: 'calc(100% + 20px)', tail: '148deg' }
     ];
-    let lastDirectionIndex = -1;
-    function triggerShootingStar() {
-      if (!shootingStar) return;
+    const starLastDirectionIndex = new WeakMap();
+    function triggerShootingStar(starEl) {
+      if (!starEl) return;
       let idx;
+      const lastDirectionIndex = starLastDirectionIndex.get(starEl) ?? -1;
       do {
         idx = Math.floor(Math.random() * directions.length);
       } while (idx === lastDirectionIndex && directions.length > 1);
-      lastDirectionIndex = idx;
+      starLastDirectionIndex.set(starEl, idx);
       const d = directions[idx];
-      shootingStar.style.setProperty('--start-left', d.startLeft);
-      shootingStar.style.setProperty('--start-top', d.startTop);
-      shootingStar.style.setProperty('--end-left', d.endLeft);
-      shootingStar.style.setProperty('--end-top', d.endTop);
-      shootingStar.style.setProperty('--tail-rotation', d.tail);
-      shootingStar.classList.remove('animate');
-      void shootingStar.offsetWidth;
-      shootingStar.classList.add('animate');
-      setTimeout(() => shootingStar.classList.remove('animate'), 1600);
+      starEl.style.setProperty('--start-left', d.startLeft);
+      starEl.style.setProperty('--start-top', d.startTop);
+      starEl.style.setProperty('--end-left', d.endLeft);
+      starEl.style.setProperty('--end-top', d.endTop);
+      starEl.style.setProperty('--tail-rotation', d.tail);
+      starEl.classList.remove('animate');
+      void starEl.offsetWidth;
+      starEl.classList.add('animate');
+      setTimeout(() => starEl.classList.remove('animate'), 1600);
     }
-    setTimeout(triggerShootingStar, 20000);
-    setTimeout(() => setInterval(triggerShootingStar, 8000), 20000);
+    function startShootingStarStream(starEl, offsetMs = 0) {
+      if (!starEl) return;
+      setTimeout(() => {
+        triggerShootingStar(starEl);
+        setInterval(() => triggerShootingStar(starEl), 8000);
+      }, offsetMs);
+    }
+    // Stage 1: current cadence starts around 20s
+    setTimeout(() => startShootingStarStream(shootingStars[0], 0), 20000);
+    // Stage 2: after ~18s more, add a second stream in the same 8s cycle
+    setTimeout(() => startShootingStarStream(shootingStars[1], 2600), 38000);
+    // Stage 3: ~28s later, add a third stream to further increase activity
+    setTimeout(() => startShootingStarStream(shootingStars[2], 5200), 66000);
     setTimeout(() => {
       heroMoon?.classList.add('visible');
       if (heroLogo) {
@@ -2366,6 +2550,30 @@ const bumpers = bumpersData;
       }
       heroText?.classList.add('spotlight-on');
     }, 10000);
+    function triggerBroadcastPing() {
+      if (!heroMark) return;
+      heroMark.classList.add('broadcast-ping');
+      setTimeout(() => {
+        heroMark.classList.remove('broadcast-ping');
+      }, 4300);
+    }
+    function triggerHeadlineGlowPulse() {
+      if (!heroHeadline || !heroText) return;
+      heroText.classList.remove('headline-focus');
+      void heroHeadline.offsetWidth;
+      heroText.classList.add('headline-focus');
+      setTimeout(() => {
+        heroText.classList.remove('headline-focus');
+      }, 2300);
+    }
+    setTimeout(() => {
+      triggerBroadcastPing();
+      setInterval(triggerBroadcastPing, 10000);
+    }, 25000);
+    setTimeout(() => {
+      triggerHeadlineGlowPulse();
+      setInterval(triggerHeadlineGlowPulse, 20000);
+    }, 20000);
     
     // Staggered star reveal - stars appear a few at a time
     function revealStars() {
@@ -2398,6 +2606,8 @@ const bumpers = bumpersData;
       setTimeout(revealStars, 3000);
       // Keep slowly adding stars until we reach 3x density
       setTimeout(startStarGrowth, 3500);
+      // Briefly connect nearby stars every so often for a subtle "signal lock" effect
+      startConstellationTraces();
     }
     
     // Skip splash if already seen this session or no videos
