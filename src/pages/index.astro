@@ -14,7 +14,7 @@ const description = "Reach more customers where they live, work, and shop with t
       muted
       playsinline
       preload="auto"
-      poster="/uploads/logos/buwa-digital-white.png"
+      poster="/uploads/logos/buwa-digital-logo-1.png"
     >
       <source src="/uploads/BuWaSpinLogo_1_7.webm" type="video/webm" />
       <source src="/uploads/BuWaSpinLogo_1_7.mp4" type="video/mp4" />
@@ -243,6 +243,7 @@ const description = "Reach more customers where they live, work, and shop with t
 
   // Intro video splash (6 seconds)
   const introDurationMs = 4500;
+  const introStartTimeoutMs = 900;
   const introVideo = document.getElementById('introVideo');
   const introVideoEl = document.getElementById('introVideoEl');
   const heroVideoEl = document.querySelector('.hero-video');
@@ -364,7 +365,7 @@ const description = "Reach more customers where they live, work, and shop with t
       introVideoEl.addEventListener('error', hideIntro, { once: true });
       maxWaitTimer = setTimeout(() => {
         if (!hasPlayed) hideIntro();
-      }, 2000);
+      }, introStartTimeoutMs);
       introVideoEl.play().catch(() => {
         hideIntro();
       });
@@ -411,6 +412,11 @@ const description = "Reach more customers where they live, work, and shop with t
     height: 100%;
     object-fit: cover;
     display: block;
+    background-color: #000;
+    background-image: url('/uploads/logos/buwa-digital-logo-1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: clamp(180px, 42vw, 420px) auto;
   }
 
   .hero {
