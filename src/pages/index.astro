@@ -28,7 +28,6 @@ const description = "Reach more customers where they live, work, and shop with t
         <source src="/uploads/hero/1.mp4" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
-      <div class="hero-city-lights"></div>
       <div class="hero-stars"></div>
       <div class="hero-moon"></div>
     </div>
@@ -470,23 +469,6 @@ const description = "Reach more customers where they live, work, and shop with t
     z-index: 1;
   }
 
-  .hero-city-lights {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0;
-    mix-blend-mode: screen;
-    background-image:
-      radial-gradient(circle, rgba(255, 203, 112, 0.52) 0.8px, rgba(255, 203, 112, 0) 2.2px),
-      radial-gradient(circle, rgba(255, 182, 92, 0.44) 0.8px, rgba(255, 182, 92, 0) 2.1px),
-      radial-gradient(circle, rgba(255, 223, 158, 0.36) 1px, rgba(255, 223, 158, 0) 2.4px);
-    background-size: 56px 34px, 74px 40px, 94px 52px;
-    background-position: 0 100%, 24px calc(100% - 22px), 36px calc(100% - 44px);
-    clip-path: inset(62% 0 0 0);
-    animation: hero-city-lights-cycle 72s ease-in-out infinite, hero-city-lights-flicker 6s ease-in-out infinite;
-    z-index: 1;
-  }
-
   .hero-moon {
     position: absolute;
     top: 7%;
@@ -577,36 +559,6 @@ const description = "Reach more customers where they live, work, and shop with t
     }
   }
 
-  @keyframes hero-city-lights-cycle {
-    0%,
-    40% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.48;
-    }
-    62% {
-      opacity: 0.42;
-    }
-    72% {
-      opacity: 0.15;
-    }
-    80%,
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes hero-city-lights-flicker {
-    0%,
-    100% {
-      filter: brightness(0.95);
-    }
-    45% {
-      filter: brightness(1.12);
-    }
-  }
-
   @keyframes hero-moon-cycle {
     0%,
     40% {
@@ -640,7 +592,6 @@ const description = "Reach more customers where they live, work, and shop with t
   @media (prefers-reduced-motion: reduce) {
     .hero-video,
     .hero-overlay,
-    .hero-city-lights,
     .hero-stars,
     .hero-moon {
       animation: none;
