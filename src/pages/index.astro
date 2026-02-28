@@ -24,8 +24,11 @@ const description = "Reach more customers where they live, work, and shop with t
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-media" aria-hidden="true">
-      <video class="hero-video" muted playsinline preload="metadata">
+      <video class="hero-video hero-video-a is-active" muted playsinline preload="metadata">
         <source src="/uploads/hero/1.mp4" type="video/mp4" />
+      </video>
+      <video class="hero-video hero-video-b" muted playsinline preload="metadata">
+        <source src="" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
       <div class="hero-stars"></div>
@@ -248,16 +251,17 @@ const description = "Reach more customers where they live, work, and shop with t
   const introStartTimeoutMs = 900;
   const introVideo = document.getElementById('introVideo');
   const introVideoEl = document.getElementById('introVideoEl');
-  const heroVideoEl = document.querySelector('.hero-video');
+  const heroVideoEls = Array.from(document.querySelectorAll('.hero-video'));
   let heroPlaylist = ['/uploads/hero/1.mp4', '/uploads/hero/2.mp4', '/uploads/hero/3.mp4'];
   let heroPlaylistIndex = 0;
-  let heroErrorHandler;
-  const prefersWebm = heroVideoEl instanceof HTMLVideoElement
-    && (heroVideoEl.canPlayType('video/webm; codecs="vp9"') || heroVideoEl.canPlayType('video/webm')) !== '';
+  let activeHeroVideoIndex = 0;
+  const canPlayWebm = heroVideoEls[0] instanceof HTMLVideoElement
+    && (heroVideoEls[0].canPlayType('video/webm; codecs="vp9"') || heroVideoEls[0].canPlayType('video/webm')) !== '';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let playbackTimer;
   let maxWaitTimer;
   let hasPlayed = false;
+  let pendingSwap = false;
 
   const clearTimers = () => {
     if (playbackTimer) {
@@ -270,36 +274,29 @@ const description = "Reach more customers where they live, work, and shop with t
     }
   };
 
-  const setHeroSource = (src) => {
-    if (!(heroVideoEl instanceof HTMLVideoElement)) return;
-    const sourceEl = heroVideoEl.querySelector('source');
-
+  const setVideoSource = (videoEl, src) => {
+    if (!(videoEl instanceof HTMLVideoElement)) return;
+    const sourceEl = videoEl.querySelector('source');
     const applySource = (sourceUrl, type) => {
       if (sourceEl) {
         sourceEl.src = sourceUrl;
         sourceEl.type = type;
       } else {
-        heroVideoEl.src = sourceUrl;
+        videoEl.src = sourceUrl;
       }
-      heroVideoEl.load();
+      videoEl.load();
     };
 
-    if (heroErrorHandler) {
-      heroVideoEl.removeEventListener('error', heroErrorHandler);
-      heroErrorHandler = undefined;
-    }
-
-    if (prefersWebm && src.endsWith('.mp4')) {
+    if (canPlayWebm && src.endsWith('.mp4')) {
       const webmSrc = src.replace(/\.mp4(\?.*)?$/, '.webm$1');
-      heroErrorHandler = () => {
+      videoEl.onerror = () => {
         applySource(src, 'video/mp4');
-        heroVideoEl.play().catch(() => {});
       };
-      heroVideoEl.addEventListener('error', heroErrorHandler, { once: true });
       applySource(webmSrc, 'video/webm');
       return;
     }
 
+    videoEl.onerror = null;
     applySource(src, src.endsWith('.webm') ? 'video/webm' : 'video/mp4');
   };
 
@@ -318,22 +315,60 @@ const description = "Reach more customers where they live, work, and shop with t
 
   const startHeroVideo = async () => {
     if (prefersReducedMotion) return;
-    if (!(heroVideoEl instanceof HTMLVideoElement)) return;
+    if (heroVideoEls.length < 2) return;
 
     await loadHeroPlaylist();
     if (heroPlaylist.length === 0) return;
 
-    heroVideoEl.muted = true;
-    heroVideoEl.playsInline = true;
+    const getActiveVideo = () => heroVideoEls[activeHeroVideoIndex];
+    const getBufferVideo = () => heroVideoEls[(activeHeroVideoIndex + 1) % heroVideoEls.length];
 
-    heroVideoEl.addEventListener('ended', () => {
-      heroPlaylistIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
-      setHeroSource(heroPlaylist[heroPlaylistIndex]);
-      heroVideoEl.play().catch(() => {});
+    const preloadNextClip = () => {
+      const bufferVideo = getBufferVideo();
+      const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
+      setVideoSource(bufferVideo, heroPlaylist[nextIndex]);
+    };
+
+    const swapToNextClip = () => {
+      if (pendingSwap) return;
+      pendingSwap = true;
+
+      const currentVideo = getActiveVideo();
+      const bufferVideo = getBufferVideo();
+      const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
+
+      bufferVideo.currentTime = 0;
+      bufferVideo.play()
+        .then(() => {
+          bufferVideo.classList.add('is-active');
+          currentVideo.classList.remove('is-active');
+          currentVideo.pause();
+          heroPlaylistIndex = nextIndex;
+          activeHeroVideoIndex = (activeHeroVideoIndex + 1) % heroVideoEls.length;
+          preloadNextClip();
+        })
+        .catch(() => {
+          // If buffered play fails, keep current frame and retry on next loop.
+        })
+        .finally(() => {
+          pendingSwap = false;
+        });
+    };
+
+    heroVideoEls.forEach((video) => {
+      video.muted = true;
+      video.playsInline = true;
+      video.loop = false;
+      video.addEventListener('ended', () => {
+        if (video !== getActiveVideo()) return;
+        swapToNextClip();
+      });
     });
 
-    setHeroSource(heroPlaylist[heroPlaylistIndex]);
-    heroVideoEl.play().catch(() => {});
+    const activeVideo = getActiveVideo();
+    setVideoSource(activeVideo, heroPlaylist[heroPlaylistIndex]);
+    activeVideo.play().catch(() => {});
+    preloadNextClip();
   };
 
   const hideIntro = () => {
@@ -437,12 +472,20 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .hero-video {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    opacity: 0;
+    transition: opacity 0.45s ease;
     filter: brightness(1) saturate(1);
     animation: hero-video-nightfall 72s ease-in-out infinite;
+  }
+
+  .hero-video.is-active {
+    opacity: 1;
   }
 
   .hero-overlay {
