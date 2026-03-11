@@ -255,9 +255,19 @@ const description = "Reach more customers where they live, work, and shop with t
   let heroPlaylist = ['/uploads/hero/1.mp4', '/uploads/hero/2.mp4', '/uploads/hero/3.mp4'];
   let heroPlaylistIndex = 0;
   let activeHeroVideoIndex = 0;
-  const canPlayWebm = heroVideoEls[0] instanceof HTMLVideoElement
-    && (heroVideoEls[0].canPlayType('video/webm; codecs="vp9"') || heroVideoEls[0].canPlayType('video/webm')) !== '';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const prefersSmallVideo = window.matchMedia('(max-width: 1024px)').matches
+    || Boolean(connection?.saveData)
+    || ['slow-2g', '2g', '3g'].includes(connection?.effectiveType || '');
+  const cameFromSameSite = (() => {
+    if (!document.referrer) return false;
+    try {
+      return new URL(document.referrer).origin === window.location.origin;
+    } catch {
+      return false;
+    }
+  })();
   let playbackTimer;
   let maxWaitTimer;
   let hasPlayed = false;
@@ -277,6 +287,16 @@ const description = "Reach more customers where they live, work, and shop with t
   const setVideoSource = (videoEl, src) => {
     if (!(videoEl instanceof HTMLVideoElement)) return;
     const sourceEl = videoEl.querySelector('source');
+    const typeFromSrc = (value) => (value.endsWith('.webm') ? 'video/webm' : 'video/mp4');
+    const withLowresVariant = (value) =>
+      value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-lowres$1$2');
+    const with720Variant = (value) =>
+      value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-720$1$2');
+    const candidateSources = prefersSmallVideo
+      ? [withLowresVariant(src), with720Variant(src), src]
+      : [src];
+    let sourceIndex = 0;
+
     const applySource = (sourceUrl, type) => {
       if (sourceEl) {
         sourceEl.src = sourceUrl;
@@ -287,17 +307,24 @@ const description = "Reach more customers where they live, work, and shop with t
       videoEl.load();
     };
 
-    if (canPlayWebm && src.endsWith('.mp4')) {
-      const webmSrc = src.replace(/\.mp4(\?.*)?$/, '.webm$1');
+    if (candidateSources.length > 1) {
       videoEl.onerror = () => {
-        applySource(src, 'video/mp4');
+        sourceIndex += 1;
+        const nextSrc = candidateSources[sourceIndex];
+        if (!nextSrc) {
+          videoEl.onerror = null;
+          return;
+        }
+        if (sourceIndex >= candidateSources.length - 1) {
+          videoEl.onerror = null;
+        }
+        applySource(nextSrc, typeFromSrc(nextSrc));
       };
-      applySource(webmSrc, 'video/webm');
-      return;
+    } else {
+      videoEl.onerror = null;
     }
 
-    videoEl.onerror = null;
-    applySource(src, src.endsWith('.webm') ? 'video/webm' : 'video/mp4');
+    applySource(candidateSources[0], typeFromSrc(candidateSources[0]));
   };
 
   const loadHeroPlaylist = async () => {
@@ -316,9 +343,31 @@ const description = "Reach more customers where they live, work, and shop with t
   const startHeroVideo = async () => {
     if (prefersReducedMotion) return;
     if (heroVideoEls.length < 2) return;
+    const crossfadeLeadSeconds = 0.35;
 
     await loadHeroPlaylist();
     if (heroPlaylist.length === 0) return;
+
+    // Single-clip playlists should use native looping to avoid
+    // any handoff flash from swapping between layered video elements.
+    if (heroPlaylist.length === 1) {
+      const primaryVideo = heroVideoEls[0];
+      const secondaryVideo = heroVideoEls[1];
+      if (!(primaryVideo instanceof HTMLVideoElement)) return;
+
+      primaryVideo.classList.add('is-active');
+      primaryVideo.loop = true;
+      primaryVideo.muted = true;
+      primaryVideo.playsInline = true;
+      setVideoSource(primaryVideo, heroPlaylist[0]);
+      primaryVideo.play().catch(() => {});
+
+      if (secondaryVideo instanceof HTMLVideoElement) {
+        secondaryVideo.classList.remove('is-active');
+        secondaryVideo.pause();
+      }
+      return;
+    }
 
     const getActiveVideo = () => heroVideoEls[activeHeroVideoIndex];
     const getBufferVideo = () => heroVideoEls[(activeHeroVideoIndex + 1) % heroVideoEls.length];
@@ -359,6 +408,14 @@ const description = "Reach more customers where they live, work, and shop with t
       video.muted = true;
       video.playsInline = true;
       video.loop = false;
+      video.addEventListener('timeupdate', () => {
+        if (video !== getActiveVideo() || pendingSwap) return;
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+        const remaining = video.duration - video.currentTime;
+        if (remaining <= crossfadeLeadSeconds) {
+          swapToNextClip();
+        }
+      });
       video.addEventListener('ended', () => {
         if (video !== getActiveVideo()) return;
         swapToNextClip();
@@ -411,7 +468,7 @@ const description = "Reach more customers where they live, work, and shop with t
     }
   };
 
-  if (!prefersReducedMotion && introVideoEl?.querySelector('source')?.getAttribute('src')) {
+  if (!prefersReducedMotion && !cameFromSameSite && introVideoEl?.querySelector('source')?.getAttribute('src')) {
     showIntro();
   } else {
     hideIntro();
@@ -479,7 +536,7 @@ const description = "Reach more customers where they live, work, and shop with t
     object-fit: cover;
     display: block;
     opacity: 0;
-    transition: opacity 0.45s ease;
+    transition: opacity 0.6s ease;
     filter: brightness(1) saturate(1);
     animation: hero-video-nightfall 72s ease-in-out infinite;
   }

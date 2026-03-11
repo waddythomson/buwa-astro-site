@@ -63,10 +63,22 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
             <div class="form-group">
               <label for="phone">Phone <span class="required">*</span></label>
               <input type="tel" id="phone" name="phone" required>
-              <label class="checkbox-label" for="hosteval-sms-opt-in">
-                <input type="checkbox" id="hosteval-sms-opt-in" name="smsOptIn">
-                <span>I agree to receive text messages from BuWa TV regarding my inquiry. Reply STOP to opt out.</span>
-              </label>
+              <div class="sms-preference-group is-hidden">
+                <p class="sms-preference-title">Texting preference</p>
+                <label class="checkbox-label" for="hosteval-sms-opt-in">
+                  <input type="checkbox" id="hosteval-sms-opt-in" name="smsOptIn">
+                  <span>I agree to receive text messages from BuWa TV regarding my inquiry. Reply STOP to opt out.</span>
+                </label>
+                <label class="checkbox-label" for="hosteval-sms-opt-out">
+                  <input type="checkbox" id="hosteval-sms-opt-out" name="smsOptOut">
+                  <span>I am opting out of text messages and would appreciate a phone call instead.</span>
+                </label>
+                <p class="sms-consent-links">
+                  By submitting this form, you agree to our
+                  <a href="/buwatv/terms/">Terms &amp; Conditions</a> and
+                  <a href="/buwatv/privacy/">Privacy Policy</a>.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -413,6 +425,30 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
     appearance: auto;
   }
 
+  .sms-preference-group.is-hidden {
+    display: none;
+  }
+
+  .sms-preference-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1f2a44;
+    margin: 4px 0 2px;
+  }
+
+  .sms-consent-links {
+    font-size: 0.75rem;
+    color: #5d6678;
+    line-height: 1.4;
+    margin-top: 6px;
+  }
+
+  .sms-consent-links a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
@@ -496,6 +532,35 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   const resultQualified = document.getElementById('result-qualified');
   const resultFollowup = document.getElementById('result-followup');
   const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+  const initSmsPreferenceGroup = (formEl) => {
+    if (!formEl) return;
+    const phoneInput = formEl.querySelector('[name="phone"]');
+    const group = formEl.querySelector('.sms-preference-group');
+    const optIn = formEl.querySelector('[name="smsOptIn"]');
+    const optOut = formEl.querySelector('[name="smsOptOut"]');
+    if (!phoneInput || !group || !optIn || !optOut) return;
+
+    const sync = () => {
+      const hasPhone = Boolean(phoneInput.value.trim());
+      group.classList.toggle('is-hidden', !hasPhone);
+      if (!hasPhone) {
+        optIn.checked = false;
+        optOut.checked = false;
+      }
+    };
+
+    optIn.addEventListener('change', () => {
+      if (optIn.checked) optOut.checked = false;
+    });
+    optOut.addEventListener('change', () => {
+      if (optOut.checked) optIn.checked = false;
+    });
+
+    phoneInput.addEventListener('input', sync);
+    sync();
+  };
+  initSmsPreferenceGroup(form);
   
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -508,6 +573,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
     const hasWaitingArea = data.hasWaitingArea === 'yes';
     const hasInternet = data.hasInternet === 'yes';
     const smsOptIn = data.smsOptIn ? 'yes' : 'no';
+    const smsOptOut = data.smsOptOut ? 'yes' : 'no';
     
     if (!hasInternet) {
       submitForm(data, false, 'No internet available');
@@ -581,6 +647,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
         qualified,
         qualificationReason: reason,
         smsOptIn,
+        smsOptOut,
       };
       
       const response = await fetch(webhookUrl, {
