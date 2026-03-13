@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import HomeHeader from '../components/HomeHeader.astro';
 import Footer from '../components/Footer.astro';
 
 export interface Props {
@@ -20,6 +21,7 @@ export interface Props {
   tags?: string[];
   breadcrumbs?: Array<{ name: string; url: string }>;
   faq?: Array<{ question: string; answer: string }>;
+  useHomeHeader?: boolean;
 }
 
 const {
@@ -39,7 +41,8 @@ const {
   author,
   tags = [],
   breadcrumbs,
-  faq = []
+  faq = [],
+  useHomeHeader = false
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE || 'https://buwadigital.com';
@@ -272,7 +275,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : undefined;
   </script>
 </head>
 <body class={rootClassName}>
-  <Header />
+  {useHomeHeader ? <HomeHeader /> : <Header />}
 
   <main>
     <slot />
