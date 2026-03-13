@@ -51,11 +51,19 @@ const trustedItems = [
       <div class="menu-secondary">
         <div class="menu-submenu" data-menu-section="seen">
           <h4>Be Seen</h4>
-          {seenItems.map((item) => <a href={item.href}>{item.label}</a>)}
+          {seenItems.map((item) => (
+            <a href={item.href} class="menu-subitem" data-roll-label={item.label}>
+              <span class="menu-subitem-label">{item.label}</span>
+            </a>
+          ))}
         </div>
         <div class="menu-submenu" data-menu-section="trusted">
           <h4>Be Trusted</h4>
-          {trustedItems.map((item) => <a href={item.href}>{item.label}</a>)}
+          {trustedItems.map((item) => (
+            <a href={item.href} class="menu-subitem" data-roll-label={item.label}>
+              <span class="menu-subitem-label">{item.label}</span>
+            </a>
+          ))}
         </div>
       </div>
     </div>
@@ -496,6 +504,23 @@ const trustedItems = [
     transition: background 0.18s ease, transform 0.18s ease;
   }
 
+  .menu-primary button[data-menu-key] {
+    padding-right: 1.35rem;
+  }
+
+  .menu-primary button[data-menu-key]::before {
+    content: '\203A';
+    position: absolute;
+    right: 0.35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.02rem;
+    line-height: 1;
+    color: rgba(206, 222, 245, 0.58);
+    transition: color 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+  }
+
   .menu-item-label {
     display: block;
     color: #f2f8ff;
@@ -551,11 +576,16 @@ const trustedItems = [
     transform: none;
   }
 
+  .menu-primary button[data-menu-key]:hover::before,
+  .menu-primary button[data-menu-key].is-active::before {
+    color: rgba(238, 248, 255, 0.9);
+    transform: translateY(-50%) translateX(1px);
+  }
+
   .menu-secondary {
     display: none;
     padding-left: 0.2rem;
     position: relative;
-    min-height: 170px;
   }
 
   .menu-panel.has-submenu .menu-body {
@@ -582,6 +612,20 @@ const trustedItems = [
 
   .menu-panel.has-submenu .menu-panel-top {
     justify-content: flex-start;
+    position: relative;
+    margin-bottom: 0.95rem;
+    padding-bottom: 0.55rem;
+  }
+
+  .menu-panel.has-submenu .menu-panel-top::after {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0;
+    height: 1px;
+    background: rgba(200, 220, 245, 0.28);
+    pointer-events: none;
   }
 
   .menu-panel.has-submenu .menu-title {
@@ -589,8 +633,8 @@ const trustedItems = [
   }
 
   .menu-submenu {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    display: none;
     opacity: 0;
     transform: translateX(10px);
     pointer-events: none;
@@ -598,6 +642,7 @@ const trustedItems = [
   }
 
   .menu-submenu.is-active {
+    display: block;
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
@@ -613,18 +658,68 @@ const trustedItems = [
     opacity: 0.9;
   }
 
-  .menu-submenu a {
+  .menu-submenu .menu-subitem {
     display: block;
-    color: #f2f8ff;
+    color: transparent;
     text-decoration: none;
     padding: 0.42rem 0.2rem;
     line-height: 1.25;
     font-size: 0.95rem;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .menu-submenu a:hover {
-    color: #ffffff;
-    text-decoration: underline;
+  .menu-subitem-label {
+    display: block;
+    color: #f2f8ff;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .menu-subitem::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.42rem 0.2rem;
+    line-height: 1.25;
+    font-size: 0.95rem;
+    color: rgba(210, 224, 245, 0.58);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem .menu-subitem-label {
+    transform: translateY(-115%);
+    opacity: 0;
+  }
+
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem::after {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem:hover .menu-subitem-label,
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem.is-active .menu-subitem-label,
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem[aria-current='page'] .menu-subitem-label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem:hover::after,
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem.is-active::after,
+  .menu-submenu:has(.menu-subitem:hover) .menu-subitem[aria-current='page']::after {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+
+  .menu-subitem:focus-visible {
+    outline: 1px solid rgba(222, 237, 255, 0.5);
+    outline-offset: 2px;
   }
 
   @media (max-width: 980px) {
