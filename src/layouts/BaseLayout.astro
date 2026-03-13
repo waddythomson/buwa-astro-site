@@ -176,10 +176,14 @@ const faqJsonLd = faq.length
       })),
     }
   : undefined;
+
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isDigitalHome = normalizedPath === '/' || normalizedPath === '/index.html';
+const rootClassName = isDigitalHome ? 'home-page digital-home' : undefined;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class={rootClassName}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -267,7 +271,7 @@ const faqJsonLd = faq.length
     plausible.init()
   </script>
 </head>
-<body>
+<body class={rootClassName}>
   <Header />
 
   <main>
@@ -598,12 +602,25 @@ const faqJsonLd = faq.length
   html {
     font-family: 'Montserrat', system-ui, sans-serif;
     scroll-behavior: smooth;
+    overscroll-behavior-y: none;
   }
 
   body {
     line-height: 1.6;
     color: #333;
     background: #fff;
+    overscroll-behavior-y: none;
+  }
+
+  html.secondary-top-hero,
+  body.secondary-top-hero {
+    background: #081a43;
+  }
+
+  body.secondary-top-hero main > section.hero:first-child {
+    --shared-hero-overlap: var(--site-header-height, 94px);
+    margin-top: calc(var(--shared-hero-overlap) * -1);
+    padding-top: calc(3rem + var(--shared-hero-overlap));
   }
 
   /* Headers use Inter */

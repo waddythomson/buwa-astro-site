@@ -70,10 +70,10 @@ const pricingSchema = {
         <a href="/buwatv/about/" class="nav-link">About</a>
         <a href="/buwatv/locations/" class="nav-link">Locations</a>
         <a href="/buwatv/faq/" class="nav-link">FAQ</a>
-        <a href="/buwatv/signup/" class="btn btn-red header-cta">
-          <i class="fas fa-paper-plane"></i> Get Started
-        </a>
       </nav>
+      <a href="/buwatv/signup/" class="btn btn-red header-cta">
+        <i class="fas fa-paper-plane"></i> Get Started
+      </a>
       <button class="mobile-menu-btn" id="mobile-menu-btn">
         <span></span>
         <span></span>
@@ -332,9 +332,14 @@ const pricingSchema = {
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px 40px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header-logo {
+    justify-self: start;
   }
 
   .header-logo img {
@@ -345,6 +350,8 @@ const pricingSchema = {
   .header-nav {
     display: flex;
     align-items: center;
+    justify-content: center;
+    justify-self: center;
     gap: 30px;
   }
 
@@ -367,6 +374,7 @@ const pricingSchema = {
     border: none;
     cursor: pointer;
     padding: 5px;
+    justify-self: end;
   }
 
   .mobile-menu-btn span {
@@ -441,6 +449,7 @@ const pricingSchema = {
   }
 
   .header-cta {
+    justify-self: end;
     padding: 10px 20px;
     font-size: 0.9rem;
   }

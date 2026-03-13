@@ -1,0 +1,1207 @@
+---
+const title = 'BuWa Digital Concept Preview';
+const cityscapeVideo = '/uploads/hero/0.mp4';
+const abstractVideos = [
+  '/uploads/new/hero/abstract/abstract-blue-1.mp4',
+  '/uploads/new/hero/abstract/abstract-blue-2.mp4',
+  '/uploads/new/hero/abstract/abstract-blue-3.mp4',
+];
+const awarenessItems = [
+  { label: 'BuWa TV Indoor Billboards', href: '/buwatv/' },
+  { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott-ads/' },
+  { label: 'Display | Geofencing', href: '/geofencing/' },
+  { label: 'Streaming Audio', href: '/streaming-audio/' },
+  { label: 'Pre-roll Ads', href: '/pre-roll-advertising/' },
+  { label: 'Youtube Advertising', href: '/youtube-ads/' },
+];
+const leadGenItems = [
+  { label: 'Social Media Advertising', href: '/social-media-ads/' },
+  { label: 'Pay Per Click', href: '/pay-per-click-ppc/' },
+];
+const foundationalItems = [
+  { label: 'Website Design', href: '/website-design/' },
+  { label: 'Google Business Profile', href: '/google-business-profile/' },
+  { label: 'Social Media Management', href: '/social-media-management/' },
+  { label: 'Design Services', href: '/design/' },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet" />
+    <style>
+      :root {
+        --header-progress: 0;
+        --abstract-progress: 0;
+        --shell-width: min(96vw, 1240px);
+        --morph-y: 0px;
+        --morph-scale: 1;
+        --line-top: 0px;
+        --menu-mask-opacity: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: #eef5ff;
+        background: #06112a;
+      }
+
+      .site-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .city-backdrop-layer,
+      .abstract-backdrop-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .city-backdrop-layer {
+        opacity: calc(1 - var(--abstract-progress));
+        will-change: opacity;
+      }
+
+      .abstract-backdrop-layer {
+        opacity: var(--abstract-progress);
+        will-change: opacity;
+      }
+
+      .concept-header {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 100;
+        pointer-events: none;
+      }
+
+      main {
+        position: relative;
+        z-index: 2;
+      }
+
+      .header-inner {
+        width: min(96%, 1240px);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: end;
+        gap: clamp(0.8rem, 1.8vw, 1.8rem);
+        padding: clamp(0.8rem, 2vh, 1.2rem) clamp(0.5rem, 1vw, 0.8rem) 0.7rem;
+        background: transparent;
+        pointer-events: auto;
+      }
+
+      .header-logo-slot {
+        width: clamp(128px, 11.5vw, 168px);
+        height: 1px;
+        pointer-events: none;
+      }
+
+      .morph-logo {
+        position: fixed;
+        left: calc((100vw - var(--shell-width)) / 2 + 0.25rem);
+        top: 0.6rem;
+        width: clamp(152px, 14vw, 220px);
+        height: auto;
+        transform-origin: left top;
+        transform: translate3d(0, var(--morph-y), 0) scale(var(--morph-scale));
+        opacity: 1;
+        z-index: 94;
+        pointer-events: none;
+        will-change: transform, opacity;
+      }
+
+      .morph-line {
+        position: fixed;
+        left: calc((100vw - var(--shell-width)) / 2);
+        top: var(--line-top);
+        width: var(--shell-width);
+        height: 1px;
+        background: rgba(181, 210, 255, 0.45);
+        opacity: clamp(0, calc((var(--header-progress) - 0.04) * 4), 0.95);
+        z-index: 93;
+        pointer-events: none;
+        will-change: top, opacity;
+      }
+
+      .menu-clean-zone {
+        position: fixed;
+        top: 0;
+        left: calc((100vw - var(--shell-width)) / 2);
+        width: var(--shell-width);
+        height: var(--line-top);
+        background: linear-gradient(180deg, rgba(5, 15, 37, 0.84) 0%, rgba(8, 21, 49, 0.72) 72%, rgba(8, 21, 49, 0.45) 100%);
+        backdrop-filter: blur(2px);
+        opacity: var(--menu-mask-opacity);
+        z-index: 92;
+        pointer-events: none;
+        will-change: height, opacity;
+      }
+
+      .header-nav {
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        position: relative;
+        transform: translateY(14px);
+      }
+
+      .menu-toggle {
+        color: rgba(236, 245, 255, 0.96);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.82rem;
+        font-weight: 700;
+        border: 1px solid rgba(214, 232, 255, 0.5);
+        border-radius: 999px;
+        padding: 0.65rem 1.15rem;
+        transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        font-family: inherit;
+        background: rgba(165, 206, 255, 0.1);
+        cursor: pointer;
+      }
+
+      .menu-toggle.is-open {
+        background: rgba(176, 213, 255, 0.2);
+        border-color: rgba(233, 244, 255, 0.85);
+        box-shadow: 0 0 0 3px rgba(193, 221, 255, 0.16);
+      }
+
+      .menu-toggle:hover {
+        border-color: rgba(233, 244, 255, 0.8);
+        background: rgba(176, 213, 255, 0.18);
+        transform: translateY(-1px);
+      }
+
+      .menu-toggle:active {
+        transform: translateY(0);
+      }
+
+      .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: transparent;
+        backdrop-filter: none;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        z-index: 130;
+      }
+
+      .menu-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .menu-panel {
+        position: fixed;
+        top: var(--menu-top, 110px);
+        left: var(--menu-left, 50%);
+        transform: translateX(-50%);
+        width: min(90vw, 272px);
+        padding: 1rem;
+        background: rgba(12, 30, 67, 0.94);
+        border: 1px solid rgba(187, 212, 246, 0.35);
+        backdrop-filter: blur(12px);
+        transition: width 0.18s ease;
+      }
+
+      .menu-panel.has-submenu {
+        width: min(90vw, 460px);
+      }
+
+      .menu-panel-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-title {
+        color: #e8f2ff;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.62rem;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .menu-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        justify-items: center;
+      }
+
+      .menu-primary {
+        padding-right: 0;
+        width: min(100%, 170px);
+        margin: 0 auto;
+      }
+
+      .menu-primary a,
+      .menu-primary button {
+        display: block;
+        color: transparent;
+        text-decoration: none;
+        padding: 0.46rem 0.5rem;
+        font-size: 1.08rem;
+        font-weight: 650;
+        line-height: 1.2;
+        width: 100%;
+        text-align: center;
+        border: none;
+        background: transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .menu-item-label {
+        display: block;
+        color: #f2f8ff;
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+
+      .menu-primary .menu-item::after {
+        content: attr(data-roll-label);
+        position: absolute;
+        inset: 0;
+        display: block;
+        padding: 0.46rem 0.5rem;
+        text-align: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: 1.2;
+        letter-spacing: inherit;
+        color: rgba(210, 224, 245, 0.58);
+        transform: translateY(115%);
+        opacity: 0;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+        pointer-events: none;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item .menu-item-label {
+        transform: translateY(-115%);
+        opacity: 0;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item::after {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item:hover .menu-item-label,
+      .menu-primary:has(.menu-item:hover) .menu-item.is-active .menu-item-label {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item:hover::after,
+      .menu-primary:has(.menu-item:hover) .menu-item.is-active::after {
+        transform: translateY(115%);
+        opacity: 0;
+      }
+
+      .menu-primary a:hover,
+      .menu-primary button:hover,
+      .menu-primary button.is-active {
+        background: rgba(173, 208, 255, 0.16);
+        transform: translateY(-2px);
+      }
+
+      .menu-primary a,
+      .menu-primary button {
+        transition: background 0.18s ease, transform 0.18s ease;
+      }
+
+      .menu-secondary {
+        display: none;
+        padding-left: 0.2rem;
+        position: relative;
+        min-height: 170px;
+      }
+
+      .menu-panel.has-submenu .menu-body {
+        grid-template-columns: minmax(190px, 240px) 1fr;
+        gap: 1rem;
+        justify-items: stretch;
+      }
+
+      .menu-panel.has-submenu .menu-primary {
+        border-right: 1px solid rgba(194, 217, 248, 0.28);
+        padding-right: 0.75rem;
+        width: auto;
+        margin: 0;
+      }
+
+      .menu-panel.has-submenu .menu-primary a,
+      .menu-panel.has-submenu .menu-primary button {
+        text-align: left;
+      }
+
+      .menu-panel.has-submenu .menu-secondary {
+        display: block;
+      }
+
+      .menu-panel.has-submenu .menu-panel-top {
+        justify-content: flex-start;
+      }
+
+      .menu-submenu {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateX(10px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .menu-submenu.is-active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+
+      .menu-submenu h4 {
+        margin: 0 0 0.45rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #dcecff;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .menu-submenu a {
+        display: block;
+        color: #f2f8ff;
+        text-decoration: none;
+        padding: 0.34rem 0.2rem;
+        font-size: 0.95rem;
+      }
+
+      .menu-submenu a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+
+      .menu-links {
+        margin-top: 0.85rem;
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(194, 217, 248, 0.28);
+        display: block;
+        text-align: center;
+      }
+
+      .menu-panel.has-submenu .menu-links {
+        text-align: left;
+      }
+
+      .menu-utility {
+        margin-top: 0.7rem;
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(194, 217, 248, 0.22);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.55rem;
+        transform: translateX(-6px);
+      }
+
+      .menu-utility a {
+        color: #dcecff;
+        text-decoration: none;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        font-weight: 500;
+        opacity: 0.9;
+        white-space: nowrap;
+      }
+
+      .menu-utility a:hover {
+        color: #f2f8ff;
+      }
+
+      .menu-links a {
+        margin-right: 0;
+        display: inline-block;
+        color: #e9f3ff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .menu-links a:hover {
+        text-decoration: underline;
+      }
+
+      .header-cta {
+        text-decoration: none;
+        color: #172853;
+        background: rgba(245, 250, 255, 0.94);
+        border-radius: 999px;
+        padding: 0.56rem 0.95rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        white-space: nowrap;
+        transform: translateY(14px);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 95vh;
+        overflow: hidden;
+        display: grid;
+        align-items: end;
+        padding: clamp(7rem, 16vh, 12rem) 0 clamp(2rem, 8vh, 4.2rem);
+        isolation: isolate;
+      }
+
+      .city-video,
+      .backdrop-video,
+      .hero-overlay,
+      .hero-lava,
+      .hero-vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .city-video,
+      .backdrop-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.72) saturate(1.08);
+        z-index: -1;
+      }
+
+      .city-video {
+        opacity: 1;
+      }
+
+      .backdrop-video {
+        opacity: 0;
+        transition: opacity 1200ms ease;
+      }
+
+      .backdrop-video.is-active {
+        opacity: 1;
+      }
+
+      .hero-overlay {
+        background: linear-gradient(128deg, rgba(8, 18, 44, 0.78) 14%, rgba(8, 26, 64, 0.48) 49%, rgba(6, 16, 42, 0.78) 100%);
+        z-index: 0;
+      }
+
+      .hero-lava {
+        mix-blend-mode: screen;
+        filter: blur(5px);
+        z-index: 1;
+      }
+
+      .hero-lava-a {
+        opacity: 0.28;
+        background:
+          radial-gradient(34rem 23rem at 10% 22%, rgba(153, 205, 255, 0.33), transparent 72%),
+          radial-gradient(28rem 18rem at 75% 70%, rgba(59, 150, 255, 0.3), transparent 74%),
+          radial-gradient(22rem 16rem at 62% 14%, rgba(229, 244, 255, 0.2), transparent 68%);
+        animation: lavaA 27s ease-in-out infinite alternate;
+      }
+
+      .hero-lava-b {
+        opacity: 0.24;
+        background:
+          radial-gradient(40rem 29rem at 84% 19%, rgba(124, 188, 255, 0.24), transparent 72%),
+          radial-gradient(30rem 21rem at 26% 78%, rgba(81, 166, 255, 0.23), transparent 74%),
+          radial-gradient(20rem 14rem at 46% 47%, rgba(244, 250, 255, 0.18), transparent 70%);
+        animation: lavaB 34s ease-in-out infinite alternate;
+      }
+
+      .hero-vignette {
+        background: radial-gradient(circle at center, transparent 36%, rgba(2, 8, 23, 0.5) 92%);
+        z-index: 2;
+      }
+
+      .hero-inner {
+        width: min(96%, 1240px);
+        margin: 0 auto;
+        padding: 0 0.8rem;
+        display: grid;
+        grid-template-columns: 1fr minmax(280px, 36%);
+        gap: clamp(1rem, 3vw, 2.2rem);
+        align-items: end;
+      }
+
+      .hero-logo-space {
+        min-height: clamp(8rem, 28vh, 17rem);
+      }
+
+      .hero-copy {
+        align-self: center;
+        transform: translateY(calc(-120px + (var(--header-progress) * -110px)));
+        will-change: transform;
+      }
+
+      .hero-copy h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4.2vw, 4rem);
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+        max-width: 12ch;
+        font-weight: 700;
+        color: rgba(238, 246, 255, 0.96);
+      }
+
+      .hero-copy p {
+        margin: 1rem 0 0;
+        font-size: clamp(1rem, 1.8vw, 1.65rem);
+        line-height: 1.45;
+        max-width: 26ch;
+        color: rgba(232, 244, 255, 0.95);
+        font-weight: 600;
+      }
+
+      .content {
+        background: linear-gradient(180deg, rgba(7, 24, 56, 0.72) 0%, rgba(11, 32, 75, 0.78) 45%, rgba(11, 26, 60, 0.7) 100%);
+        backdrop-filter: blur(2px);
+      }
+
+      .panel {
+        width: min(96%, 1240px);
+        margin: 0 auto;
+        padding: clamp(3rem, 8vh, 6rem) 0.8rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(1.2rem, 4vw, 3rem);
+      }
+
+      .panel h2 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 5rem);
+        line-height: 1.02;
+        font-weight: 500;
+        color: rgba(237, 246, 255, 0.95);
+      }
+
+      .panel p {
+        margin: 0;
+        align-self: center;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: rgba(219, 234, 255, 0.9);
+        line-height: 1.7;
+      }
+
+      .h-scroll {
+        position: relative;
+        height: 280vh;
+      }
+
+      .h-sticky {
+        position: sticky;
+        top: var(--line-top);
+        height: calc(100vh - var(--line-top));
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      .h-track {
+        --progress: 0;
+        width: max-content;
+        display: flex;
+        gap: clamp(1rem, 2.3vw, 1.8rem);
+        padding: 0 12vw;
+        transform: translate3d(calc(var(--progress) * -58%), 0, 0);
+        will-change: transform;
+      }
+
+      .h-card {
+        width: min(84vw, 980px);
+        min-height: min(74vh, 680px);
+        border-radius: 20px;
+        border: 1px solid rgba(20, 38, 78, 0.12);
+        background: rgba(244, 247, 252, 0.98);
+        box-shadow: 0 22px 48px rgba(2, 8, 24, 0.25);
+        padding: clamp(1.3rem, 3.2vw, 2.2rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      .h-card h3 {
+        margin: 0;
+        font-size: clamp(1.8rem, 4.2vw, 3.5rem);
+        line-height: 0.98;
+        letter-spacing: -0.02em;
+        color: #0f1f46;
+      }
+
+      .h-card p {
+        margin: 0;
+        max-width: 40ch;
+        font-size: clamp(1rem, 1.9vw, 1.2rem);
+        line-height: 1.65;
+        color: #2f3c58;
+      }
+
+      .h-kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: #1f3263;
+      }
+
+      .h-card-feature {
+        display: grid;
+        grid-template-columns: minmax(280px, 46%) 1fr;
+        gap: clamp(1.2rem, 2.5vw, 2rem);
+        align-items: center;
+      }
+
+      .feature-image {
+        width: 100%;
+        border-radius: 14px;
+        object-fit: cover;
+        min-height: 360px;
+        max-height: 440px;
+      }
+
+      .feature-copy h3 {
+        font-size: clamp(1.35rem, 2.3vw, 2rem);
+        margin-bottom: 0.8rem;
+      }
+
+      .feature-copy p + p {
+        margin-top: 1rem;
+      }
+
+      .feature-copy .strong-line {
+        font-weight: 700;
+        color: #12244d;
+      }
+
+      .feature-cta {
+        display: inline-block;
+        margin-top: 1.2rem;
+        text-decoration: none;
+        background: #1f3f8d;
+        color: #fff;
+        border-radius: 10px;
+        padding: 0.68rem 1.05rem;
+        font-weight: 700;
+      }
+
+      .h-card-solutions h3 {
+        text-align: center;
+        margin-bottom: 1.35rem;
+      }
+
+      .solutions-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
+        gap: 0.9rem;
+      }
+
+      .solution-item {
+        border-radius: 12px;
+        border: 1px solid rgba(34, 56, 101, 0.14);
+        background: #ffffff;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .solution-item h4 {
+        margin: 0.6rem 0;
+        color: #142856;
+        font-size: 1.05rem;
+      }
+
+      .solution-item p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #41506f;
+      }
+
+      .solution-badge {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto;
+        border-radius: 999px;
+        background: #e9efff;
+        color: #12316f;
+        display: grid;
+        place-items: center;
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .solutions-cta-wrap {
+        margin-top: 1.25rem;
+        text-align: center;
+      }
+
+      .solutions-cta {
+        display: inline-block;
+        text-decoration: none;
+        background: #1f3f8d;
+        color: #fff;
+        border-radius: 10px;
+        padding: 0.7rem 1.2rem;
+        font-weight: 700;
+      }
+
+      @keyframes lavaA {
+        0% {
+          transform: translate3d(-1%, -1%, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(2%, 2%, 0) scale(1.06);
+        }
+        100% {
+          transform: translate3d(3%, -2%, 0) scale(1.03);
+        }
+      }
+
+      @keyframes lavaB {
+        0% {
+          transform: translate3d(2%, 0, 0) scale(1.02);
+        }
+        50% {
+          transform: translate3d(-2%, -2%, 0) scale(1.08);
+        }
+        100% {
+          transform: translate3d(1%, 2%, 0) scale(1.01);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-lava-a,
+        .hero-lava-b {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .header-inner {
+          grid-template-columns: auto 1fr;
+          gap: 0.65rem;
+        }
+
+        .header-cta {
+          display: none;
+        }
+
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+
+        .hero-copy {
+          justify-self: start;
+          transform: translateY(calc(-90px + (var(--header-progress) * -80px)));
+        }
+
+        .panel {
+          grid-template-columns: 1fr;
+        }
+
+        .h-card {
+          width: min(90vw, 860px);
+          min-height: min(68vh, 580px);
+        }
+
+        .h-card-feature {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-image {
+          min-height: 250px;
+          max-height: 320px;
+        }
+
+        .solutions-grid {
+          grid-template-columns: repeat(2, minmax(130px, 1fr));
+        }
+
+        .menu-panel,
+        .menu-panel.has-submenu {
+          width: min(92vw, 460px);
+        }
+
+        .menu-panel.has-submenu .menu-body {
+          grid-template-columns: 1fr;
+        }
+
+        .menu-panel.has-submenu .menu-primary {
+          border-right: none;
+          border-bottom: 1px solid rgba(194, 217, 248, 0.28);
+          padding-right: 0;
+          padding-bottom: 0.65rem;
+          margin-bottom: 0.6rem;
+        }
+
+      .menu-secondary {
+        min-height: 0;
+      }
+      }
+
+      @media (max-width: 680px) {
+        .header-nav {
+          transform: translateY(5px);
+        }
+
+        .menu-toggle {
+          padding: 0.5rem 0.8rem;
+          font-size: 0.72rem;
+        }
+
+        .menu-panel,
+        .menu-panel.has-submenu {
+          width: min(94vw, 360px);
+        }
+
+        .header-cta {
+          transform: none;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <header class="concept-header" id="conceptHeader">
+      <div class="header-inner">
+        <div class="header-logo-slot" aria-hidden="true"></div>
+        <nav class="header-nav" aria-label="Concept main navigation">
+          <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="prototypeMenuPanel">Menu</button>
+        </nav>
+        <a class="header-cta" href="/contact-us/">Contact us</a>
+      </div>
+    </header>
+    <div class="menu-overlay" id="prototypeMenuPanel" aria-hidden="true">
+      <div class="menu-panel" id="prototypeMenuCard">
+        <div class="menu-panel-top">
+          <span class="menu-title">Menu</span>
+        </div>
+        <div class="menu-body">
+          <div class="menu-primary">
+            <button type="button" class="menu-item" data-menu-key="awareness" data-roll-label="Awareness"><span class="menu-item-label">Awareness</span></button>
+            <button type="button" class="menu-item" data-menu-key="leadgen" data-roll-label="Lead Gen"><span class="menu-item-label">Lead Gen</span></button>
+            <button type="button" class="menu-item" data-menu-key="foundational" data-roll-label="Foundational"><span class="menu-item-label">Foundational</span></button>
+            <a href="/about-us/" class="menu-item" data-roll-label="Who We Are"><span class="menu-item-label">Who We Are</span></a>
+            <a href="/contact-us/" class="menu-item" data-roll-label="Contact"><span class="menu-item-label">Contact</span></a>
+          </div>
+          <div class="menu-secondary">
+            <div class="menu-submenu" data-menu-section="awareness">
+              <h4>Awareness</h4>
+              {awarenessItems.map((item) => <a href={item.href}>{item.label}</a>)}
+            </div>
+            <div class="menu-submenu" data-menu-section="leadgen">
+              <h4>Lead Gen</h4>
+              {leadGenItems.map((item) => <a href={item.href}>{item.label}</a>)}
+            </div>
+            <div class="menu-submenu" data-menu-section="foundational">
+              <h4>Foundational</h4>
+              {foundationalItems.map((item) => <a href={item.href}>{item.label}</a>)}
+            </div>
+          </div>
+        </div>
+        <div class="menu-links">
+          <a href="/partners/">Our Partners</a>
+        </div>
+        <div class="menu-utility">
+          <a href="tel:+18032001614">803-200-1614</a>
+          <a href="mailto:info@buwadigital.com">info@buwadigital.com</a>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="site-backdrop" aria-hidden="true">
+        <div class="city-backdrop-layer">
+          <video class="city-video" src={cityscapeVideo} autoplay muted loop playsinline preload="auto"></video>
+        </div>
+        <div class="abstract-backdrop-layer" id="conceptBackdrop" data-videos={JSON.stringify(abstractVideos)}>
+          <video class="backdrop-video is-active" src={abstractVideos[0]} autoplay muted playsinline loop preload="auto"></video>
+          <video class="backdrop-video" autoplay muted playsinline preload="metadata"></video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-lava hero-lava-a"></div>
+        <div class="hero-lava hero-lava-b"></div>
+        <div class="hero-vignette"></div>
+      </div>
+      <img class="morph-logo" src="/uploads/new/logos/buwad-logo-white-lrg.png" alt="" aria-hidden="true" />
+      <div class="morph-line" aria-hidden="true"></div>
+      <div class="menu-clean-zone" aria-hidden="true"></div>
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-logo-space" aria-hidden="true"></div>
+          <div class="hero-copy">
+            <h1>Stop Flying Under The Radar!</h1>
+            <p>We'll help you maintain a prominent community presence using strategically targeted services that keep your business top-of-mind and deliver real results.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content">
+        <div class="panel">
+          <h2>Be Seen. Be Trusted. Be Chosen.</h2>
+          <p>
+            Local businesses should not have to guess how to get noticed. BuWa Digital helps you clarify your message, deploy the right
+            media, and stay in front of the customers who matter most.
+          </p>
+        </div>
+      </section>
+
+      <section class="h-scroll" id="hScroll">
+        <div class="h-sticky">
+          <div class="h-track" id="hTrack">
+            <article class="h-card h-card-feature">
+              <img class="feature-image" src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="BuWaTV in action" loading="lazy" />
+              <div class="feature-copy">
+                <span class="h-kicker">In Action</span>
+                <h3>Tired Of Blowing The Budget On Advertising?</h3>
+                <p>We understand how difficult - and expensive - it can be to get customers to pay attention. We help local business owners stop wasting money on underperforming ads by telling their story through locally targeted, full-motion video that delivers real results - without breaking the bank.</p>
+                <p><span class="strong-line">Be Seen. Be Trusted. Be Chosen!</span> Customers trust brands that they recognize. By using vibrant visuals and smart campaigns to tell your story, you gain valuable local exposure and turn recognition into trust - the trust that ultimately leads to being chosen.</p>
+                <a class="feature-cta" href="/buwatv/">Visit BuWaTV</a>
+              </div>
+            </article>
+            <article class="h-card h-card-solutions">
+              <span class="h-kicker">Services</span>
+              <h3>Marketing Solutions</h3>
+              <div class="solutions-grid">
+                <div class="solution-item">
+                  <div class="solution-badge">TV</div>
+                  <h4>Indoor Digital Billboards</h4>
+                  <p>Showcase your brand where customers work, shop, eat, and play.</p>
+                </div>
+                <div class="solution-item">
+                  <div class="solution-badge">G</div>
+                  <h4>Google Business Profile</h4>
+                  <p>Improve local visibility, rankings, and customer discovery.</p>
+                </div>
+                <div class="solution-item">
+                  <div class="solution-badge">PPC</div>
+                  <h4>Pay-Per-Click (PPC)</h4>
+                  <p>Drive immediate traffic with strategic, budget-friendly campaigns.</p>
+                </div>
+                <div class="solution-item">
+                  <div class="solution-badge">WEB</div>
+                  <h4>Website Design</h4>
+                  <p>Create first impressions that lead to engagement and conversions.</p>
+                </div>
+              </div>
+              <div class="solutions-cta-wrap">
+                <a class="solutions-cta" href="/solutions/">Browse all Services</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const backdrop = document.getElementById('conceptBackdrop');
+      const backdropVideos = backdrop ? Array.from(backdrop.querySelectorAll('.backdrop-video')) : [];
+      const sourceList = backdrop ? JSON.parse(backdrop.dataset.videos || '[]') : [];
+      const rotateMs = 12000;
+      const fadeMs = 1200;
+
+      const applySource = (video, src) => {
+        if (!video || !src || video.dataset.src === src) return;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.dataset.src = src;
+        video.src = src;
+        video.load();
+      };
+
+      const startBackdropRotation = () => {
+        if (!backdropVideos.length || !sourceList.length) return;
+
+        let currentSlot = 0;
+        let currentSource = 0;
+
+        applySource(backdropVideos[currentSlot], sourceList[currentSource]);
+        backdropVideos[currentSlot].play().catch(() => {});
+
+        if (sourceList.length === 1 || backdropVideos.length < 2) {
+          backdropVideos[currentSlot].loop = true;
+          return;
+        }
+
+        window.setInterval(() => {
+          const nextSlot = currentSlot === 0 ? 1 : 0;
+          const outgoing = backdropVideos[currentSlot];
+          const incoming = backdropVideos[nextSlot];
+          const nextSource = (currentSource + 1) % sourceList.length;
+
+          applySource(incoming, sourceList[nextSource]);
+          incoming.currentTime = 0;
+          incoming.play().catch(() => {});
+          incoming.classList.add('is-active');
+          outgoing.classList.remove('is-active');
+
+          window.setTimeout(() => {
+            outgoing.pause();
+          }, fadeMs);
+
+          currentSlot = nextSlot;
+          currentSource = nextSource;
+        }, rotateMs);
+      };
+
+      const hScroll = document.getElementById('hScroll');
+      const hTrack = document.getElementById('hTrack');
+      const morphLogo = document.querySelector('.morph-logo');
+      const menuToggle = document.getElementById('menuToggle');
+      const menuPanel = document.getElementById('prototypeMenuPanel');
+      const menuCard = document.getElementById('prototypeMenuCard');
+      const menuPrimaryButtons = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-key]')) : [];
+      const menuSubmenus = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-section]')) : [];
+
+      const setMenuSection = (key) => {
+        if (!key) return;
+        menuPrimaryButtons.forEach((button) => {
+          button.classList.toggle('is-active', button.dataset.menuKey === key);
+        });
+        menuSubmenus.forEach((section) => {
+          section.classList.toggle('is-active', section.dataset.menuSection === key);
+        });
+        menuCard?.classList.add('has-submenu');
+      };
+
+      const clearMenuSection = () => {
+        menuPrimaryButtons.forEach((button) => button.classList.remove('is-active'));
+        menuSubmenus.forEach((section) => section.classList.remove('is-active'));
+        menuCard?.classList.remove('has-submenu');
+      };
+
+      const positionMenuCard = () => {
+        if (!menuToggle || !menuCard) return;
+        const rect = menuToggle.getBoundingClientRect();
+        const top = rect.bottom + 10;
+        const left = rect.left + (rect.width / 2);
+        menuCard.style.setProperty('--menu-top', `${top.toFixed(1)}px`);
+        menuCard.style.setProperty('--menu-left', `${left.toFixed(1)}px`);
+      };
+
+      const openMenuPanel = () => {
+        if (!menuPanel || !menuToggle) return;
+        positionMenuCard();
+        menuPanel.classList.add('is-open');
+        menuPanel.setAttribute('aria-hidden', 'false');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.classList.add('is-open');
+        menuToggle.textContent = 'X';
+      };
+
+      const closeMenuPanel = () => {
+        if (!menuPanel || !menuToggle) return;
+        menuPanel.classList.remove('is-open');
+        menuPanel.setAttribute('aria-hidden', 'true');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.classList.remove('is-open');
+        menuToggle.textContent = 'Menu';
+        clearMenuSection();
+      };
+
+      menuToggle?.addEventListener('click', () => {
+        if (!menuPanel) return;
+        if (menuPanel.classList.contains('is-open')) {
+          closeMenuPanel();
+        } else {
+          openMenuPanel();
+        }
+      });
+
+      menuPrimaryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setMenuSection(button.dataset.menuKey);
+        });
+      });
+      menuPanel?.addEventListener('click', (event) => {
+        if (event.target === menuPanel) closeMenuPanel();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenuPanel();
+      });
+
+      window.addEventListener('resize', () => {
+        if (menuPanel?.classList.contains('is-open')) positionMenuCard();
+      });
+
+      const updateHeaderProgress = () => {
+        const maxScroll = 280;
+        const progress = Math.min(window.scrollY / maxScroll, 1);
+        document.documentElement.style.setProperty('--header-progress', progress.toFixed(3));
+
+        const isMobile = window.innerWidth <= 980;
+        const topPx = 10;
+        const travelVh = isMobile ? 0.38 : 0.44;
+        const travelPx = (1 - progress) * window.innerHeight * travelVh;
+        const maxScale = isMobile ? 1.95 : 2.25;
+        const scale = 1 + ((1 - progress) * (maxScale - 1));
+
+        const baseWidth = Math.min(Math.max(window.innerWidth * 0.14, 152), 220);
+        const ratio = morphLogo && morphLogo.naturalWidth
+          ? (morphLogo.naturalHeight / morphLogo.naturalWidth)
+          : 0.34;
+        const scaledHeight = baseWidth * ratio * scale;
+        const lineGap = 8 * scale;
+        const lineTop = topPx + travelPx + scaledHeight + lineGap;
+
+        document.documentElement.style.setProperty('--morph-y', `${travelPx.toFixed(2)}px`);
+        document.documentElement.style.setProperty('--morph-scale', scale.toFixed(4));
+        document.documentElement.style.setProperty('--line-top', `${lineTop.toFixed(2)}px`);
+
+        const maskOpacity = Math.min(Math.max((progress - 0.74) / 0.16, 0), 1);
+        document.documentElement.style.setProperty('--menu-mask-opacity', maskOpacity.toFixed(3));
+
+        const mixStart = window.innerHeight * 0.28;
+        const mixEnd = window.innerHeight * 1.05;
+        const abstractProgress = Math.min(Math.max((window.scrollY - mixStart) / Math.max(1, mixEnd - mixStart), 0), 1);
+        document.documentElement.style.setProperty('--abstract-progress', abstractProgress.toFixed(3));
+
+        if (hScroll && hTrack) {
+          const rect = hScroll.getBoundingClientRect();
+          const total = Math.max(1, rect.height - window.innerHeight);
+          const prestart = window.innerHeight * 0.34;
+          const extendedTotal = total + prestart;
+          const passed = Math.min(Math.max((-rect.top) + prestart, 0), extendedTotal);
+          const hProgress = passed / Math.max(1, extendedTotal);
+          hTrack.style.setProperty('--progress', hProgress.toFixed(3));
+        }
+      };
+
+      window.addEventListener('scroll', updateHeaderProgress, { passive: true });
+      startBackdropRotation();
+      updateHeaderProgress();
+    </script>
+  </body>
+</html>
