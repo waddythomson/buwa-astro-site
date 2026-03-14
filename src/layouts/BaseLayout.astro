@@ -408,6 +408,9 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     };
 
     // ── Global Contact Modal — ViewTransitions-compatible ──────────────
+    // Uses capture phase so our handler fires BEFORE Astro's ViewTransitions
+    // router intercepts the click, letting e.preventDefault() actually stop
+    // the navigation.
     document.addEventListener('astro:page-load', () => {
       const controller = new AbortController();
       const { signal } = controller;
@@ -435,16 +438,17 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }, 200);
       };
 
-      // Intercept all contact-us links and explicit trigger buttons
+      // capture: true — fires before ViewTransitions router so preventDefault works
       document.addEventListener('click', (e) => {
         const target = e.target.closest(
           'a[href="/contact-us/"], a[href="/contact-us"], button[data-contact-popup], .get-in-touch-popup'
         );
         if (target) {
           e.preventDefault();
+          e.stopImmediatePropagation();
           openContactPopup();
         }
-      }, { signal });
+      }, { signal, capture: true });
 
       closeBtn?.addEventListener('click', closeContactPopup, { signal });
 
@@ -780,7 +784,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       0 2px 3px rgba(23, 36, 108, 0.3),
       0 1px 2px rgba(0, 0, 0, 0.15),
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  }
+    }
 
   /* Red button - 3D style */
   .btn-red {
