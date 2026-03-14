@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "youtube-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Reach a global audience with stunning visuals through YouTube advertising."
+heroBadge: "YouTube Ads"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**Reach an engaged audience on the world's largest video platform with strategic YouTube advertising that increases brand visibility and awareness.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 YouTube reaches more adults than any TV network. With YouTube advertising, you can put your message in front of viewers actively watching content related to your industry—right here in the Columbia, SC area.
 

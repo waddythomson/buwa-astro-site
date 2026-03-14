@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "social-media-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Reach your ideal customers with targeted messaging and demographics on social platforms."
+heroBadge: "Social Media"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**Drive engagement and growth with Social Media Advertising. Position your brand on the platforms your audience loves most.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Social media advertising lets you reach your ideal customers where they spend hours every day. With precise targeting options, you can put your message in front of the exact audience most likely to become customers.
 

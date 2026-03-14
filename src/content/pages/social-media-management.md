@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "social-media-management"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Amplify your brand online with strategic management and captivating content."
+heroBadge: "Social Media"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**Improve the performance, engagement, and audience reach of your social media profiles with strategic content creation and dedicated support.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Consistent, engaging social media presence builds trust and keeps your business top-of-mind. But creating quality content takes time you may not have. That's where we come in.
 

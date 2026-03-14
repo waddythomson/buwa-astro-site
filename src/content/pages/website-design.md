@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "website-design"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Custom websites designed to convert visitors into loyal customers."
+heroBadge: "Web Design"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**Custom website design and development to achieve your unique goals and maximize results.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Your website is often the first impression potential customers have of your business. We create professional, mobile-friendly websites designed to convert visitors into customers.
 

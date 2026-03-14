@@ -1,11 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <BaseLayout
   title="Contact BuWa Digital | Local Advertising in Columbia, SC"
   description="Get in touch with BuWa Digital for digital advertising, website design, and marketing services in Columbia, SC. We're here to help your local business thrive."
+  hasTopHero={true}
 >
+    <!-- Hero Section -->
+  <PageHero
+    title="Let's Work Together"
+    subtitle="Ready to grow your business? Fill out the form and we'll be in touch soon."
+    badge="Contact Us"
+  >
+  </PageHero>
   <section class="contact-page">
     <div class="container">
       <!-- Success message (shown after form submission) -->
@@ -16,9 +25,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       
       <div id="form-content">
-        <h1>Let's Work Together</h1>
-        <p class="intro-text">Ready to grow your business? Fill out the form below and we'll be in touch.</p>
-
       <div class="form-container">
         <form id="contact-form" class="contact-form">
           <!-- Honeypot spam protection -->

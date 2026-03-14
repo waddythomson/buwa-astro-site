@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "design"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Transform your vision into exceptional graphic design and marketing materials."
+heroBadge: "Creative Services"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**From logos to flyers and product packaging, our team can create what you need to make your business stand out.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Great design makes a lasting impression. Whether you need a complete brand identity or a single promotional piece, our creative team delivers professional designs that help your business stand out in the Columbia, SC market.
 

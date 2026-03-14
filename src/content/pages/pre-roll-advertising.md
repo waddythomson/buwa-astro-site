@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "pre-roll-advertising"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Appear before videos on your target audience's favorite websites with non-skippable ads."
+heroBadge: "Video Advertising"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**Create a memorable brand experience with engaging online video content. Pre-Roll ads are short, non-skippable videos that generate powerful brand awareness.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Pre-roll ads play before the content viewers want to watch, ensuring your message gets seen. These brief but impactful videos are perfect for building brand recognition and staying top-of-mind with your target audience.
 

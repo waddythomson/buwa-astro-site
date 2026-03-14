@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import partnersData from '../data/buwatv/partners.json';
 
 const title = "Our Partners | BuWa Digital";
@@ -40,16 +41,17 @@ const partners = uniquePartners([
 const partnerCount = partners.length;
 ---
 
-<BaseLayout title={title} description={description}>
-  <section class="hero">
-    <div class="container">
-      <h1>Our Partners</h1>
-      <p class="subtitle">Local brands we’re proud to work with across the community.</p>
-      <a href="/contact-us/" class="btn btn-cta">
-        <i class="fa-solid fa-paper-plane"></i> Get In Touch
-      </a>
-    </div>
-  </section>
+<BaseLayout title={title} description={description} hasTopHero={true}>
+  <!-- Hero Section -->
+  <PageHero
+    title="Our Partners"
+    subtitle="Local brands we’re proud to work with across the community."
+    badge="Our Community"
+  >
+    <a href="/contact-us/" class="btn btn-cta">
+      <i class="fa-solid fa-paper-plane"></i> Get In Touch
+    </a>
+  </PageHero>
 
   <section class="partners-section">
     <div class="container">
@@ -140,48 +142,15 @@ const partnerCount = partners.length;
 </BaseLayout>
 
 <style>
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    padding: 3rem 2rem 4rem;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
+  
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      135deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
+  
 
-  .hero .container {
-    position: relative;
-    z-index: 1;
-  }
+  
 
-  .hero h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+  
 
-  .hero .subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    color: rgba(255,255,255,0.9);
-  }
+  
 
   .btn {
     display: inline-flex;
@@ -420,9 +389,7 @@ const partnerCount = partners.length;
   }
 
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
+    
 
     .carousel-item {
       flex: 0 0 220px;

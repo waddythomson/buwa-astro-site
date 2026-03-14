@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "pay-per-click-ppc"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Drive leads and dominate search engine results with highly targeted PPC campaigns."
+heroBadge: "Paid Search"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**Drive targeted traffic to your website with strategic PPC advertising that maximizes ROI and reaches high-intent users.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Pay-Per-Click advertising puts your business at the top of search results when potential customers are actively looking for what you offer. You only pay when someone clicks—making it one of the most cost-effective ways to drive qualified leads.
 

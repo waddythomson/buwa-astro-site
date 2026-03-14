@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const title = "Network Host Partner | BuWa Digital - Columbia, SC";
 const description = "Join the BuWa TV network and get free indoor digital billboard advertising for your Columbia, SC business. Host Partners enjoy cross-network promotion and more!";
@@ -56,15 +57,15 @@ const steps = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} hasTopHero={true}>
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Network Host Partner</h1>
-      <p class="hero-subtitle">We all share the same customers, so why not work together?</p>
-      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
-    </div>
-  </section>
+  <PageHero
+    title="Network Host Partner"
+    subtitle="We all share the same customers, so why not work together?"
+    badge="Join the Network"
+  >
+    <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+  </PageHero>
 
   <!-- Intro Section -->
   <section class="intro-section">
@@ -154,50 +155,15 @@ const steps = [
 </BaseLayout>
 
 <style>
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 3rem 2rem 5rem;
-    text-align: center;
-    position: relative;
-  }
   
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.03) 10px,
-      rgba(255,255,255,0.03) 20px
-    );
-    pointer-events: none;
-  }
   
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
   
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
   
-  .hero-subtitle {
-    font-size: 1.25rem;
-    font-weight: 700;
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-  }
+  
+  
+  
+  
+  
   
   /* Buttons */
   .btn-red {
@@ -592,13 +558,9 @@ const steps = [
   }
   
   @media (max-width: 600px) {
-    .hero h1 {
-      font-size: 1.8rem;
-    }
     
-    .hero-subtitle {
-      font-size: 1.1rem;
-    }
+    
+    
     
     .benefit-content {
       padding: 1.5rem;

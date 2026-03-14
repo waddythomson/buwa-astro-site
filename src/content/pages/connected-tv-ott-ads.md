@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "connected-tv-ott-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Reach streaming audiences with non-skippable video ads on popular channels like ESPN, CNN, and Fox."
+heroBadge: "Streaming TV"
+heroCtaLabel: "Get In Touch"
+heroCtaHref: "/contact-us/"
 ---
-
-**Capture the attention of streaming audiences with dynamic, non-skippable video ads on popular channels like ESPN, CNN, and Fox.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Connected TV (CTV) and Over-The-Top (OTT) advertising delivers your message directly to viewers streaming content on smart TVs, gaming consoles, and streaming devices. Unlike traditional TV, CTV/OTT offers precise targeting and measurable results.
 
