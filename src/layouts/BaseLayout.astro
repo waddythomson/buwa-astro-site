@@ -13,6 +13,7 @@ export interface Props {
   ogImageHeight?: number;
   ogType?: string;
   noindex?: boolean;
+  hasTopHero?: boolean;
   twitterSite?: string;
   twitterCreator?: string;
   publishedTime?: Date;
@@ -42,7 +43,8 @@ const {
   tags = [],
   breadcrumbs,
   faq = [],
-  useHomeHeader = false
+  useHomeHeader = false,
+  hasTopHero = false,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE || 'https://buwadigital.com';
@@ -182,7 +184,7 @@ const faqJsonLd = faq.length
 
 const normalizedPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isDigitalHome = normalizedPath === '/' || normalizedPath === '/index.html';
-const rootClassName = isDigitalHome ? 'home-page digital-home' : undefined;
+const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? 'secondary-top-hero' : undefined);
 ---
 
 <!DOCTYPE html>
