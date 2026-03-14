@@ -7,8 +7,22 @@ const description = "Reach more customers where they live, work, and shop with t
 
 <BaseLayout title={title} description={description} useHomeHeader={true}>
   <script is:inline>
-    document.documentElement.classList.add('home-page', 'digital-home', 'home-loading');
-    document.body.classList.add('home-page', 'digital-home', 'home-loading');
+    (function () {
+      // Check sessionStorage before the home-reveal div is painted.
+      // On return visits (back button / same-session nav) we skip the logo reveal
+      // entirely and let Astro's ViewTransition slide-in handle the entry.
+      var isReturn = Boolean(sessionStorage.getItem('buwa-home-visited'));
+      document.documentElement.classList.add('home-page', 'digital-home');
+      document.body.classList.add('home-page', 'digital-home');
+      if (isReturn) {
+        // Hide reveal panel via CSS before it paints (home-skip-reveal rule below)
+        document.documentElement.classList.add('home-skip-reveal');
+      } else {
+        // First visit: lock scroll while the reveal animation plays
+        document.documentElement.classList.add('home-loading');
+        document.body.classList.add('home-loading');
+      }
+    })();
   </script>
 
   <div class="home-reveal" id="homeReveal" aria-hidden="true">
@@ -269,6 +283,10 @@ const description = "Reach more customers where they live, work, and shop with t
   const prefersSmallVideo = window.matchMedia('(max-width: 1024px)').matches
     || Boolean(connection?.saveData)
     || ['slow-2g', '2g', '3g'].includes(connection?.effectiveType || '');
+  // Track whether this is a same-session return (back button, etc.)
+  const isReturnVisit = Boolean(sessionStorage.getItem('buwa-home-visited'));
+  sessionStorage.setItem('buwa-home-visited', 'true');
+
   const cameFromSameSite = (() => {
     if (!document.referrer) return false;
     try {
@@ -543,7 +561,14 @@ const description = "Reach more customers where they live, work, and shop with t
     }
   };
 
-  if (
+  if (isReturnVisit) {
+    // Return visit — skip the logo-reveal panel.
+    // Astro ViewTransitions already plays the slide-in page animation.
+    document.documentElement.classList.remove('home-loading');
+    document.body.classList.remove('home-loading');
+    homeReveal?.remove();
+    ensureHeroVideoStarted();
+  } else if (
     enableIntroSplash
     && !prefersReducedMotion
     && (!cameFromSameSite || isReloadNavigation)
@@ -565,6 +590,11 @@ const description = "Reach more customers where they live, work, and shop with t
   :global(html.home-loading),
   :global(body.home-loading) {
     overflow: hidden;
+  }
+
+  /* On return visits, hide the logo-reveal panel before it ever paints */
+  :global(html.home-skip-reveal #homeReveal) {
+    display: none !important;
   }
 
   :global(body.intro-active) {

@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import HomeHeader from '../components/HomeHeader.astro';
 import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -269,6 +270,9 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       {JSON.stringify(faqJsonLd)}
     </script>
   )}
+  <!-- Page transitions -->
+  <ViewTransitions />
+
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-3CI9d2ziqSEmZcelpcAS8.js"></script>
   <script>
@@ -594,6 +598,26 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       });
     }
   </script>
+  <script>
+    // ViewTransitions does NOT replace the <html> element — only <body> is swapped.
+    // Keep html's page-type classes in sync manually on every SPA navigation.
+    document.addEventListener('astro:before-swap', () => {
+      document.documentElement.classList.remove(
+        'home-page', 'digital-home', 'secondary-top-hero',
+        'home-loading', 'home-skip-reveal'
+      );
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      const b = document.body.classList;
+      if (b.contains('home-page')) {
+        document.documentElement.classList.add('home-page', 'digital-home');
+      }
+      if (b.contains('secondary-top-hero')) {
+        document.documentElement.classList.add('secondary-top-hero');
+      }
+    });
+  </script>
 </body>
 </html>
 
@@ -615,6 +639,45 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     color: #333;
     background: #fff;
     overscroll-behavior-y: none;
+  }
+
+  /* ─── Page-transition animations (Astro View Transitions) ─── */
+  /*
+   * New page: slides up from below as a narrow card, then expands to fill
+   * the viewport — inspired by fluid.glass's reveal style.
+   * Old page: quick scale-down fade.
+   */
+  @keyframes buwa-page-enter {
+    from {
+      clip-path: inset(0 7vw 0 7vw round 20px 20px 0 0);
+      transform: translateY(64px);
+      opacity: 0;
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 0px);
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes buwa-page-exit {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.97); }
+  }
+
+  ::view-transition-old(root) {
+    animation: 240ms ease buwa-page-exit both;
+  }
+
+  ::view-transition-new(root) {
+    animation: 560ms cubic-bezier(0.22, 0.75, 0.25, 1) buwa-page-enter both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none !important;
+    }
   }
 
   html.secondary-top-hero,
