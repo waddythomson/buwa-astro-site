@@ -30,6 +30,7 @@ const trustedItems = [
     <nav class="main-nav" aria-label="Main navigation">
       <button type="button" class="menu-toggle" id="siteMenuToggle" aria-expanded="false" aria-controls="siteMenuPanel">
         <span class="menu-pill-label" id="siteMenuLabel">Menu</span>
+        <span class="menu-chevron" aria-hidden="true">&#8964;</span>
       </button>
     </nav>
     <a href="/contact-us/" class="header-cta">Contact us</a>
@@ -408,6 +409,20 @@ const trustedItems = [
 
   .menu-toggle:active {
     transform: translateY(0);
+  }
+
+  .menu-chevron {
+    display: inline-block;
+    margin-left: 0.35em;
+    font-size: 0.78em;
+    line-height: 1;
+    vertical-align: middle;
+    transition: transform 0.22s ease;
+    opacity: 0.75;
+  }
+
+  .menu-toggle.is-open .menu-chevron {
+    transform: rotate(180deg);
   }
 
   .header-cta {
@@ -802,6 +817,10 @@ const trustedItems = [
       width: 0;
       overflow: hidden;
       pointer-events: none;
+    }
+
+    .menu-chevron {
+      display: none;
     }
 
     .menu-toggle::before,
