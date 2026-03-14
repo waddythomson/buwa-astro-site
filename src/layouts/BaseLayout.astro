@@ -604,7 +604,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     document.addEventListener('astro:before-swap', () => {
       document.documentElement.classList.remove(
         'home-page', 'digital-home', 'secondary-top-hero',
-        'home-loading', 'home-skip-reveal'
+        'home-loading'
       );
     });
 
