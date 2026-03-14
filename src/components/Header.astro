@@ -71,159 +71,169 @@ const foundationalItems = [
 </div>
 
 <script>
-  const menuToggle = document.getElementById('siteMenuToggle');
-  const menuToggleLabel = document.getElementById('siteMenuLabel');
-  const menuPanel = document.getElementById('siteMenuPanel');
-  const menuCard = document.getElementById('siteMenuCard');
-  const menuPrimaryButtons = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-key]')) : [];
-  const menuSubmenus = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-section]')) : [];
+  function initHeader() {
+    const controller = new AbortController();
+    const { signal } = controller;
 
-  const setMenuSection = (key) => {
-    if (!key) return;
-    menuPrimaryButtons.forEach((button) => {
-      button.classList.toggle('is-active', button.dataset.menuKey === key);
-    });
-    menuSubmenus.forEach((section) => {
-      section.classList.toggle('is-active', section.dataset.menuSection === key);
-    });
-    menuCard?.classList.add('has-submenu');
-  };
+    // Clean up all listeners before next navigation
+    document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
 
-  const clearMenuSection = () => {
-    menuPrimaryButtons.forEach((button) => button.classList.remove('is-active'));
-    menuSubmenus.forEach((section) => section.classList.remove('is-active'));
-    menuCard?.classList.remove('has-submenu');
-  };
+    const menuToggle = document.getElementById('siteMenuToggle');
+    const menuToggleLabel = document.getElementById('siteMenuLabel');
+    const menuPanel = document.getElementById('siteMenuPanel');
+    const menuCard = document.getElementById('siteMenuCard');
+    const menuPrimaryButtons = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-key]')) : [];
+    const menuSubmenus = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-section]')) : [];
 
-  const positionMenuCard = () => {
-    if (!menuToggle || !menuCard) return;
-    const rect = menuToggle.getBoundingClientRect();
-    const headerRect = siteHeader?.getBoundingClientRect();
-    const top = (headerRect ? headerRect.bottom : rect.bottom) + 2;
-    const left = rect.left + (rect.width / 2);
-    menuCard.style.setProperty('--menu-top', `${top.toFixed(1)}px`);
-    menuCard.style.setProperty('--menu-left', `${left.toFixed(1)}px`);
-  };
+    const setMenuSection = (key) => {
+      if (!key) return;
+      menuPrimaryButtons.forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.menuKey === key);
+      });
+      menuSubmenus.forEach((section) => {
+        section.classList.toggle('is-active', section.dataset.menuSection === key);
+      });
+      menuCard?.classList.add('has-submenu');
+    };
 
-  const openMenuPanel = () => {
-    if (!menuPanel || !menuToggle) return;
-    positionMenuCard();
-    menuPanel.classList.add('is-open');
-    menuPanel.setAttribute('aria-hidden', 'false');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    menuToggle.classList.add('is-open');
-    if (menuToggleLabel) menuToggleLabel.textContent = 'Close';
-  };
+    const clearMenuSection = () => {
+      menuPrimaryButtons.forEach((button) => button.classList.remove('is-active'));
+      menuSubmenus.forEach((section) => section.classList.remove('is-active'));
+      menuCard?.classList.remove('has-submenu');
+    };
 
-  const closeMenuPanel = () => {
-    if (!menuPanel || !menuToggle) return;
-    menuPanel.classList.remove('is-open');
-    menuPanel.setAttribute('aria-hidden', 'true');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.classList.remove('is-open');
-    if (menuToggleLabel) menuToggleLabel.textContent = 'Menu';
-    clearMenuSection();
-  };
+    const positionMenuCard = () => {
+      if (!menuToggle || !menuCard) return;
+      const rect = menuToggle.getBoundingClientRect();
+      const headerRect = siteHeader?.getBoundingClientRect();
+      const top = (headerRect ? headerRect.bottom : rect.bottom) + 2;
+      const left = rect.left + (rect.width / 2);
+      menuCard.style.setProperty('--menu-top', `${top.toFixed(1)}px`);
+      menuCard.style.setProperty('--menu-left', `${left.toFixed(1)}px`);
+    };
 
-  menuToggle?.addEventListener('click', () => {
-    if (!menuPanel) return;
-    if (menuPanel.classList.contains('is-open')) {
-      closeMenuPanel();
-    } else {
-      openMenuPanel();
-    }
-  });
+    const openMenuPanel = () => {
+      if (!menuPanel || !menuToggle) return;
+      positionMenuCard();
+      menuPanel.classList.add('is-open');
+      menuPanel.setAttribute('aria-hidden', 'false');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.classList.add('is-open');
+      if (menuToggleLabel) menuToggleLabel.textContent = 'Close';
+    };
 
-  menuPrimaryButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      setMenuSection(button.dataset.menuKey);
-    });
-  });
+    const closeMenuPanel = () => {
+      if (!menuPanel || !menuToggle) return;
+      menuPanel.classList.remove('is-open');
+      menuPanel.setAttribute('aria-hidden', 'true');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.classList.remove('is-open');
+      if (menuToggleLabel) menuToggleLabel.textContent = 'Menu';
+      clearMenuSection();
+    };
 
-  menuPanel?.addEventListener('click', (event) => {
-    if (event.target === menuPanel) closeMenuPanel();
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeMenuPanel();
-  });
-
-  window.addEventListener('resize', () => {
-    if (menuPanel?.classList.contains('is-open')) positionMenuCard();
-  });
-
-  const siteHeader = document.getElementById('siteHeader');
-  const headerLogo = siteHeader?.querySelector('.logo');
-  const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  const isHomePage = document.body.classList.contains('home-page')
-    || document.body.classList.contains('digital-home')
-    || path === '/'
-    || path === '/index.html';
-  const homeHero = isHomePage ? document.querySelector('main > section.hero') : null;
-  const secondaryHero = !isHomePage
-    ? document.querySelector('main > section.hero:first-child')
-    : null;
-
-  const syncHeaderHeightVar = () => {
-    if (!siteHeader) return;
-    const height = siteHeader.getBoundingClientRect().height;
-    document.documentElement.style.setProperty('--site-header-height', `${Math.ceil(height)}px`);
-  };
-
-  const updateHomeLogoVisibility = () => {
-    if (!siteHeader || !homeHero) return;
-    if (document.body.classList.contains('home-loading')) {
-      siteHeader.classList.remove('after-hero');
-      return;
-    }
-    if (window.scrollY <= 6) {
-      siteHeader.classList.remove('after-hero');
-      return;
-    }
-    const heroRect = homeHero.getBoundingClientRect();
-    const threshold = siteHeader.getBoundingClientRect().height + 6;
-    const passedHero = window.scrollY > 4 && heroRect.bottom <= threshold;
-    siteHeader.classList.toggle('after-hero', passedHero);
-  };
-
-  const updateSecondaryHeaderState = () => {
-    if (!siteHeader || !secondaryHero) return;
-    const heroRect = secondaryHero.getBoundingClientRect();
-    const threshold = siteHeader.getBoundingClientRect().height + 6;
-    const passedHero = heroRect.bottom <= threshold;
-    siteHeader.classList.toggle('after-hero', passedHero);
-  };
-
-  if (homeHero && headerLogo) {
-    siteHeader?.classList.remove('after-hero');
-    syncHeaderHeightVar();
-    updateHomeLogoVisibility();
-    const settleEnd = performance.now() + 1800;
-    const enforceTopLock = () => {
-      if (!siteHeader) return;
-      if (document.body.classList.contains('home-loading') || window.scrollY <= 6) {
-        siteHeader.classList.remove('after-hero');
+    menuToggle?.addEventListener('click', () => {
+      if (!menuPanel) return;
+      if (menuPanel.classList.contains('is-open')) {
+        closeMenuPanel();
+      } else {
+        openMenuPanel();
       }
+    });
+
+    menuPrimaryButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setMenuSection(button.dataset.menuKey);
+      });
+    });
+
+    menuPanel?.addEventListener('click', (event) => {
+      if (event.target === menuPanel) closeMenuPanel();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenuPanel();
+    }, { signal });
+
+    window.addEventListener('resize', () => {
+      if (menuPanel?.classList.contains('is-open')) positionMenuCard();
+    }, { signal });
+
+    const siteHeader = document.getElementById('siteHeader');
+    const headerLogo = siteHeader?.querySelector('.logo');
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    const isHomePage = document.body.classList.contains('home-page')
+      || document.body.classList.contains('digital-home')
+      || path === '/'
+      || path === '/index.html';
+    const homeHero = isHomePage ? document.querySelector('main > section.hero') : null;
+    const secondaryHero = !isHomePage
+      ? document.querySelector('main > section.hero:first-child')
+      : null;
+
+    const syncHeaderHeightVar = () => {
+      if (!siteHeader) return;
+      const height = siteHeader.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--site-header-height', `${Math.ceil(height)}px`);
     };
-    const settleTick = () => {
-      enforceTopLock();
-      if (performance.now() < settleEnd) requestAnimationFrame(settleTick);
+
+    const updateHomeLogoVisibility = () => {
+      if (!siteHeader || !homeHero) return;
+      if (document.body.classList.contains('home-loading')) {
+        siteHeader.classList.remove('after-hero');
+        return;
+      }
+      if (window.scrollY <= 6) {
+        siteHeader.classList.remove('after-hero');
+        return;
+      }
+      const heroRect = homeHero.getBoundingClientRect();
+      const threshold = siteHeader.getBoundingClientRect().height + 6;
+      const passedHero = window.scrollY > 4 && heroRect.bottom <= threshold;
+      siteHeader.classList.toggle('after-hero', passedHero);
     };
-    requestAnimationFrame(settleTick);
-    window.addEventListener('scroll', updateHomeLogoVisibility, { passive: true });
-    window.addEventListener('resize', updateHomeLogoVisibility);
-    window.addEventListener('resize', syncHeaderHeightVar);
-  } else if (secondaryHero) {
-    document.body.classList.add('secondary-top-hero');
-    document.documentElement.classList.add('secondary-top-hero');
-    syncHeaderHeightVar();
-    updateSecondaryHeaderState();
-    window.addEventListener('scroll', updateSecondaryHeaderState, { passive: true });
-    window.addEventListener('resize', updateSecondaryHeaderState);
-    window.addEventListener('resize', syncHeaderHeightVar);
-  } else {
-    syncHeaderHeightVar();
+
+    const updateSecondaryHeaderState = () => {
+      if (!siteHeader || !secondaryHero) return;
+      const heroRect = secondaryHero.getBoundingClientRect();
+      const threshold = siteHeader.getBoundingClientRect().height + 6;
+      const passedHero = heroRect.bottom <= threshold;
+      siteHeader.classList.toggle('after-hero', passedHero);
+    };
+
+    if (homeHero && headerLogo) {
+      siteHeader?.classList.remove('after-hero');
+      syncHeaderHeightVar();
+      updateHomeLogoVisibility();
+      const settleEnd = performance.now() + 1800;
+      const enforceTopLock = () => {
+        if (!siteHeader) return;
+        if (document.body.classList.contains('home-loading') || window.scrollY <= 6) {
+          siteHeader.classList.remove('after-hero');
+        }
+      };
+      const settleTick = () => {
+        enforceTopLock();
+        if (performance.now() < settleEnd) requestAnimationFrame(settleTick);
+      };
+      requestAnimationFrame(settleTick);
+      window.addEventListener('scroll', updateHomeLogoVisibility, { passive: true, signal });
+      window.addEventListener('resize', updateHomeLogoVisibility, { signal });
+      window.addEventListener('resize', syncHeaderHeightVar, { signal });
+    } else if (secondaryHero) {
+      document.body.classList.add('secondary-top-hero');
+      document.documentElement.classList.add('secondary-top-hero');
+      syncHeaderHeightVar();
+      updateSecondaryHeaderState();
+      window.addEventListener('scroll', updateSecondaryHeaderState, { passive: true, signal });
+      window.addEventListener('resize', updateSecondaryHeaderState, { signal });
+      window.addEventListener('resize', syncHeaderHeightVar, { signal });
+    } else {
+      syncHeaderHeightVar();
+    }
   }
+
+  document.addEventListener('astro:page-load', initHeader);
 </script>
 
 <style>
