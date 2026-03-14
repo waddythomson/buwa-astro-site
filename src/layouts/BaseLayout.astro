@@ -407,25 +407,27 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       sync();
     };
 
-    // Global Contact Popup Handler
-    (function() {
+    // ── Global Contact Modal — ViewTransitions-compatible ──────────────
+    document.addEventListener('astro:page-load', () => {
+      const controller = new AbortController();
+      const { signal } = controller;
+      document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+
       const contactModal = document.getElementById('contactModal');
       const closeBtn = document.getElementById('closeContactPopup');
       const contactForm = document.getElementById('contact-popup-form');
+
+      if (!contactModal || !contactForm) return;
+
       initSmsPreferenceGroup(contactForm);
-      
+
       const openContactPopup = () => {
-        if (!contactModal) return;
         contactModal.classList.add('active');
-        // Trigger reflow for animation
-        requestAnimationFrame(() => {
-          contactModal.classList.add('ready');
-        });
+        requestAnimationFrame(() => contactModal.classList.add('ready'));
         document.body.style.overflow = 'hidden';
       };
 
       const closeContactPopup = () => {
-        if (!contactModal) return;
         contactModal.classList.remove('ready');
         setTimeout(() => {
           contactModal.classList.remove('active');
@@ -433,62 +435,51 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }, 200);
       };
 
-      // Handle all "Get In Touch" links/buttons across the site
+      // Intercept all contact-us links and explicit trigger buttons
       document.addEventListener('click', (e) => {
-        const link = e.target.closest('a[href="/contact-us/"], a[href="/contact-us/"], button[data-contact-popup]');
-        // Also check for buttons with the get-in-touch class
-        const getInTouchBtn = e.target.closest('.get-in-touch-popup');
-        
-        if (link || getInTouchBtn) {
+        const target = e.target.closest(
+          'a[href="/contact-us/"], a[href="/contact-us"], button[data-contact-popup], .get-in-touch-popup'
+        );
+        if (target) {
           e.preventDefault();
           openContactPopup();
         }
-      });
+      }, { signal });
 
-      // Close handlers
-      closeBtn?.addEventListener('click', closeContactPopup);
-      
-      contactModal?.addEventListener('click', (e) => {
+      closeBtn?.addEventListener('click', closeContactPopup, { signal });
+
+      contactModal.addEventListener('click', (e) => {
         if (e.target === contactModal) closeContactPopup();
-      });
+      }, { signal });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && contactModal?.classList.contains('active')) {
+        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
           closeContactPopup();
         }
-      });
+      }, { signal });
 
-      // Form submission
-      contactForm?.addEventListener('submit', async (e) => {
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Check honeypot
-        if (contactForm.querySelector('[name="_honeypot"]').value) {
-          window.location.href = '/thank-you/';
+
+        if (contactForm.querySelector('[name="_honeypot"]')?.value) {
+          closeContactPopup();
           return;
         }
-        
+
         const submitBtn = contactForm.querySelector('.contact-popup-submit');
-        const originalText = submitBtn.innerHTML;
+        const originalHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-        
+
         try {
           const formData = new FormData(contactForm);
-          
-          await fetch('/api/contact/', {
-            method: 'POST',
-            body: formData
-          });
-          
+          await fetch('/api/contact/', { method: 'POST', body: formData });
           window.location.href = '/thank-you/';
-          
-        } catch (error) {
-          // Still redirect on error (no-cors doesn't give us response status)
+        } catch {
           window.location.href = '/thank-you/';
         }
-      });
-    })();
+      }, { signal });
+    });
   </script>
 
   <script>
