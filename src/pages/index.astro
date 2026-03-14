@@ -12,16 +12,19 @@ const description = "Reach more customers where they live, work, and shop with t
       document.documentElement.classList.add('home-page', 'digital-home');
       document.body.classList.add('home-page', 'digital-home');
       // Lock scroll during reveal only on first visit.
-      // #homeReveal is hidden by default (style="display:none") so no CSS class needed.
+      // For return visits, add home-skip-reveal so CSS hides #homeReveal before first paint.
       var isReturn = Boolean(sessionStorage.getItem('buwa-home-visited'));
       if (!isReturn) {
         document.documentElement.classList.add('home-loading');
         document.body.classList.add('home-loading');
+      } else {
+        // Hide overlay before paint on return visits — only ViewTransitions slide-in should run
+        document.documentElement.classList.add('home-skip-reveal');
       }
     })();
   </script>
 
-  <div class="home-reveal" id="homeReveal" aria-hidden="true" style="display:none">
+  <div class="home-reveal" id="homeReveal" aria-hidden="true">
     <div class="home-reveal-logo-wrap">
       <img src="/uploads/logos/buwa-digital-white.png" alt="" class="home-reveal-logo" />
     </div>
@@ -498,8 +501,6 @@ const description = "Reach more customers where they live, work, and shop with t
         await waitForHeroFirstFrame(2200);
         const revealHoldMs = 1750;
         const revealExitMs = 720;
-        // Un-hide the reveal panel now that we're ready to animate it
-        if (homeReveal) homeReveal.style.display = '';
         requestAnimationFrame(() => {
           homeReveal?.classList.add('is-ready');
         });
@@ -643,6 +644,10 @@ const description = "Reach more customers where they live, work, and shop with t
 
   .intro-video.active .intro-video-el {
     visibility: visible;
+  }
+
+  :global(html.home-skip-reveal) #homeReveal {
+    display: none;
   }
 
   .home-reveal {
