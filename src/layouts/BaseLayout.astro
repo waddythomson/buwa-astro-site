@@ -622,10 +622,11 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     background: #081a43;
   }
 
+  /* Header is position:fixed on secondary-hero pages — it floats over the hero
+     with zero flow impact. The hero just needs enough padding-top so its
+     content clears the header. No negative margin tricks needed. */
   body.secondary-top-hero main > section.hero:first-child {
-    --shared-hero-overlap: var(--site-header-height, 94px);
-    margin-top: calc(var(--shared-hero-overlap) * -1);
-    padding-top: calc(3rem + var(--shared-hero-overlap));
+    padding-top: calc(3rem + var(--site-header-height, 94px));
   }
 
   /* Headers use Inter */

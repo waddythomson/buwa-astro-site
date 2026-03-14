@@ -291,7 +291,11 @@ const foundationalItems = [
   }
 
   /* ── Header is fully visible over the hero, just no background ── */
+  /* position: fixed removes it from flow entirely — no margin-top tricks needed,
+     no gap between header bottom and hero top, no blue-line flash. */
   :global(body.secondary-top-hero) .site-header {
+    position: fixed;
+    width: 100%;
     background: transparent;
     backdrop-filter: none;
     border-bottom: none;
