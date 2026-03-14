@@ -233,6 +233,13 @@ const foundationalItems = [
     z-index: 1000;
     border-bottom: none;
     overflow: hidden;
+    /* Smooth transition for the fade-in on secondary hero pages */
+    transition:
+      opacity 0.4s ease,
+      background 0.4s ease,
+      backdrop-filter 0.4s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
   }
 
   :global(body:not(.home-page):not(.digital-home):not(.secondary-top-hero)) .site-header {
@@ -283,18 +290,25 @@ const foundationalItems = [
     display: none;
   }
 
+  /* ── Header is fully invisible while the hero fills the viewport ── */
   :global(body.secondary-top-hero) .site-header {
     background: transparent;
     backdrop-filter: none;
-    border-bottom: 1px solid rgba(210, 227, 250, 0.68);
-    box-shadow: 0 1px 0 rgba(116, 149, 196, 0.32);
+    border-bottom: none;
+    box-shadow: none;
+    /* Hidden until the user scrolls past the hero section */
+    opacity: 0;
+    pointer-events: none;
   }
 
+  /* ── Header fades in after the user scrolls past the hero ── */
   :global(body.secondary-top-hero) .site-header.after-hero {
     background: linear-gradient(180deg, rgba(6, 17, 43, 0.78) 0%, rgba(8, 22, 53, 0.64) 100%);
     backdrop-filter: blur(6px);
-    border-bottom-color: rgba(196, 220, 249, 0.78);
+    border-bottom: 1px solid rgba(196, 220, 249, 0.78);
     box-shadow: 0 2px 18px rgba(4, 10, 28, 0.28);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   :global(body.secondary-top-hero) .menu-toggle {
