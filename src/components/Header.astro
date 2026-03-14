@@ -277,13 +277,12 @@ const foundationalItems = [
   }
 
   :global(body.home-page) .menu-toggle {
-    background: rgba(12, 30, 67, 0.78);
-    border-color: rgba(214, 232, 255, 0.7);
+    background: transparent;
   }
 
   :global(body.home-page) .menu-toggle:hover,
   :global(body.home-page) .menu-toggle.is-open {
-    background: rgba(12, 30, 67, 0.78);
+    background: transparent;
   }
 
   :global(body.secondary-top-hero) .header-backdrop {
@@ -316,7 +315,6 @@ const foundationalItems = [
 
   :global(body.secondary-top-hero) .menu-toggle {
     background: transparent;
-    border-color: rgba(214, 232, 255, 0.7);
   }
 
   :global(body.secondary-top-hero) .menu-toggle:hover,
@@ -383,14 +381,14 @@ const foundationalItems = [
 
   .menu-toggle {
     color: rgba(236, 245, 255, 0.96);
-    border: 1px solid rgba(214, 232, 255, 0.5);
+    border: none;
     border-radius: 0;
     width: min(90vw, 272px);
     height: 54px;
     padding: 0.5rem 1.15rem;
-    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     font-family: inherit;
-    background: rgba(12, 30, 67, 0.78);
+    background: transparent;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -407,14 +405,11 @@ const foundationalItems = [
   }
 
   .menu-toggle.is-open {
-    background: rgba(12, 30, 67, 0.78);
-    border-color: rgba(233, 244, 255, 0.85);
-    box-shadow: 0 0 0 3px rgba(193, 221, 255, 0.16);
+    background: transparent;
   }
 
   .menu-toggle:hover {
-    border-color: rgba(233, 244, 255, 0.8);
-    background: rgba(12, 30, 67, 0.78);
+    background: transparent;
     transform: translateY(-1px);
   }
 
