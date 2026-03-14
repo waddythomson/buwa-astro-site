@@ -290,15 +290,14 @@ const foundationalItems = [
     display: none;
   }
 
-  /* ── Header is fully invisible while the hero fills the viewport ── */
+  /* ── Header is fully visible over the hero, just no background ── */
   :global(body.secondary-top-hero) .site-header {
     background: transparent;
     backdrop-filter: none;
     border-bottom: none;
     box-shadow: none;
-    /* Hidden until the user scrolls past the hero section */
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   /* ── Header fades in after the user scrolls past the hero ── */
