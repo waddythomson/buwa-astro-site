@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 import partnersData from '../data/buwatv/partners.json';
 
 const title = "Our Partners | BuWa Digital";
@@ -45,18 +46,26 @@ const partnerCount = partners.length;
   <!-- Hero Section -->
   <PageHero
     title="Our Partners"
-    subtitle="Local brands we’re proud to work with across the community."
-    badge="Our Community"
+    subtitle="Built on Relationships, Powered by Community"
+    description="We're proud to work alongside businesses across the Midlands who share our belief that local growth starts with local connections. From our BuWaTV host locations to community collaborators, these are the brands helping us build something bigger together."
   >
-    <a href="/contact-us/" class="btn btn-cta">
-      <i class="fa-solid fa-paper-plane"></i> Let's Talk!
-    </a>
+    <div class="hero-actions">
+      <a href="#partners" class="jump-pill">
+        <i class="fa-solid fa-building"></i> Our Partners
+      </a>
+      <a href="#testimonials" class="jump-pill">
+        <i class="fa-solid fa-star"></i> Testimonials
+      </a>
+      <a href="#review" class="jump-pill">
+        <i class="fa-solid fa-pen"></i> Write a Review
+      </a>
+    </div>
   </PageHero>
 
-  <section class="partners-section">
+  <section class="partners-section" id="partners">
     <div class="container">
-      <h2>We appreciate our partners</h2>
-      <p class="intro">Here's a snapshot of local businesses that work hard every day to gain community trust and strengthen the local scene.</p>
+      <h2>We Appreciate Our Partners</h2>
+      <p class="intro">These are the local businesses that show up every day to serve their communities — and we're honored to stand alongside them.</p>
     </div>
     <div class="carousel-wrapper">
       <div
@@ -131,14 +140,14 @@ const partnerCount = partners.length;
     </div>
   </section>
 
-  <section class="review">
-    <div class="review-bg"></div>
-    <div class="container">
-      <h2>Write Us a Review</h2>
-      <p>We'd love to hear about your experience working with us!</p>
-      <a href="https://g.page/r/CaCY12nNkQppEBM/review" class="btn btn-cta" target="_blank" rel="noopener">Leave One Now</a>
-    </div>
-  </section>
+  <div id="review">
+    <CtaSection
+      title="Write Us a Review"
+      subtitle="We'd love to hear about your experience working with us!"
+      buttonText="Leave One Now"
+      buttonHref="https://g.page/r/CaCY12nNkQppEBM/review"
+    />
+  </div>
 </BaseLayout>
 
 <style>
@@ -347,45 +356,43 @@ const partnerCount = partners.length;
     font-size: 1.1rem;
   }
 
-  .review {
-    position: relative;
-    overflow: hidden;
-    background: #17246c;
+  /* Jump pill buttons on hero */
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .jump-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
     color: white;
-    text-align: center;
-    padding: 4rem 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 
-  .review-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
-      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
-      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
-      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
-    pointer-events: none;
+  .jump-pill:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
   }
 
-  .review .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  .review h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .review p {
+  .jump-pill i {
+    font-size: 0.85rem;
     opacity: 0.9;
-    margin-bottom: 1.5rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   @media (max-width: 768px) {
@@ -402,8 +409,8 @@ const partnerCount = partners.length;
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
     const track = document.querySelector('.carousel-track');
     if (!track) return;
 
@@ -439,7 +446,21 @@ const partnerCount = partners.length;
       }
     });
 
-    // Fallback in case images are slow to load.
+    // Fallback in case images are slow to load
     setTimeout(updateLoopWidth, 1500);
+
+    // Smooth scroll for jump pills
+    document.querySelectorAll('.jump-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const href = pill.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
   });
 </script>
