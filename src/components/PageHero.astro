@@ -2,6 +2,7 @@
 interface Props {
   title: string;
   subtitle?: string;
+  description?: string;
   badge?: string;
   videoSrc?: string;
 }
@@ -9,6 +10,7 @@ interface Props {
 const {
   title,
   subtitle,
+  description,
   badge,
   videoSrc = '/uploads/new/hero/abstract/abstract-blue-1.mp4',
 } = Astro.props;
@@ -40,6 +42,7 @@ const {
     {badge && <span class="page-hero-badge">{badge}</span>}
     <h1 class="page-hero-title">{title}</h1>
     {subtitle && <p class="page-hero-subtitle">{subtitle}</p>}
+    {description && <p class="page-hero-description">{description}</p>}
     <div class="page-hero-actions">
       <slot />
     </div>
@@ -124,10 +127,19 @@ const {
   }
 
   .page-hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 1.65;
-    color: rgba(210, 232, 255, 0.9);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
     max-width: 640px;
+    margin: 0 auto 1rem;
+  }
+
+  .page-hero-description {
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    line-height: 1.7;
+    color: rgba(210, 232, 255, 0.85);
+    max-width: 620px;
     margin: 0 auto 1.75rem;
   }
 
