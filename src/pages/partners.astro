@@ -87,6 +87,10 @@ const partnerCount = partners.length;
   </section>
 
   <section class="testimonials" id="testimonials">
+    <video class="testimonials-video" autoplay muted loop playsinline>
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+    <div class="testimonials-overlay"></div>
     <div class="container">
       <h2>What Our Partners Are Saying</h2>
       <p class="testimonials-subtitle">Don't just take our word for it.</p>
@@ -140,14 +144,13 @@ const partnerCount = partners.length;
     </div>
   </section>
 
-  <div id="review">
-    <CtaSection
-      title="Write Us a Review"
-      subtitle="We'd love to hear about your experience working with us!"
-      buttonText="Leave One Now"
-      buttonHref="https://g.page/r/CaCY12nNkQppEBM/review"
-    />
-  </div>
+  <section class="review-section" id="review">
+    <div class="container">
+      <h2>Write Us a Review</h2>
+      <p class="review-subtitle">We'd love to hear about your experience working with us!</p>
+      <a href="https://g.page/r/CaCY12nNkQppEBM/review" target="_blank" rel="noopener noreferrer" class="btn-red">Leave One Now</a>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -261,14 +264,61 @@ const partnerCount = partners.length;
   }
 
   .testimonials {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow: hidden;
     text-align: center;
     padding: 4rem 0;
     scroll-margin-top: 100px;
   }
 
-  #review {
+  .testimonials-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .testimonials-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.55);
+    z-index: 1;
+  }
+
+  .testimonials .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .review-section {
+    background: white;
+    text-align: center;
+    padding: 4rem 0;
     scroll-margin-top: 100px;
+  }
+
+  .review-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .review-subtitle {
+    color: #4a5568;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .review-section .btn-red {
+    display: inline-block;
+    text-decoration: none;
   }
 
   .testimonials h2 {
