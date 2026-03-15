@@ -50,15 +50,9 @@ const partnerCount = partners.length;
     description="We're proud to work alongside businesses across the Midlands who share our belief that local growth starts with local connections. From our BuWaTV host locations to community collaborators, these are the brands helping us build something bigger together."
   >
     <div class="hero-actions">
-      <a href="#partners" class="jump-pill">
-        <i class="fa-solid fa-building"></i> Our Partners
-      </a>
-      <a href="#testimonials" class="jump-pill">
-        <i class="fa-solid fa-star"></i> Testimonials
-      </a>
-      <a href="#review" class="jump-pill">
-        <i class="fa-solid fa-pen"></i> Write a Review
-      </a>
+      <a href="#partners" class="jump-pill">Our Partners</a>
+      <a href="#testimonials" class="jump-pill">Testimonials</a>
+      <a href="#review" class="jump-pill">Write a Review</a>
     </div>
   </PageHero>
 
@@ -424,7 +418,7 @@ const partnerCount = partners.length;
   .jump-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
     padding: 0.6rem 1.25rem;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(8px);
@@ -446,10 +440,7 @@ const partnerCount = partners.length;
     transform: translateY(-2px);
   }
 
-  .jump-pill i {
-    font-size: 0.85rem;
-    opacity: 0.9;
-  }
+
 
   @media (max-width: 768px) {
     
