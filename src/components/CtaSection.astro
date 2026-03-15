@@ -9,7 +9,7 @@ interface Props {
 const {
   title,
   subtitle,
-  buttonText = 'Let's Talk!',
+  buttonText = "Let's Talk!",
   buttonHref = '/contact-us/',
 } = Astro.props;
 ---
@@ -22,8 +22,10 @@ const {
   </div>
   <div class="cta-video-content">
     <h2>{title}</h2>
-    {subtitle && <p>{subtitle}</p>}
-    <a href={buttonHref} class="btn-red"><i class="fa-solid fa-paper-plane"></i> {buttonText}</a>
+    {subtitle && <p class="cta-subtitle">{subtitle}</p>}
+    <a href={buttonHref} class="btn-red">
+      <i class="fa-solid fa-paper-plane"></i> {buttonText}
+    </a>
   </div>
 </section>
 
@@ -31,9 +33,8 @@ const {
   .cta-video-section {
     position: relative;
     overflow: hidden;
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
     text-align: center;
-    color: white;
   }
 
   .cta-video-shell {
@@ -50,47 +51,20 @@ const {
 
   .cta-video-content {
     position: relative;
-    z-index: 2;
-    max-width: 800px;
+    z-index: 1;
+    max-width: 700px;
     margin: 0 auto;
   }
 
   .cta-video-content h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    color: #fff;
     margin-bottom: 1rem;
-    color: white;
   }
 
-  .cta-video-content p {
-    font-size: 1.1rem;
+  .cta-subtitle {
+    font-size: 1.15rem;
     color: rgba(255,255,255,0.85);
     margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
-  .cta-video-content .btn-red {
-    display: inline-block;
-    background: #a01c2b;
-    color: white;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: background 0.2s;
-  }
-
-  .cta-video-content .btn-red:hover {
-    background: #7d1521;
-  }
-
-  @media (max-width: 768px) {
-    .cta-video-section {
-      padding: 3rem 1.5rem;
-    }
-
-    .cta-video-content h2 {
-      font-size: 1.5rem;
-    }
   }
 </style>
