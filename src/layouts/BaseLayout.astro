@@ -487,10 +487,22 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   </script>
 
   <script>
-    // Only show popup on Google Business Profile page
-    if (window.location.pathname.includes('google-business-profile')) {
+    // GBP scan popup — ViewTransitions compatible
+    let gbpPopupController;
+
+    document.addEventListener('astro:page-load', () => {
+      // Clean up previous listeners
+      gbpPopupController?.abort();
+
+      // Only run on Google Business Profile page
+      if (!window.location.pathname.includes('google-business-profile')) return;
+
+      gbpPopupController = new AbortController();
+      const signal = gbpPopupController.signal;
+
       const popup = document.getElementById('gbp-popup');
-      
+      if (!popup) return;
+
       // Check if scan was just requested (returning from form submission)
       if (window.location.search.includes('scan-requested=true')) {
         const formSide = document.querySelector('.popup-form-side');
@@ -503,14 +515,12 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
             </div>
           `;
         }
-        // Show the popup with thank you message
         popup.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         sessionStorage.setItem('gbp-popup-seen', 'true');
-        // Clean up URL
         window.history.replaceState({}, document.title, window.location.pathname);
       }
-      
+
       const openPopup = () => {
         if (popup) {
           popup.style.display = 'flex';
@@ -526,14 +536,16 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }
       };
 
-      // Auto-show popup after 1.5s if not seen before (and not returning from submission)
+      // Auto-show popup after 1.5s if not seen before
       if (!window.location.search.includes('scan-requested=true')) {
-        setTimeout(() => {
+        const autoTimer = setTimeout(() => {
           const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
           if (!hasSeenPopup) {
             openPopup();
           }
         }, 1500);
+        // Clear timeout if navigating away before it fires
+        signal.addEventListener('abort', () => clearTimeout(autoTimer));
       }
 
       // Handle "Ask For A Free Scan" button clicks
@@ -543,55 +555,57 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
           e.preventDefault();
           openPopup();
         }
-      });
+      }, { signal });
 
       // Close popup handlers
-      document.addEventListener('DOMContentLoaded', () => {
-        const closeBtn = popup?.querySelector('.popup-close');
-        
-        closeBtn?.addEventListener('click', closePopup);
-        popup?.addEventListener('click', (e) => {
-          if (e.target === popup) closePopup();
-        });
-        
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closePopup();
-        });
-        
-        // Handle popup form submission
-        const popupForm = document.getElementById('popup-form');
-        if (popupForm) {
-          initSmsPreferenceGroup(popupForm);
-          popupForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Check honeypot
-            if (popupForm.querySelector('[name="_honeypot"]').value) {
-              window.location.href = '/thank-you/';
-              return;
-            }
-            
-            const submitBtn = popupForm.querySelector('.popup-submit');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            
-            try {
-              const formData = new FormData(popupForm);
-              
-              await fetch('/api/contact/', {
-                method: 'POST',
-                body: formData
-              });
-              
-              window.location.href = '/thank-you/';
-              
-            } catch (error) {
-              window.location.href = '/thank-you/';
-            }
-          });
-        }
-      });
-    }
+      const closeBtn = popup.querySelector('.popup-close');
+      closeBtn?.addEventListener('click', closePopup, { signal });
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) closePopup();
+      }, { signal });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
+      }, { signal });
+
+      // Handle popup form submission
+      const popupForm = document.getElementById('popup-form');
+      if (popupForm) {
+        initSmsPreferenceGroup(popupForm);
+        popupForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          if (popupForm.querySelector('[name="_honeypot"]').value) {
+            window.location.href = '/thank-you/';
+            return;
+          }
+
+          const submitBtn = popupForm.querySelector('.popup-submit');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          try {
+            const formData = new FormData(popupForm);
+            await fetch('/api/contact/', {
+              method: 'POST',
+              body: formData
+            });
+            window.location.href = '/thank-you/';
+          } catch (error) {
+            window.location.href = '/thank-you/';
+          }
+        }, { signal });
+      }
+    });
+
+    // Clean up if navigating away while popup is open
+    document.addEventListener('astro:before-swap', () => {
+      gbpPopupController?.abort();
+      const popup = document.getElementById('gbp-popup');
+      if (popup) {
+        popup.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
   </script>
   <script>
     // ViewTransitions does NOT replace the <html> element — only <body> is swapped.
