@@ -67,7 +67,6 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
   }
 
   .footer-abstract-shell {
-    display: none;
     position: absolute;
     inset: 0;
     z-index: 0;
@@ -79,13 +78,11 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
     object-fit: cover;
   }
 
-
-  :global(body.home-page) .footer-abstract-shell {
-    display: block;
+  .site-footer {
+    background: transparent;
   }
 
   :global(body.home-page) .site-footer {
-    background: transparent;
     margin-top: -1px;
     padding-top: 1rem;
   }
