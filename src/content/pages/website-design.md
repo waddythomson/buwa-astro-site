@@ -7,7 +7,7 @@ slug: "website-design"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Custom websites designed to convert visitors into loyal customers."
 heroBadge: "Web Design"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -60,4 +60,4 @@ Smooth launch process and ongoing support to keep your site running great.
 
 Let's discuss how a professional website can help grow your business.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

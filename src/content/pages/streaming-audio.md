@@ -7,7 +7,7 @@ slug: "streaming-audio"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Reach listeners on their favorite podcasts, radio, and music streaming platforms."
 heroBadge: "Audio Advertising"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -57,4 +57,4 @@ Reinforce your message across multiple channels for maximum impact.
 
 Let's discuss how streaming audio advertising can amplify your message in the Columbia, SC market.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

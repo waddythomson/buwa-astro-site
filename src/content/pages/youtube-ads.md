@@ -7,7 +7,7 @@ slug: "youtube-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Reach a global audience with stunning visuals through YouTube advertising."
 heroBadge: "YouTube Ads"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -61,4 +61,4 @@ Track views, engagement, website visits, and conversions from your campaigns.
 
 Let's discuss how YouTube advertising can build your brand in the Columbia, SC market.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

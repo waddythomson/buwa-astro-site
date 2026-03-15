@@ -7,7 +7,7 @@ slug: "social-media-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Reach your ideal customers with targeted messaging and demographics on social platforms."
 heroBadge: "Social Media"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -57,4 +57,4 @@ Re-engage people who've visited your website or interacted with your brand but h
 
 Let's discuss how social media advertising can grow your business in the Columbia, SC market.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

@@ -7,7 +7,7 @@ slug: "connected-tv-ott-ads"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Reach streaming audiences with non-skippable video ads on popular channels like ESPN, CNN, and Fox."
 heroBadge: "Streaming TV"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -43,4 +43,4 @@ Target viewers based on demographics, interests, viewing habits, and geographic 
 
 Let's discuss how Connected TV advertising can put your business in front of the right audience.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

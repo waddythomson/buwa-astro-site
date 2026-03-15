@@ -7,7 +7,7 @@ slug: "social-media-management"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Amplify your brand online with strategic management and captivating content."
 heroBadge: "Social Media"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -61,4 +61,4 @@ We understand the Columbia, SC market and what resonates with local audiences.
 
 Let's discuss how professional social media management can benefit your business.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

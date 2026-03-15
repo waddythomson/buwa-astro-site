@@ -9,7 +9,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 **Search Engine Marketing (SEM) encompasses all digital marketing strategies aimed at increasing website visibility in search engine results through organic SEO and paid advertising.**
 
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Let's Talk!</a>
 
 When customers search for products or services like yours, will they find you? Search Engine Marketing ensures your business appears in front of people actively looking for what you offer.
 
@@ -38,4 +38,4 @@ Maximize your visibility in Google Maps and local search with an optimized busin
 
 Let's discuss how search engine marketing can drive more customers to your business.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

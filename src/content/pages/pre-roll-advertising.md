@@ -7,7 +7,7 @@ slug: "pre-roll-advertising"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Appear before videos on your target audience's favorite websites with non-skippable ads."
 heroBadge: "Video Advertising"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -43,4 +43,4 @@ Video creates emotional connections that static ads can't match. Tell your story
 
 Let's discuss how pre-roll video advertising can build your brand in the Columbia, SC market.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

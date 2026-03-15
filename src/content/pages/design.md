@@ -7,7 +7,7 @@ slug: "design"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Transform your vision into exceptional graphic design and marketing materials."
 heroBadge: "Creative Services"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -46,4 +46,4 @@ Full-motion video ads for digital screens, social media, and other platforms tha
 
 Let's discuss how professional design can help your business make a stronger impression.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

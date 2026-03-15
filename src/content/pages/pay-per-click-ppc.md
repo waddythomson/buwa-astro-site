@@ -7,7 +7,7 @@ slug: "pay-per-click-ppc"
 ogImage: "/uploads/2024/07/buwa-logo.png"
 heroSubtitle: "Drive leads and dominate search engine results with highly targeted PPC campaigns."
 heroBadge: "Paid Search"
-heroCtaLabel: "Get In Touch"
+heroCtaLabel: "Let's Talk!"
 heroCtaHref: "/contact-us/"
 ---
 
@@ -53,4 +53,4 @@ Monthly reports that show exactly how your campaigns are performing—no jargon,
 
 Let's discuss how PPC advertising can bring more customers to your business.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)
