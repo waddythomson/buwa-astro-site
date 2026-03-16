@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import CtaSection from '../components/CtaSection.astro';
 
 const faq = [
   {
@@ -49,7 +48,7 @@ const relatedServices = [
     <a href="/contact-us/" class="btn-red">Let's Talk!</a>
   </PageHero>
 
-  <!-- Intro Section -->
+  <!-- Intro Section — WHITE -->
   <section class="intro-section">
     <div class="container">
       <h2>Websites Built to Grow Your Business</h2>
@@ -57,9 +56,13 @@ const relatedServices = [
     </div>
   </section>
 
-  <!-- What We Build -->
-  <section class="benefits-section">
-    <div class="container">
+  <!-- What We Build — VIDEO BG -->
+  <section class="video-bg-section">
+    <video class="section-video" autoplay muted loop playsinline>
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+    <div class="section-video-overlay"></div>
+    <div class="container section-content">
       <h2>What We Build</h2>
       
       <div class="benefits-grid">
@@ -98,7 +101,7 @@ const relatedServices = [
     </div>
   </section>
 
-  <!-- Why It Matters -->
+  <!-- Why It Matters — WHITE -->
   <section class="impact-section">
     <div class="container">
       <h2>Why Your Website Matters More Than Ever</h2>
@@ -120,9 +123,13 @@ const relatedServices = [
     </div>
   </section>
 
-  <!-- Process Steps -->
-  <section class="process-section">
-    <div class="container">
+  <!-- How We Build — VIDEO BG -->
+  <section class="video-bg-section">
+    <video class="section-video" autoplay muted loop playsinline>
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+    <div class="section-video-overlay"></div>
+    <div class="container section-content">
       <h2>How We Build Your Website</h2>
       
       <div class="process-steps">
@@ -153,7 +160,7 @@ const relatedServices = [
     </div>
   </section>
 
-  <!-- Approach Section -->
+  <!-- Approach Section — WHITE -->
   <section class="approach-section">
     <div class="container">
       <h2>Our Marketing Service Approach Is Simple</h2>
@@ -167,9 +174,13 @@ const relatedServices = [
     </div>
   </section>
 
-  <!-- Why BuWa -->
-  <section class="why-section">
-    <div class="container">
+  <!-- Why BuWa — VIDEO BG -->
+  <section class="video-bg-section">
+    <video class="section-video" autoplay muted loop playsinline>
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+    <div class="section-video-overlay"></div>
+    <div class="container section-content">
       <h2>Why Choose BuWa Digital?</h2>
       <div class="why-grid">
         <div class="why-card">
@@ -192,7 +203,7 @@ const relatedServices = [
     </div>
   </section>
 
-  <!-- FAQ Section -->
+  <!-- FAQ Section — WHITE -->
   <section class="faq-section">
     <div class="container">
       <h2>Common Questions About Website Design</h2>
@@ -207,11 +218,15 @@ const relatedServices = [
     </div>
   </section>
 
-  <!-- Related Services -->
-  <section class="related-section">
-    <div class="container">
+  <!-- Related Services — VIDEO BG -->
+  <section class="video-bg-section">
+    <video class="section-video" autoplay muted loop playsinline>
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+    <div class="section-video-overlay"></div>
+    <div class="container section-content related-content">
       <h2>Services That Pair Well With Web Design</h2>
-      <p>A great website is just the beginning. Pair it with digital marketing to drive traffic and convert more customers.</p>
+      <p class="related-desc">A great website is just the beginning. Pair it with digital marketing to drive traffic and convert more customers.</p>
       <div class="related-links">
         {relatedServices.map((service) => (
           <a href={service.href} class="related-link">{service.label}</a>
@@ -220,10 +235,14 @@ const relatedServices = [
     </div>
   </section>
 
-  <CtaSection
-    title="Ready for a Website That Actually Works?"
-    subtitle="Let's build something that grows your business — not just sits there looking pretty."
-  />
+  <!-- CTA Section — WHITE (clean transition to footer) -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready for a Website That Actually Works?</h2>
+      <p class="cta-desc">Let's build something that grows your business — not just sits there looking pretty.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
 
 <style>
   /* Buttons */
@@ -267,7 +286,7 @@ const relatedServices = [
     padding: 0 2rem;
   }
 
-  /* Sections */
+  /* Base Sections */
   section {
     padding: 4rem 0;
   }
@@ -280,9 +299,80 @@ const relatedServices = [
     text-align: center;
   }
 
+  /* ========================
+     VIDEO BACKGROUND SECTIONS
+     ======================== */
+  .video-bg-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 20, 50, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    color: white;
+  }
+
+  /* Cards on video backgrounds — navy with white text */
+  .video-bg-section .benefit-card,
+  .video-bg-section .why-card {
+    background: rgba(12, 30, 67, 0.85);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .video-bg-section .benefit-content h3,
+  .video-bg-section .why-card h3 {
+    color: white;
+  }
+
+  .video-bg-section .benefit-content p,
+  .video-bg-section .why-card p {
+    color: rgba(210, 232, 255, 0.9);
+  }
+
+  /* Process steps on video — keep white cards */
+  .video-bg-section .process-step {
+    background: white;
+    color: #2d3748;
+  }
+
+  .video-bg-section .process-step h3 {
+    color: #1a202c;
+  }
+
+  .video-bg-section .process-step p {
+    color: #4a5568;
+  }
+
+  /* ========================
+     WHITE SECTIONS
+     ======================== */
+
   /* Intro Section */
   .intro-section {
-    background: #f8f9fa;
+    background: white;
   }
 
   .intro-text {
@@ -295,10 +385,6 @@ const relatedServices = [
   }
 
   /* Benefits / What We Build */
-  .benefits-section {
-    background: white;
-  }
-
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -307,7 +393,6 @@ const relatedServices = [
   }
 
   .benefit-card {
-    background: #f8f9fa;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 
@@ -331,18 +416,16 @@ const relatedServices = [
   .benefit-content h3 {
     font-family: 'Inter', sans-serif;
     font-size: 1.25rem;
-    color: #1a1a2e;
     margin-bottom: 0.75rem;
   }
 
   .benefit-content p {
-    color: #555;
     line-height: 1.6;
   }
 
   /* Impact / Stats Section */
   .impact-section {
-    background: #f8f9fa;
+    background: white;
   }
 
   .stats-grid {
@@ -353,7 +436,7 @@ const relatedServices = [
   }
 
   .stat-card {
-    background: white;
+    background: #f0f4f8;
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
@@ -394,41 +477,10 @@ const relatedServices = [
   }
 
   /* Process Steps */
-  .process-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    position: relative;
-  }
-
-  .process-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
-
-  .process-section h2 {
-    color: white;
-    position: relative;
-    z-index: 1;
-  }
-
   .process-steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    position: relative;
-    z-index: 1;
   }
 
   .process-step {
@@ -436,7 +488,6 @@ const relatedServices = [
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
-    color: #2d3748;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
 
@@ -459,13 +510,11 @@ const relatedServices = [
     font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
-    color: #1a202c;
   }
 
   .process-step p {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: #4a5568;
   }
 
   /* Approach Section */
@@ -483,7 +532,7 @@ const relatedServices = [
   .approach-list li {
     padding: 1rem 1.5rem;
     margin-bottom: 0.75rem;
-    background: #f8f9fa;
+    background: #f0f4f8;
     border-radius: 8px;
     border-left: 4px solid #a01c2b;
     font-size: 1.1rem;
@@ -494,10 +543,6 @@ const relatedServices = [
   }
 
   /* Why BuWa Section */
-  .why-section {
-    background: #f8f9fa;
-  }
-
   .why-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -506,7 +551,6 @@ const relatedServices = [
   }
 
   .why-card {
-    background: white;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -515,12 +559,10 @@ const relatedServices = [
   .why-card h3 {
     font-family: 'Inter', sans-serif;
     font-size: 1.25rem;
-    color: #1a1a2e;
     margin-bottom: 0.75rem;
   }
 
   .why-card p {
-    color: #555;
     line-height: 1.6;
   }
 
@@ -532,7 +574,7 @@ const relatedServices = [
   .faq-item {
     max-width: 800px;
     margin: 0 auto 2rem;
-    background: #f8f9fa;
+    background: #f0f4f8;
     padding: 1.5rem 2rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -564,11 +606,15 @@ const relatedServices = [
     text-decoration: underline;
   }
 
-  /* Related Services */
-  .related-section {
-    padding: 4rem 2rem;
-    background: #f8f9fa;
+  /* Related Services on video bg */
+  .related-content {
     text-align: center;
+  }
+
+  .related-desc {
+    color: rgba(210, 232, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
   }
 
   .related-links {
@@ -585,16 +631,41 @@ const relatedServices = [
     justify-content: center;
     padding: 0.75rem 1.25rem;
     border-radius: 999px;
-    border: 2px solid #17246c;
-    color: #17246c;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: white;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .related-link:hover {
-    background: #17246c;
-    color: #fff;
+    background: white;
+    color: #1a1a2e;
+    border-color: white;
+  }
+
+  /* White CTA Section (pre-footer) */
+  .cta-section-white {
+    background: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .cta-section-white h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+  }
+
+  .cta-desc {
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
   }
 
   /* Responsive */
