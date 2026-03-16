@@ -1356,14 +1356,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     }
   }
 
-  /* ── Content sections: default to white so dark video doesn't bleed ─ */
-  /* Any section that's NOT intentionally transparent gets white.        */
-  /* Transparent sections (.animated-bg-section, .video-bg-section,      */
-  /* PageHero) override this with explicit background: transparent.      */
-  body.secondary-top-hero main > section:not(.animated-bg-section):not(.video-bg-section):not(.hero-outer):not(.page-hero-outer) {
-    background: white;
-  }
-
   /* ── "Blue" sections on service pages ───────────────────────────── */
   /* Transparent so the persistent background video shows through.      */
   .animated-bg-section {
@@ -1371,6 +1363,15 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     background: transparent;
     overflow: hidden;
     padding: 5rem 0;
+  }
+
+  /* Headings inside transparent (video-background) sections must be    */
+  /* white — dark gray headings are invisible against the dark video.   */
+  .animated-bg-section h2,
+  .animated-bg-section h3,
+  .animated-bg-section .section-title,
+  .animated-bg-section .section-heading {
+    color: #ffffff;
   }
 
   /* Subtle scrim so heading text stays legible over the video */
