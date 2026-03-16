@@ -1,0 +1,1423 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "BuWa Digital - Marketing & Advertising for Local Businesses";
+const description = "Reach more customers where they live, work, and shop with targeted digital marketing that builds trust and drives action.";
+---
+
+<BaseLayout title={title} description={description}>
+  <script is:inline>
+    (function () {
+      // Apply page-type classes immediately (before paint) to prevent flash.
+      document.documentElement.classList.add('home-page', 'digital-home');
+      document.body.classList.add('home-page', 'digital-home');
+      // Lock scroll during reveal only on first visit.
+      // For return visits, add home-skip-reveal so CSS hides #homeReveal before first paint.
+      var isReturn = Boolean(sessionStorage.getItem('buwa-home-visited'));
+      if (!isReturn) {
+        document.documentElement.classList.add('home-loading');
+        document.body.classList.add('home-loading');
+      } else {
+        // Hide overlay before paint on return visits — only ViewTransitions slide-in should run
+        document.documentElement.classList.add('home-skip-reveal');
+      }
+    })();
+  </script>
+
+  <div class="home-reveal" id="homeReveal" aria-hidden="true">
+    <div class="home-reveal-logo-wrap">
+      <img src="/uploads/logos/buwa-digital-white.png" alt="" class="home-reveal-logo" />
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video hero-video-a is-active" muted playsinline preload="auto">
+        <source src="/uploads/hero/0.mp4" type="video/mp4" />
+      </video>
+      <video class="hero-video hero-video-b" muted playsinline preload="metadata">
+        <source src="" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-stars"></div>
+      <div class="hero-stars hero-stars-secondary"></div>
+      <div class="hero-moon"></div>
+    </div>
+    <div class="hero-content">
+      <h1>Stop Flying Under<br />The Radar!</h1>
+      <p class="hero-subtitle">We'll help you maintain a prominent community presence using strategically targeted services that keep your business top-of-mind and deliver real results.</p>
+      <div class="hero-buttons">
+        <a href="/contact-us/" class="cta-button cta-button-navy">Let's Talk!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem/Solution Section -->
+  <section class="features">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature-image">
+          <img src="/uploads/2024/Indoor-Billboards.webp" alt="Indoor Billboards" loading="lazy" />
+        </div>
+        <div class="feature-content">
+          <div class="feature-item">
+            <h3>Tired Of Blowing The Budget On Advertising?</h3>
+            <p>We understand how difficult – and expensive — it can be to get customers to pay attention.</p>
+            <p>We help local business owners stop wasting money on underperforming ads by telling their story through locally targeted, full-motion video that delivers real results — without breaking the bank.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Be Seen. Be Trusted. Be Chosen!</h3>
+          <p>Customers trust brands that they recognize. By using vibrant visuals and smart campaigns to tell your story, you gain valuable local exposure and <strong>turn recognition into trust</strong>— the trust that ultimately leads to being chosen.</p>
+          </div>
+        </div>
+      </div>
+      <div class="feature-cta">
+        <a
+          href="/buwatv/"
+          class="cta-button cta-button-navy cta-button-logo"
+          aria-label="Visit BuWaTV"
+        >
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="cta-logo" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <span class="stat-number" data-count="400">400%</span>
+          <span class="stat-label">More Impactful Than Static Advertising</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="30">30%</span>
+          <span class="stat-label">Increase in Average Ticket Value</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="83">83%</span>
+          <span class="stat-label">Recall Among Consumers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Growth Partners -->
+  <section class="network">
+    <div class="section-video-shell" aria-hidden="true">
+      <video class="section-abstract-video" autoplay muted loop playsinline preload="metadata">
+        <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="container">
+      <div class="network-grid">
+        <div class="network-content">
+          <h2>Local Growth Partners</h2>
+          <p>Our mission is to help local businesses like yours reach the right audience with coordinated search, social, and web campaigns.</p>
+          <p>We build the strategy, creative, and execution so your brand stays visible and competitive.</p>
+          <a href="/contact-us/" class="cta-button cta-button-red">Talk With Us</a>
+        </div>
+        <div class="network-image">
+          <img src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="Local business marketing" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marketing Solutions -->
+  <section class="solutions">
+    <div class="container">
+      <h2>Marketing Solutions</h2>
+      <div class="solution-grid">
+        <a href="/buwatv/" class="solution-card">
+          <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="solution-icon solution-icon-image" loading="lazy" />
+          <h3>Indoor Digital Billboards</h3>
+          <p>Showcase your brand on screens in locations where customers work, shop, eat, and play.</p>
+        </a>
+        <a href="/google-business-profile/" class="solution-card">
+          <i class="fa-brands fa-google solution-icon"></i>
+          <h3>Google Business Profile</h3>
+          <p>Optimize your profile to increase online visibility, improve local search rankings, and attract more customers to your business</p>
+        </a>
+        <a href="/pay-per-click-ppc/" class="solution-card">
+          <i class="fa-solid fa-hand-point-up solution-icon"></i>
+          <h3>Pay-Per-Click (PPC)</h3>
+          <p>Drive immediate traffic and convert more leads with strategic, budget-friendly online advertising</p>
+        </a>
+        <a href="/website-design/" class="solution-card">
+          <i class="fa-solid fa-object-ungroup solution-icon"></i>
+          <h3>Website Design</h3>
+          <p>Create a positive first impression, increase customer engagement and conversions</p>
+        </a>
+      </div>
+      <div class="solutions-cta">
+        <a href="/solutions/" class="cta-button">Browse all Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-video-shell" aria-hidden="true">
+      <video class="section-abstract-video" autoplay muted loop playsinline preload="metadata">
+        <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="container">
+      <h2>What Our Partners Are Saying</h2>
+      <p class="testimonials-subtitle">Don't just take our word for it.</p>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Incredible service and team. Buck and Waddy have nailed it when it comes to business-to-business advertising that is visually appealing, fresh and fun. This has been a great way to advertise events, news and company info. It's easy to tell they love and support the small business community."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Christina Nelson</span>
+            <span class="author-company">The Greater CWC Chamber of Commerce</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Buwa Digital is the real deal when it comes to helping local businesses grow in today's digital world. Their indoor digital billboards are a game-changer for visibility. What I appreciate most is their passion for empowering small businesses here in Columbia. It feels less like hiring a vendor and more like gaining a partner who's invested in your success."</p>
+          <div class="testimonial-author">
+            <span class="author-name">David Medley</span>
+            <span class="author-company">Better Homes and Gardens Real Estate Medley</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Buwa Digital has been a tremendous help in improving my business's online presence. They made the process of setting up and optimizing my Google Business page simple and effective. Their team was responsive, professional, and delivered exactly what they promised. I've already noticed a difference in how clients are finding us online."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Zach Coggins</span>
+            <span class="author-company">Milestone Wealth Advisors</span>
+          </div>
+        </div>
+      </div>
+      <div class="google-attribution">
+        <i class="fa-brands fa-google"></i> Reviews from Google
+      </div>
+    </div>
+  </section>
+
+  <!-- Write Us a Review -->
+  <section class="review">
+    <div class="container">
+      <h2>Write Us a Review</h2>
+      <p>We'd love to hear about your experience working with us!</p>
+      <a href="https://g.page/r/CaCY12nNkQppEBM/review" class="cta-button cta-button-red" target="_blank" rel="noopener">Leave One Now</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // astro:page-load fires on every ViewTransitions navigation (including initial load).
+  // Without this, the script only runs once and the video never starts on back-nav.
+  document.addEventListener('astro:page-load', () => {
+    if (!document.body.classList.contains('home-page')) return;
+    // Stats animation
+    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+    const animateCount = (el) => {
+      const target = Number(el.dataset.count || '0');
+      const duration = 1200;
+      const start = performance.now();
+  
+      const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.round(progress * target);
+        el.textContent = `${value}%`;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+  
+      requestAnimationFrame(step);
+    };
+  
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          if (el.dataset.animated) return;
+          el.dataset.animated = 'true';
+          animateCount(el);
+          obs.unobserve(el);
+        });
+      },
+      { threshold: 0.4 }
+    );
+  
+    statNumbers.forEach((el) => observer.observe(el));
+  
+    // Intro video splash (6 seconds)
+    const introDurationMs = 4500;
+    const introStartTimeoutMs = 900;
+    const enableIntroSplash = false;
+    const introVideo = document.getElementById('introVideo');
+    const introVideoEl = document.getElementById('introVideoEl');
+    const homeReveal = document.getElementById('homeReveal');
+    const heroVideoEls = Array.from(document.querySelectorAll('.hero-video'));
+    let heroPlaylist = ['/uploads/hero/0.mp4'];
+    let heroPlaylistIndex = 0;
+    let activeHeroVideoIndex = 0;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const prefersSmallVideo = window.matchMedia('(max-width: 1024px)').matches
+      || Boolean(connection?.saveData)
+      || ['slow-2g', '2g', '3g'].includes(connection?.effectiveType || '');
+    // Track whether this is a same-session return (back button, etc.)
+    const isReturnVisit = Boolean(sessionStorage.getItem('buwa-home-visited'));
+    sessionStorage.setItem('buwa-home-visited', 'true');
+  
+    const cameFromSameSite = (() => {
+      if (!document.referrer) return false;
+      try {
+        return new URL(document.referrer).origin === window.location.origin;
+      } catch {
+        return false;
+      }
+    })();
+    const navEntry = performance.getEntriesByType('navigation')[0];
+    const isReloadNavigation = navEntry?.type === 'reload';
+    let playbackTimer;
+    let maxWaitTimer;
+    let hasPlayed = false;
+    let pendingSwap = false;
+    let introDismissed = false;
+    let heroStarted = false;
+  
+    const waitForHeroFirstFrame = (timeoutMs = 1800) => {
+      const activeVideo = heroVideoEls[activeHeroVideoIndex];
+      if (!(activeVideo instanceof HTMLVideoElement)) return Promise.resolve();
+      if (activeVideo.readyState >= 2) {
+        return new Promise((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        });
+      }
+  
+      return new Promise((resolve) => {
+        const done = () => {
+          clearTimeout(timer);
+          activeVideo.removeEventListener('loadeddata', done);
+          activeVideo.removeEventListener('playing', done);
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        };
+        const timer = window.setTimeout(done, timeoutMs);
+        activeVideo.addEventListener('loadeddata', done, { once: true });
+        activeVideo.addEventListener('playing', done, { once: true });
+      });
+    };
+  
+    const ensureHeroVideoStarted = () => {
+      if (heroStarted) return Promise.resolve();
+      heroStarted = true;
+      return startHeroVideo();
+    };
+  
+  
+    const clearTimers = () => {
+      if (playbackTimer) {
+        clearTimeout(playbackTimer);
+        playbackTimer = undefined;
+      }
+      if (maxWaitTimer) {
+        clearTimeout(maxWaitTimer);
+        maxWaitTimer = undefined;
+      }
+    };
+  
+    const setVideoSource = (videoEl, src) => {
+      if (!(videoEl instanceof HTMLVideoElement)) return;
+      const sourceEl = videoEl.querySelector('source');
+      const typeFromSrc = (value) => (value.endsWith('.webm') ? 'video/webm' : 'video/mp4');
+      const withLowresVariant = (value) =>
+        value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-lowres$1$2');
+      const with720Variant = (value) =>
+        value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-720$1$2');
+      const candidateSources = prefersSmallVideo
+        ? [withLowresVariant(src), with720Variant(src), src]
+        : [src];
+      let sourceIndex = 0;
+  
+      const applySource = (sourceUrl, type) => {
+        if (sourceEl) {
+          sourceEl.src = sourceUrl;
+          sourceEl.type = type;
+        } else {
+          videoEl.src = sourceUrl;
+        }
+        videoEl.load();
+      };
+  
+      if (candidateSources.length > 1) {
+        videoEl.onerror = () => {
+          sourceIndex += 1;
+          const nextSrc = candidateSources[sourceIndex];
+          if (!nextSrc) {
+            videoEl.onerror = null;
+            return;
+          }
+          if (sourceIndex >= candidateSources.length - 1) {
+            videoEl.onerror = null;
+          }
+          applySource(nextSrc, typeFromSrc(nextSrc));
+        };
+      } else {
+        videoEl.onerror = null;
+      }
+  
+      applySource(candidateSources[0], typeFromSrc(candidateSources[0]));
+    };
+  
+    const loadHeroPlaylist = async () => {
+      try {
+        const response = await fetch('/uploads/hero/playlist.json', { cache: 'no-store' });
+        if (!response.ok) return;
+        const data = await response.json();
+        if (Array.isArray(data.videos) && data.videos.length > 0) {
+          heroPlaylist = data.videos;
+        }
+      } catch {
+        // Keep default list if playlist fails to load
+      }
+    };
+  
+    const startHeroVideo = async () => {
+      if (prefersReducedMotion) return;
+      if (heroVideoEls.length < 2) return;
+      const crossfadeLeadSeconds = 0.35;
+  
+      await loadHeroPlaylist();
+      if (heroPlaylist.length === 0) return;
+  
+      // Single-clip playlists should use native looping to avoid
+      // any handoff flash from swapping between layered video elements.
+      if (heroPlaylist.length === 1) {
+        const primaryVideo = heroVideoEls[0];
+        const secondaryVideo = heroVideoEls[1];
+        if (!(primaryVideo instanceof HTMLVideoElement)) return;
+  
+        primaryVideo.classList.add('is-active');
+        primaryVideo.loop = true;
+        primaryVideo.muted = true;
+        primaryVideo.playsInline = true;
+        setVideoSource(primaryVideo, heroPlaylist[0]);
+        primaryVideo.play().catch(() => {});
+  
+        if (secondaryVideo instanceof HTMLVideoElement) {
+          secondaryVideo.classList.remove('is-active');
+          secondaryVideo.pause();
+        }
+        return;
+      }
+  
+      const getActiveVideo = () => heroVideoEls[activeHeroVideoIndex];
+      const getBufferVideo = () => heroVideoEls[(activeHeroVideoIndex + 1) % heroVideoEls.length];
+  
+      const preloadNextClip = () => {
+        const bufferVideo = getBufferVideo();
+        const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
+        setVideoSource(bufferVideo, heroPlaylist[nextIndex]);
+      };
+  
+      const swapToNextClip = () => {
+        if (pendingSwap) return;
+        pendingSwap = true;
+  
+        const currentVideo = getActiveVideo();
+        const bufferVideo = getBufferVideo();
+        const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
+  
+        bufferVideo.currentTime = 0;
+        bufferVideo.play()
+          .then(() => {
+            bufferVideo.classList.add('is-active');
+            currentVideo.classList.remove('is-active');
+            currentVideo.pause();
+            heroPlaylistIndex = nextIndex;
+            activeHeroVideoIndex = (activeHeroVideoIndex + 1) % heroVideoEls.length;
+            preloadNextClip();
+          })
+          .catch(() => {
+            // If buffered play fails, keep current frame and retry on next loop.
+          })
+          .finally(() => {
+            pendingSwap = false;
+          });
+      };
+  
+      heroVideoEls.forEach((video) => {
+        video.muted = true;
+        video.playsInline = true;
+        video.loop = false;
+        video.addEventListener('timeupdate', () => {
+          if (video !== getActiveVideo() || pendingSwap) return;
+          if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+          const remaining = video.duration - video.currentTime;
+          if (remaining <= crossfadeLeadSeconds) {
+            swapToNextClip();
+          }
+        });
+        video.addEventListener('ended', () => {
+          if (video !== getActiveVideo()) return;
+          swapToNextClip();
+        });
+      });
+  
+      const activeVideo = getActiveVideo();
+      setVideoSource(activeVideo, heroPlaylist[heroPlaylistIndex]);
+      activeVideo.play().catch(() => {});
+      preloadNextClip();
+    };
+  
+    const hideIntro = async () => {
+      if (introDismissed) return;
+      introDismissed = true;
+      if (!enableIntroSplash) {
+        document.body.classList.remove('intro-active');
+        introVideo?.remove();
+        await ensureHeroVideoStarted();
+        await waitForHeroFirstFrame(2200);
+        const revealHoldMs = 1750;
+        const revealExitMs = 720;
+        requestAnimationFrame(() => {
+          homeReveal?.classList.add('is-ready');
+        });
+        setTimeout(() => {
+          homeReveal?.classList.add('is-opening');
+        }, revealHoldMs);
+        setTimeout(() => {
+          document.documentElement.classList.remove('home-loading');
+          document.body.classList.remove('home-loading');
+          homeReveal?.remove();
+        }, revealHoldMs + revealExitMs + 40);
+        return;
+      }
+      if (!introVideo) {
+        await ensureHeroVideoStarted();
+        await waitForHeroFirstFrame();
+        return;
+      }
+      const introWasVisible = introVideo.classList.contains('active');
+      if (!introWasVisible) {
+        // For skip-intro navigations, keep a solid cover until hero first frame.
+        introVideo.classList.add('active', 'boot-only');
+      }
+      document.body.classList.remove('intro-active');
+      clearTimers();
+      if (introVideoEl) {
+        introVideoEl.pause();
+        introVideoEl.currentTime = 0;
+      }
+      await ensureHeroVideoStarted();
+      await waitForHeroFirstFrame();
+      introVideo.classList.add('done');
+      setTimeout(() => introVideo.remove(), 500);
+    };
+  
+    const showIntro = () => {
+      if (!introVideo) return;
+      introVideo.classList.remove('boot-only');
+      document.body.classList.add('intro-active');
+      introVideo.classList.add('active');
+      if (introVideoEl instanceof HTMLVideoElement) {
+        introVideoEl.muted = true;
+        introVideoEl.playsInline = true;
+        introVideoEl.addEventListener(
+          'playing',
+          () => {
+            hasPlayed = true;
+            playbackTimer = setTimeout(hideIntro, introDurationMs);
+          },
+          { once: true }
+        );
+        introVideoEl.addEventListener('error', hideIntro, { once: true });
+        maxWaitTimer = setTimeout(() => {
+          if (!hasPlayed) hideIntro();
+        }, introStartTimeoutMs);
+        introVideoEl.play().catch(() => {
+          hideIntro();
+        });
+      } else {
+        hideIntro();
+      }
+    };
+  
+    if (isReturnVisit) {
+      // Return visit — skip the logo-reveal panel.
+      // Astro ViewTransitions already plays the slide-in page animation.
+      document.documentElement.classList.remove('home-loading');
+      document.body.classList.remove('home-loading');
+      homeReveal?.remove();
+      ensureHeroVideoStarted();
+    } else if (
+      enableIntroSplash
+      && !prefersReducedMotion
+      && (!cameFromSameSite || isReloadNavigation)
+      && introVideoEl?.querySelector('source')?.getAttribute('src')
+    ) {
+      showIntro();
+    } else {
+      hideIntro();
+    }
+  
+  });
+</script>
+
+<style>
+  :global(html.digital-home),
+  :global(body.digital-home) {
+    background: #081a43;
+  }
+
+  :global(html.home-loading),
+  :global(body.home-loading) {
+    overflow: hidden;
+  }
+
+  :global(body.intro-active) {
+    overflow: hidden;
+  }
+
+  .intro-video {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .intro-video.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .intro-video.done {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro-video.boot-only {
+    transition: none;
+    background: #000;
+  }
+
+  .intro-video.boot-only .intro-video-el {
+    visibility: hidden;
+  }
+
+  .intro-video-el {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    visibility: hidden;
+    background-color: #000;
+    background-image: url('/uploads/logos/buwa-digital-logo-1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: clamp(180px, 42vw, 420px) auto;
+  }
+
+  .intro-video.active .intro-video-el {
+    visibility: visible;
+  }
+
+  :global(html.home-skip-reveal) #homeReveal {
+    display: none;
+  }
+
+  .home-reveal {
+    position: fixed;
+    inset: 0;
+    z-index: 10010;
+    background: #e6e4de;
+    display: grid;
+    place-items: center;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.72s cubic-bezier(0.2, 0.65, 0.2, 1), opacity 0.72s ease;
+    will-change: transform, opacity;
+    pointer-events: none;
+    perspective: 1200px;
+  }
+
+  .home-reveal-logo-wrap {
+    width: clamp(190px, 24vw, 320px);
+    opacity: 0;
+    transform: translateX(-12px) scale(0.16);
+    transition: transform 0.9s cubic-bezier(0.18, 0.8, 0.22, 1), opacity 0.52s ease;
+    will-change: transform, opacity;
+  }
+
+  .home-reveal.is-ready .home-reveal-logo-wrap {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .home-reveal-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: invert(1) brightness(0.08);
+  }
+
+  .home-reveal.is-opening {
+    transform: translateY(-108%);
+    opacity: 0;
+  }
+
+  .home-reveal.is-opening .home-reveal-logo-wrap {
+    transform: translate(-34vw, -30vh) scale(0.26);
+    opacity: 0.18;
+    transition-duration: 0.7s, 0.56s;
+    transition-timing-function: cubic-bezier(0.3, 0.74, 0.22, 1), ease;
+  }
+
+  .hero {
+    --hero-header-overlap: var(--site-header-height, 94px);
+    background: linear-gradient(180deg, #3f74a9 0%, #294e7f 100%);
+    color: white;
+    margin-top: calc(var(--hero-header-overlap) * -1 - 3px);
+    padding: calc(1.2rem + var(--hero-header-overlap) + 3px) 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    filter: brightness(1) saturate(1);
+    animation: hero-video-nightfall 72s ease-in-out infinite;
+  }
+
+  .hero-video.is-active {
+    opacity: 1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(23, 36, 108, 0.58);
+    animation: hero-overlay-nightfall 72s ease-in-out infinite;
+  }
+
+  .hero-stars {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 0 82% 0);
+    pointer-events: none;
+    opacity: 0;
+    background-image:
+      radial-gradient(circle, rgba(255, 255, 255, 0.88) 1px, rgba(255, 255, 255, 0) 1.8px),
+      radial-gradient(circle, rgba(255, 255, 255, 0.8) 0.9px, rgba(255, 255, 255, 0) 1.7px),
+      radial-gradient(circle, rgba(255, 255, 255, 0.94) 1.1px, rgba(255, 255, 255, 0) 1.9px),
+      radial-gradient(circle, rgba(255, 255, 255, 0.76) 0.8px, rgba(255, 255, 255, 0) 1.6px),
+      radial-gradient(circle, rgba(255, 255, 255, 0.72) 0.7px, rgba(255, 255, 255, 0) 1.5px);
+    background-size: 112px 68px, 128px 74px, 156px 86px, 96px 60px, 84px 54px;
+    background-position: 0 0, 22px 10px, 44px 18px, 14px 8px, 6px 2px;
+    animation: hero-stars-cycle 72s ease-in-out infinite, hero-stars-twinkle 7s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .hero-stars-secondary {
+    clip-path: inset(9% 0 70% 0);
+    opacity: 0;
+    background-size: 124px 72px, 142px 82px, 170px 94px, 106px 66px, 92px 58px;
+    background-position: 18px 6px, 38px 16px, 62px 22px, 26px 14px, 12px 8px;
+    animation: hero-stars-cycle-secondary 72s ease-in-out infinite, hero-stars-twinkle 7s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .hero-moon {
+    position: absolute;
+    top: 12%;
+    right: 16%;
+    width: clamp(24px, 2.5vw, 38px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow:
+      -8px 0 0 2px rgba(235, 242, 255, 0.92),
+      -10px 0 12px rgba(216, 229, 252, 0.45),
+      -12px 0 22px rgba(190, 209, 246, 0.22);
+    opacity: 0;
+    transform: translateY(0);
+    animation: hero-moon-cycle 72s ease-in-out infinite, hero-moon-float 9s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes hero-overlay-nightfall {
+    0% {
+      background: rgba(23, 36, 108, 0.58);
+    }
+    35% {
+      background: rgba(19, 29, 92, 0.68);
+    }
+    48% {
+      background: rgba(8, 12, 32, 0.82);
+    }
+    62% {
+      background: rgba(8, 12, 32, 0.82);
+    }
+    78% {
+      background: rgba(19, 29, 92, 0.68);
+    }
+    100% {
+      background: rgba(23, 36, 108, 0.58);
+    }
+  }
+
+  @keyframes hero-video-nightfall {
+    0% {
+      filter: brightness(1) saturate(1);
+    }
+    35% {
+      filter: brightness(0.9) saturate(0.92);
+    }
+    48% {
+      filter: brightness(0.72) saturate(0.82);
+    }
+    62% {
+      filter: brightness(0.72) saturate(0.82);
+    }
+    78% {
+      filter: brightness(0.9) saturate(0.92);
+    }
+    100% {
+      filter: brightness(1) saturate(1);
+    }
+  }
+
+  @keyframes hero-stars-cycle {
+    0%,
+    38% {
+      opacity: 0;
+    }
+    48% {
+      opacity: 0.65;
+    }
+    58% {
+      opacity: 0.65;
+    }
+    66% {
+      opacity: 0.32;
+    }
+    74%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes hero-stars-cycle-secondary {
+    0%,
+    38% {
+      opacity: 0;
+    }
+    48% {
+      opacity: 0.52;
+    }
+    58% {
+      opacity: 0.52;
+    }
+    66% {
+      opacity: 0.24;
+    }
+    74%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes hero-stars-twinkle {
+    0%,
+    100% {
+      filter: brightness(0.9);
+    }
+    50% {
+      filter: brightness(1.15);
+    }
+  }
+
+  @keyframes hero-moon-cycle {
+    0%,
+    40% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.86;
+    }
+    58% {
+      opacity: 0.86;
+    }
+    66% {
+      opacity: 0.28;
+    }
+    74%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes hero-moon-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video,
+    .hero-overlay,
+    .hero-stars,
+    .hero-moon {
+      animation: none;
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    min-height: calc(100svh - var(--hero-header-overlap) - 3.2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.55rem, 5.4vw, 3.7rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2.85rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: clamp(3.2rem, 8vh, 5.4rem);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(to bottom, #142a52 0%, #0c1e43 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.25),
+      0 8px 16px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .cta-button:active {
+    transform: translateY(1px);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+
+  .cta-button.cta-button-red {
+    background: linear-gradient(to bottom, #c42535 0%, #a01c2b 100%);
+  }
+
+  .cta-button.cta-button-red:hover {
+    background: linear-gradient(to bottom, #b22030 0%, #7d1521 100%);
+  }
+
+  .cta-button.cta-button-white {
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 100%);
+    color: #17246c;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .cta-button.cta-button-white:hover {
+    background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.25),
+      0 8px 16px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .cta-button.cta-button-navy {
+    background: #0c1e43;
+    border: 1px solid #b82232;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.22),
+      0 6px 14px rgba(0,0,0,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .cta-button.cta-button-navy:hover {
+    background: #0f2350;
+    border-color: #d42a3e;
+  }
+
+  .cta-button-logo {
+    padding: 0.5rem 2rem;
+    min-height: 3.2rem;
+  }
+
+  .cta-button-logo .cta-logo {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    border: 2px solid #17246c;
+    color: #17246c;
+    box-shadow: none;
+  }
+
+  .cta-button.secondary:hover {
+    background: #17246c;
+    color: white;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 4rem 0;
+  }
+
+  .features {
+    background: #f8f9fa;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .feature-image {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .feature-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+
+  .feature-item {
+    margin-bottom: 2rem;
+  }
+
+  .feature-item h3 {
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-item p {
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .feature-cta {
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+
+  .stats {
+    background: #1a1a2e;
+    color: white;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #a01c2b;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  /* Host Partner Network with diagonal stripes */
+  .network {
+    position: relative;
+    overflow: hidden;
+    background: #17246c;
+  }
+
+  .section-video-shell {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .section-abstract-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+
+
+  .network .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .network-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .network h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .network p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .network-image img {
+    width: 100%;
+    border-radius: 50% 50% 50% 10%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+
+  .solutions {
+    background: #f8f9fa;
+    text-align: center;
+  }
+
+  .solutions h2 {
+    color: #1a1a2e;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .solution-card {
+    background: #0c1e43;
+    padding: 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  }
+
+  .solution-card h3 {
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .solution-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .solution-icon {
+    font-size: 2.5rem;
+    color: rgba(210, 232, 255, 0.85);
+    margin-bottom: 1rem;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .solution-card:hover .solution-icon {
+    color: #ffffff;
+  }
+
+  .solution-icon-image {
+    height: 40px;
+    width: auto;
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
+  .solutions-cta {
+    margin-top: 2rem;
+  }
+
+  /* Write Us a Review Section */
+  .review {
+    position: relative;
+    overflow: hidden;
+    background: #f5f7fc;
+    color: #132652;
+    text-align: center;
+    border-top: 1px solid rgba(18, 37, 82, 0.08);
+    border-bottom: 1px solid rgba(18, 37, 82, 0.08);
+  }
+
+  .review .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .review h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #122552;
+  }
+
+  .review p {
+    color: #3b4c6c;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  /* Testimonials Section */
+  .testimonials {
+    background: #17246c;
+    text-align: center;
+    scroll-margin-top: 150px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .testimonials-subtitle {
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .testimonials .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .testimonial-card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.06),
+      0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .testimonial-card .stars {
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card .stars i {
+    color: #f4b400;
+    font-size: 1rem;
+    margin-right: 2px;
+  }
+
+  .testimonial-text {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+  }
+
+  .author-name {
+    display: block;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 0.25rem;
+  }
+
+  .author-company {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .google-attribution {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .google-attribution i {
+    color: #4285f4;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      min-height: calc(86svh - var(--hero-header-overlap));
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 7.4vw, 2.35rem);
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature-grid,
+    .network-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .solution-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+
+  }
+</style>
