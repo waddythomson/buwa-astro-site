@@ -73,11 +73,21 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
               <input type="tel" id="phone" name="phone" required>
             </div>
           </div>
-          <div class="form-group full-width checkbox-group">
+          <div class="form-group full-width checkbox-group sms-preference-group is-hidden">
+            <p class="sms-preference-title">Texting preference</p>
             <label class="checkbox-label" for="signup-sms-opt-in">
               <input type="checkbox" id="signup-sms-opt-in" name="smsOptIn">
               <span>I agree to receive text messages from BuWa TV regarding my inquiry. Reply STOP to opt out.</span>
             </label>
+            <label class="checkbox-label" for="signup-sms-opt-out">
+              <input type="checkbox" id="signup-sms-opt-out" name="smsOptOut">
+              <span>I am opting out of text messages and would appreciate a phone call instead.</span>
+            </label>
+            <p class="sms-consent-links">
+              By submitting this form, you agree to our
+              <a href="/buwatv/terms/">Terms &amp; Conditions</a> and
+              <a href="/buwatv/privacy/">Privacy Policy</a>.
+            </p>
           </div>
         </div>
 
@@ -288,9 +298,14 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
       max-width: 1200px;
       margin: 0 auto;
       padding: 15px 40px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-logo {
+      justify-self: start;
     }
 
     .header-logo img {
@@ -301,8 +316,9 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
     .header-nav {
       display: flex;
       align-items: center;
+      justify-content: center;
+      justify-self: center;
       gap: 25px;
-      margin-right: 10px;
     }
 
     .nav-link {
@@ -327,6 +343,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
       border: none;
       cursor: pointer;
       padding: 0;
+      justify-self: end;
     }
 
     .mobile-menu-btn span {
@@ -481,6 +498,30 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
     .checkbox-label input {
       margin-top: 3px;
+    }
+
+    .sms-preference-group.is-hidden {
+      display: none;
+    }
+
+    .sms-preference-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #1f2a44;
+      margin: 0 0 4px;
+    }
+
+    .sms-consent-links {
+      font-size: 0.74rem;
+      color: #5f6675;
+      line-height: 1.4;
+      margin-top: 6px;
+    }
+
+    .sms-consent-links a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .form-group.full-width {
@@ -865,8 +906,37 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
       }
     });
 
+    const initSmsPreferenceGroup = (formEl) => {
+      if (!formEl) return;
+      const phoneInput = formEl.querySelector('[name="phone"]');
+      const group = formEl.querySelector('.sms-preference-group');
+      const optIn = formEl.querySelector('[name="smsOptIn"]');
+      const optOut = formEl.querySelector('[name="smsOptOut"]');
+      if (!phoneInput || !group || !optIn || !optOut) return;
+
+      const sync = () => {
+        const hasPhone = Boolean(phoneInput.value.trim());
+        group.classList.toggle('is-hidden', !hasPhone);
+        if (!hasPhone) {
+          optIn.checked = false;
+          optOut.checked = false;
+        }
+      };
+
+      optIn.addEventListener('change', () => {
+        if (optIn.checked) optOut.checked = false;
+      });
+      optOut.addEventListener('change', () => {
+        if (optOut.checked) optIn.checked = false;
+      });
+
+      phoneInput.addEventListener('input', sync);
+      sync();
+    };
+
     // Form submission
     const form = document.getElementById('signup-form');
+    initSmsPreferenceGroup(form);
     
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -882,6 +952,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
         data[key] = value.toString();
       });
       data.smsOptIn = formData.get('smsOptIn') ? 'yes' : 'no';
+      data.smsOptOut = formData.get('smsOptOut') ? 'yes' : 'no';
       
       try {
         const response = await fetch(webhookUrl, {

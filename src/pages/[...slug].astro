@@ -1,13 +1,14 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 export async function getStaticPaths() {
   const archivePattern = /(?:^|\/)archive\//i;
   const pages = (await getCollection('pages'))
     .filter(page => !archivePattern.test(page.id)); // ignore anything in an Archive folder
 
-  const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile', 'geofencing']);
+  const reservedSlugs = new Set(['home', 'contact-us', 'google-business-profile']);
   return pages
     .filter(page => !reservedSlugs.has(page.data.slug || page.slug)) // Avoid conflicts with static routes
     .map(page => ({
@@ -28,10 +29,15 @@ const {
   featuredImageAlt,
   canonicalUrl,
   noIndex,
+  heroSubtitle,
+  heroBadge,
+  heroCtaLabel,
+  heroCtaHref,
 } = page.data;
 
 const resolvedOgImage = ogImage || featuredImage;
 const resolvedOgImageAlt = ogImageAlt || featuredImageAlt;
+const hasHero = Boolean(heroSubtitle || heroBadge);
 ---
 
 <BaseLayout 
@@ -41,9 +47,46 @@ const resolvedOgImageAlt = ogImageAlt || featuredImageAlt;
   noindex={noIndex}
   ogImage={resolvedOgImage}
   ogImageAlt={resolvedOgImageAlt}
+  hasTopHero={hasHero}
 >
+  {hasHero && (
+    <PageHero
+      title={title}
+      subtitle={heroSubtitle}
+      badge={heroBadge}
+    >
+      {heroCtaLabel && heroCtaHref && (
+        <a href={heroCtaHref} class="btn-red">
+          <i class="fa-solid fa-paper-plane"></i> {heroCtaLabel}
+        </a>
+      )}
+    </PageHero>
+  )}
   <div class="content-page">
-    <h1>{title}</h1>
+    {!hasHero && <h1>{title}</h1>}
     <Content />
   </div>
 </BaseLayout>
+
+<style>
+  /* btn-red for use in content rendered from markdown pages */
+  .content-page :global(.btn-red) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(to bottom, #b82232 0%, #a01c2b 50%, #8a1825 100%);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.2s ease;
+  }
+  .content-page :global(.btn-red:hover) {
+    transform: translateY(-2px);
+  }
+</style>

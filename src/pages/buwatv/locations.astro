@@ -180,10 +180,10 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
         <a href="/buwatv/about/" class="nav-link">About</a>
         <a href="/buwatv/pricing/" class="nav-link">Pricing</a>
         <a href="/buwatv/faq/" class="nav-link">FAQ</a>
-        <a href="/buwatv/signup/" class="btn btn-red header-cta">
-          <i class="fas fa-paper-plane"></i> Get Started
-        </a>
       </nav>
+      <a href="/buwatv/signup/" class="btn btn-red header-cta">
+        <i class="fas fa-paper-plane"></i> Get Started
+      </a>
       <button class="mobile-menu-btn" id="mobile-menu-btn">
         <span></span>
         <span></span>
@@ -341,8 +341,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
       <div class="partner-badge-header">
         <h2>Add BuWa TV to your site</h2>
         <p class="section-subtitle">
-          Share that you are a BuWa TV host partner and make it easy for customers to find us.
-          Copy the badge code below and drop it into your footer or partners page.
+          Share that you are a BuWa TV host partner! Click Show, copy the snippet of code below and drop it into your website's footer or partners page. We will link to your website as well.
         </p>
       </div>
       <div class="partner-badge-grid">
@@ -360,6 +359,18 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
             <span>Embed code</span>
             <button
               type="button"
+              class="btn btn-white badge-toggle-btn"
+              data-toggle-button="partner-badge"
+              aria-controls="partner-badge-code-wrap"
+              aria-expanded="false"
+            >
+              Show code
+            </button>
+          </div>
+          <div id="partner-badge-code-wrap" class="badge-code-wrap is-hidden">
+            <pre><code data-copy-source="partner-badge">{partnerBadgeHtml}</code></pre>
+            <button
+              type="button"
               class="btn btn-white badge-copy-btn"
               data-copy-button="partner-badge"
               aria-live="polite"
@@ -367,7 +378,6 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
               Copy
             </button>
           </div>
-          <pre><code data-copy-source="partner-badge">{partnerBadgeHtml}</code></pre>
           <p class="badge-note">
             Need a different size or format? Email
             <a href="mailto:info@buwatv.com">info@buwatv.com</a>.
@@ -532,9 +542,14 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px 40px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header-logo {
+    justify-self: start;
   }
 
   .header-logo img {
@@ -545,6 +560,8 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   .header-nav {
     display: flex;
     align-items: center;
+    justify-content: center;
+    justify-self: center;
     gap: 30px;
   }
 
@@ -567,6 +584,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     border: none;
     cursor: pointer;
     padding: 5px;
+    justify-self: end;
   }
 
   .mobile-menu-btn span {
@@ -636,6 +654,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .header-cta {
+    justify-self: end;
     padding: 10px 20px;
     font-size: 0.9rem;
   }
@@ -944,8 +963,18 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .badge-copy-btn {
+    margin-top: 12px;
     padding: 8px 16px;
     font-size: 0.85rem;
+  }
+
+  .badge-toggle-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .badge-code-wrap.is-hidden {
+    display: none;
   }
 
   .badge-copy-btn.is-copied {
@@ -1316,6 +1345,8 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   const badgeCopyButton = document.querySelector('[data-copy-button="partner-badge"]');
+  const badgeToggleButton = document.querySelector('[data-toggle-button="partner-badge"]');
+  const badgeCodeWrap = document.getElementById('partner-badge-code-wrap');
   const badgeCode = document.querySelector('[data-copy-source="partner-badge"]');
 
   const copyToClipboard = async (value) => {
@@ -1373,6 +1404,14 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
       }
     });
     setTimeout(updateLoopWidth, 1500);
+  }
+
+  if (badgeToggleButton && badgeCodeWrap) {
+    badgeToggleButton.addEventListener('click', () => {
+      const isHidden = badgeCodeWrap.classList.toggle('is-hidden');
+      badgeToggleButton.setAttribute('aria-expanded', String(!isHidden));
+      badgeToggleButton.textContent = isHidden ? 'Show code' : 'Hide code';
+    });
   }
 
   if (badgeCopyButton && badgeCode) {

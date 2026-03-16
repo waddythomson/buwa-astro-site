@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 
 const faq = [
   {
@@ -31,18 +33,21 @@ const partnerQuote = {
 ---
 
 <BaseLayout 
-  title="Google Business Profile Management | BuWa Digital"
-  description="Improve your Google Business Profile performance so you appear in more relevant local searches and attract more customers."
+  title="Google Business Profile Optimization | BuWa Digital"
+  description="Are customers finding you or your competition? We optimize your Google Business Profile so you rank higher in local searches and attract more customers."
   faq={faq}
+  hasTopHero={true}
 >
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Google Business Profile</h1>
-      <p>Boost the performance of your Google Business Profile so you appear on more relevant search result pages.</p>
-      <a href="#open-scan-popup" class="btn-red"><i class="fa-solid fa-magnifying-glass"></i> Ask For A Free Scan</a>
-    </div>
-  </section>
+  <PageHero
+    title="Google Business Profile Optimization"
+    subtitle="Are Customers Finding You — or Your Competition?"
+    description="Customers are finding someone so let's make sure it's you. Your Google Business Profile plays a major role in how Google ranks local businesses. We optimize your profile, clean up your listings across the web, and help customers find you first."
+  >
+    <a href="#open-scan-popup" class="btn-red">
+      <i class="fa-solid fa-magnifying-glass"></i> Ask For A Free Scan
+    </a>
+  </PageHero>
 
   <!-- Intro Section -->
   <section class="intro-section">
@@ -172,7 +177,7 @@ const partnerQuote = {
           <p>{item.answer}</p>
         </div>
       ))}
-      <p class="faq-cta">Have a specific question? <a href="/contact-us/">Contact us</a> and we’ll walk you through the best next steps.</p>
+      <p class="faq-cta">Have a specific question? <a href="/contact-us/">Contact us</a> and we'll walk you through the best next steps.</p>
     </div>
   </section>
 
@@ -189,61 +194,13 @@ const partnerQuote = {
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Ready to Boost Your Google Presence?</h2>
-      <p>Let us help you optimize your Google Business Profile and reach more local customers.</p>
-      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
-    </div>
-  </section>
+  <CtaSection
+    title="Ready to Boost Your Google Presence?"
+    subtitle="Let us help you optimize your Google Business Profile and reach more local customers."
+  />
 
 <style>
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 3rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .hero h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero p {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-  }
+  /* Hero styles are handled entirely by PageHero.astro */
 
   /* Buttons */
   .btn-red {
@@ -600,40 +557,7 @@ const partnerQuote = {
     color: #fff;
   }
 
-  /* CTA Section */
-  .cta-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    text-align: center;
-    position: relative;
-  }
 
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
-
-  .cta-section h2 {
-    color: white;
-  }
-
-  .cta-section p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-  }
 
   /* Responsive */
   @media (max-width: 900px) {
@@ -665,5 +589,3 @@ const partnerQuote = {
   }
 </style>
 </BaseLayout>
-
-

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 import partnersData from '../data/buwatv/partners.json';
 
 const title = "Our Partners | BuWa Digital";
@@ -40,21 +42,24 @@ const partners = uniquePartners([
 const partnerCount = partners.length;
 ---
 
-<BaseLayout title={title} description={description}>
-  <section class="hero">
-    <div class="container">
-      <h1>Our Partners</h1>
-      <p class="subtitle">Local brands we’re proud to work with across the community.</p>
-      <a href="/contact-us/" class="btn btn-cta">
-        <i class="fa-solid fa-paper-plane"></i> Get In Touch
-      </a>
+<BaseLayout title={title} description={description} hasTopHero={true}>
+  <!-- Hero Section -->
+  <PageHero
+    title="Our Partners"
+    subtitle="Built on Relationships, Powered by Community"
+    description="We're proud to work alongside businesses across the Midlands who share our belief that local growth starts with local connections. From our BuWaTV host locations to community collaborators, these are the brands helping us build something bigger together."
+  >
+    <div class="hero-actions">
+      <a href="#partners" class="jump-pill">Our Partners</a>
+      <a href="#testimonials" class="jump-pill">Testimonials</a>
+      <a href="#review" class="jump-pill">Write a Review</a>
     </div>
-  </section>
+  </PageHero>
 
-  <section class="partners-section">
+  <section class="partners-section" id="partners">
     <div class="container">
-      <h2>We appreciate our partners</h2>
-      <p class="intro">Here's a snapshot of local businesses that work hard every day to gain community trust and strengthen the local scene.</p>
+      <h2>We Appreciate Our Partners</h2>
+      <p class="intro">These are the local businesses that show up every day to serve their communities — and we're honored to stand alongside them.</p>
     </div>
     <div class="carousel-wrapper">
       <div
@@ -76,6 +81,10 @@ const partnerCount = partners.length;
   </section>
 
   <section class="testimonials" id="testimonials">
+    <video class="testimonials-video" autoplay muted loop playsinline>
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+    <div class="testimonials-overlay"></div>
     <div class="container">
       <h2>What Our Partners Are Saying</h2>
       <p class="testimonials-subtitle">Don't just take our word for it.</p>
@@ -129,59 +138,25 @@ const partnerCount = partners.length;
     </div>
   </section>
 
-  <section class="review">
-    <div class="review-bg"></div>
+  <section class="review-section" id="review">
     <div class="container">
       <h2>Write Us a Review</h2>
-      <p>We'd love to hear about your experience working with us!</p>
-      <a href="https://g.page/r/CaCY12nNkQppEBM/review" class="btn btn-cta" target="_blank" rel="noopener">Leave One Now</a>
+      <p class="review-subtitle">We'd love to hear about your experience working with us!</p>
+      <a href="https://g.page/r/CaCY12nNkQppEBM/review" target="_blank" rel="noopener noreferrer" class="btn-red">Leave One Now</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    padding: 3rem 2rem 4rem;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
+  
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      135deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
+  
 
-  .hero .container {
-    position: relative;
-    z-index: 1;
-  }
+  
 
-  .hero h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+  
 
-  .hero .subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    color: rgba(255,255,255,0.9);
-  }
+  
 
   .btn {
     display: inline-flex;
@@ -218,6 +193,7 @@ const partnerCount = partners.length;
     background: white;
     overflow: hidden;
     text-align: center;
+    scroll-margin-top: 100px;
   }
 
   .partners-section h2 {
@@ -282,9 +258,61 @@ const partnerCount = partners.length;
   }
 
   .testimonials {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow: hidden;
     text-align: center;
     padding: 4rem 0;
+    scroll-margin-top: 100px;
+  }
+
+  .testimonials-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .testimonials-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.55);
+    z-index: 1;
+  }
+
+  .testimonials .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .review-section {
+    background: white;
+    text-align: center;
+    padding: 4rem 0;
+    scroll-margin-top: 100px;
+  }
+
+  .review-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .review-subtitle {
+    color: #4a5568;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .review-section .btn-red {
+    display: inline-block;
+    text-decoration: none;
   }
 
   .testimonials h2 {
@@ -378,51 +406,44 @@ const partnerCount = partners.length;
     font-size: 1.1rem;
   }
 
-  .review {
-    position: relative;
-    overflow: hidden;
-    background: #17246c;
+  /* Jump pill buttons on hero */
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .jump-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.25rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
     color: white;
-    text-align: center;
-    padding: 4rem 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 
-  .review-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
-      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
-      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
-      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
-    pointer-events: none;
+  .jump-pill:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
   }
 
-  .review .container {
-    position: relative;
-    z-index: 1;
-  }
 
-  .review h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .review p {
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
+    
 
     .carousel-item {
       flex: 0 0 220px;
@@ -435,8 +456,8 @@ const partnerCount = partners.length;
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
     const track = document.querySelector('.carousel-track');
     if (!track) return;
 
@@ -472,7 +493,21 @@ const partnerCount = partners.length;
       }
     });
 
-    // Fallback in case images are slow to load.
+    // Fallback in case images are slow to load
     setTimeout(updateLoopWidth, 1500);
+
+    // Smooth scroll for jump pills
+    document.querySelectorAll('.jump-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const href = pill.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
   });
 </script>

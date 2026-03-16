@@ -53,8 +53,6 @@ const {
   /* ── Outer shell ──────────────────────────────────────────────────── */
   .page-hero {
     position: relative;
-    /* Fallback gradient for mobile (when video is hidden) and before video loads */
-    background: linear-gradient(160deg, #040e2a 0%, #061232 50%, #030a20 100%);
     /* Fill the full viewport. padding-top reserves space for the fixed/sticky
        header so hero content is never clipped behind it. */
     min-height: 100vh;
@@ -80,13 +78,6 @@ const {
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  /* Hide hero video on mobile — dark gradient fallback shows instead */
-  @media (max-width: 768px) {
-    .page-hero-video {
-      display: none;
-    }
   }
 
   /* Dark blue tint so text stays legible over the abstract video */

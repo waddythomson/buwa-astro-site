@@ -32,7 +32,7 @@ We offer a range of marketing solutions designed specifically for local business
 
 We believe that when local businesses thrive, the whole community wins. That's why we focus exclusively on helping businesses in the Columbia, SC area reach their neighbors and build lasting customer relationships.
 
-## Get In Touch
+## Let's Talk!
 
 Ready to strengthen your local presence? We'd love to hear about your business and discuss how we can help.
 

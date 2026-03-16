@@ -9,7 +9,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 **Engage fans on social media. Less time, more results.**
 
-[Get In Touch](/contact-us)
+[Let's Talk!](/contact-us)
 
 ## Social Media Management
 

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const pageTitle = "BuWa TV Advertising";
 const pageDescription = "Connect your brand with audiences everywhere through our indoor digital billboard network. Non-skippable, local reach advertising.";
@@ -32,19 +33,21 @@ const partnerQuote = {
 };
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} faq={faq}>
-  <!-- Hero Section with Blue Background -->
-  <section class="hero">
-    <div class="hero-content">
-      <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="hero-logo" />
-      <h2>Indoor Digital Billboard Advertising</h2>
-      <p>Reach more customers where they eat, shop, work, and play.</p>
-      <div class="hero-buttons">
-        <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+<BaseLayout title={pageTitle} description={pageDescription} faq={faq} hasTopHero={true}>
+  <!-- Hero Section -->
+  <PageHero
+    title="Indoor Digital Billboard Advertising"
+    subtitle="Reach more customers where they eat, shop, work, and play."
+    badge="BuWa TV Network"
+  >
+    <div style="display:flex; flex-direction:column; align-items:center; gap:1.25rem; width:100%;">
+      <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" style="max-width:220px; height:auto;" />
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
+        <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Let's Talk!</a>
         <button class="btn-white" id="video-popup-btn"><i class="fa-solid fa-play"></i> BuWa TV In Action</button>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <!-- Indoor Digital Billboard Advertising -->
   <section class="content-section">
@@ -385,66 +388,19 @@ const partnerQuote = {
 </BaseLayout>
 
 <style>
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: white;
-    padding: 4rem 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+  
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
+  
 
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
+  
 
-  .hero-logo {
-    max-width: 250px;
-    height: auto;
-    margin-bottom: 1.5rem;
-  }
+  
 
-  .hero h2 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
+  
 
-  .hero p {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
+  
 
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  
 
   .btn-red {
     display: inline-flex;
