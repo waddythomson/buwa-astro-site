@@ -1,6 +1,5 @@
 ---
 import Header from '../components/Header.astro';
-import HomeHeader from '../components/HomeHeader.astro';
 import Footer from '../components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
 
@@ -23,7 +22,6 @@ export interface Props {
   tags?: string[];
   breadcrumbs?: Array<{ name: string; url: string }>;
   faq?: Array<{ question: string; answer: string }>;
-  useHomeHeader?: boolean;
 }
 
 const {
@@ -44,7 +42,6 @@ const {
   tags = [],
   breadcrumbs,
   faq = [],
-  useHomeHeader = false,
   hasTopHero = false,
 } = Astro.props;
 
@@ -119,7 +116,7 @@ const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "BuWa Digital",
-  "description": "Local isn't just our market—it's our mission. We help local businesses reach more neighbors with affordable, high-impact digital advertising including indoor digital billboards, geofencing, social media, and streaming TV ads.",
+  "description": "Local isn't just our market\u2014it's our mission. We help local businesses reach more neighbors with affordable, high-impact digital advertising including indoor digital billboards, geofencing, social media, and streaming TV ads.",
   "url": siteUrl,
   "logo": absoluteLogo,
   "image": absoluteLogo,
@@ -281,7 +278,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   </script>
 </head>
 <body class={rootClassName}>
-  {useHomeHeader ? <HomeHeader /> : <Header />}
+  <Header />
 
   <main>
     <slot />
@@ -651,11 +648,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   }
 
   /* ─── Page-transition animations (Astro View Transitions) ─── */
-  /*
-   * New page: slides up from below as a narrow card, then expands to fill
-   * the viewport — inspired by fluid.glass's reveal style.
-   * Old page: quick scale-down fade.
-   */
   @keyframes buwa-page-enter {
     from {
       clip-path: inset(0 7vw 0 7vw round 20px 20px 0 0);
@@ -694,9 +686,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     background: #081a43;
   }
 
-  /* Header is position:fixed on secondary-hero pages — it floats over the hero
-     with zero flow impact. The hero just needs enough padding-top so its
-     content clears the header. No negative margin tricks needed. */
   body.secondary-top-hero main > section.hero:first-child {
     padding-top: calc(3rem + var(--site-header-height, 94px));
   }
@@ -728,7 +717,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     margin-bottom: 1.5rem;
   }
 
-  /* Intro paragraph (first p after h1) - bold and slightly larger */
   .content-page h1 + p {
     font-weight: 700;
     font-size: 1.1rem;
@@ -833,7 +821,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       inset 0 1px 3px rgba(0, 0, 0, 0.15);
   }
 
-  /* Auto-style "Let's Talk!" links to /contact-us as navy 3D buttons */
+  /* Auto-style contact links as navy 3D buttons */
   .content-page a[href="/contact-us/"] {
     display: inline-block;
     background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
@@ -1131,7 +1119,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     }
   }
 
-  /* Global Contact Modal - matches video popup styling */
+  /* Global Contact Modal */
   .contact-modal {
     display: none;
     position: fixed;
