@@ -1,19 +1,16 @@
 ---
-const awarenessItems = [
+const seenItems = [
   { label: 'BuWa TV Indoor Billboards', href: '/buwatv/' },
   { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott-ads/' },
   { label: 'Display | Geofencing', href: '/geofencing/' },
   { label: 'Streaming Audio', href: '/streaming-audio/' },
   { label: 'Pre-roll Ads', href: '/pre-roll-advertising/' },
   { label: 'Youtube Advertising', href: '/youtube-ads/' },
-];
-
-const leadGenItems = [
   { label: 'Social Media Advertising', href: '/social-media-ads/' },
   { label: 'Pay Per Click', href: '/pay-per-click-ppc/' },
 ];
 
-const foundationalItems = [
+const trustedItems = [
   { label: 'Website Design', href: '/website-design/' },
   { label: 'Google Business Profile', href: '/google-business-profile/' },
   { label: 'Social Media Management', href: '/social-media-management/' },
@@ -46,25 +43,20 @@ const foundationalItems = [
     </div>
     <div class="menu-body">
       <div class="menu-primary">
-        <button type="button" class="menu-item" data-menu-key="awareness" data-roll-label="Awareness"><span class="menu-item-label">Awareness</span></button>
-        <button type="button" class="menu-item" data-menu-key="leadgen" data-roll-label="Lead Gen"><span class="menu-item-label">Lead Gen</span></button>
-        <button type="button" class="menu-item" data-menu-key="foundational" data-roll-label="Foundational"><span class="menu-item-label">Foundational</span></button>
+        <button type="button" class="menu-item" data-menu-key="seen" data-roll-label="Be Seen"><span class="menu-item-label">Be Seen</span></button>
+        <button type="button" class="menu-item" data-menu-key="trusted" data-roll-label="Be Trusted"><span class="menu-item-label">Be Trusted</span></button>
         <a href="/about-us/" class="menu-item" data-roll-label="Who We Are"><span class="menu-item-label">Who We Are</span></a>
         <a href="/contact-us/" class="menu-item" data-roll-label="Contact"><span class="menu-item-label">Contact</span></a>
         <a href="/partners/" class="menu-item" data-roll-label="Our Partners"><span class="menu-item-label">Our Partners</span></a>
       </div>
       <div class="menu-secondary">
-        <div class="menu-submenu" data-menu-section="awareness">
-          <h4>Awareness</h4>
-          {awarenessItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        <div class="menu-submenu" data-menu-section="seen">
+          <h4>Be Seen</h4>
+          {seenItems.map((item) => <a href={item.href}>{item.label}</a>)}
         </div>
-        <div class="menu-submenu" data-menu-section="leadgen">
-          <h4>Lead Gen</h4>
-          {leadGenItems.map((item) => <a href={item.href}>{item.label}</a>)}
-        </div>
-        <div class="menu-submenu" data-menu-section="foundational">
-          <h4>Foundational</h4>
-          {foundationalItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        <div class="menu-submenu" data-menu-section="trusted">
+          <h4>Be Trusted</h4>
+          {trustedItems.map((item) => <a href={item.href}>{item.label}</a>)}
         </div>
       </div>
     </div>
