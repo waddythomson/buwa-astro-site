@@ -1,0 +1,626 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const faq = [
+  {
+    question: "How long does it take to build a website?",
+    answer: "Most business websites take 4–6 weeks from kickoff to launch. More complex projects like e-commerce sites or custom functionality may take 8–12 weeks. We'll give you a clear timeline during Discovery so there are no surprises.",
+  },
+  {
+    question: "Will my website work on mobile devices?",
+    answer: "Absolutely. Every site we build is mobile-first, meaning we design for phones and tablets before scaling up to desktop. With over 60% of web traffic coming from mobile, this approach ensures your customers have a great experience on any device.",
+  },
+  {
+    question: "Do you offer ongoing support after launch?",
+    answer: "Yes. We provide ongoing maintenance and support to keep your site secure, up-to-date, and performing at its best. We're a long-term partner, not a one-and-done shop.",
+  },
+  {
+    question: "Can you redesign my existing website?",
+    answer: "Definitely. We specialize in modernizing outdated sites — improving design, speed, mobile experience, and SEO without losing the content and rankings you've already built.",
+  },
+  {
+    question: "Will my website be optimized for search engines?",
+    answer: "Every site we build includes on-page SEO fundamentals — proper heading structure, meta tags, fast load times, clean URLs, and schema markup. For ongoing SEO strategy, we recommend pairing your site with our Google Business Profile service.",
+  },
+];
+
+const relatedServices = [
+  { label: "Google Business Profile", href: "/google-business-profile/" },
+  { label: "Pay-Per-Click (PPC)", href: "/pay-per-click-ppc/" },
+  { label: "Social Media Ads", href: "/social-media-ads/" },
+  { label: "Design Services", href: "/design/" },
+];
+---
+
+<BaseLayout 
+  title="Website Design & Development | BuWa Digital - Columbia, SC"
+  description="Custom website design for Columbia, SC businesses. BuWa Digital creates professional, mobile-friendly websites that convert visitors into customers."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Website Design & Development"
+    subtitle="Is Your Website Working for You — or Against You?"
+    description="Your website is often the first interaction a customer has with your business. We design and build fast, modern, mobile-first websites that look great, rank well, and turn visitors into paying customers."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>Websites Built to Grow Your Business</h2>
+      <p class="intro-text">A great website isn't just a digital brochure — it's your hardest-working salesperson. Available 24/7, it builds trust before you ever pick up the phone. We design every site with a clear purpose: help your customers find what they need and make it easy to take the next step.</p>
+    </div>
+  </section>
+
+  <!-- What We Build -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2>What We Build</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏢</div>
+          <div class="benefit-content">
+            <h3>Business Websites</h3>
+            <p>Professional sites that showcase your services, establish credibility, and give customers the confidence to choose you over the competition.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🛒</div>
+          <div class="benefit-content">
+            <h3>E-Commerce Sites</h3>
+            <p>Online stores with intuitive navigation, secure checkout, and product management tools that make selling online simple and scalable.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Landing Pages</h3>
+            <p>Conversion-focused pages designed to capture leads from your advertising campaigns — PPC, social media, or display ads.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-content">
+            <h3>Website Redesigns</h3>
+            <p>Modernize an outdated site with fresh design, improved speed, better mobile experience, and stronger SEO — without starting from scratch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="impact-section">
+    <div class="container">
+      <h2>Why Your Website Matters More Than Ever</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">75%</span>
+          <p>of consumers judge a business's credibility based on their website design</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">53%</span>
+          <p>of mobile users leave a site that takes more than 3 seconds to load</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">88%</span>
+          <p>of online consumers are less likely to return after a bad website experience</p>
+        </div>
+      </div>
+      <p class="impact-text">Your website is the foundation of everything else you do online. Without a strong site, your <a href="/pay-per-click-ppc/">PPC campaigns</a>, <a href="/social-media-ads/">social media ads</a>, and <a href="/google-business-profile/">Google Business Profile</a> don't have a solid place to send traffic.</p>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="process-section">
+    <div class="container">
+      <h2>How We Build Your Website</h2>
+      
+      <div class="process-steps">
+        <div class="process-step">
+          <span class="step-number">1</span>
+          <h3>Discovery & Planning</h3>
+          <p>We learn about your business, goals, competitors, and customers. This shapes every decision from layout to copy to calls-to-action.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-number">2</span>
+          <h3>Design & Wireframes</h3>
+          <p>Custom designs tailored to your brand — not cookie-cutter templates. You'll review and approve mockups before we write a single line of code.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-number">3</span>
+          <h3>Development</h3>
+          <p>Clean, fast-loading code built with modern best practices. Mobile-first, SEO-ready, and optimized for speed from day one.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-number">4</span>
+          <h3>Launch & Support</h3>
+          <p>Thorough testing, smooth launch, and ongoing support to keep your site secure, updated, and performing at its best.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Marketing Service Approach Is Simple</h2>
+      <ul class="approach-list">
+        <li><strong>Discovery</strong> – Understanding your business needs</li>
+        <li><strong>Strategy</strong> – Developing a tailored plan</li>
+        <li><strong>Execution</strong> – Implementing the strategy</li>
+        <li><strong>Evaluation</strong> – Measuring results</li>
+        <li><strong>Optimization</strong> – Continuous improvement</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Why BuWa -->
+  <section class="why-section">
+    <div class="container">
+      <h2>Why Choose BuWa Digital?</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <h3>Local Focus</h3>
+          <p>We know the Columbia, SC market because we're part of it. Your site is designed with your local customers in mind.</p>
+        </div>
+        <div class="why-card">
+          <h3>Full-Service</h3>
+          <p>Website plus marketing under one roof. Your site works seamlessly with PPC, social media, and Google Business Profile services.</p>
+        </div>
+        <div class="why-card">
+          <h3>Mobile-First</h3>
+          <p>Every site is built mobile-first so it looks and works beautifully on phones, tablets, and desktops.</p>
+        </div>
+        <div class="why-card">
+          <h3>SEO-Ready</h3>
+          <p>Built with search visibility baked in — proper structure, fast load times, and clean code that Google loves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Common Questions About Website Design</h2>
+
+      {faq.map((item) => (
+        <div class="faq-item">
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </div>
+      ))}
+      <p class="faq-cta">Have a specific question? <a href="/contact-us/">Contact us</a> and we'll walk you through the best next steps.</p>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="related-section">
+    <div class="container">
+      <h2>Services That Pair Well With Web Design</h2>
+      <p>A great website is just the beginning. Pair it with digital marketing to drive traffic and convert more customers.</p>
+      <div class="related-links">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-link">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Ready for a Website That Actually Works?"
+    subtitle="Let's build something that grows your business — not just sits there looking pretty."
+  />
+
+<style>
+  /* Buttons */
+  .btn-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(to bottom, #b82232 0%, #a01c2b 50%, #8a1825 100%);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 4px 8px rgba(0,0,0,0.25),
+      0 6px 12px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-red:active {
+    transform: translateY(0);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Sections */
+  section {
+    padding: 4rem 0;
+  }
+
+  section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #1a1a2e;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  /* Intro Section */
+  .intro-section {
+    background: #f8f9fa;
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Benefits / What We Build */
+  .benefits-section {
+    background: white;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .benefit-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.08),
+      0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 4px 8px rgba(0,0,0,0.12),
+      0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-content h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-content p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Impact / Stats Section */
+  .impact-section {
+    background: #f8f9fa;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .stat-number {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #a01c2b;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .impact-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .impact-text a {
+    color: #a01c2b;
+    text-decoration: none;
+  }
+
+  .impact-text a:hover {
+    text-decoration: underline;
+  }
+
+  /* Process Steps */
+  .process-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    position: relative;
+  }
+
+  .process-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+    pointer-events: none;
+  }
+
+  .process-section h2 {
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-step {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    color: #2d3748;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #a01c2b;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  .process-step h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #1a202c;
+  }
+
+  .process-step p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a5568;
+  }
+
+  /* Approach Section */
+  .approach-section {
+    background: white;
+  }
+
+  .approach-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .approach-list li {
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #a01c2b;
+    font-size: 1.1rem;
+  }
+
+  .approach-list strong {
+    color: #1a1a2e;
+  }
+
+  /* Why BuWa Section */
+  .why-section {
+    background: #f8f9fa;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .why-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .why-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    background: white;
+  }
+
+  .faq-item {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    background: #f8f9fa;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .faq-item h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-item p {
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .faq-cta a {
+    color: #a01c2b;
+    text-decoration: none;
+  }
+
+  .faq-cta a:hover {
+    text-decoration: underline;
+  }
+
+  /* Related Services */
+  .related-section {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    text-align: center;
+  }
+
+  .related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .related-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    border: 2px solid #17246c;
+    color: #17246c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .related-link:hover {
+    background: #17246c;
+    color: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .benefits-grid,
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    section h2 {
+      font-size: 1.6rem;
+    }
+
+    .process-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</BaseLayout>
