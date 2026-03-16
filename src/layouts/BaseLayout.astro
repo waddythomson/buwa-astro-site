@@ -116,7 +116,7 @@ const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "BuWa Digital",
-  "description": "Local isn't just our market\u2014it's our mission. We help local businesses reach more neighbors with affordable, high-impact digital advertising including indoor digital billboards, geofencing, social media, and streaming TV ads.",
+  "description": "Local isn't just our market—it's our mission. We help local businesses reach more neighbors with affordable, high-impact digital advertising including indoor digital billboards, geofencing, social media, and streaming TV ads.",
   "url": siteUrl,
   "logo": absoluteLogo,
   "image": absoluteLogo,
@@ -278,6 +278,19 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   </script>
 </head>
 <body class={rootClassName}>
+
+  {/* Persistent full-viewport background video — only on non-homepage pages.
+      transition:persist keeps this element alive across SPA navigations so
+      the video loads ONCE per session and never restarts. */}
+  {!isDigitalHome && (
+    <div class="page-bg-video" transition:persist="page-bg-video" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="none">
+        <source src="/uploads/new/hero/abstract/abstract-blue-1.webm" type="video/webm" />
+        <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+      </video>
+    </div>
+  )}
+
   <Header />
 
   <main>
@@ -323,7 +336,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
             <textarea name="message" placeholder="How can we help? (optional)" rows="3"></textarea>
           </div>
           <button type="submit" class="contact-popup-submit">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
+            Send Message
           </button>
           <p class="contact-popup-disclaimer">By submitting this form, you agree to our <a href="/terms/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>. SMS messages are only sent if you opt in above.</p>
         </form>
@@ -405,9 +418,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     };
 
     // ── Global Contact Modal — ViewTransitions-compatible ──────────────
-    // Uses capture phase so our handler fires BEFORE Astro's ViewTransitions
-    // router intercepts the click, letting e.preventDefault() actually stop
-    // the navigation.
     document.addEventListener('astro:page-load', () => {
       const controller = new AbortController();
       const { signal } = controller;
@@ -435,7 +445,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }, 200);
       };
 
-      // capture: true — fires before ViewTransitions router so preventDefault works
       document.addEventListener('click', (e) => {
         const target = e.target.closest(
           'a[href="/contact-us/"], a[href="/contact-us"], button[data-contact-popup], .get-in-touch-popup'
@@ -470,7 +479,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         const submitBtn = contactForm.querySelector('.contact-popup-submit');
         const originalHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        submitBtn.innerHTML = 'Sending...';
 
         try {
           const formData = new FormData(contactForm);
@@ -488,10 +497,8 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     let gbpPopupController;
 
     document.addEventListener('astro:page-load', () => {
-      // Clean up previous listeners
       gbpPopupController?.abort();
 
-      // Only run on Google Business Profile page
       if (!window.location.pathname.includes('google-business-profile')) return;
 
       gbpPopupController = new AbortController();
@@ -500,7 +507,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       const popup = document.getElementById('gbp-popup');
       if (!popup) return;
 
-      // Check if scan was just requested (returning from form submission)
       if (window.location.search.includes('scan-requested=true')) {
         const formSide = document.querySelector('.popup-form-side');
         if (formSide) {
@@ -533,7 +539,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }
       };
 
-      // Auto-show popup after 1.5s if not seen before
       if (!window.location.search.includes('scan-requested=true')) {
         const autoTimer = setTimeout(() => {
           const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
@@ -541,11 +546,9 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
             openPopup();
           }
         }, 1500);
-        // Clear timeout if navigating away before it fires
         signal.addEventListener('abort', () => clearTimeout(autoTimer));
       }
 
-      // Handle "Ask For A Free Scan" button clicks
       document.addEventListener('click', (e) => {
         const link = e.target.closest('a[href="#open-scan-popup"]');
         if (link) {
@@ -554,7 +557,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }
       }, { signal });
 
-      // Close popup handlers
       const closeBtn = popup.querySelector('.popup-close');
       closeBtn?.addEventListener('click', closePopup, { signal });
       popup.addEventListener('click', (e) => {
@@ -564,7 +566,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         if (e.key === 'Escape') closePopup();
       }, { signal });
 
-      // Handle popup form submission
       const popupForm = document.getElementById('popup-form');
       if (popupForm) {
         initSmsPreferenceGroup(popupForm);
@@ -594,7 +595,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       }
     });
 
-    // Clean up if navigating away while popup is open
     document.addEventListener('astro:before-swap', () => {
       gbpPopupController?.abort();
       const popup = document.getElementById('gbp-popup');
@@ -604,9 +604,22 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       }
     });
   </script>
+
   <script>
-    // ViewTransitions does NOT replace the <html> element — only <body> is swapped.
-    // Keep html's page-type classes in sync manually on every SPA navigation.
+    // ── Mobile video prevention ─────────────────────────────────────────
+    document.addEventListener('astro:page-load', () => {
+      if (window.innerWidth <= 768) {
+        document.querySelectorAll('.section-video').forEach(video => {
+          video.querySelectorAll('source').forEach(s => s.remove());
+          video.removeAttribute('src');
+          video.load();
+        });
+      }
+    });
+  </script>
+
+  <script>
+    // Keep html's page-type classes in sync with ViewTransitions
     document.addEventListener('astro:before-swap', () => {
       document.documentElement.classList.remove(
         'home-page', 'digital-home', 'secondary-top-hero',
@@ -624,15 +637,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       }
     });
   </script>
-<script is:inline>
-  // Prevent video downloads on mobile
-  if (window.innerWidth <= 768) {
-    document.querySelectorAll('.section-video source, .section-video').forEach(el => {
-      if (el.tagName === 'SOURCE') el.remove();
-      else if (el.tagName === 'VIDEO') { el.pause(); el.src = ''; el.load(); }
-    });
-  }
-</script>
 </body>
 </html>
 
@@ -699,7 +703,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     padding-top: calc(3rem + var(--site-header-height, 94px));
   }
 
-  /* Headers use Inter */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', system-ui, sans-serif;
   }
@@ -713,7 +716,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     color: #a01c2b;
   }
 
-  /* Content pages styling */
   .content-page {
     max-width: 800px;
     margin: 0 auto;
@@ -795,7 +797,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       0 2px 3px rgba(23, 36, 108, 0.3),
       0 1px 2px rgba(0, 0, 0, 0.15),
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
+  }
 
   /* Red button - 3D style */
   .btn-red {
@@ -830,7 +832,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       inset 0 1px 3px rgba(0, 0, 0, 0.15);
   }
 
-  /* Auto-style contact links as navy 3D buttons */
   .content-page a[href="/contact-us/"] {
     display: inline-block;
     background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
@@ -865,7 +866,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
-  /* Process Steps with numbered circles */
+  /* Process Steps */
   .process-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1275,6 +1276,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    width: 100%;
   }
 
   .contact-popup-submit:hover:not(:disabled) {
@@ -1314,30 +1316,51 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     }
   }
 
-/* Animated gradient sections (replaces video-bg-section for performance) */
-.animated-bg-section {
-  position: relative;
-  padding: 80px 0;
-  background: linear-gradient(135deg, #0a1628, #0d2450, #1a3a6b, #0a1628);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
-  overflow: hidden;
-}
-
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Mobile: disable section videos entirely to save bandwidth */
-@media (max-width: 768px) {
-  .section-video {
-    display: none !important;
+  /* ── Persistent page background video ───────────────────────────── */
+  /* Fixed behind ALL secondary page content. transition:persist keeps  */
+  /* it alive across SPA navigations — loads once per session.          */
+  .page-bg-video {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
   }
-  .video-bg-section {
-    background: linear-gradient(135deg, #0a1628, #0d2450);
-  }
-}
 
+  .page-bg-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Mobile: skip video — html.secondary-top-hero bg (#081a43) is fallback */
+  @media (max-width: 768px) {
+    .page-bg-video {
+      display: none;
+    }
+  }
+
+  /* ── "Blue" sections on service pages ───────────────────────────── */
+  /* Transparent so the persistent background video shows through.      */
+  .animated-bg-section {
+    position: relative;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  /* Subtle scrim so heading text stays legible over the video */
+  .animated-bg-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 15, 45, 0.35);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Content inside animated-bg-section sits above the scrim */
+  .animated-bg-section > * {
+    position: relative;
+    z-index: 1;
+  }
 </style>

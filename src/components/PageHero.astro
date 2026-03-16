@@ -4,7 +4,6 @@ interface Props {
   subtitle?: string;
   description?: string;
   badge?: string;
-  videoSrc?: string;
 }
 
 const {
@@ -12,31 +11,23 @@ const {
   subtitle,
   description,
   badge,
-  videoSrc = '/uploads/new/hero/abstract/abstract-blue-1.mp4',
 } = Astro.props;
 ---
 
 <!--
-  PageHero — full-viewport video hero for interior/service pages.
+  PageHero — full-viewport hero for interior/service pages.
+  No video element here — the persistent .page-bg-video in BaseLayout
+  supplies the background. This section is transparent so that video
+  shows through naturally.
+
   IMPORTANT: The outermost element must remain <section class="hero"> so that
   Header.astro's scroll detection (querySelector('main > section.hero:first-child'))
   correctly identifies this as a secondary hero page and hides the nav until
   the user scrolls past it.
 -->
 <section class="hero page-hero">
-  <div class="page-hero-media" aria-hidden="true">
-    <video
-      class="page-hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="none"
-    >
-      <source src={videoSrc} type="video/mp4" />
-    </video>
-    <div class="page-hero-overlay"></div>
-  </div>
+  <!-- Dark tint overlay for text legibility over the background video -->
+  <div class="page-hero-overlay" aria-hidden="true"></div>
 
   <div class="page-hero-content">
     {badge && <span class="page-hero-badge">{badge}</span>}
@@ -53,8 +44,6 @@ const {
   /* ── Outer shell ──────────────────────────────────────────────────── */
   .page-hero {
     position: relative;
-    /* Fill the full viewport. padding-top reserves space for the fixed/sticky
-       header so hero content is never clipped behind it. */
     min-height: 100vh;
     padding-top: var(--site-header-height, 72px);
     padding-bottom: 3rem;
@@ -62,25 +51,12 @@ const {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /* Reset any inherited section padding so this is truly edge-to-edge */
     margin: 0;
+    /* Transparent — the persistent background video in BaseLayout shows through */
+    background: transparent;
   }
 
-  /* ── Background video ─────────────────────────────────────────────── */
-  .page-hero-media {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .page-hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Dark blue tint so text stays legible over the abstract video */
+  /* ── Dark tint for legibility ─────────────────────────────────────── */
   .page-hero-overlay {
     position: absolute;
     inset: 0;
@@ -90,6 +66,8 @@ const {
       rgba(6, 20, 58, 0.58) 50%,
       rgba(3, 10, 32, 0.76) 100%
     );
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* ── Content ──────────────────────────────────────────────────────── */
