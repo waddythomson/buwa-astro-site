@@ -107,11 +107,6 @@ const description = "Reach more customers where they live, work, and shop with t
 
   <!-- Local Growth Partners -->
   <section class="network">
-    <div class="section-video-shell" aria-hidden="true">
-      <video class="section-abstract-video" autoplay muted loop playsinline preload="metadata">
-        <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-      </video>
-    </div>
     <div class="container">
       <div class="network-grid">
         <div class="network-content">
@@ -161,11 +156,6 @@ const description = "Reach more customers where they live, work, and shop with t
 
   <!-- Testimonials -->
   <section class="testimonials" id="testimonials">
-    <div class="section-video-shell" aria-hidden="true">
-      <video class="section-abstract-video" autoplay muted loop playsinline preload="metadata">
-        <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-      </video>
-    </div>
     <div class="container">
       <h2>What Our Partners Are Saying</h2>
       <p class="testimonials-subtitle">Don't just take our word for it.</p>
@@ -585,7 +575,7 @@ const description = "Reach more customers where they live, work, and shop with t
 <style>
   :global(html.digital-home),
   :global(body.digital-home) {
-    background: #081a43;
+    background: #1a1a2e;
   }
 
   :global(html.home-loading),
@@ -696,10 +686,11 @@ const description = "Reach more customers where they live, work, and shop with t
 
   .hero {
     --hero-header-overlap: var(--site-header-height, 94px);
-    background: linear-gradient(180deg, #3f74a9 0%, #294e7f 100%);
+    --hero-overdraw: 50px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: white;
-    margin-top: calc(var(--hero-header-overlap) * -1 - 3px);
-    padding: calc(1.2rem + var(--hero-header-overlap) + 3px) 2rem 2rem;
+    margin-top: calc(var(--hero-header-overlap) * -1 - var(--hero-overdraw));
+    padding: calc(1.2rem + var(--hero-header-overlap) + var(--hero-overdraw)) 2rem 2rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1129,25 +1120,12 @@ const description = "Reach more customers where they live, work, and shop with t
     opacity: 0.9;
   }
 
-  /* Host Partner Network with diagonal stripes */
   .network {
     position: relative;
     overflow: hidden;
-    background: #17246c;
+    background: transparent;
   }
 
-  .section-video-shell {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .section-abstract-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
 
 
 
@@ -1282,9 +1260,8 @@ const description = "Reach more customers where they live, work, and shop with t
     scroll-behavior: smooth;
   }
 
-  /* Testimonials Section */
   .testimonials {
-    background: #17246c;
+    background: transparent;
     text-align: center;
     scroll-margin-top: 150px;
     position: relative;

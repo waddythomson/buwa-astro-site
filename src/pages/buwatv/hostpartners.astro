@@ -27,7 +27,7 @@ const liveHosts = hostsUnique.filter((partner) => partner.status !== 'coming-soo
 const comingSoonHosts = hostsUnique.filter((partner) => partner.status === 'coming-soon');
 
 const logoSrc = (partner) =>
-  partner?.logo ? `/buwatv/uploads/partners/hosts/${partner.logo}` : '';
+  partner?.logo ? `/uploads/partners/${partner.logo}` : '';
 ---
 
 <BaseLayout

@@ -282,14 +282,12 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   {/* Persistent full-viewport background video — only on non-homepage pages.
       transition:persist keeps this element alive across SPA navigations so
       the video loads ONCE per session and never restarts. */}
-  {!isDigitalHome && (
-    <div class="page-bg-video" transition:persist="page-bg-video" aria-hidden="true">
-      <video autoplay muted loop playsinline preload="none">
-        <source src="/uploads/new/hero/abstract/abstract-blue-1.webm" type="video/webm" />
-        <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-      </video>
-    </div>
-  )}
+  <div class="page-bg-video" transition:persist="page-bg-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="none">
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.webm" type="video/webm" />
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+  </div>
 
   <div class="page-content-layer">
     <Header />
@@ -1371,7 +1369,8 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   .animated-bg-section h3,
   .animated-bg-section .section-title,
   .animated-bg-section .section-heading {
-    color: #ffffff;
+    color: #ffffff !important;
+    text-align: center;
   }
 
   /* Subtle scrim so heading text stays legible over the video */
@@ -1388,5 +1387,42 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   .animated-bg-section > * {
     position: relative;
     z-index: 1;
+  }
+
+  /* Paragraphs inside transparent sections need light text */
+  .animated-bg-section p,
+  .animated-bg-section li {
+    color: rgba(210, 232, 255, 0.9);
+  }
+
+  /* Cards on transparent video sections — frosted navy with white text */
+  .animated-bg-section .benefit-card,
+  .animated-bg-section .why-card {
+    background: rgba(12, 30, 67, 0.85);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .animated-bg-section .benefit-card h3,
+  .animated-bg-section .why-card h3 {
+    color: #ffffff;
+  }
+
+  .animated-bg-section .benefit-card p,
+  .animated-bg-section .why-card p {
+    color: rgba(210, 232, 255, 0.9);
+  }
+
+  .animated-bg-section .process-step {
+    background: white;
+    color: #2d3748;
+  }
+
+  .animated-bg-section .process-step h3 {
+    color: #1a202c;
+  }
+
+  .animated-bg-section .process-step p {
+    color: #4a5568;
   }
 </style>

@@ -7,11 +7,6 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
 ---
 
 <footer class="site-footer">
-  <div class="footer-abstract-shell" aria-hidden="true">
-    <video class="footer-abstract-video" autoplay muted loop playsinline preload="metadata">
-      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-    </video>
-  </div>
   <div class="footer-container">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -59,27 +54,17 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
 
 <style>
   .site-footer {
-    background: #1a1a2e;
+    background: transparent;
     color: white;
     padding: 2.5rem 0 1.25rem;
     position: relative;
     overflow: hidden;
   }
 
-  .footer-abstract-shell {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .footer-abstract-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .site-footer {
-    background: transparent;
+  @media (max-width: 768px) {
+    .site-footer {
+      background: #1a1a2e;
+    }
   }
 
   :global(body.home-page) .site-footer {
