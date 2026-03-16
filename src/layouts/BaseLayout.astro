@@ -291,13 +291,15 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     </div>
   )}
 
-  <Header />
+  <div class="page-content-layer">
+    <Header />
 
-  <main>
-    <slot />
-  </main>
+    <main>
+      <slot />
+    </main>
 
-  <Footer />
+    <Footer />
+  </div>
 
   <!-- Global Contact Popup -->
   <div class="contact-modal" id="contactModal">
@@ -696,7 +698,14 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
 
   html.secondary-top-hero,
   body.secondary-top-hero {
-    background: #081a43;
+    background: transparent;
+  }
+
+  /* Mobile: video is hidden, so give html a dark navy fallback */
+  @media (max-width: 768px) {
+    html.secondary-top-hero {
+      background: #081a43;
+    }
   }
 
   body.secondary-top-hero main > section.hero:first-child {
@@ -1322,8 +1331,15 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   .page-bg-video {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 0;          /* positive — avoids stacking-context issues  */
     pointer-events: none;
+  }
+
+  /* All page chrome (header / main / footer) sits above the fixed video */
+  .page-content-layer {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
   }
 
   .page-bg-video video {
@@ -1346,6 +1362,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     position: relative;
     background: transparent;
     overflow: hidden;
+    padding: 5rem 0;
   }
 
   /* Subtle scrim so heading text stays legible over the video */
