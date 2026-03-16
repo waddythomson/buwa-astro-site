@@ -5,11 +5,11 @@ date: "2024-04-11T19:41:37"
 modified: "2024-08-15T00:40:13"
 slug: "streaming-audio"
 ogImage: "/uploads/2024/07/buwa-logo.png"
+heroSubtitle: "Reach listeners on their favorite podcasts, radio, and music streaming platforms."
+heroBadge: "Audio Advertising"
+heroCtaLabel: "Let's Talk!"
+heroCtaHref: "/contact-us/"
 ---
-
-**Amplify your reach with targeted streaming audio advertising. Seamlessly integrate your message into your audience's favorite listening mediums.**
-
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
 
 Streaming audio reaches listeners during screen-free moments—commuting, working out, cooking, and more. Your message gets undivided attention when visual ads can't compete.
 
@@ -57,4 +57,4 @@ Reinforce your message across multiple channels for maximum impact.
 
 Let's discuss how streaming audio advertising can amplify your message in the Columbia, SC market.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const faq = [
   {
@@ -86,15 +87,16 @@ const relatedServices = [
   title="Geofencing & Display Ads | BuWa Digital - Columbia, SC"
   description="Target customers near your Columbia, SC business with geofencing and display advertising. BuWa Digital uses location data to reach your ideal audience online."
   faq={faq}
+  hasTopHero={true}
 >
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Display Advertising | Geofencing</h1>
-      <p>Use location data to reach your audience on the websites they love most.</p>
-      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
-    </div>
-  </section>
+  <PageHero
+    title="Display Advertising | Geofencing"
+    subtitle="Use location data to reach your audience on the websites they love most."
+    badge="Display Advertising"
+  >
+    <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+  </PageHero>
 
   <!-- Intro Section -->
   <section class="intro-section">
@@ -212,48 +214,15 @@ const relatedServices = [
   </section>
 
 <style>
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 3rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-  }
+  
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
+  
 
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
+  
 
-  .hero h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+  
 
-  .hero p {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-  }
+  
 
   /* Buttons */
   .btn-red {
@@ -654,13 +623,9 @@ const relatedServices = [
   }
 
   @media (max-width: 600px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
+    
 
-    .hero p {
-      font-size: 1.1rem;
-    }
+    
 
     section h2 {
       font-size: 1.6rem;

@@ -3175,3 +3175,55 @@ const bumpers = bumpersData;
     statsObserver.observe(statsGrid);
   }
 </script>
+
+<!-- ViewTransitions back-navigation safety: force content visible if splash already seen -->
+<script is:inline>
+document.addEventListener('astro:page-load', () => {
+  // Only applies on the BuWaTV index page
+  if (!document.getElementById('hero-content')) return;
+  
+  const splashSeen = sessionStorage.getItem('buwatv-splash-seen');
+  const heroContent = document.getElementById('hero-content');
+  
+  // If content is still hidden but splash was already seen, force reveal
+  if (splashSeen && heroContent && !heroContent.classList.contains('visible')) {
+    // Disable transitions for instant reveal on back-navigation
+    const els = {
+      heroContent: heroContent,
+      heroOverlay: document.querySelector('.hero-video-overlay'),
+      scrollIndicator: document.getElementById('scroll-indicator'),
+      videoBg: document.querySelector('.hero-video-bg')
+    };
+    
+    Object.values(els).forEach(el => {
+      if (el) el.style.transition = 'none';
+    });
+    
+    if (els.videoBg) els.videoBg.style.display = 'none';
+    if (els.heroOverlay) els.heroOverlay.classList.add('visible');
+    if (els.heroContent) els.heroContent.classList.add('visible');
+    if (els.scrollIndicator) els.scrollIndicator.classList.add('visible');
+    
+    // Also reveal any sections already in viewport
+    document.querySelectorAll('.reveal-section:not(.visible)').forEach(section => {
+      section.style.transition = 'none';
+      section.classList.add('visible');
+      section.querySelectorAll('.reveal-item').forEach(item => {
+        item.style.transition = 'none';
+      });
+    });
+    
+    // Restore transitions after a tick so future animations still work
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        Object.values(els).forEach(el => {
+          if (el) el.style.transition = '';
+        });
+        document.querySelectorAll('.reveal-section, .reveal-item').forEach(el => {
+          el.style.transition = '';
+        });
+      });
+    });
+  }
+});
+</script>

@@ -1,0 +1,636 @@
+---
+const title = "Digital Marketing Solutions | BuWa Digital";
+const description = "Prototype version of Solutions with abstract motion header styling.";
+
+const services = [
+  { title: "Indoor Digital Billboards", link: "/buwatv/", description: "Showcase your brand where customers work, shop, eat, and play.", badge: "TV" },
+  { title: "Google Business Profile", link: "/google-business-profile/", description: "Improve local visibility, rankings, and customer discovery.", badge: "G" },
+  { title: "Pay-Per-Click (PPC)", link: "/pay-per-click-ppc/", description: "Drive immediate traffic with strategic, budget-friendly campaigns.", badge: "PPC" },
+  { title: "Website Design", link: "/website-design/", description: "Create first impressions that lead to engagement and conversions.", badge: "WEB" },
+];
+
+const allServices = [
+  { title: "Screen Advertising", link: "/screen-advertising/" },
+  { title: "Website Design", link: "/website-design/" },
+  { title: "Google Business Profile", link: "/google-business-profile/" },
+  { title: "Social Media Management", link: "/social-media-management/" },
+  { title: "Pay-Per-Click (PPC)", link: "/pay-per-click-ppc/" },
+  { title: "Social Media Ads", link: "/social-media-ads/" },
+  { title: "Display Advertising | Geofencing", link: "/geofencing/" },
+  { title: "Connected TV | OTT Ads", link: "/connected-tv-ott-ads/" },
+  { title: "Pre-Roll Ads", link: "/pre-roll-advertising/" },
+  { title: "YouTube Ads", link: "/youtube-ads/" },
+  { title: "Streaming Audio", link: "/streaming-audio/" },
+  { title: "Design Services", link: "/design/" },
+];
+const awarenessItems = [
+  { label: "BuWa TV Indoor Billboards", href: "/buwatv/" },
+  { label: "Connected TV | OTT Ads", href: "/connected-tv-ott-ads/" },
+  { label: "Display | Geofencing", href: "/geofencing/" },
+  { label: "Streaming Audio", href: "/streaming-audio/" },
+  { label: "Pre-roll Ads", href: "/pre-roll-advertising/" },
+  { label: "Youtube Advertising", href: "/youtube-ads/" },
+];
+const leadGenItems = [
+  { label: "Social Media Advertising", href: "/social-media-ads/" },
+  { label: "Pay Per Click", href: "/pay-per-click-ppc/" },
+];
+const foundationalItems = [
+  { label: "Website Design", href: "/website-design/" },
+  { label: "Google Business Profile", href: "/google-business-profile/" },
+  { label: "Social Media Management", href: "/social-media-management/" },
+  { label: "Design Services", href: "/design/" },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet" />
+    <style>
+      :root {
+        --max-width: 1200px;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #102043; background: #f5f7fb; }
+      a { color: inherit; }
+
+      .hero-wrap {
+        position: relative;
+        min-height: 56vh;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.75) saturate(1.07);
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(145deg, rgba(8, 18, 45, 0.78), rgba(9, 31, 72, 0.52));
+      }
+      .hero-nav {
+        position: relative;
+        z-index: 2;
+        width: min(96%, var(--max-width));
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: end;
+        gap: 1rem;
+        padding: 1.1rem 0.6rem 0.7rem;
+        border-bottom: 1px solid rgba(186, 212, 255, 0.48);
+      }
+      .hero-logo img { width: clamp(132px, 12vw, 170px); height: auto; display: block; }
+      .hero-menu {
+        display: flex;
+        justify-content: center;
+        transform: translateY(7px);
+      }
+      .menu-toggle {
+        color: #ebf5ff;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+        border: 1px solid rgba(214, 232, 255, 0.5);
+        border-radius: 999px;
+        padding: 0.65rem 1.15rem;
+        background: rgba(181, 212, 255, 0.12);
+        cursor: pointer;
+        font-family: inherit;
+        transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .menu-toggle.is-open {
+        background: rgba(176, 213, 255, 0.2);
+        border-color: rgba(233, 244, 255, 0.85);
+        box-shadow: 0 0 0 3px rgba(193, 221, 255, 0.16);
+      }
+      .menu-toggle:hover { border-color: rgba(233, 244, 255, 0.8); background: rgba(176, 213, 255, 0.18); transform: translateY(-1px); }
+      .menu-toggle:active { transform: translateY(0); }
+      .hero-cta {
+        text-decoration: none;
+        background: #fff;
+        color: #102043;
+        border-radius: 999px;
+        padding: 0.58rem 0.95rem;
+        font-size: 0.73rem;
+        font-weight: 700;
+        transform: translateY(7px);
+      }
+      .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: transparent;
+        backdrop-filter: none;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        z-index: 150;
+      }
+      .menu-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      .menu-panel {
+        position: fixed;
+        top: var(--menu-top, 110px);
+        left: var(--menu-left, 50%);
+        transform: translateX(-50%);
+        width: min(90vw, 272px);
+        padding: 1rem;
+        background: rgba(12, 30, 67, 0.94);
+        border: 1px solid rgba(187, 212, 246, 0.35);
+        backdrop-filter: blur(12px);
+        transition: width 0.18s ease;
+      }
+      .menu-panel.has-submenu {
+        width: min(90vw, 460px);
+      }
+      .menu-panel-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+      .menu-title {
+        color: #e8f2ff;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.62rem;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+      .menu-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        justify-items: center;
+      }
+      .menu-primary {
+        padding-right: 0;
+        width: min(100%, 170px);
+        margin: 0 auto;
+      }
+      .menu-primary a,
+      .menu-primary button {
+        display: block;
+        color: transparent;
+        text-decoration: none;
+        padding: 0.46rem 0.5rem;
+        font-size: 1.08rem;
+        font-weight: 650;
+        line-height: 1.2;
+        width: 100%;
+        text-align: center;
+        border: none;
+        background: transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .menu-item-label {
+        display: block;
+        color: #f2f8ff;
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+
+      .menu-primary .menu-item::after {
+        content: attr(data-roll-label);
+        position: absolute;
+        inset: 0;
+        display: block;
+        padding: 0.46rem 0.5rem;
+        text-align: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: 1.2;
+        letter-spacing: inherit;
+        color: rgba(210, 224, 245, 0.58);
+        transform: translateY(115%);
+        opacity: 0;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+        pointer-events: none;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item .menu-item-label {
+        transform: translateY(-115%);
+        opacity: 0;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item::after {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item:hover .menu-item-label,
+      .menu-primary:has(.menu-item:hover) .menu-item.is-active .menu-item-label {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .menu-primary:has(.menu-item:hover) .menu-item:hover::after,
+      .menu-primary:has(.menu-item:hover) .menu-item.is-active::after {
+        transform: translateY(115%);
+        opacity: 0;
+      }
+      .menu-primary a:hover,
+      .menu-primary button:hover,
+      .menu-primary button.is-active { background: rgba(173, 208, 255, 0.16); transform: translateY(-2px); }
+      .menu-primary a,
+      .menu-primary button { transition: background 0.18s ease, transform 0.18s ease; }
+      .menu-secondary { padding-left: 0.2rem; display: none; position: relative; min-height: 170px; }
+      .menu-panel.has-submenu .menu-body { grid-template-columns: minmax(190px, 240px) 1fr; justify-items: stretch; }
+      .menu-panel.has-submenu .menu-primary { border-right: 1px solid rgba(194, 217, 248, 0.28); padding-right: 0.75rem; width: auto; margin: 0; }
+      .menu-panel.has-submenu .menu-primary a,
+      .menu-panel.has-submenu .menu-primary button { text-align: left; }
+      .menu-panel.has-submenu .menu-secondary { display: block; }
+      .menu-panel.has-submenu .menu-panel-top { justify-content: flex-start; }
+      .menu-submenu {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateX(10px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .menu-submenu.is-active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+      .menu-submenu h4 {
+        margin: 0 0 0.45rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #dcecff;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+      .menu-submenu a {
+        display: block;
+        color: #f2f8ff;
+        text-decoration: none;
+        padding: 0.34rem 0.2rem;
+        font-size: 0.95rem;
+      }
+      .menu-submenu a:hover { color: #fff; text-decoration: underline; }
+      .menu-links {
+        margin-top: 0.85rem;
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(194, 217, 248, 0.28);
+        text-align: center;
+      }
+      .menu-panel.has-submenu .menu-links { text-align: left; }
+      .menu-links a {
+        margin-right: 0;
+        display: inline-block;
+        color: #e9f3ff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .menu-links a:hover { text-decoration: underline; }
+      .menu-utility {
+        margin-top: 0.7rem;
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(194, 217, 248, 0.22);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.55rem;
+        transform: translateX(-6px);
+      }
+      .menu-utility a {
+        color: #dcecff;
+        text-decoration: none;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        font-weight: 500;
+        opacity: 0.9;
+        white-space: nowrap;
+      }
+      .menu-utility a:hover { color: #f2f8ff; }
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        width: min(96%, var(--max-width));
+        margin: 0 auto;
+        padding: clamp(4rem, 10vh, 7rem) 0.6rem clamp(2.2rem, 7vh, 4rem);
+        color: #f2f8ff;
+      }
+      .hero-copy h1 {
+        margin: 0;
+        max-width: 14ch;
+        font-size: clamp(2rem, 5.1vw, 4rem);
+        line-height: 1.02;
+      }
+      .hero-copy p {
+        margin: 1rem 0 0;
+        max-width: 42ch;
+        font-size: clamp(1rem, 1.8vw, 1.3rem);
+        line-height: 1.55;
+        color: rgba(232, 244, 255, 0.95);
+      }
+
+      .section {
+        width: min(96%, var(--max-width));
+        margin: 0 auto;
+        padding: 2.5rem 0.8rem;
+      }
+      .split {
+        display: grid;
+        grid-template-columns: minmax(280px, 46%) 1fr;
+        gap: clamp(1rem, 2.3vw, 2rem);
+        align-items: center;
+      }
+      .split img {
+        width: 100%;
+        border-radius: 14px;
+        min-height: 300px;
+        object-fit: cover;
+      }
+      .split h2 { margin: 0; font-size: clamp(1.4rem, 2.2vw, 2rem); color: #132652; }
+      .split p { margin: 0.8rem 0 0; color: #364869; line-height: 1.65; font-size: 1.04rem; }
+      .btn {
+        display: inline-block;
+        margin-top: 1.1rem;
+        text-decoration: none;
+        background: #1f3f8d;
+        color: #fff;
+        border-radius: 10px;
+        padding: 0.72rem 1.15rem;
+        font-weight: 700;
+      }
+
+      .cards-shell {
+        background: #eef2f8;
+        border-top: 1px solid rgba(20, 40, 80, 0.08);
+        border-bottom: 1px solid rgba(20, 40, 80, 0.08);
+      }
+      .cards-shell h2 {
+        margin: 0;
+        text-align: center;
+        color: #122552;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+      }
+      .cards-grid {
+        margin-top: 1.4rem;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(180px, 1fr));
+        gap: 0.9rem;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid rgba(28, 52, 98, 0.12);
+        border-radius: 12px;
+        padding: 1rem;
+        text-align: center;
+      }
+      .badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        margin: 0 auto;
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #16326e;
+        background: #e8efff;
+      }
+      .card h3 { margin: 0.6rem 0; font-size: 1.05rem; color: #162b58; }
+      .card p { margin: 0; font-size: 0.95rem; line-height: 1.5; color: #435273; }
+      .cards-cta { text-align: center; margin-top: 1.2rem; }
+
+      .list-section h3 {
+        margin: 0 0 0.85rem;
+        color: #122552;
+        font-size: 1.35rem;
+      }
+      .service-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+        gap: 0.6rem;
+      }
+      .service-list a {
+        text-decoration: none;
+        padding: 0.75rem 0.9rem;
+        border: 1px solid rgba(22, 41, 83, 0.11);
+        background: #fff;
+        border-radius: 10px;
+        color: #21355f;
+        font-weight: 600;
+      }
+      .service-list a:hover { border-color: #2b4f95; }
+
+      @media (max-width: 980px) {
+        .hero-nav { grid-template-columns: auto 1fr; }
+        .hero-cta { display: none; }
+        .split { grid-template-columns: 1fr; }
+        .cards-grid { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+        .service-list { grid-template-columns: repeat(2, minmax(190px, 1fr)); }
+        .menu-panel,
+        .menu-panel.has-submenu { width: min(92vw, 460px); }
+        .menu-panel.has-submenu .menu-body { grid-template-columns: 1fr; }
+        .menu-panel.has-submenu .menu-primary {
+          border-right: none;
+          border-bottom: 1px solid rgba(194, 217, 248, 0.28);
+          padding-right: 0;
+          padding-bottom: 0.65rem;
+          margin-bottom: 0.6rem;
+        }
+        .menu-secondary { min-height: 0; }
+      }
+      @media (max-width: 680px) {
+        .hero-menu { justify-content: start; transform: translateY(4px); }
+        .menu-toggle { font-size: 0.72rem; padding: 0.5rem 0.8rem; }
+        .menu-panel,
+        .menu-panel.has-submenu { width: min(94vw, 360px); }
+        .cards-grid, .service-list { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero-wrap">
+      <video class="hero-video" src="/uploads/new/hero/abstract/abstract-blue-1.mp4" autoplay muted loop playsinline preload="auto"></video>
+      <div class="hero-overlay"></div>
+      <div class="hero-nav">
+        <a class="hero-logo" href="/"><img src="/uploads/new/logos/buwad-logo-white-lrg.png" alt="BuWa Digital" /></a>
+        <nav class="hero-menu" aria-label="Solutions new prototype navigation">
+          <button type="button" class="menu-toggle" id="menuToggleSolutions" aria-expanded="false" aria-controls="solutionsMenuPanel">Menu</button>
+        </nav>
+        <a href="/contact-us/" class="hero-cta">Contact us</a>
+      </div>
+      <div class="hero-copy">
+        <h1>Digital Marketing Services</h1>
+        <p>A full range of services to make your business a digital powerhouse!</p>
+      </div>
+    </section>
+    <div class="menu-overlay" id="solutionsMenuPanel" aria-hidden="true">
+      <div class="menu-panel" id="solutionsMenuCard">
+        <div class="menu-panel-top">
+          <span class="menu-title">Menu</span>
+        </div>
+        <div class="menu-body">
+          <div class="menu-primary">
+            <button type="button" class="menu-item" data-menu-key="awareness" data-roll-label="Awareness"><span class="menu-item-label">Awareness</span></button>
+            <button type="button" class="menu-item" data-menu-key="leadgen" data-roll-label="Lead Gen"><span class="menu-item-label">Lead Gen</span></button>
+            <button type="button" class="menu-item" data-menu-key="foundational" data-roll-label="Foundational"><span class="menu-item-label">Foundational</span></button>
+            <a href="/about-us/" class="menu-item" data-roll-label="Who We Are"><span class="menu-item-label">Who We Are</span></a>
+            <a href="/contact-us/" class="menu-item" data-roll-label="Contact"><span class="menu-item-label">Contact</span></a>
+          </div>
+          <div class="menu-secondary">
+            <div class="menu-submenu" data-menu-section="awareness">
+              <h4>Awareness</h4>
+              {awarenessItems.map((item) => <a href={item.href}>{item.label}</a>)}
+            </div>
+            <div class="menu-submenu" data-menu-section="leadgen">
+              <h4>Lead Gen</h4>
+              {leadGenItems.map((item) => <a href={item.href}>{item.label}</a>)}
+            </div>
+            <div class="menu-submenu" data-menu-section="foundational">
+              <h4>Foundational</h4>
+              {foundationalItems.map((item) => <a href={item.href}>{item.label}</a>)}
+            </div>
+          </div>
+        </div>
+        <div class="menu-links">
+          <a href="/partners/">Our Partners</a>
+        </div>
+        <div class="menu-utility">
+          <a href="tel:+18032001614">803-200-1614</a>
+          <a href="mailto:info@buwadigital.com">info@buwadigital.com</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="split">
+        <img src="/uploads/2024/FSScreen_Grocery_YourAd2.jpg" alt="BuWaTV in action" loading="lazy" />
+        <div>
+          <h2>Tired Of Blowing The Budget On Advertising?</h2>
+          <p>We understand how difficult - and expensive - it can be to get customers to pay attention. We help local business owners stop wasting money on underperforming ads by telling their story through locally targeted, full-motion video that delivers real results - without breaking the bank.</p>
+          <p><strong>Be Seen. Be Trusted. Be Chosen!</strong> Customers trust brands they recognize. By using vibrant visuals and smart campaigns to tell your story, you gain valuable local exposure and turn recognition into trust.</p>
+          <a class="btn" href="/buwatv/">Visit BuWaTV</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards-shell">
+      <div class="section">
+        <h2>Marketing Solutions</h2>
+        <div class="cards-grid">
+          {services.map((service) => (
+            <div class="card">
+              <div class="badge">{service.badge}</div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+          ))}
+        </div>
+        <div class="cards-cta">
+          <a class="btn" href="/solutions/">Browse all Services</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section list-section">
+      <h3>Multichannel Marketing</h3>
+      <div class="service-list">
+        {allServices.map((service) => (
+          <a href={service.link}>{service.title}</a>
+        ))}
+      </div>
+    </section>
+    <script>
+      const menuToggle = document.getElementById('menuToggleSolutions');
+      const menuPanel = document.getElementById('solutionsMenuPanel');
+      const menuCard = document.getElementById('solutionsMenuCard');
+      const menuPrimaryButtons = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-key]')) : [];
+      const menuSubmenus = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-section]')) : [];
+
+      const setMenuSection = (key) => {
+        if (!key) return;
+        menuPrimaryButtons.forEach((button) => {
+          button.classList.toggle('is-active', button.dataset.menuKey === key);
+        });
+        menuSubmenus.forEach((section) => {
+          section.classList.toggle('is-active', section.dataset.menuSection === key);
+        });
+        menuCard?.classList.add('has-submenu');
+      };
+
+      const clearMenuSection = () => {
+        menuPrimaryButtons.forEach((button) => button.classList.remove('is-active'));
+        menuSubmenus.forEach((section) => section.classList.remove('is-active'));
+        menuCard?.classList.remove('has-submenu');
+      };
+
+      const positionMenuCard = () => {
+        if (!menuToggle || !menuCard) return;
+        const rect = menuToggle.getBoundingClientRect();
+        const top = rect.bottom + 10;
+        const left = rect.left + (rect.width / 2);
+        menuCard.style.setProperty('--menu-top', `${top.toFixed(1)}px`);
+        menuCard.style.setProperty('--menu-left', `${left.toFixed(1)}px`);
+      };
+
+      const openMenuPanel = () => {
+        if (!menuPanel || !menuToggle) return;
+        positionMenuCard();
+        menuPanel.classList.add('is-open');
+        menuPanel.setAttribute('aria-hidden', 'false');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.classList.add('is-open');
+        menuToggle.textContent = 'X';
+      };
+
+      const closeMenuPanel = () => {
+        if (!menuPanel || !menuToggle) return;
+        menuPanel.classList.remove('is-open');
+        menuPanel.setAttribute('aria-hidden', 'true');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.classList.remove('is-open');
+        menuToggle.textContent = 'Menu';
+        clearMenuSection();
+      };
+
+      menuToggle?.addEventListener('click', () => {
+        if (!menuPanel) return;
+        if (menuPanel.classList.contains('is-open')) {
+          closeMenuPanel();
+        } else {
+          openMenuPanel();
+        }
+      });
+
+      menuPrimaryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setMenuSection(button.dataset.menuKey);
+        });
+      });
+      menuPanel?.addEventListener('click', (event) => {
+        if (event.target === menuPanel) closeMenuPanel();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenuPanel();
+      });
+
+      window.addEventListener('resize', () => {
+        if (menuPanel?.classList.contains('is-open')) positionMenuCard();
+      });
+    </script>
+  </body>
+</html>
