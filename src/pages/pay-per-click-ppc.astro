@@ -4,97 +4,89 @@ import PageHero from '../components/PageHero.astro';
 
 const faq = [
   {
-    question: "Will display advertising and geofencing help generate leads?",
-    answer: "Display advertising with geofencing is primarily a brand awareness and top-of-funnel strategy. While it can drive website visits and conversions, its greatest strength is keeping your brand front-and-center with audiences in specific locations. Over time, this awareness translates into more branded searches, higher click-through rates on other campaigns, and stronger lead generation across your entire marketing mix.",
+    question: "How much does PPC advertising cost?",
+    answer: "PPC costs vary based on your industry, competition, and target keywords. In the Midlands, average cost-per-click ranges from $1–$5 for most local service keywords, though highly competitive industries like legal or medical can run higher. We work within your budget to maximize every dollar — you set daily and monthly limits, and you never pay more than you authorize.",
   },
   {
-    question: "Can you geofence any location?",
-    answer: "We can geofence most commercial locations, event venues, competitor storefronts, and public spaces. However, there are restrictions — sensitive locations such as schools (K-12), medical facilities, places of worship, and government buildings are off-limits per industry compliance standards. We'll work with you to identify the highest-impact locations that align with your goals and stay within guidelines.",
+    question: "How quickly will I see results from PPC?",
+    answer: "Unlike SEO, which can take months to gain traction, PPC delivers immediate visibility. Your ads can appear at the top of Google within hours of launch. However, it typically takes 2–4 weeks of data collection and optimization before campaigns hit peak performance. We continuously refine targeting, bids, and ad copy to improve results over time.",
   },
   {
-    question: "Can you target specific phone numbers or people?",
-    answer: "No — geofencing targets device IDs based on physical location, not individual phone numbers or personal identities. When a mobile device enters your geofenced area, that device ID is captured anonymously. This allows us to serve ads to that device later across websites and apps without ever collecting personal information, keeping your campaigns both effective and privacy-compliant.",
+    question: "What's the difference between PPC and SEO?",
+    answer: "SEO focuses on earning organic (unpaid) search rankings over time through content and technical optimization. PPC places paid ads at the very top of search results for immediate visibility. The best digital strategies use both — PPC drives leads today while SEO builds long-term authority. We often recommend running PPC alongside SEO so you're covered in both the short and long term.",
   },
   {
-    question: "How do I know if display advertising is right for my business?",
-    answer: "If your business benefits from local visibility — think retail, restaurants, professional services, real estate, or events — display advertising with geofencing is a powerful fit. It's especially effective when you want to reach people near your location or your competitors' locations. We'll evaluate your goals, audience, and market during a free consultation to determine whether display fits into your overall strategy.",
+    question: "Do you manage Google Ads and Bing Ads?",
+    answer: "Yes. While Google Ads captures the lion's share of search traffic, Microsoft Advertising (Bing) reaches an additional 36% of the U.S. desktop search market — often at a lower cost-per-click. We evaluate your audience and recommend the right platform mix. For most Midlands businesses, we start with Google and expand to Bing when the data supports it.",
   },
   {
-    question: "How long does it take to see results from a geofencing campaign?",
-    answer: "Most campaigns begin delivering impressions within 24–48 hours of launch. However, the real impact of display advertising builds over time — typically 30 to 90 days — as your brand gains repeated exposure with your target audience. We provide regular reporting so you can track impressions, click-through rates, and audience reach from day one.",
+    question: "What happens if my ads aren't performing?",
+    answer: "We monitor campaigns daily and make proactive adjustments — pausing underperforming keywords, testing new ad copy, adjusting bids, and refining audience targeting. You'll never be locked into something that isn't working. Our monthly reporting keeps you informed with clear metrics, and we review strategy with you regularly to ensure your goals are being met.",
   },
 ];
 
 const relatedServices = [
-  { label: "Connected TV/OTT", href: "/connected-tv-ott-ads/" },
+  { label: "Google Business Profile", href: "/google-business-profile/" },
   { label: "Social Media Ads", href: "/social-media-ads/" },
-  { label: "PPC", href: "/pay-per-click-ppc/" },
-  { label: "Pre-Roll Advertising", href: "/pre-roll-advertising/" },
+  { label: "Display & Geofencing", href: "/geofencing/" },
+  { label: "YouTube Ads", href: "/youtube-ads/" },
 ];
 ---
 
 <BaseLayout 
-  title="Display Advertising & Geofencing | BuWa Digital - The Midlands"
-  description="Target customers by location with display advertising and geofencing across the Midlands. BuWa Digital delivers precision-targeted ads on the websites your audience visits most."
+  title="Pay-Per-Click (PPC) Advertising | BuWa Digital - The Midlands"
+  description="Drive qualified leads with expert PPC management in the Midlands. BuWa Digital delivers Google Ads campaigns that put your business at the top of search results — you only pay when someone clicks."
   faq={faq}
   hasTopHero={true}
 >
   <!-- Hero Section -->
   <PageHero
-    title="Display Advertising & Geofencing"
-    subtitle="What If You Could Follow Your Ideal Customer — Wherever They Browse?"
-    description="Geofencing technology lets you draw a virtual boundary around any location and serve dynamic display ads to the people who visit. Reach your audience on the websites and apps they use most — with precision targeting that traditional advertising simply can't match."
+    title="Pay-Per-Click (PPC) Advertising"
+    subtitle="Why Wait for Page One When You Can Start There Today?"
+    description="Your customers are searching for exactly what you offer — right now. PPC advertising puts your business at the top of Google the moment they hit 'search,' so you capture high-intent leads before your competitors even show up."
   >
     <a href="/contact-us/" class="btn-red">Let's Talk!</a>
   </PageHero>
 
-  <!-- Intro Section — WHITE -->
-  <section class="intro-section">
-    <div class="container">
-      <h2>Location-Powered Advertising That Works</h2>
-      <p class="intro-text">Display advertising with geofencing combines the visual impact of banner and rich-media ads with the precision of location-based targeting. Draw a virtual fence around competitor locations, event venues, shopping centers, or entire neighborhoods — then serve your branded ads to those audiences as they browse their favorite websites and apps. It's brand awareness with surgical precision.</p>
-    </div>
-  </section>
-
-  <!-- Why Geofencing — VIDEO BG -->
+  <!-- Why PPC — VIDEO BG -->
   <section class="video-bg-section">
     <video class="section-video" autoplay muted loop playsinline>
       <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
     </video>
     <div class="section-video-overlay"></div>
     <div class="container section-content">
-      <h2>Why Display & Geofencing?</h2>
+      <h2>Why Pay-Per-Click?</h2>
       
       <div class="benefits-grid">
         <div class="benefit-card">
-          <div class="benefit-icon">📍</div>
+          <div class="benefit-icon">⚡</div>
           <div class="benefit-content">
-            <h3>Precision Targeting</h3>
-            <p>Draw virtual boundaries around any location — competitor storefronts, event venues, neighborhoods — and reach the devices that enter those zones with your ads.</p>
+            <h3>Immediate Visibility</h3>
+            <p>Skip the months-long wait for organic rankings. PPC puts your business at the top of search results within hours of launch — instant exposure to people actively looking for your services.</p>
           </div>
         </div>
 
         <div class="benefit-card">
-          <div class="benefit-icon">🔔</div>
+          <div class="benefit-icon">🎯</div>
           <div class="benefit-content">
-            <h3>Brand Awareness at Scale</h3>
-            <p>Your full-motion, dynamic ads appear across thousands of premium websites and apps, building recognition with your ideal audience every time they browse.</p>
+            <h3>High-Intent Customers</h3>
+            <p>PPC targets people who are actively searching for what you sell. These aren't passive browsers — they're ready to call, click, or buy. You're reaching them at the exact moment of intent.</p>
           </div>
         </div>
 
         <div class="benefit-card">
-          <div class="benefit-icon">🏆</div>
+          <div class="benefit-icon">💰</div>
           <div class="benefit-content">
-            <h3>Competitive Advantage</h3>
-            <p>Geofence your competitors' locations and serve your ads to their customers. Intercept shoppers right when they're in a buying mindset and considering alternatives.</p>
+            <h3>Total Budget Control</h3>
+            <p>Set daily spend limits, pause campaigns anytime, and never exceed your budget. You only pay when someone actually clicks your ad — no impressions wasted, no surprise bills.</p>
           </div>
         </div>
 
         <div class="benefit-card">
           <div class="benefit-icon">📊</div>
           <div class="benefit-content">
-            <h3>Real-Time Insights</h3>
-            <p>Track impressions, click-through rates, foot traffic attribution, and audience engagement in real time. Know exactly how your investment is performing.</p>
+            <h3>Measurable ROI</h3>
+            <p>Track every click, call, form submission, and conversion down to the keyword level. PPC gives you complete transparency into what's working and exactly how your ad dollars perform.</p>
           </div>
         </div>
       </div>
@@ -107,16 +99,16 @@ const relatedServices = [
       <h2>The Numbers Don't Lie</h2>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number">80%</div>
-          <div class="stat-label">of consumers are more likely to purchase from brands that serve personalized, location-relevant ads</div>
+          <div class="stat-number">200%</div>
+          <div class="stat-label">average return on ad spend — businesses earn $2 for every $1 spent on Google Ads</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">2.5×</div>
-          <div class="stat-label">higher click-through rate for geofenced display ads compared to standard display campaigns</div>
+          <div class="stat-number">65%</div>
+          <div class="stat-label">of high-intent searches result in a click on a paid ad</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">53%</div>
-          <div class="stat-label">of shoppers visited a retailer after receiving a location-based message or ad</div>
+          <div class="stat-number">50%</div>
+          <div class="stat-label">more likely to convert — PPC visitors vs. organic visitors for commercial queries</div>
         </div>
       </div>
     </div>
@@ -134,29 +126,29 @@ const relatedServices = [
         <div class="process-step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h3>On-Boarding Meeting</h3>
-            <p>We learn your business, target audience, and competitive landscape to identify the highest-value geofencing locations and strategy.</p>
+            <h3>Keyword Research</h3>
+            <p>We identify the highest-value keywords your customers are searching — focusing on the Midlands and your service areas for maximum local impact.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h3>Creative Development</h3>
-            <p>Our design team builds eye-catching display ads in multiple formats — static banners, rich media, and full-motion creatives optimized for every screen size.</p>
+            <h3>Campaign Build</h3>
+            <p>We structure your campaigns, write compelling ad copy, set up targeting, and align landing pages so every click has the best chance to convert.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h3>Campaign Launch</h3>
-            <p>We activate your geofences, deploy your ads across premium websites and apps, and start capturing device IDs as your audience enters target zones.</p>
+            <h3>Launch & Monitor</h3>
+            <p>Your ads go live at the top of Google. We monitor performance daily — adjusting bids, pausing underperformers, and scaling what's working.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h3>Reporting & Optimization</h3>
-            <p>You receive clear, detailed reports on impressions, clicks, and audience reach. We continuously refine targeting and creative to maximize results.</p>
+            <h3>Optimize & Report</h3>
+            <p>A/B testing, bid adjustments, and negative keyword refinement drive continuous improvement. You get clear monthly reports with real numbers — no jargon.</p>
           </div>
         </div>
       </div>
@@ -167,13 +159,13 @@ const relatedServices = [
   <section class="approach-section">
     <div class="container">
       <h2>Our Approach</h2>
-      <p class="approach-intro">Every display and geofencing campaign follows our proven five-step process for measurable results.</p>
+      <p class="approach-intro">Every PPC campaign follows our proven five-step process to deliver measurable, scalable results.</p>
       <ol class="approach-list">
-        <li><strong>Discovery</strong> — We audit your market, competitors, and audience to identify the locations and demographics that matter most.</li>
-        <li><strong>Strategy</strong> — We define geofence boundaries, targeting parameters, ad formats, and budget allocation for maximum reach and ROI.</li>
-        <li><strong>Execution</strong> — Your ads go live across premium display networks, reaching the right people in the right places at the right time.</li>
-        <li><strong>Evaluation</strong> — We analyze impressions, click-through rates, foot traffic attribution, and conversion paths to measure campaign impact.</li>
-        <li><strong>Optimization</strong> — We refine geofence locations, adjust creative, and reallocate budget to the highest-performing tactics throughout the campaign.</li>
+        <li><strong>Discovery</strong> — We learn your business, goals, competitors, and the local market dynamics that shape your opportunity.</li>
+        <li><strong>Strategy</strong> — We map out keyword targeting, budget allocation, ad groups, and conversion tracking to build a campaign engineered for ROI.</li>
+        <li><strong>Execution</strong> — We launch highly targeted campaigns on Google Ads (and Bing where appropriate), with optimized ad copy and landing page alignment.</li>
+        <li><strong>Evaluation</strong> — We analyze click-through rates, conversion data, cost-per-lead, and quality scores to measure true performance against your goals.</li>
+        <li><strong>Optimization</strong> — We continuously refine keywords, bids, ad copy, and targeting to lower your cost-per-acquisition and maximize return on ad spend.</li>
       </ol>
     </div>
   </section>
@@ -189,10 +181,10 @@ const relatedServices = [
       
       <div class="benefits-grid">
         <div class="benefit-card">
-          <div class="benefit-icon">🏪</div>
+          <div class="benefit-icon">🏠</div>
           <div class="benefit-content">
-            <h3>Retail & Restaurants</h3>
-            <p>Geofence shopping centers, competitor locations, and high-traffic areas to drive foot traffic and promote offers to nearby consumers in your area.</p>
+            <h3>Home Services</h3>
+            <p>HVAC, plumbing, electricians, and roofers — capture homeowners the moment they search "near me" and turn emergency searches into booked appointments.</p>
           </div>
         </div>
 
@@ -200,23 +192,23 @@ const relatedServices = [
           <div class="benefit-icon">⚖️</div>
           <div class="benefit-content">
             <h3>Professional Services</h3>
-            <p>Law firms, medical practices, and financial advisors — build brand authority by targeting audiences in courthouses, business districts, and industry events.</p>
+            <p>Law firms, accountants, and consultants — dominate high-value search terms and generate qualified consultations from people actively seeking your expertise.</p>
           </div>
         </div>
 
         <div class="benefit-card">
-          <div class="benefit-icon">🏠</div>
+          <div class="benefit-icon">🏥</div>
           <div class="benefit-content">
-            <h3>Home Services</h3>
-            <p>HVAC, plumbing, roofing, and landscaping companies — target homeowners in specific neighborhoods and subdivisions where you want to grow.</p>
+            <h3>Healthcare & Medical</h3>
+            <p>Dental practices, urgent care, chiropractors, and specialists — reach patients searching for care in the Midlands and fill your appointment calendar faster.</p>
           </div>
         </div>
 
         <div class="benefit-card">
-          <div class="benefit-icon">🎓</div>
+          <div class="benefit-icon">🏪</div>
           <div class="benefit-content">
-            <h3>Education & Events</h3>
-            <p>Universities, trade schools, and event organizers — reach attendees at conferences, career fairs, and campus areas to boost enrollment and attendance.</p>
+            <h3>Local Retail & E-Commerce</h3>
+            <p>Drive foot traffic and online sales with product-focused search ads and shopping campaigns that put your inventory in front of ready-to-buy customers.</p>
           </div>
         </div>
       </div>
@@ -246,7 +238,7 @@ const relatedServices = [
     <div class="section-video-overlay"></div>
     <div class="container section-content">
       <h2>Services That Pair Well</h2>
-      <p class="related-intro">Amplify your geofencing campaigns with these complementary strategies.</p>
+      <p class="related-intro">Maximize your PPC results with these complementary strategies.</p>
       <div class="related-services">
         {relatedServices.map((service) => (
           <a href={service.href} class="related-pill">{service.label}</a>
@@ -258,8 +250,8 @@ const relatedServices = [
   <!-- CTA — WHITE -->
   <section class="cta-section-white">
     <div class="container">
-      <h2>Ready to Reach Your Audience Where They Are?</h2>
-      <p>Stop wasting ad spend on broad, untargeted campaigns — let's put your brand in front of the right people in the right places across the Midlands.</p>
+      <h2>Ready to Own the Top of Google?</h2>
+      <p>Stop losing leads to competitors who show up first — let's build a PPC campaign that puts your business where local customers are already searching.</p>
       <a href="/contact-us/" class="btn-red">Let's Talk!</a>
     </div>
   </section>
