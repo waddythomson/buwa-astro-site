@@ -1,6 +1,8 @@
 ---
 import Header from '../components/Header.astro';
+import HomeHeader from '../components/HomeHeader.astro';
 import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -12,6 +14,7 @@ export interface Props {
   ogImageHeight?: number;
   ogType?: string;
   noindex?: boolean;
+  hasTopHero?: boolean;
   twitterSite?: string;
   twitterCreator?: string;
   publishedTime?: Date;
@@ -20,6 +23,7 @@ export interface Props {
   tags?: string[];
   breadcrumbs?: Array<{ name: string; url: string }>;
   faq?: Array<{ question: string; answer: string }>;
+  useHomeHeader?: boolean;
 }
 
 const {
@@ -39,7 +43,9 @@ const {
   author,
   tags = [],
   breadcrumbs,
-  faq = []
+  faq = [],
+  useHomeHeader = false,
+  hasTopHero = false,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE || 'https://buwadigital.com';
@@ -176,10 +182,14 @@ const faqJsonLd = faq.length
       })),
     }
   : undefined;
+
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isDigitalHome = normalizedPath === '/' || normalizedPath === '/index.html';
+const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? 'secondary-top-hero' : undefined);
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class={rootClassName}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -260,6 +270,9 @@ const faqJsonLd = faq.length
       {JSON.stringify(faqJsonLd)}
     </script>
   )}
+  <!-- Page transitions -->
+  <ViewTransitions />
+
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-3CI9d2ziqSEmZcelpcAS8.js"></script>
   <script>
@@ -267,8 +280,8 @@ const faqJsonLd = faq.length
     plausible.init()
   </script>
 </head>
-<body>
-  <Header />
+<body class={rootClassName}>
+  {useHomeHeader ? <HomeHeader /> : <Header />}
 
   <main>
     <slot />
@@ -282,7 +295,7 @@ const faqJsonLd = faq.length
       <button type="button" class="contact-modal-close" id="closeContactPopup">&times;</button>
       <div class="contact-modal-inner">
         <div class="contact-modal-header">
-          <h2>Let's Connect!</h2>
+          <h2>Talk to us!</h2>
           <p>Tell us about your business and we'll reach out to discuss how we can help.</p>
         </div>
         <form id="contact-popup-form" class="contact-popup-form">
@@ -297,10 +310,16 @@ const faqJsonLd = faq.length
           <div class="form-group">
             <input type="tel" name="phone" placeholder="Phone Number *" required />
           </div>
-          <div class="form-group form-group-checkbox">
+          <div class="form-group form-group-checkbox sms-preference-group is-hidden">
+            <input type="hidden" name="sms_consent" value="false" />
+            <p class="sms-preference-title">Texting preference</p>
             <label class="checkbox-label">
-              <input type="checkbox" name="sms_consent" />
+              <input type="checkbox" name="sms_opt_in" />
               <span>I agree to receive text messages from BuWa Digital regarding my inquiry. Reply STOP to opt out.</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="sms_opt_out" />
+              <span>I am opting out of text messages and would appreciate a phone call instead.</span>
             </label>
           </div>
           <div class="form-group">
@@ -309,7 +328,7 @@ const faqJsonLd = faq.length
           <button type="submit" class="contact-popup-submit">
             <i class="fa-solid fa-paper-plane"></i> Send Message
           </button>
-          <p class="contact-popup-disclaimer">By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt out.</p>
+          <p class="contact-popup-disclaimer">By submitting this form, you agree to our <a href="/terms/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>. SMS messages are only sent if you opt in above.</p>
         </form>
       </div>
     </div>
@@ -329,16 +348,22 @@ const faqJsonLd = faq.length
             <input type="text" name="name" placeholder="Your Name" required />
             <input type="email" name="email" placeholder="Email Address" required />
             <input type="tel" name="phone" placeholder="Phone Number" />
-            <div class="form-group form-group-checkbox">
+            <div class="form-group form-group-checkbox sms-preference-group is-hidden">
+              <input type="hidden" name="sms_consent" value="false" />
+              <p class="sms-preference-title">Texting preference</p>
               <label class="checkbox-label">
-                <input type="checkbox" name="sms_consent" />
+                <input type="checkbox" name="sms_opt_in" />
                 <span>I agree to receive text messages from BuWa Digital regarding my inquiry. Reply STOP to opt out.</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="sms_opt_out" />
+                <span>I am opting out of text messages and would appreciate a phone call instead.</span>
               </label>
             </div>
             <input type="text" name="business" placeholder="Business Name" />
             <button type="submit" class="popup-submit">Get Started</button>
           </form>
-          <p class="popup-disclaimer">By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt out.</p>
+          <p class="popup-disclaimer">By submitting this form, you agree to our <a href="/terms/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>. SMS messages are only sent if you opt in above.</p>
         </div>
         <div class="popup-image-side">
           <img src="/uploads/2024/04/business-map.jpg" alt="Business Directory Scan" />
@@ -349,24 +374,63 @@ const faqJsonLd = faq.length
   </div>
 
   <script>
-    // Global Contact Popup Handler
-    (function() {
+    const initSmsPreferenceGroup = (form) => {
+      if (!form) return;
+      const phoneInput = form.querySelector('[name="phone"]');
+      const group = form.querySelector('.sms-preference-group');
+      const optIn = form.querySelector('[name="sms_opt_in"]');
+      const optOut = form.querySelector('[name="sms_opt_out"]');
+      const consent = form.querySelector('[name="sms_consent"]');
+      if (!phoneInput || !group || !optIn || !optOut || !consent) return;
+
+      const sync = () => {
+        const hasPhone = Boolean(phoneInput.value.trim());
+        group.classList.toggle('is-hidden', !hasPhone);
+        if (!hasPhone) {
+          optIn.checked = false;
+          optOut.checked = false;
+        }
+        consent.value = optIn.checked ? 'true' : 'false';
+      };
+
+      optIn.addEventListener('change', () => {
+        if (optIn.checked) optOut.checked = false;
+        consent.value = optIn.checked ? 'true' : 'false';
+      });
+
+      optOut.addEventListener('change', () => {
+        if (optOut.checked) optIn.checked = false;
+        consent.value = optIn.checked ? 'true' : 'false';
+      });
+
+      phoneInput.addEventListener('input', sync);
+      sync();
+    };
+
+    // ── Global Contact Modal — ViewTransitions-compatible ──────────────
+    // Uses capture phase so our handler fires BEFORE Astro's ViewTransitions
+    // router intercepts the click, letting e.preventDefault() actually stop
+    // the navigation.
+    document.addEventListener('astro:page-load', () => {
+      const controller = new AbortController();
+      const { signal } = controller;
+      document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+
       const contactModal = document.getElementById('contactModal');
       const closeBtn = document.getElementById('closeContactPopup');
       const contactForm = document.getElementById('contact-popup-form');
-      
+
+      if (!contactModal || !contactForm) return;
+
+      initSmsPreferenceGroup(contactForm);
+
       const openContactPopup = () => {
-        if (!contactModal) return;
         contactModal.classList.add('active');
-        // Trigger reflow for animation
-        requestAnimationFrame(() => {
-          contactModal.classList.add('ready');
-        });
+        requestAnimationFrame(() => contactModal.classList.add('ready'));
         document.body.style.overflow = 'hidden';
       };
 
       const closeContactPopup = () => {
-        if (!contactModal) return;
         contactModal.classList.remove('ready');
         setTimeout(() => {
           contactModal.classList.remove('active');
@@ -374,69 +438,71 @@ const faqJsonLd = faq.length
         }, 200);
       };
 
-      // Handle all "Get In Touch" links/buttons across the site
+      // capture: true — fires before ViewTransitions router so preventDefault works
       document.addEventListener('click', (e) => {
-        const link = e.target.closest('a[href="/contact-us/"], a[href="/contact-us/"], button[data-contact-popup]');
-        // Also check for buttons with the get-in-touch class
-        const getInTouchBtn = e.target.closest('.get-in-touch-popup');
-        
-        if (link || getInTouchBtn) {
+        const target = e.target.closest(
+          'a[href="/contact-us/"], a[href="/contact-us"], button[data-contact-popup], .get-in-touch-popup'
+        );
+        if (target) {
           e.preventDefault();
+          e.stopImmediatePropagation();
           openContactPopup();
         }
-      });
+      }, { signal, capture: true });
 
-      // Close handlers
-      closeBtn?.addEventListener('click', closeContactPopup);
-      
-      contactModal?.addEventListener('click', (e) => {
+      closeBtn?.addEventListener('click', closeContactPopup, { signal });
+
+      contactModal.addEventListener('click', (e) => {
         if (e.target === contactModal) closeContactPopup();
-      });
+      }, { signal });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && contactModal?.classList.contains('active')) {
+        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
           closeContactPopup();
         }
-      });
+      }, { signal });
 
-      // Form submission
-      contactForm?.addEventListener('submit', async (e) => {
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Check honeypot
-        if (contactForm.querySelector('[name="_honeypot"]').value) {
-          window.location.href = '/thank-you/';
+
+        if (contactForm.querySelector('[name="_honeypot"]')?.value) {
+          closeContactPopup();
           return;
         }
-        
+
         const submitBtn = contactForm.querySelector('.contact-popup-submit');
-        const originalText = submitBtn.innerHTML;
+        const originalHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-        
+
         try {
           const formData = new FormData(contactForm);
-          
-          await fetch('/api/contact', {
-            method: 'POST',
-            body: formData
-          });
-          
+          await fetch('/api/contact/', { method: 'POST', body: formData });
           window.location.href = '/thank-you/';
-          
-        } catch (error) {
-          // Still redirect on error (no-cors doesn't give us response status)
+        } catch {
           window.location.href = '/thank-you/';
         }
-      });
-    })();
+      }, { signal });
+    });
   </script>
 
   <script>
-    // Only show popup on Google Business Profile page
-    if (window.location.pathname.includes('google-business-profile')) {
+    // GBP scan popup — ViewTransitions compatible
+    let gbpPopupController;
+
+    document.addEventListener('astro:page-load', () => {
+      // Clean up previous listeners
+      gbpPopupController?.abort();
+
+      // Only run on Google Business Profile page
+      if (!window.location.pathname.includes('google-business-profile')) return;
+
+      gbpPopupController = new AbortController();
+      const signal = gbpPopupController.signal;
+
       const popup = document.getElementById('gbp-popup');
-      
+      if (!popup) return;
+
       // Check if scan was just requested (returning from form submission)
       if (window.location.search.includes('scan-requested=true')) {
         const formSide = document.querySelector('.popup-form-side');
@@ -449,14 +515,12 @@ const faqJsonLd = faq.length
             </div>
           `;
         }
-        // Show the popup with thank you message
         popup.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         sessionStorage.setItem('gbp-popup-seen', 'true');
-        // Clean up URL
         window.history.replaceState({}, document.title, window.location.pathname);
       }
-      
+
       const openPopup = () => {
         if (popup) {
           popup.style.display = 'flex';
@@ -472,14 +536,16 @@ const faqJsonLd = faq.length
         }
       };
 
-      // Auto-show popup after 1.5s if not seen before (and not returning from submission)
+      // Auto-show popup after 1.5s if not seen before
       if (!window.location.search.includes('scan-requested=true')) {
-        setTimeout(() => {
+        const autoTimer = setTimeout(() => {
           const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
           if (!hasSeenPopup) {
             openPopup();
           }
         }, 1500);
+        // Clear timeout if navigating away before it fires
+        signal.addEventListener('abort', () => clearTimeout(autoTimer));
       }
 
       // Handle "Ask For A Free Scan" button clicks
@@ -489,54 +555,93 @@ const faqJsonLd = faq.length
           e.preventDefault();
           openPopup();
         }
-      });
+      }, { signal });
 
       // Close popup handlers
-      document.addEventListener('DOMContentLoaded', () => {
-        const closeBtn = popup?.querySelector('.popup-close');
-        
-        closeBtn?.addEventListener('click', closePopup);
-        popup?.addEventListener('click', (e) => {
-          if (e.target === popup) closePopup();
+      const closeBtn = popup.querySelector('.popup-close');
+      closeBtn?.addEventListener('click', closePopup, { signal });
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) closePopup();
+      }, { signal });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
+      }, { signal });
+
+      // Handle popup form submission
+      const popupForm = document.getElementById('popup-form');
+      if (popupForm) {
+        initSmsPreferenceGroup(popupForm);
+        popupForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          if (popupForm.querySelector('[name="_honeypot"]').value) {
+            window.location.href = '/thank-you/';
+            return;
+          }
+
+          const submitBtn = popupForm.querySelector('.popup-submit');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          try {
+            const formData = new FormData(popupForm);
+            await fetch('/api/contact/', {
+              method: 'POST',
+              body: formData
+            });
+            window.location.href = '/thank-you/';
+          } catch (error) {
+            window.location.href = '/thank-you/';
+          }
+        }, { signal });
+      }
+    });
+
+    // Clean up if navigating away while popup is open
+    document.addEventListener('astro:before-swap', () => {
+      gbpPopupController?.abort();
+      const popup = document.getElementById('gbp-popup');
+      if (popup) {
+        popup.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+  <script>
+    // ── Mobile video prevention ─────────────────────────────────────────
+    // On mobile (<= 768px), strip source elements from section videos so the
+    // browser never downloads the video file. CSS hides the elements; this
+    // script prevents the network request entirely.
+    document.addEventListener('astro:page-load', () => {
+      if (window.innerWidth <= 768) {
+        document.querySelectorAll('.section-video').forEach(video => {
+          video.querySelectorAll('source').forEach(s => s.remove());
+          video.removeAttribute('src');
+          video.load();
         });
-        
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closePopup();
-        });
-        
-        // Handle popup form submission
-        const popupForm = document.getElementById('popup-form');
-        if (popupForm) {
-          popupForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Check honeypot
-            if (popupForm.querySelector('[name="_honeypot"]').value) {
-              window.location.href = '/thank-you/';
-              return;
-            }
-            
-            const submitBtn = popupForm.querySelector('.popup-submit');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            
-            try {
-              const formData = new FormData(popupForm);
-              
-              await fetch('/api/contact', {
-                method: 'POST',
-                body: formData
-              });
-              
-              window.location.href = '/thank-you/';
-              
-            } catch (error) {
-              window.location.href = '/thank-you/';
-            }
-          });
-        }
-      });
-    }
+      }
+    });
+  </script>
+
+  <script>
+    // ViewTransitions does NOT replace the <html> element — only <body> is swapped.
+    // Keep html's page-type classes in sync manually on every SPA navigation.
+    document.addEventListener('astro:before-swap', () => {
+      document.documentElement.classList.remove(
+        'home-page', 'digital-home', 'secondary-top-hero',
+        'home-loading'
+      );
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      const b = document.body.classList;
+      if (b.contains('home-page')) {
+        document.documentElement.classList.add('home-page', 'digital-home');
+      }
+      if (b.contains('secondary-top-hero')) {
+        document.documentElement.classList.add('secondary-top-hero');
+      }
+    });
   </script>
 </body>
 </html>
@@ -551,12 +656,65 @@ const faqJsonLd = faq.length
   html {
     font-family: 'Montserrat', system-ui, sans-serif;
     scroll-behavior: smooth;
+    overscroll-behavior-y: none;
   }
 
   body {
     line-height: 1.6;
     color: #333;
     background: #fff;
+    overscroll-behavior-y: none;
+  }
+
+  /* ─── Page-transition animations (Astro View Transitions) ─── */
+  /*
+   * New page: slides up from below as a narrow card, then expands to fill
+   * the viewport — inspired by fluid.glass's reveal style.
+   * Old page: quick scale-down fade.
+   */
+  @keyframes buwa-page-enter {
+    from {
+      clip-path: inset(0 7vw 0 7vw round 20px 20px 0 0);
+      transform: translateY(64px);
+      opacity: 0;
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 0px);
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes buwa-page-exit {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.97); }
+  }
+
+  ::view-transition-old(root) {
+    animation: 240ms ease buwa-page-exit both;
+  }
+
+  ::view-transition-new(root) {
+    animation: 560ms cubic-bezier(0.22, 0.75, 0.25, 1) buwa-page-enter both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none !important;
+    }
+  }
+
+  html.secondary-top-hero,
+  body.secondary-top-hero {
+    background: #081a43;
+  }
+
+  /* Header is position:fixed on secondary-hero pages — it floats over the hero
+     with zero flow impact. The hero just needs enough padding-top so its
+     content clears the header. No negative margin tricks needed. */
+  body.secondary-top-hero main > section.hero:first-child {
+    padding-top: calc(3rem + var(--site-header-height, 94px));
   }
 
   /* Headers use Inter */
@@ -656,7 +814,7 @@ const faqJsonLd = faq.length
       0 2px 3px rgba(23, 36, 108, 0.3),
       0 1px 2px rgba(0, 0, 0, 0.15),
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  }
+    }
 
   /* Red button - 3D style */
   .btn-red {
@@ -669,9 +827,8 @@ const faqJsonLd = faq.length
     font-weight: 600;
     border: none;
     box-shadow: 
-      0 4px 6px rgba(160, 28, 43, 0.4),
-      0 2px 4px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      0 4px 6px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: all 0.15s ease;
     position: relative;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -680,21 +837,19 @@ const faqJsonLd = faq.length
   .btn-red:hover {
     background: linear-gradient(to bottom, #d62a38 0%, #c4222e 50%, #a01c2b 100%);
     box-shadow: 
-      0 6px 10px rgba(160, 28, 43, 0.5),
-      0 3px 6px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      0 6px 10px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
 
   .btn-red:active {
     transform: translateY(1px);
     box-shadow: 
-      0 2px 3px rgba(160, 28, 43, 0.3),
-      0 1px 2px rgba(0, 0, 0, 0.15),
-      inset 0 1px 3px rgba(0, 0, 0, 0.2);
+      0 2px 3px rgba(0, 0, 0, 0.2),
+      inset 0 1px 3px rgba(0, 0, 0, 0.15);
   }
 
-  /* Auto-style "Get In Touch" links to /contact-us as navy 3D buttons */
+  /* Auto-style "Let's Talk!" links to /contact-us as navy 3D buttons */
   .content-page a[href="/contact-us/"] {
     display: inline-block;
     background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
@@ -891,6 +1046,17 @@ const faqJsonLd = faq.length
     line-height: 1.4;
   }
 
+  .sms-preference-group.is-hidden {
+    display: none;
+  }
+
+  .sms-preference-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0.1rem 0 0.4rem;
+  }
+
   .popup-form .checkbox-label input {
     width: auto;
     padding: 0;
@@ -931,6 +1097,13 @@ const faqJsonLd = faq.length
     color: #888;
     margin-top: 1rem;
     line-height: 1.4;
+  }
+
+  .popup-disclaimer a,
+  .contact-popup-disclaimer a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .popup-image-side {
@@ -982,7 +1155,7 @@ const faqJsonLd = faq.length
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.92);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 10000;
     justify-content: center;
     align-items: center;
@@ -1083,6 +1256,11 @@ const faqJsonLd = faq.length
     line-height: 1.4;
   }
 
+  .contact-popup-form .sms-preference-title {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.1rem 0 0.4rem;
+  }
+
   .contact-popup-form .checkbox-label input {
     width: auto;
     padding: 0;
@@ -1152,6 +1330,19 @@ const faqJsonLd = faq.length
     .contact-modal-close {
       top: -45px;
       right: 0;
+    }
+  }
+
+  /* ── Section video backgrounds ────────────────────────────────────── */
+  /* Dark navy fallback shown before video loads or on mobile */
+  .video-bg-section {
+    background: #08152e;
+  }
+
+  /* Hide section videos on mobile — saves bandwidth, uses fallback bg */
+  @media (max-width: 768px) {
+    .section-video {
+      display: none;
     }
   }
 </style>
