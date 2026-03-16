@@ -1,1 +1,1319 @@
-placeholder
+---
+import Header from '../components/Header.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+export interface Props {
+  title: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogType?: string;
+  noindex?: boolean;
+  hasTopHero?: boolean;
+  twitterSite?: string;
+  twitterCreator?: string;
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  author?: string;
+  tags?: string[];
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faq?: Array<{ question: string; answer: string }>;
+  useHomeHeader?: boolean;
+}
+
+const {
+  title,
+  description = "BuWa Digital - Indoor digital billboard advertising that helps local businesses reach their audience.",
+  canonicalUrl,
+  ogImage = "/uploads/2024/buwa-logo.png",
+  ogImageAlt,
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  ogType = "website",
+  noindex = false,
+  twitterSite,
+  twitterCreator,
+  publishedTime,
+  modifiedTime,
+  author,
+  tags = [],
+  breadcrumbs,
+  faq = [],
+  useHomeHeader = false,
+  hasTopHero = false,
+} = Astro.props;
+
+const siteUrl = import.meta.env.SITE || 'https://buwadigital.com';
+const currentUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
+const ogImageAltText = ogImageAlt || title;
+const absoluteLogo = new URL('/uploads/2024/buwa-logo.png', siteUrl).href;
+const sameAs: string[] = [];
+const resolvedTwitterSite = twitterSite || import.meta.env.PUBLIC_TWITTER_SITE;
+const resolvedTwitterCreator = twitterCreator || import.meta.env.PUBLIC_TWITTER_CREATOR;
+
+const formatBreadcrumbLabel = (slug: string) => {
+  const acronyms = new Set(['PPC', 'SEO', 'OTT', 'CTV', 'TV']);
+  return slug
+    .replace(/[-_]/g, ' ')
+    .split(' ')
+    .filter(Boolean)
+    .map((word) => {
+      const upper = word.toUpperCase();
+      if (acronyms.has(upper)) return upper;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(' ');
+};
+
+const buildBreadcrumbs = () => {
+  const segments = Astro.url.pathname.split('/').filter(Boolean);
+  const skipSegments = new Set(['blog']);
+  const items = [{ name: 'Home', url: `${siteUrl}/` }];
+  let path = '';
+
+  segments.forEach((segment) => {
+    if (skipSegments.has(segment)) {
+      path += `/${segment}`;
+      return;
+    }
+    path += `/${segment}`;
+    items.push({
+      name: formatBreadcrumbLabel(segment),
+      url: `${siteUrl}${path}/`,
+    });
+  });
+
+  return items;
+};
+
+const breadcrumbItems = breadcrumbs?.length ? breadcrumbs : buildBreadcrumbs();
+const breadcrumbJsonLd = breadcrumbItems.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbItems.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": item.url,
+      })),
+    }
+  : undefined;
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BuWa Digital",
+  "url": siteUrl,
+  "logo": absoluteLogo,
+  "sameAs": sameAs,
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "BuWa Digital",
+  "description": "Local isn't just our market—it's our mission. We help local businesses reach more neighbors with affordable, high-impact digital advertising including indoor digital billboards, geofencing, social media, and streaming TV ads.",
+  "url": siteUrl,
+  "logo": absoluteLogo,
+  "image": absoluteLogo,
+  "telephone": "+1-803-200-1614",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1926 Augusta Rd.",
+    "addressLocality": "West Columbia",
+    "addressRegion": "SC",
+    "postalCode": "29169",
+    "addressCountry": "US",
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:00",
+    },
+  ],
+  "sameAs": sameAs,
+};
+
+const articleJsonLd = ogType === 'article'
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title,
+      "description": description,
+      "image": [fullOgImage],
+      "author": author
+        ? { "@type": "Person", "name": author }
+        : { "@type": "Organization", "name": "BuWa Digital" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "BuWa Digital",
+        "logo": {
+          "@type": "ImageObject",
+          "url": absoluteLogo,
+        },
+      },
+      "datePublished": publishedTime?.toISOString(),
+      "dateModified": (modifiedTime || publishedTime)?.toISOString(),
+      "mainEntityOfPage": currentUrl,
+      "keywords": tags.length ? tags.join(', ') : undefined,
+    }
+  : undefined;
+
+const faqJsonLd = faq.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faq.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer,
+        },
+      })),
+    }
+  : undefined;
+
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isDigitalHome = normalizedPath === '/' || normalizedPath === '/index.html';
+const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? 'secondary-top-hero' : undefined);
+---
+
+<!DOCTYPE html>
+<html lang="en" class={rootClassName}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={currentUrl} />
+  <link rel="alternate" hreflang="en-US" href={currentUrl} />
+  <link rel="alternate" hreflang="x-default" href={currentUrl} />
+
+  <!-- Robots -->
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={ogType} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={currentUrl} />
+  <meta property="og:image" content={fullOgImage} />
+  <meta property="og:image:alt" content={ogImageAltText} />
+  <meta property="og:image:width" content={String(ogImageWidth)} />
+  <meta property="og:image:height" content={String(ogImageHeight)} />
+  <meta property="og:site_name" content="BuWa Digital" />
+
+  {ogType === 'article' && publishedTime && (
+    <meta property="article:published_time" content={publishedTime.toISOString()} />
+  )}
+  {ogType === 'article' && (modifiedTime || publishedTime) && (
+    <meta property="article:modified_time" content={(modifiedTime || publishedTime).toISOString()} />
+  )}
+  {ogType === 'article' && author && (
+    <meta property="article:author" content={author} />
+  )}
+  {ogType === 'article' && tags.length > 0 && tags.map((tag) => (
+    <meta property="article:tag" content={tag} />
+  ))}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={fullOgImage} />
+  <meta name="twitter:image:alt" content={ogImageAltText} />
+  {resolvedTwitterSite && <meta name="twitter:site" content={resolvedTwitterSite} />}
+  {resolvedTwitterCreator && <meta name="twitter:creator" content={resolvedTwitterCreator} />}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- LocalBusiness Structured Data -->
+  <script type="application/ld+json">
+  {JSON.stringify(localBusinessJsonLd)}
+  </script>
+  <script type="application/ld+json">
+  {JSON.stringify(organizationJsonLd)}
+  </script>
+  {breadcrumbJsonLd && (
+    <script type="application/ld+json">
+      {JSON.stringify(breadcrumbJsonLd)}
+    </script>
+  )}
+  {articleJsonLd && (
+    <script type="application/ld+json">
+      {JSON.stringify(articleJsonLd)}
+    </script>
+  )}
+  {faqJsonLd && (
+    <script type="application/ld+json">
+      {JSON.stringify(faqJsonLd)}
+    </script>
+  )}
+  <!-- Page transitions -->
+  <ViewTransitions />
+
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-3CI9d2ziqSEmZcelpcAS8.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+</head>
+<body class={rootClassName}>
+  {useHomeHeader ? <HomeHeader /> : <Header />}
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer />
+
+  <!-- Global Contact Popup -->
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-modal-content">
+      <button type="button" class="contact-modal-close" id="closeContactPopup">&times;</button>
+      <div class="contact-modal-inner">
+        <div class="contact-modal-header">
+          <h2>Talk to us!</h2>
+          <p>Tell us about your business and we'll reach out to discuss how we can help.</p>
+        </div>
+        <form id="contact-popup-form" class="contact-popup-form">
+          <input type="hidden" name="form_type" value="contact_popup" />
+          <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name *" required />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address *" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone Number *" required />
+          </div>
+          <div class="form-group form-group-checkbox sms-preference-group is-hidden">
+            <input type="hidden" name="sms_consent" value="false" />
+            <p class="sms-preference-title">Texting preference</p>
+            <label class="checkbox-label">
+              <input type="checkbox" name="sms_opt_in" />
+              <span>I agree to receive text messages from BuWa Digital regarding my inquiry. Reply STOP to opt out.</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="sms_opt_out" />
+              <span>I am opting out of text messages and would appreciate a phone call instead.</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="How can we help? (optional)" rows="3"></textarea>
+          </div>
+          <button type="submit" class="contact-popup-submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+          <p class="contact-popup-disclaimer">By submitting this form, you agree to our <a href="/terms/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>. SMS messages are only sent if you opt in above.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lead Capture Popup (only on Google Business Profile page) -->
+  <div id="gbp-popup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close popup">&times;</button>
+      <div class="popup-grid">
+        <div class="popup-form-side">
+          <h2>Elevate Your Online Reputation</h2>
+          <p class="popup-subtitle">Ask for a free scan of your business directory listings</p>
+          <form id="popup-form" class="popup-form">
+            <input type="hidden" name="form_type" value="scan_request" />
+            <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <input type="tel" name="phone" placeholder="Phone Number" />
+            <div class="form-group form-group-checkbox sms-preference-group is-hidden">
+              <input type="hidden" name="sms_consent" value="false" />
+              <p class="sms-preference-title">Texting preference</p>
+              <label class="checkbox-label">
+                <input type="checkbox" name="sms_opt_in" />
+                <span>I agree to receive text messages from BuWa Digital regarding my inquiry. Reply STOP to opt out.</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="sms_opt_out" />
+                <span>I am opting out of text messages and would appreciate a phone call instead.</span>
+              </label>
+            </div>
+            <input type="text" name="business" placeholder="Business Name" />
+            <button type="submit" class="popup-submit">Get Started</button>
+          </form>
+          <p class="popup-disclaimer">By submitting this form, you agree to our <a href="/terms/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>. SMS messages are only sent if you opt in above.</p>
+        </div>
+        <div class="popup-image-side">
+          <img src="/uploads/2024/04/business-map.jpg" alt="Business Directory Scan" />
+          <p class="popup-note">Scan will be sent once completed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const initSmsPreferenceGroup = (form) => {
+      if (!form) return;
+      const phoneInput = form.querySelector('[name="phone"]');
+      const group = form.querySelector('.sms-preference-group');
+      const optIn = form.querySelector('[name="sms_opt_in"]');
+      const optOut = form.querySelector('[name="sms_opt_out"]');
+      const consent = form.querySelector('[name="sms_consent"]');
+      if (!phoneInput || !group || !optIn || !optOut || !consent) return;
+
+      const sync = () => {
+        const hasPhone = Boolean(phoneInput.value.trim());
+        group.classList.toggle('is-hidden', !hasPhone);
+        if (!hasPhone) {
+          optIn.checked = false;
+          optOut.checked = false;
+        }
+        consent.value = optIn.checked ? 'true' : 'false';
+      };
+
+      optIn.addEventListener('change', () => {
+        if (optIn.checked) optOut.checked = false;
+        consent.value = optIn.checked ? 'true' : 'false';
+      });
+
+      optOut.addEventListener('change', () => {
+        if (optOut.checked) optIn.checked = false;
+        consent.value = optIn.checked ? 'true' : 'false';
+      });
+
+      phoneInput.addEventListener('input', sync);
+      sync();
+    };
+
+    // ── Global Contact Modal — ViewTransitions-compatible ──────────────
+    // Uses capture phase so our handler fires BEFORE Astro's ViewTransitions
+    // router intercepts the click, letting e.preventDefault() actually stop
+    // the navigation.
+    document.addEventListener('astro:page-load', () => {
+      const controller = new AbortController();
+      const { signal } = controller;
+      document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+
+      const contactModal = document.getElementById('contactModal');
+      const closeBtn = document.getElementById('closeContactPopup');
+      const contactForm = document.getElementById('contact-popup-form');
+
+      if (!contactModal || !contactForm) return;
+
+      initSmsPreferenceGroup(contactForm);
+
+      const openContactPopup = () => {
+        contactModal.classList.add('active');
+        requestAnimationFrame(() => contactModal.classList.add('ready'));
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeContactPopup = () => {
+        contactModal.classList.remove('ready');
+        setTimeout(() => {
+          contactModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }, 200);
+      };
+
+      // capture: true — fires before ViewTransitions router so preventDefault works
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest(
+          'a[href="/contact-us/"], a[href="/contact-us"], button[data-contact-popup], .get-in-touch-popup'
+        );
+        if (target) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          openContactPopup();
+        }
+      }, { signal, capture: true });
+
+      closeBtn?.addEventListener('click', closeContactPopup, { signal });
+
+      contactModal.addEventListener('click', (e) => {
+        if (e.target === contactModal) closeContactPopup();
+      }, { signal });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+          closeContactPopup();
+        }
+      }, { signal });
+
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (contactForm.querySelector('[name="_honeypot"]')?.value) {
+          closeContactPopup();
+          return;
+        }
+
+        const submitBtn = contactForm.querySelector('.contact-popup-submit');
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+        try {
+          const formData = new FormData(contactForm);
+          await fetch('/api/contact/', { method: 'POST', body: formData });
+          window.location.href = '/thank-you/';
+        } catch {
+          window.location.href = '/thank-you/';
+        }
+      }, { signal });
+    });
+  </script>
+
+  <script>
+    // GBP scan popup — ViewTransitions compatible
+    let gbpPopupController;
+
+    document.addEventListener('astro:page-load', () => {
+      // Clean up previous listeners
+      gbpPopupController?.abort();
+
+      // Only run on Google Business Profile page
+      if (!window.location.pathname.includes('google-business-profile')) return;
+
+      gbpPopupController = new AbortController();
+      const signal = gbpPopupController.signal;
+
+      const popup = document.getElementById('gbp-popup');
+      if (!popup) return;
+
+      // Check if scan was just requested (returning from form submission)
+      if (window.location.search.includes('scan-requested=true')) {
+        const formSide = document.querySelector('.popup-form-side');
+        if (formSide) {
+          formSide.innerHTML = `
+            <div style="text-align: center; padding: 2rem 0;">
+              <div style="width: 60px; height: 60px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin: 0 auto 1rem;">✓</div>
+              <h2 style="color: white; margin-bottom: 0.5rem;">Thank You!</h2>
+              <p style="color: rgba(255,255,255,0.9);">We'll send your free scan once completed.</p>
+            </div>
+          `;
+        }
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        sessionStorage.setItem('gbp-popup-seen', 'true');
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      const openPopup = () => {
+        if (popup) {
+          popup.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      const closePopup = () => {
+        if (popup) {
+          popup.style.display = 'none';
+          document.body.style.overflow = '';
+          sessionStorage.setItem('gbp-popup-seen', 'true');
+        }
+      };
+
+      // Auto-show popup after 1.5s if not seen before
+      if (!window.location.search.includes('scan-requested=true')) {
+        const autoTimer = setTimeout(() => {
+          const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
+          if (!hasSeenPopup) {
+            openPopup();
+          }
+        }, 1500);
+        // Clear timeout if navigating away before it fires
+        signal.addEventListener('abort', () => clearTimeout(autoTimer));
+      }
+
+      // Handle "Ask For A Free Scan" button clicks
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href="#open-scan-popup"]');
+        if (link) {
+          e.preventDefault();
+          openPopup();
+        }
+      }, { signal });
+
+      // Close popup handlers
+      const closeBtn = popup.querySelector('.popup-close');
+      closeBtn?.addEventListener('click', closePopup, { signal });
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) closePopup();
+      }, { signal });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
+      }, { signal });
+
+      // Handle popup form submission
+      const popupForm = document.getElementById('popup-form');
+      if (popupForm) {
+        initSmsPreferenceGroup(popupForm);
+        popupForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          if (popupForm.querySelector('[name="_honeypot"]').value) {
+            window.location.href = '/thank-you/';
+            return;
+          }
+
+          const submitBtn = popupForm.querySelector('.popup-submit');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          try {
+            const formData = new FormData(popupForm);
+            await fetch('/api/contact/', {
+              method: 'POST',
+              body: formData
+            });
+            window.location.href = '/thank-you/';
+          } catch (error) {
+            window.location.href = '/thank-you/';
+          }
+        }, { signal });
+      }
+    });
+
+    // Clean up if navigating away while popup is open
+    document.addEventListener('astro:before-swap', () => {
+      gbpPopupController?.abort();
+      const popup = document.getElementById('gbp-popup');
+      if (popup) {
+        popup.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+  <script>
+    // ViewTransitions does NOT replace the <html> element — only <body> is swapped.
+    // Keep html's page-type classes in sync manually on every SPA navigation.
+    document.addEventListener('astro:before-swap', () => {
+      document.documentElement.classList.remove(
+        'home-page', 'digital-home', 'secondary-top-hero',
+        'home-loading'
+      );
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      const b = document.body.classList;
+      if (b.contains('home-page')) {
+        document.documentElement.classList.add('home-page', 'digital-home');
+      }
+      if (b.contains('secondary-top-hero')) {
+        document.documentElement.classList.add('secondary-top-hero');
+      }
+    });
+  </script>
+</body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: none;
+  }
+
+  body {
+    line-height: 1.6;
+    color: #333;
+    background: #fff;
+    overscroll-behavior-y: none;
+  }
+
+  /* ─── Page-transition animations (Astro View Transitions) ─── */
+  /*
+   * New page: slides up from below as a narrow card, then expands to fill
+   * the viewport — inspired by fluid.glass's reveal style.
+   * Old page: quick scale-down fade.
+   */
+  @keyframes buwa-page-enter {
+    from {
+      clip-path: inset(0 7vw 0 7vw round 20px 20px 0 0);
+      transform: translateY(64px);
+      opacity: 0;
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 0px);
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes buwa-page-exit {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.97); }
+  }
+
+  ::view-transition-old(root) {
+    animation: 240ms ease buwa-page-exit both;
+  }
+
+  ::view-transition-new(root) {
+    animation: 560ms cubic-bezier(0.22, 0.75, 0.25, 1) buwa-page-enter both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none !important;
+    }
+  }
+
+  html.secondary-top-hero,
+  body.secondary-top-hero {
+    background: #081a43;
+  }
+
+  /* Header is position:fixed on secondary-hero pages — it floats over the hero
+     with zero flow impact. The hero just needs enough padding-top so its
+     content clears the header. No negative margin tricks needed. */
+  body.secondary-top-hero main > section.hero:first-child {
+    padding-top: calc(3rem + var(--site-header-height, 94px));
+  }
+
+  /* Headers use Inter */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: #a01c2b;
+  }
+
+  /* Content pages styling */
+  .content-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .content-page h1 {
+    font-size: 2.5rem;
+    color: #1a1a2e;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Intro paragraph (first p after h1) - bold and slightly larger */
+  .content-page h1 + p {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .content-page h2 {
+    font-size: 1.75rem;
+    color: #1a1a2e;
+    margin: 2rem 0 1rem;
+  }
+
+  .content-page h3 {
+    font-size: 1.25rem;
+    color: #1a1a2e;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .content-page p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .content-page ul, .content-page ol {
+    margin: 1rem 0 1rem 2rem;
+  }
+
+  .content-page li {
+    margin-bottom: 0.5rem;
+  }
+
+  .content-page img {
+    border-radius: 8px;
+    margin: 1.5rem 0;
+  }
+
+  /* Navy button - 3D style */
+  .btn-navy {
+    display: inline-block;
+    background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    box-shadow: 
+      0 4px 6px rgba(23, 36, 108, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-navy:hover {
+    background: linear-gradient(to bottom, #2439a0 0%, #1e2f8a 50%, #17246c 100%);
+    box-shadow: 
+      0 6px 10px rgba(23, 36, 108, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn-navy:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 3px rgba(23, 36, 108, 0.3),
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+  /* Red button - 3D style */
+  .btn-red {
+    display: inline-block;
+    background: linear-gradient(to bottom, #c4222e 0%, #a01c2b 50%, #7d1521 100%);
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    box-shadow: 
+      0 4px 6px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.15s ease;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-red:hover {
+    background: linear-gradient(to bottom, #d62a38 0%, #c4222e 50%, #a01c2b 100%);
+    box-shadow: 
+      0 6px 10px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .btn-red:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 3px rgba(0, 0, 0, 0.2),
+      inset 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Auto-style "Let's Talk!" links to /contact-us as navy 3D buttons */
+  .content-page a[href="/contact-us/"] {
+    display: inline-block;
+    background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 1rem 0;
+    box-shadow: 
+      0 4px 6px rgba(23, 36, 108, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .content-page a[href="/contact-us/"]:hover {
+    background: linear-gradient(to bottom, #2439a0 0%, #1e2f8a 50%, #17246c 100%);
+    box-shadow: 
+      0 6px 10px rgba(23, 36, 108, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .content-page a[href="/contact-us/"]:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 3px rgba(23, 36, 108, 0.3),
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Process Steps with numbered circles */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .process-step {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.08),
+      0 2px 6px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(23, 36, 108, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .process-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.12),
+      0 4px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1e2f8a 0%, #17246c 100%);
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    box-shadow: 
+      0 4px 10px rgba(23, 36, 108, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .process-step h3 {
+    color: #17246c;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .process-step p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Lead Capture Popup */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
+  }
+
+  .popup-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.3),
+      0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f0f0f0;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+
+  .popup-close:hover {
+    background: #17246c;
+    color: white;
+  }
+
+  .popup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+  }
+
+  .popup-form-side {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popup-form-side h2 {
+    color: #17246c;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .popup-subtitle {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .popup-form input {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.2s;
+  }
+
+  .popup-form input:focus {
+    outline: none;
+    border-color: #17246c;
+  }
+
+  .popup-form .checkbox-label {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .sms-preference-group.is-hidden {
+    display: none;
+  }
+
+  .sms-preference-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0.1rem 0 0.4rem;
+  }
+
+  .popup-form .checkbox-label input {
+    width: auto;
+    padding: 0;
+    border: none;
+    margin-top: 0.2rem;
+    accent-color: #a01c2b;
+    box-shadow: none;
+  }
+
+  .popup-submit {
+    background: linear-gradient(to bottom, #c4232e 0%, #a01c2b 50%, #8a1825 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    box-shadow: 
+      0 4px 6px rgba(160, 28, 43, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+  }
+
+  .popup-submit:hover {
+    background: linear-gradient(to bottom, #d42a36 0%, #c4232e 50%, #a01c2b 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 10px rgba(160, 28, 43, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .popup-disclaimer {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+
+  .popup-disclaimer a,
+  .contact-popup-disclaimer a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .popup-image-side {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .popup-image-side img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .popup-note {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    .popup-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .popup-image-side {
+      display: none;
+    }
+
+    .popup-form-side {
+      padding: 2rem 1.5rem;
+    }
+
+    .popup-form-side h2 {
+      font-size: 1.4rem;
+    }
+  }
+
+  /* Global Contact Modal - matches video popup styling */
+  .contact-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .contact-modal.active {
+    display: flex;
+  }
+
+  .contact-modal.ready {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .contact-modal-content {
+    position: relative;
+    width: min(95vw, 500px);
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-modal-close {
+    position: absolute;
+    top: -50px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+    z-index: 10;
+  }
+
+  .contact-modal-close:hover {
+    color: #a01c2b;
+    transform: scale(1.1);
+  }
+
+  .contact-modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-modal-header h2 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-modal-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+  }
+
+  .contact-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-popup-form .form-group input,
+  .contact-popup-form .form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(255, 255, 255, 0.95);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-popup-form .form-group input:focus,
+  .contact-popup-form .form-group textarea:focus {
+    outline: none;
+    border-color: #a01c2b;
+    box-shadow: 0 0 0 3px rgba(160, 28, 43, 0.2);
+  }
+
+  .contact-popup-form .checkbox-label {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .contact-popup-form .sms-preference-title {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.1rem 0 0.4rem;
+  }
+
+  .contact-popup-form .checkbox-label input {
+    width: auto;
+    padding: 0;
+    border: none;
+    margin-top: 0.2rem;
+    accent-color: #a01c2b;
+    box-shadow: none;
+  }
+
+  .contact-popup-form .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .contact-popup-submit {
+    background: linear-gradient(to bottom, #c4222e 0%, #a01c2b 50%, #7d1521 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    box-shadow: 
+      0 4px 6px rgba(160, 28, 43, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .contact-popup-submit:hover:not(:disabled) {
+    background: linear-gradient(to bottom, #d62a38 0%, #c4222e 50%, #a01c2b 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 10px rgba(160, 28, 43, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .contact-popup-submit:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  .contact-popup-disclaimer {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  @media (max-width: 500px) {
+    .contact-modal-content {
+      padding: 1.5rem;
+    }
+
+    .contact-modal-header h2 {
+      font-size: 1.4rem;
+    }
+
+    .contact-modal-close {
+      top: -45px;
+      right: 0;
+    }
+  }
+</style>
