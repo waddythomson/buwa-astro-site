@@ -699,12 +699,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     background: transparent;
   }
 
-  /* Mobile: video is hidden, so give html a dark navy fallback */
-  @media (max-width: 768px) {
-    html.secondary-top-hero {
-      background: #081a43;
-    }
-  }
+  
 
   body.secondary-top-hero main > section.hero:first-child {
     padding-top: calc(3rem + var(--site-header-height, 94px));
@@ -1329,8 +1324,10 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   .page-bg-video {
     position: fixed;
     inset: 0;
-    z-index: 0;          /* positive — avoids stacking-context issues  */
+    z-index: 0;
     pointer-events: none;
+    background: url('/uploads/new/hero/abstract/abstract-blue-1-poster.jpg') center/cover no-repeat;
+    background-color: #081a43;
   }
 
   /* All page chrome (header / main / footer) sits above the fixed video */
@@ -1345,13 +1342,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  /* Mobile: skip video — html.secondary-top-hero bg (#081a43) is fallback */
-  @media (max-width: 768px) {
-    .page-bg-video {
-      display: none;
-    }
   }
 
   /* ── "Blue" sections on service pages ───────────────────────────── */
