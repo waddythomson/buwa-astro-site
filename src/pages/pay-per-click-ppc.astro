@@ -1,0 +1,589 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faq = [
+  {
+    question: "How much does PPC advertising cost?",
+    answer: "PPC costs vary based on your industry, competition, and target keywords. In the Midlands, average cost-per-click ranges from $1–$5 for most local service keywords, though highly competitive industries like legal or medical can run higher. We work within your budget to maximize every dollar — you set daily and monthly limits, and you never pay more than you authorize.",
+  },
+  {
+    question: "How quickly will I see results from PPC?",
+    answer: "Unlike SEO, which can take months to gain traction, PPC delivers immediate visibility. Your ads can appear at the top of Google within hours of launch. However, it typically takes 2–4 weeks of data collection and optimization before campaigns hit peak performance. We continuously refine targeting, bids, and ad copy to improve results over time.",
+  },
+  {
+    question: "What's the difference between PPC and SEO?",
+    answer: "SEO focuses on earning organic (unpaid) search rankings over time through content and technical optimization. PPC places paid ads at the very top of search results for immediate visibility. The best digital strategies use both — PPC drives leads today while SEO builds long-term authority. We often recommend running PPC alongside SEO so you're covered in both the short and long term.",
+  },
+  {
+    question: "Do you manage Google Ads and Bing Ads?",
+    answer: "Yes. While Google Ads captures the lion's share of search traffic, Microsoft Advertising (Bing) reaches an additional 36% of the U.S. desktop search market — often at a lower cost-per-click. We evaluate your audience and recommend the right platform mix. For most Midlands businesses, we start with Google and expand to Bing when the data supports it.",
+  },
+  {
+    question: "What happens if my ads aren't performing?",
+    answer: "We monitor campaigns daily and make proactive adjustments — pausing underperforming keywords, testing new ad copy, adjusting bids, and refining audience targeting. You'll never be locked into something that isn't working. Our monthly reporting keeps you informed with clear metrics, and we review strategy with you regularly to ensure your goals are being met.",
+  },
+];
+
+const relatedServices = [
+  { label: "Google Business Profile", href: "/google-business-profile/" },
+  { label: "Social Media Ads", href: "/social-media-ads/" },
+  { label: "Display & Geofencing", href: "/geofencing/" },
+  { label: "YouTube Ads", href: "/youtube-ads/" },
+];
+---
+
+<BaseLayout 
+  title="Pay-Per-Click (PPC) Advertising | BuWa Digital - The Midlands"
+  description="Drive qualified leads with expert PPC management in the Midlands. BuWa Digital delivers Google Ads campaigns that put your business at the top of search results — you only pay when someone clicks."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Pay-Per-Click (PPC) Advertising"
+    subtitle="Why Wait for Page One When You Can Start There Today?"
+    description="Your customers are searching for exactly what you offer — right now. PPC advertising puts your business at the top of Google the moment they hit 'search,' so you capture high-intent leads before your competitors even show up."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Why PPC — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Why Pay-Per-Click?</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-content">
+            <h3>Immediate Visibility</h3>
+            <p>Skip the months-long wait for organic rankings. PPC puts your business at the top of search results within hours of launch — instant exposure to people actively looking for your services.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>High-Intent Customers</h3>
+            <p>PPC targets people who are actively searching for what you sell. These aren't passive browsers — they're ready to call, click, or buy. You're reaching them at the exact moment of intent.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-content">
+            <h3>Total Budget Control</h3>
+            <p>Set daily spend limits, pause campaigns anytime, and never exceed your budget. You only pay when someone actually clicks your ad — no impressions wasted, no surprise bills.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">📊</div>
+          <div class="benefit-content">
+            <h3>Measurable ROI</h3>
+            <p>Track every click, call, form submission, and conversion down to the keyword level. PPC gives you complete transparency into what's working and exactly how your ad dollars perform.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Numbers — WHITE -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>The Numbers Don't Lie</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">200%</div>
+          <div class="stat-label">average return on ad spend — businesses earn $2 for every $1 spent on Google Ads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">65%</div>
+          <div class="stat-label">of high-intent searches result in a click on a paid ad</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50%</div>
+          <div class="stat-label">more likely to convert — PPC visitors vs. organic visitors for commercial queries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Keyword Research</h3>
+            <p>We identify the highest-value keywords your customers are searching — focusing on the Midlands and your service areas for maximum local impact.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Campaign Build</h3>
+            <p>We structure your campaigns, write compelling ad copy, set up targeting, and align landing pages so every click has the best chance to convert.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Launch & Monitor</h3>
+            <p>Your ads go live at the top of Google. We monitor performance daily — adjusting bids, pausing underperformers, and scaling what's working.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Optimize & Report</h3>
+            <p>A/B testing, bid adjustments, and negative keyword refinement drive continuous improvement. You get clear monthly reports with real numbers — no jargon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach — WHITE -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <p class="approach-intro">Every PPC campaign follows our proven five-step process to deliver measurable, scalable results.</p>
+      <ol class="approach-list">
+        <li><strong>Discovery</strong> — We learn your business, goals, competitors, and the local market dynamics that shape your opportunity.</li>
+        <li><strong>Strategy</strong> — We map out keyword targeting, budget allocation, ad groups, and conversion tracking to build a campaign engineered for ROI.</li>
+        <li><strong>Execution</strong> — We launch highly targeted campaigns on Google Ads (and Bing where appropriate), with optimized ad copy and landing page alignment.</li>
+        <li><strong>Evaluation</strong> — We analyze click-through rates, conversion data, cost-per-lead, and quality scores to measure true performance against your goals.</li>
+        <li><strong>Optimization</strong> — We continuously refine keywords, bids, ad copy, and targeting to lower your cost-per-acquisition and maximize return on ad spend.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Who It's For — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Who It's For</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-content">
+            <h3>Home Services</h3>
+            <p>HVAC, plumbing, electricians, and roofers — capture homeowners the moment they search "near me" and turn emergency searches into booked appointments.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚖️</div>
+          <div class="benefit-content">
+            <h3>Professional Services</h3>
+            <p>Law firms, accountants, and consultants — dominate high-value search terms and generate qualified consultations from people actively seeking your expertise.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏥</div>
+          <div class="benefit-content">
+            <h3>Healthcare & Medical</h3>
+            <p>Dental practices, urgent care, chiropractors, and specialists — reach patients searching for care in the Midlands and fill your appointment calendar faster.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏪</div>
+          <div class="benefit-content">
+            <h3>Local Retail & E-Commerce</h3>
+            <p>Drive foot traffic and online sales with product-focused search ads and shopping campaigns that put your inventory in front of ready-to-buy customers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — WHITE -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <p class="faq-answer">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services That Pair Well — VIDEO BG -->
+  <section class="animated-bg-section related-section">
+  <div class="container section-content">
+      <h2>Services That Pair Well</h2>
+      <p class="related-intro">Maximize your PPC results with these complementary strategies.</p>
+      <div class="related-services">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-pill">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — WHITE -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready to Own the Top of Google?</h2>
+      <p>Stop losing leads to competitors who show up first — let's build a PPC campaign that puts your business where local customers are already searching.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== SHARED LAYOUT ==================== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ==================== WHITE SECTIONS ==================== */
+  .intro-section,
+  .stats-section,
+  .approach-section,
+  .faq-section,
+  .cta-section-white {
+    padding: 5rem 0;
+    background: #ffffff;
+    color: #1a1a2e;
+  }
+
+  .intro-section h2,
+  .stats-section h2,
+  .approach-section h2,
+  .faq-section h2,
+  .cta-section-white h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #0c1e43;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ==================== VIDEO BG SECTIONS ==================== */
+  .video-bg-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 20, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* ==================== BENEFITS / CARDS GRID ==================== */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .benefits-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 260px;
+  }
+
+  .benefit-card {
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== STATS ==================== */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stats-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 220px;
+  }
+
+  .stat-card {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0c1e43;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ==================== PROCESS STEPS ==================== */
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc(25% - 1.2rem);
+    min-width: 200px;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-content h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-content p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== APPROACH ==================== */
+  .approach-intro {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .approach-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .approach-list li strong {
+    color: #0c1e43;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: #f0f4f8;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0c1e43;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #888;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ==================== RELATED SERVICES ==================== */
+  .related-intro {
+    text-align: center;
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .related-pill {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .related-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+  }
+
+  /* ==================== WHITE CTA ==================== */
+  .cta-section-white {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .cta-section-white p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ==================== BUTTON ==================== */
+  .btn-red {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #b82232;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,597 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faq = [
+  {
+    question: "What exactly are pre-roll ads?",
+    answer: "Pre-roll ads are short video advertisements that play before the main content a viewer has selected on a website or app. They typically run 15 or 30 seconds and, in most placements, are non-skippable — meaning the viewer watches your entire message before their content begins. This makes pre-roll one of the highest-attention ad formats in digital marketing.",
+  },
+  {
+    question: "How is pre-roll different from YouTube ads?",
+    answer: "While YouTube is one platform where pre-roll can appear, pre-roll advertising extends far beyond YouTube. We place your ads across thousands of premium publisher sites — news outlets, entertainment portals, sports networks, and lifestyle blogs. This broader reach means you're not limited to one platform and can follow your audience wherever they watch video content online.",
+  },
+  {
+    question: "Can I target specific audiences with pre-roll?",
+    answer: "Absolutely. Pre-roll campaigns support advanced targeting including geographic location (down to zip codes in your service area), demographics, interests, browsing behavior, and contextual relevance. We can even layer in retargeting to re-engage people who've already visited your website, ensuring your ad spend reaches the viewers most likely to become customers.",
+  },
+  {
+    question: "What kind of video do I need for pre-roll?",
+    answer: "Most pre-roll placements accept :15 and :30 second video spots in standard HD formats. If you already have a TV commercial or branded video, we can adapt it for digital pre-roll. If you're starting fresh, our creative team can produce a polished, high-impact video designed specifically for the format — with a strong hook in the first three seconds to capture attention immediately.",
+  },
+  {
+    question: "How do you measure pre-roll campaign success?",
+    answer: "We track a comprehensive set of metrics including video completion rate (VCR), impressions, click-through rate, viewability score, and cost per completed view. We also monitor downstream actions like website visits and conversions driven by your ads. You'll receive transparent reporting dashboards so you can see exactly how your investment is performing.",
+  },
+];
+
+const relatedServices = [
+  { label: "Connected TV/OTT", href: "/connected-tv-ott-ads/" },
+  { label: "YouTube Ads", href: "/youtube-ads/" },
+  { label: "Streaming Audio", href: "/streaming-audio/" },
+  { label: "Display/Geofencing", href: "/geofencing/" },
+];
+---
+
+<BaseLayout 
+  title="Pre-Roll Video Advertising | BuWa Digital - The Midlands"
+  description="Capture attention before the content starts. BuWa Digital delivers non-skippable pre-roll video ads on premium websites — precise targeting, guaranteed views, and real results across the Midlands."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Pre-Roll Video Advertising"
+    subtitle="What If Every Viewer Had to Watch Your Ad — No Skip Button?"
+    description="Pre-roll ads play before the videos your audience already wants to watch. Non-skippable, precisely targeted, and placed on premium publisher sites — it's the most direct way to put your brand in front of engaged viewers across the web."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Intro Section — WHITE -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>The Ad Format Viewers Actually Watch</h2>
+      <p class="intro-text">Pre-roll video advertising places your message directly before the content your audience has chosen to watch — on news sites, entertainment platforms, sports networks, and beyond. Because the ad plays before the video starts and can't be skipped, you get something rare in digital marketing: guaranteed, full-attention viewing. Combine that with precise audience targeting and real-time analytics, and you have one of the most effective brand-building tools available.</p>
+    </div>
+  </section>
+
+  <!-- Why Pre-Roll — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Why Pre-Roll?</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">👁️</div>
+          <div class="benefit-content">
+            <h3>Guaranteed Views</h3>
+            <p>Most pre-roll placements are non-skippable. Your full :15 or :30 second message plays before the viewer's content — no skip button, no scrolling away, no wasted impressions.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⭐</div>
+          <div class="benefit-content">
+            <h3>Premium Placement</h3>
+            <p>Your ads appear on trusted, brand-safe publisher sites — major news networks, sports outlets, lifestyle blogs, and entertainment portals your customers visit every day.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Precise Targeting</h3>
+            <p>Reach exactly who you want by location, demographics, interests, and browsing behavior. Target down to zip codes in your service area so every impression counts.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">💡</div>
+          <div class="benefit-content">
+            <h3>Emotional Brand Building</h3>
+            <p>Video is the most powerful medium for creating emotional connections. Pre-roll gives you a captive audience to tell your story and build lasting brand recognition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Numbers — WHITE -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>Pre-Roll by the Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">83%</div>
+          <div class="stat-label">average video completion rate for non-skippable pre-roll ads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2.4×</div>
+          <div class="stat-label">higher brand recall compared to display banner ads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">72%</div>
+          <div class="stat-label">of marketers say pre-roll delivers the best ROI among video ad formats</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Strategy & Targeting</h3>
+            <p>We define your ideal audience — demographics, interests, locations, and behaviors — and select the premium publisher sites where your ad will run.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Creative Production</h3>
+            <p>We produce or optimize a compelling :15 or :30 second video ad designed to hook viewers instantly and deliver your message with impact.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Premium Placement</h3>
+            <p>Your ad launches across top-tier websites and video platforms, playing before the content your target audience is already engaged with.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Optimization & Reporting</h3>
+            <p>We monitor completion rates, viewability, and engagement daily — refining targeting and creative to maximize performance throughout the campaign.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach — WHITE -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <p class="approach-intro">Every pre-roll campaign follows our proven five-step process to deliver measurable, scalable results.</p>
+      <ol class="approach-list">
+        <li><strong>Discovery</strong> — We learn your brand, audience, and campaign objectives to build a strategy tailored to your business goals.</li>
+        <li><strong>Strategy</strong> — We define targeting parameters, publisher site selection, and budget allocation for maximum reach and efficiency.</li>
+        <li><strong>Execution</strong> — Your video ads launch across premium placements, reaching the right viewers at the right moment — right before their chosen content.</li>
+        <li><strong>Evaluation</strong> — We analyze video completion rates, viewability scores, click-through rates, and downstream conversions to measure impact.</li>
+        <li><strong>Optimization</strong> — We continuously refine audience segments, creative elements, and bidding strategies to improve performance throughout the campaign.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Who It's For — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Who It's For</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-content">
+            <h3>Home Services</h3>
+            <p>HVAC, plumbing, roofing, and contractors — build top-of-mind awareness with homeowners browsing content in the neighborhoods you serve.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚖️</div>
+          <div class="benefit-content">
+            <h3>Professional Services</h3>
+            <p>Law firms, medical practices, and financial advisors — establish credibility and trust with a polished video presence on premium publisher sites.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🛍️</div>
+          <div class="benefit-content">
+            <h3>Retail & E-Commerce</h3>
+            <p>Showcase products, promotions, and seasonal offers with eye-catching video that reaches shoppers before they watch their next video online.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏗️</div>
+          <div class="benefit-content">
+            <h3>Real Estate & Development</h3>
+            <p>Bring properties and communities to life with video tours that reach targeted demographics actively browsing in your market area.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — WHITE -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <p class="faq-answer">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services That Pair Well — VIDEO BG -->
+  <section class="animated-bg-section related-section">
+  <div class="container section-content">
+      <h2>Services That Pair Well</h2>
+      <p class="related-intro">Amplify your pre-roll campaigns with these complementary strategies.</p>
+      <div class="related-services">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-pill">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — WHITE -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready to Capture Attention Before the Content Starts?</h2>
+      <p>Stop competing for attention - start commanding it. Let's put your business in front of engaged viewers today.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== SHARED LAYOUT ==================== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ==================== WHITE SECTIONS ==================== */
+  .intro-section,
+  .stats-section,
+  .approach-section,
+  .faq-section,
+  .cta-section-white {
+    padding: 5rem 0;
+    background: #ffffff;
+    color: #1a1a2e;
+  }
+
+  .intro-section h2,
+  .stats-section h2,
+  .approach-section h2,
+  .faq-section h2,
+  .cta-section-white h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #0c1e43;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ==================== VIDEO BG SECTIONS ==================== */
+  .video-bg-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 20, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* ==================== BENEFITS / CARDS GRID ==================== */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .benefits-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 260px;
+  }
+
+  .benefit-card {
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== STATS ==================== */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stats-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 220px;
+  }
+
+  .stat-card {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0c1e43;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ==================== PROCESS STEPS ==================== */
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc(25% - 1.2rem);
+    min-width: 200px;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-content h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-content p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== APPROACH ==================== */
+  .approach-intro {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .approach-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .approach-list li strong {
+    color: #0c1e43;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: #f0f4f8;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0c1e43;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #888;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ==================== RELATED SERVICES ==================== */
+  .related-intro {
+    text-align: center;
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .related-pill {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .related-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+  }
+
+  /* ==================== WHITE CTA ==================== */
+  .cta-section-white {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .cta-section-white p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ==================== BUTTON ==================== */
+  .btn-red {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #b82232;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

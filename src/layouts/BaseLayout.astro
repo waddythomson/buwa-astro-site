@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -12,6 +13,7 @@ export interface Props {
   ogImageHeight?: number;
   ogType?: string;
   noindex?: boolean;
+  hasTopHero?: boolean;
   twitterSite?: string;
   twitterCreator?: string;
   publishedTime?: Date;
@@ -39,7 +41,8 @@ const {
   author,
   tags = [],
   breadcrumbs,
-  faq = []
+  faq = [],
+  hasTopHero = false,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE || 'https://buwadigital.com';
@@ -176,10 +179,14 @@ const faqJsonLd = faq.length
       })),
     }
   : undefined;
+
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isDigitalHome = normalizedPath === '/' || normalizedPath === '/index.html';
+const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? 'secondary-top-hero' : undefined);
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class={rootClassName}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -260,6 +267,9 @@ const faqJsonLd = faq.length
       {JSON.stringify(faqJsonLd)}
     </script>
   )}
+  <!-- Page transitions -->
+  <ViewTransitions />
+
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-3CI9d2ziqSEmZcelpcAS8.js"></script>
   <script>
@@ -267,14 +277,27 @@ const faqJsonLd = faq.length
     plausible.init()
   </script>
 </head>
-<body>
-  <Header />
+<body class={rootClassName}>
 
-  <main>
-    <slot />
-  </main>
+  {/* Persistent full-viewport background video — only on non-homepage pages.
+      transition:persist keeps this element alive across SPA navigations so
+      the video loads ONCE per session and never restarts. */}
+  <div class="page-bg-video" transition:persist="page-bg-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="none">
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.webm" type="video/webm" />
+      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+    </video>
+  </div>
 
-  <Footer />
+  <div class="page-content-layer">
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </div>
 
   <!-- Global Contact Popup -->
   <div class="contact-modal" id="contactModal">
@@ -313,7 +336,7 @@ const faqJsonLd = faq.length
             <textarea name="message" placeholder="How can we help? (optional)" rows="3"></textarea>
           </div>
           <button type="submit" class="contact-popup-submit">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
+            Send Message
           </button>
           <p class="contact-popup-disclaimer">By submitting this form, you agree to our <a href="/terms/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>. SMS messages are only sent if you opt in above.</p>
         </form>
@@ -394,25 +417,27 @@ const faqJsonLd = faq.length
       sync();
     };
 
-    // Global Contact Popup Handler
-    (function() {
+    // ── Global Contact Modal — ViewTransitions-compatible ──────────────
+    document.addEventListener('astro:page-load', () => {
+      const controller = new AbortController();
+      const { signal } = controller;
+      document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+
       const contactModal = document.getElementById('contactModal');
       const closeBtn = document.getElementById('closeContactPopup');
       const contactForm = document.getElementById('contact-popup-form');
+
+      if (!contactModal || !contactForm) return;
+
       initSmsPreferenceGroup(contactForm);
-      
+
       const openContactPopup = () => {
-        if (!contactModal) return;
         contactModal.classList.add('active');
-        // Trigger reflow for animation
-        requestAnimationFrame(() => {
-          contactModal.classList.add('ready');
-        });
+        requestAnimationFrame(() => contactModal.classList.add('ready'));
         document.body.style.overflow = 'hidden';
       };
 
       const closeContactPopup = () => {
-        if (!contactModal) return;
         contactModal.classList.remove('ready');
         setTimeout(() => {
           contactModal.classList.remove('active');
@@ -420,70 +445,68 @@ const faqJsonLd = faq.length
         }, 200);
       };
 
-      // Handle all "Get In Touch" links/buttons across the site
       document.addEventListener('click', (e) => {
-        const link = e.target.closest('a[href="/contact-us/"], a[href="/contact-us/"], button[data-contact-popup]');
-        // Also check for buttons with the get-in-touch class
-        const getInTouchBtn = e.target.closest('.get-in-touch-popup');
-        
-        if (link || getInTouchBtn) {
+        const target = e.target.closest(
+          'a[href="/contact-us/"], a[href="/contact-us"], button[data-contact-popup], .get-in-touch-popup'
+        );
+        if (target) {
           e.preventDefault();
+          e.stopImmediatePropagation();
           openContactPopup();
         }
-      });
+      }, { signal, capture: true });
 
-      // Close handlers
-      closeBtn?.addEventListener('click', closeContactPopup);
-      
-      contactModal?.addEventListener('click', (e) => {
+      closeBtn?.addEventListener('click', closeContactPopup, { signal });
+
+      contactModal.addEventListener('click', (e) => {
         if (e.target === contactModal) closeContactPopup();
-      });
+      }, { signal });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && contactModal?.classList.contains('active')) {
+        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
           closeContactPopup();
         }
-      });
+      }, { signal });
 
-      // Form submission
-      contactForm?.addEventListener('submit', async (e) => {
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Check honeypot
-        if (contactForm.querySelector('[name="_honeypot"]').value) {
-          window.location.href = '/thank-you/';
+
+        if (contactForm.querySelector('[name="_honeypot"]')?.value) {
+          closeContactPopup();
           return;
         }
-        
+
         const submitBtn = contactForm.querySelector('.contact-popup-submit');
-        const originalText = submitBtn.innerHTML;
+        const originalHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-        
+        submitBtn.innerHTML = 'Sending...';
+
         try {
           const formData = new FormData(contactForm);
-          
-          await fetch('/api/contact/', {
-            method: 'POST',
-            body: formData
-          });
-          
+          await fetch('/api/contact/', { method: 'POST', body: formData });
           window.location.href = '/thank-you/';
-          
-        } catch (error) {
-          // Still redirect on error (no-cors doesn't give us response status)
+        } catch {
           window.location.href = '/thank-you/';
         }
-      });
-    })();
+      }, { signal });
+    });
   </script>
 
   <script>
-    // Only show popup on Google Business Profile page
-    if (window.location.pathname.includes('google-business-profile')) {
+    // GBP scan popup — ViewTransitions compatible
+    let gbpPopupController;
+
+    document.addEventListener('astro:page-load', () => {
+      gbpPopupController?.abort();
+
+      if (!window.location.pathname.includes('google-business-profile')) return;
+
+      gbpPopupController = new AbortController();
+      const signal = gbpPopupController.signal;
+
       const popup = document.getElementById('gbp-popup');
-      
-      // Check if scan was just requested (returning from form submission)
+      if (!popup) return;
+
       if (window.location.search.includes('scan-requested=true')) {
         const formSide = document.querySelector('.popup-form-side');
         if (formSide) {
@@ -495,14 +518,12 @@ const faqJsonLd = faq.length
             </div>
           `;
         }
-        // Show the popup with thank you message
         popup.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         sessionStorage.setItem('gbp-popup-seen', 'true');
-        // Clean up URL
         window.history.replaceState({}, document.title, window.location.pathname);
       }
-      
+
       const openPopup = () => {
         if (popup) {
           popup.style.display = 'flex';
@@ -518,72 +539,103 @@ const faqJsonLd = faq.length
         }
       };
 
-      // Auto-show popup after 1.5s if not seen before (and not returning from submission)
       if (!window.location.search.includes('scan-requested=true')) {
-        setTimeout(() => {
+        const autoTimer = setTimeout(() => {
           const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
           if (!hasSeenPopup) {
             openPopup();
           }
         }, 1500);
+        signal.addEventListener('abort', () => clearTimeout(autoTimer));
       }
 
-      // Handle "Ask For A Free Scan" button clicks
       document.addEventListener('click', (e) => {
         const link = e.target.closest('a[href="#open-scan-popup"]');
         if (link) {
           e.preventDefault();
           openPopup();
         }
-      });
+      }, { signal });
 
-      // Close popup handlers
-      document.addEventListener('DOMContentLoaded', () => {
-        const closeBtn = popup?.querySelector('.popup-close');
-        
-        closeBtn?.addEventListener('click', closePopup);
-        popup?.addEventListener('click', (e) => {
-          if (e.target === popup) closePopup();
+      const closeBtn = popup.querySelector('.popup-close');
+      closeBtn?.addEventListener('click', closePopup, { signal });
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) closePopup();
+      }, { signal });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
+      }, { signal });
+
+      const popupForm = document.getElementById('popup-form');
+      if (popupForm) {
+        initSmsPreferenceGroup(popupForm);
+        popupForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          if (popupForm.querySelector('[name="_honeypot"]').value) {
+            window.location.href = '/thank-you/';
+            return;
+          }
+
+          const submitBtn = popupForm.querySelector('.popup-submit');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          try {
+            const formData = new FormData(popupForm);
+            await fetch('/api/contact/', {
+              method: 'POST',
+              body: formData
+            });
+            window.location.href = '/thank-you/';
+          } catch (error) {
+            window.location.href = '/thank-you/';
+          }
+        }, { signal });
+      }
+    });
+
+    document.addEventListener('astro:before-swap', () => {
+      gbpPopupController?.abort();
+      const popup = document.getElementById('gbp-popup');
+      if (popup) {
+        popup.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+  <script>
+    // ── Mobile video prevention ─────────────────────────────────────────
+    document.addEventListener('astro:page-load', () => {
+      if (window.innerWidth <= 768) {
+        document.querySelectorAll('.section-video').forEach(video => {
+          video.querySelectorAll('source').forEach(s => s.remove());
+          video.removeAttribute('src');
+          video.load();
         });
-        
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closePopup();
-        });
-        
-        // Handle popup form submission
-        const popupForm = document.getElementById('popup-form');
-        if (popupForm) {
-          initSmsPreferenceGroup(popupForm);
-          popupForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Check honeypot
-            if (popupForm.querySelector('[name="_honeypot"]').value) {
-              window.location.href = '/thank-you/';
-              return;
-            }
-            
-            const submitBtn = popupForm.querySelector('.popup-submit');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            
-            try {
-              const formData = new FormData(popupForm);
-              
-              await fetch('/api/contact/', {
-                method: 'POST',
-                body: formData
-              });
-              
-              window.location.href = '/thank-you/';
-              
-            } catch (error) {
-              window.location.href = '/thank-you/';
-            }
-          });
-        }
-      });
-    }
+      }
+    });
+  </script>
+
+  <script>
+    // Keep html's page-type classes in sync with ViewTransitions
+    document.addEventListener('astro:before-swap', () => {
+      document.documentElement.classList.remove(
+        'home-page', 'digital-home', 'secondary-top-hero',
+        'home-loading'
+      );
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      const b = document.body.classList;
+      if (b.contains('home-page')) {
+        document.documentElement.classList.add('home-page', 'digital-home');
+      }
+      if (b.contains('secondary-top-hero')) {
+        document.documentElement.classList.add('secondary-top-hero');
+      }
+    });
   </script>
 </body>
 </html>
@@ -598,15 +650,66 @@ const faqJsonLd = faq.length
   html {
     font-family: 'Montserrat', system-ui, sans-serif;
     scroll-behavior: smooth;
+    overscroll-behavior-y: none;
   }
 
   body {
     line-height: 1.6;
     color: #333;
     background: #fff;
+    overscroll-behavior-y: none;
   }
 
-  /* Headers use Inter */
+  /* ─── Page-transition animations (Astro View Transitions) ─── */
+  @keyframes buwa-page-enter {
+    from {
+      clip-path: inset(0 7vw 0 7vw round 20px 20px 0 0);
+      transform: translateY(64px);
+      opacity: 0;
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 0px);
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes buwa-page-exit {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.97); }
+  }
+
+  ::view-transition-old(root) {
+    animation: 240ms ease buwa-page-exit both;
+  }
+
+  ::view-transition-new(root) {
+    animation: 560ms cubic-bezier(0.22, 0.75, 0.25, 1) buwa-page-enter both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none !important;
+    }
+  }
+
+  html.secondary-top-hero,
+  body.secondary-top-hero {
+    background: transparent;
+  }
+
+  /* Mobile: video is hidden, so give html a dark navy fallback */
+  @media (max-width: 768px) {
+    html.secondary-top-hero {
+      background: #081a43;
+    }
+  }
+
+  body.secondary-top-hero main > section.hero:first-child {
+    padding-top: calc(3rem + var(--site-header-height, 94px));
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', system-ui, sans-serif;
   }
@@ -620,7 +723,6 @@ const faqJsonLd = faq.length
     color: #a01c2b;
   }
 
-  /* Content pages styling */
   .content-page {
     max-width: 800px;
     margin: 0 auto;
@@ -633,7 +735,6 @@ const faqJsonLd = faq.length
     margin-bottom: 1.5rem;
   }
 
-  /* Intro paragraph (first p after h1) - bold and slightly larger */
   .content-page h1 + p {
     font-weight: 700;
     font-size: 1.1rem;
@@ -716,9 +817,8 @@ const faqJsonLd = faq.length
     font-weight: 600;
     border: none;
     box-shadow: 
-      0 4px 6px rgba(160, 28, 43, 0.4),
-      0 2px 4px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      0 4px 6px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: all 0.15s ease;
     position: relative;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -727,21 +827,18 @@ const faqJsonLd = faq.length
   .btn-red:hover {
     background: linear-gradient(to bottom, #d62a38 0%, #c4222e 50%, #a01c2b 100%);
     box-shadow: 
-      0 6px 10px rgba(160, 28, 43, 0.5),
-      0 3px 6px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      0 6px 10px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
 
   .btn-red:active {
     transform: translateY(1px);
     box-shadow: 
-      0 2px 3px rgba(160, 28, 43, 0.3),
-      0 1px 2px rgba(0, 0, 0, 0.15),
-      inset 0 1px 3px rgba(0, 0, 0, 0.2);
+      0 2px 3px rgba(0, 0, 0, 0.2),
+      inset 0 1px 3px rgba(0, 0, 0, 0.15);
   }
 
-  /* Auto-style "Get In Touch" links to /contact-us as navy 3D buttons */
   .content-page a[href="/contact-us/"] {
     display: inline-block;
     background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
@@ -776,7 +873,7 @@ const faqJsonLd = faq.length
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
-  /* Process Steps with numbered circles */
+  /* Process Steps */
   .process-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1039,7 +1136,7 @@ const faqJsonLd = faq.length
     }
   }
 
-  /* Global Contact Modal - matches video popup styling */
+  /* Global Contact Modal */
   .contact-modal {
     display: none;
     position: fixed;
@@ -1047,7 +1144,7 @@ const faqJsonLd = faq.length
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.92);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 10000;
     justify-content: center;
     align-items: center;
@@ -1186,6 +1283,7 @@ const faqJsonLd = faq.length
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    width: 100%;
   }
 
   .contact-popup-submit:hover:not(:disabled) {
@@ -1223,5 +1321,108 @@ const faqJsonLd = faq.length
       top: -45px;
       right: 0;
     }
+  }
+
+  /* ── Persistent page background video ───────────────────────────── */
+  /* Fixed behind ALL secondary page content. transition:persist keeps  */
+  /* it alive across SPA navigations — loads once per session.          */
+  .page-bg-video {
+    position: fixed;
+    inset: 0;
+    z-index: 0;          /* positive — avoids stacking-context issues  */
+    pointer-events: none;
+  }
+
+  /* All page chrome (header / main / footer) sits above the fixed video */
+  .page-content-layer {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+  }
+
+  .page-bg-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Mobile: skip video — html.secondary-top-hero bg (#081a43) is fallback */
+  @media (max-width: 768px) {
+    .page-bg-video {
+      display: none;
+    }
+  }
+
+  /* ── "Blue" sections on service pages ───────────────────────────── */
+  /* Transparent so the persistent background video shows through.      */
+  .animated-bg-section {
+    position: relative;
+    background: transparent;
+    overflow: hidden;
+    padding: 5rem 0;
+  }
+
+  /* Headings inside transparent (video-background) sections must be    */
+  /* white — dark gray headings are invisible against the dark video.   */
+  .animated-bg-section h2,
+  .animated-bg-section h3,
+  .animated-bg-section .section-title,
+  .animated-bg-section .section-heading {
+    color: #ffffff !important;
+    text-align: center;
+  }
+
+  /* Subtle scrim so heading text stays legible over the video */
+  .animated-bg-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 15, 45, 0.35);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Content inside animated-bg-section sits above the scrim */
+  .animated-bg-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Paragraphs inside transparent sections need light text */
+  .animated-bg-section p,
+  .animated-bg-section li {
+    color: rgba(210, 232, 255, 0.9);
+  }
+
+  /* Cards on transparent video sections — frosted navy with white text */
+  .animated-bg-section .benefit-card,
+  .animated-bg-section .why-card {
+    background: rgba(12, 30, 67, 0.85);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .animated-bg-section .benefit-card h3,
+  .animated-bg-section .why-card h3 {
+    color: #ffffff;
+  }
+
+  .animated-bg-section .benefit-card p,
+  .animated-bg-section .why-card p {
+    color: rgba(210, 232, 255, 0.9);
+  }
+
+  .animated-bg-section .process-step {
+    background: white;
+    color: #2d3748;
+  }
+
+  .animated-bg-section .process-step h3 {
+    color: #1a202c;
+  }
+
+  .animated-bg-section .process-step p {
+    color: #4a5568;
   }
 </style>

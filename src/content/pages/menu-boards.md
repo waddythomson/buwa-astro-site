@@ -9,7 +9,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 
 **Transform your static menu into a dynamic digital display that informs and entices customers, boosting check averages and enhancing the dining experience.**
 
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Let's Talk!</a>
 
 Digital menu boards give your restaurant a modern edge while making it easy to update pricing, promote specials, and showcase your best dishes with eye-catching visuals.
 
@@ -51,4 +51,4 @@ Automatically switch between breakfast, lunch, and dinner menus at scheduled tim
 
 Let's discuss how digital menu boards can enhance your restaurant and boost your bottom line.
 
-[Get In Touch](/contact-us/)
+[Let's Talk!](/contact-us/)

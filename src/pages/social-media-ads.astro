@@ -1,0 +1,597 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faq = [
+  {
+    question: "How much should I budget for social media advertising?",
+    answer: "There's no one-size-fits-all answer, but most local businesses in the Midlands see meaningful results starting at $500–$1,500 per month in ad spend. Your budget depends on your goals, industry competition, and how many platforms you want to run on. We'll recommend a spend level that makes sense for your market and scale up as we prove ROI.",
+  },
+  {
+    question: "Which social media platform is best for my business?",
+    answer: "It depends on your audience and goals. Facebook and Instagram work well for most B2C businesses — retail, restaurants, home services, and healthcare. LinkedIn is ideal for B2B companies, professional services, and recruiting. TikTok is a strong play for brands targeting younger demographics or those with visually engaging products. We'll help you identify the right mix during our strategy phase.",
+  },
+  {
+    question: "How is paid social different from just posting on social media?",
+    answer: "Organic social media posts typically reach only 2–5% of your followers due to algorithm changes. Paid social media advertising guarantees your message reaches a defined audience — including people who've never heard of your business. You control exactly who sees your ads based on location, demographics, interests, and behaviors, making it far more predictable and scalable than organic posting alone.",
+  },
+  {
+    question: "How quickly will I see results from social media ads?",
+    answer: "Most campaigns start generating impressions and engagement within 24–48 hours of launch. However, meaningful performance data — like cost-per-lead and conversion trends — typically takes 2–4 weeks to stabilize as the platform's algorithm learns who responds best to your ads. We optimize continuously during this learning phase to accelerate results.",
+  },
+  {
+    question: "Can you help with the ad creative and copy?",
+    answer: "Absolutely. Our team handles everything from ad copywriting and headline testing to image selection and video ad production. Strong creative is one of the biggest drivers of ad performance, so we treat it as a core part of every campaign — not an afterthought. We also A/B test multiple creative variations to find what resonates best with your audience.",
+  },
+];
+
+const relatedServices = [
+  { label: "Social Media Management", href: "/social-media-management/" },
+  { label: "Display/Geofencing", href: "/geofencing/" },
+  { label: "YouTube Ads", href: "/youtube-ads/" },
+  { label: "PPC", href: "/pay-per-click-ppc/" },
+];
+---
+
+<BaseLayout 
+  title="Social Media Advertising | BuWa Digital - The Midlands"
+  description="Drive leads and sales with targeted social media ads on Facebook, Instagram, TikTok & LinkedIn. BuWa Digital delivers social media advertising that gets results across the Midlands."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Social Media Advertising"
+    subtitle="Are You Scrolling Past Your Best Customers — Or Stopping Them in Their Tracks?"
+    description="Over 4.9 billion people use social media worldwide. Social media advertising puts your brand directly in front of your ideal customers — with precise targeting, scroll-stopping creative, and real-time data that turns ad spend into measurable revenue."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Intro Section — WHITE -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>Advertising Where Attention Lives</h2>
+      <p class="intro-text">Your customers spend hours every day scrolling through Facebook, Instagram, TikTok, and LinkedIn. Social media advertising lets you meet them right where they are — with targeted messaging based on their location, interests, behaviors, and demographics. Whether you're generating leads, driving e-commerce sales, or building brand awareness in the Midlands, paid social delivers results you can measure down to the dollar.</p>
+    </div>
+  </section>
+
+  <!-- Why Social Media Ads — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Why Social Media Ads?</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Precision Targeting</h3>
+            <p>Reach people by location, age, income, job title, interests, and buying behavior. Target homeowners in Lexington, young professionals in West Columbia, or decision-makers across the Midlands — your ads find the right people.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🛑</div>
+          <div class="benefit-content">
+            <h3>Scroll-Stopping Creative</h3>
+            <p>Social media is a visual-first environment. We craft thumb-stopping images, videos, and carousels that cut through the noise and make users pause, engage, and take action.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">📊</div>
+          <div class="benefit-content">
+            <h3>Measurable ROI</h3>
+            <p>Track every impression, click, lead, and sale in real time. Know exactly what your cost-per-lead is, which ads are performing, and how your budget translates into revenue — no guesswork involved.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-content">
+            <h3>Powerful Retargeting</h3>
+            <p>Re-engage people who visited your website, watched your video, or interacted with your page. Retargeting keeps your brand top-of-mind and drives warm leads back to convert.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Numbers — WHITE -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>The Numbers Speak for Themselves</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">26%</div>
+          <div class="stat-label">of social media users say they buy products they see advertised on social platforms</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2.5hrs</div>
+          <div class="stat-label">average daily time spent on social media per person worldwide</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$2–$5</div>
+          <div class="stat-label">average cost-per-click for Facebook ads across most industries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Audience Research</h3>
+            <p>We analyze your ideal customer — their demographics, interests, online behavior, and purchase intent — to build laser-focused targeting profiles.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Creative Development</h3>
+            <p>Our team produces compelling ad copy, images, and video content designed to stop the scroll and drive action across each platform.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Campaign Launch</h3>
+            <p>Your ads go live across selected platforms with A/B testing built in — we test audiences, creative, and placements from day one.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Optimize & Scale</h3>
+            <p>We monitor performance daily, shifting budget to top-performing ads and audiences while cutting what's not working — maximizing every dollar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach — WHITE -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <p class="approach-intro">Every social media advertising campaign follows our proven five-step process to deliver measurable results.</p>
+      <ol class="approach-list">
+        <li><strong>Discovery</strong> — We learn your business goals, target audience, competitive landscape, and what's worked (or hasn't) in the past.</li>
+        <li><strong>Strategy</strong> — We select the right platforms, define audience segments, plan the creative approach, and set KPIs aligned with your revenue goals.</li>
+        <li><strong>Execution</strong> — Your campaigns launch with multiple ad variations, targeting sets, and placements to gather performance data quickly.</li>
+        <li><strong>Evaluation</strong> — We analyze cost-per-lead, click-through rates, conversion data, and audience engagement to measure what's driving results.</li>
+        <li><strong>Optimization</strong> — We continuously refine targeting, creative, and budget allocation based on real data to improve performance month over month.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Who It's For — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Who It's For</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-content">
+            <h3>Home Services</h3>
+            <p>HVAC, plumbing, roofing, and remodeling companies — generate leads from homeowners in your service area with targeted Facebook and Instagram campaigns.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🛍️</div>
+          <div class="benefit-content">
+            <h3>Retail & E-Commerce</h3>
+            <p>Drive online sales and in-store traffic with product-focused ads, dynamic retargeting, and seasonal promotions that reach ready-to-buy shoppers.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚖️</div>
+          <div class="benefit-content">
+            <h3>Professional Services</h3>
+            <p>Law firms, medical practices, and financial advisors — build trust, generate consultations, and stay top-of-mind with LinkedIn and Facebook advertising.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🍽️</div>
+          <div class="benefit-content">
+            <h3>Restaurants & Hospitality</h3>
+            <p>Promote daily specials, events, and new menu items to local foodies. Geotargeted social ads drive foot traffic from people within miles of your location.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — WHITE -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <p class="faq-answer">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services That Pair Well — VIDEO BG -->
+  <section class="animated-bg-section related-section">
+  <div class="container section-content">
+      <h2>Services That Pair Well</h2>
+      <p class="related-intro">Amplify your social media campaigns with these complementary strategies.</p>
+      <div class="related-services">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-pill">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — WHITE -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready to Turn Scrollers Into Customers?</h2>
+      <p>Your ideal customers are on social media right now — let's make sure they see your business first. Get started with targeted social media advertising in the Midlands.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== SHARED LAYOUT ==================== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ==================== WHITE SECTIONS ==================== */
+  .intro-section,
+  .stats-section,
+  .approach-section,
+  .faq-section,
+  .cta-section-white {
+    padding: 5rem 0;
+    background: #ffffff;
+    color: #1a1a2e;
+  }
+
+  .intro-section h2,
+  .stats-section h2,
+  .approach-section h2,
+  .faq-section h2,
+  .cta-section-white h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #0c1e43;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ==================== VIDEO BG SECTIONS ==================== */
+  .video-bg-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 20, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* ==================== BENEFITS / CARDS GRID ==================== */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .benefits-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 260px;
+  }
+
+  .benefit-card {
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== STATS ==================== */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stats-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 220px;
+  }
+
+  .stat-card {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0c1e43;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ==================== PROCESS STEPS ==================== */
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc(25% - 1.2rem);
+    min-width: 200px;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-content h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-content p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== APPROACH ==================== */
+  .approach-intro {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .approach-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .approach-list li strong {
+    color: #0c1e43;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: #f0f4f8;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0c1e43;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #888;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ==================== RELATED SERVICES ==================== */
+  .related-intro {
+    text-align: center;
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .related-pill {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .related-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+  }
+
+  /* ==================== WHITE CTA ==================== */
+  .cta-section-white {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .cta-section-white p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ==================== BUTTON ==================== */
+  .btn-red {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #b82232;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,597 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faq = [
+  {
+    question: "How much does YouTube advertising cost?",
+    answer: "YouTube ads operate on an auction-based system, so costs vary depending on your targeting, competition, and ad format. Skippable in-stream ads typically run $0.10–$0.30 per view, and you only pay when someone watches at least 30 seconds or interacts with your ad. We'll work with you to set a daily or campaign budget that makes sense for your goals — whether you're targeting a local audience or a broader market.",
+  },
+  {
+    question: "What types of YouTube ads are available?",
+    answer: "There are several formats to fit different goals. Skippable in-stream ads play before or during a video and viewers can skip after 5 seconds — you only pay if they watch 30 seconds or more. Non-skippable in-stream ads are 15 seconds and guarantee full views. Bumper ads are 6-second non-skippable spots great for brand awareness. Discovery ads appear in YouTube search results and alongside related videos, reaching people actively looking for content like yours.",
+  },
+  {
+    question: "How do you target the right audience on YouTube?",
+    answer: "YouTube's targeting capabilities are powered by Google's data, which means they're incredibly precise. We can target by demographics, interests, life events, in-market behaviors, custom intent keywords, and specific YouTube channels or videos. For local businesses in the Midlands, we layer geographic targeting to ensure your budget is spent reaching people in your service area — not across the entire country.",
+  },
+  {
+    question: "Do I need a professionally produced video?",
+    answer: "While polished production helps, it's not always required to get started. Many successful YouTube campaigns use well-shot smartphone video with clear messaging and a strong call to action. That said, higher production quality generally improves viewer retention and brand perception. Our Design Services team can help with professional video production if you need it, or we can optimize your existing assets for YouTube's ad formats.",
+  },
+  {
+    question: "How do you measure success with YouTube ads?",
+    answer: "We track a comprehensive set of metrics including view rate, cost-per-view, watch time, click-through rate, and conversions. YouTube also provides unique insights like earned views (when someone watches additional content after your ad) and brand lift studies for larger campaigns. We deliver transparent reporting so you can see exactly how your investment is performing and where we're optimizing.",
+  },
+];
+
+const relatedServices = [
+  { label: "Connected TV/OTT", href: "/connected-tv-ott-ads/" },
+  { label: "Pre-Roll Advertising", href: "/pre-roll-advertising/" },
+  { label: "Social Media Ads", href: "/social-media-ads/" },
+  { label: "Streaming Audio", href: "/streaming-audio/" },
+];
+---
+
+<BaseLayout 
+  title="YouTube Advertising | BuWa Digital - The Midlands"
+  description="Reach your ideal audience with targeted YouTube video ads. BuWa Digital delivers YouTube advertising campaigns that drive views, engagement, and real results across the Midlands."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="YouTube Advertising"
+    subtitle="2 Billion Monthly Users — Is Your Brand Showing Up?"
+    description="YouTube reaches more adults 18-49 than any cable network in the U.S. With precision targeting powered by Google's data, your video ads reach the right viewers at the right moment — and you only pay when they actually watch."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Intro Section — WHITE -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>The World's Second-Largest Search Engine — And It Plays Video</h2>
+      <p class="intro-text">YouTube isn't just a video platform — it's where people go to learn, research, and make buying decisions. From product reviews to how-to guides, your audience is already watching. YouTube advertising puts your brand directly in that viewing experience with targeted video ads that drive awareness, consideration, and action.</p>
+    </div>
+  </section>
+
+  <!-- Why YouTube — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Why YouTube Advertising?</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🌍</div>
+          <div class="benefit-content">
+            <h3>Unmatched Reach</h3>
+            <p>Over 2 billion logged-in users visit YouTube every month. No other video platform comes close to this scale — your audience is already there, watching content related to your industry.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Google-Powered Targeting</h3>
+            <p>Leverage Google's search and browsing data to target viewers by demographics, interests, purchase intent, life events, and even the specific keywords they've searched — precision that no other video platform can match.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-content">
+            <h3>Pay-Per-View Pricing</h3>
+            <p>With skippable ads, you only pay when a viewer watches at least 30 seconds or engages with your ad. If they skip, you don't pay — meaning your budget only goes toward genuinely interested viewers.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">📈</div>
+          <div class="benefit-content">
+            <h3>Full-Funnel Impact</h3>
+            <p>From brand awareness bumper ads to conversion-driving discovery ads, YouTube supports every stage of the buyer's journey — all within a single platform with unified measurement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Numbers — WHITE -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>YouTube by the Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2B+</div>
+          <div class="stat-label">logged-in users visit YouTube every month worldwide</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">70%</div>
+          <div class="stat-label">of viewers say they bought from a brand after seeing it on YouTube</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$0.10</div>
+          <div class="stat-label">average cost-per-view for skippable in-stream ads — pay only when they watch</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Strategy & Targeting</h3>
+            <p>We define your ideal audience using Google's data — demographics, interests, search behavior, and geographic targeting to reach the right viewers across the Midlands and beyond.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Creative & Format</h3>
+            <p>We select the right ad format for your goals — skippable, non-skippable, bumper, or discovery — and produce or optimize your video creative to drive results.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Campaign Launch</h3>
+            <p>Your ads go live across YouTube and the Google Video Partners network, appearing before, during, or alongside the content your audience is actively watching.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Optimize & Scale</h3>
+            <p>We monitor performance daily — adjusting bids, refining audiences, testing creative variations, and scaling what works to maximize your return on ad spend.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach — WHITE -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <p class="approach-intro">Every YouTube campaign follows our proven five-step process to ensure measurable results.</p>
+      <ol class="approach-list">
+        <li><strong>Discovery</strong> — We learn your business, audience, and competitive landscape to build a YouTube strategy tailored to your market.</li>
+        <li><strong>Strategy</strong> — We define ad formats, targeting layers, budget allocation, and bidding strategy for maximum impact and efficiency.</li>
+        <li><strong>Execution</strong> — Your video ads launch across YouTube with precise audience targeting, placement controls, and brand safety measures in place.</li>
+        <li><strong>Evaluation</strong> — We analyze view rates, watch time, click-through rates, earned actions, and conversions to measure true campaign performance.</li>
+        <li><strong>Optimization</strong> — We continuously refine targeting, creative, and bidding to improve results and lower cost-per-view throughout the campaign.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Who It's For — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Who It's For</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-content">
+            <h3>Home Services</h3>
+            <p>HVAC, plumbing, roofing, and contractors — show your work in action with video ads that reach homeowners actively searching for services in the Midlands.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚖️</div>
+          <div class="benefit-content">
+            <h3>Professional Services</h3>
+            <p>Law firms, medical practices, and financial advisors — build trust and authority with video content that positions you as the go-to expert in your field.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🛒</div>
+          <div class="benefit-content">
+            <h3>E-Commerce & Retail</h3>
+            <p>Showcase products with compelling video demonstrations and drive purchase decisions with ads that appear when shoppers are researching what to buy.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎓</div>
+          <div class="benefit-content">
+            <h3>Education & Training</h3>
+            <p>Universities, trade schools, and course creators — reach prospective students on the platform where they already go to learn and explore new skills.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — WHITE -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <p class="faq-answer">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services That Pair Well — VIDEO BG -->
+  <section class="animated-bg-section related-section">
+  <div class="container section-content">
+      <h2>Services That Pair Well</h2>
+      <p class="related-intro">Amplify your YouTube campaigns with these complementary strategies.</p>
+      <div class="related-services">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-pill">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — WHITE -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready to Reach Your Audience on YouTube?</h2>
+      <p>Stop guessing and start showing up where your customers are watching — let's build a YouTube campaign that drives real results for your business.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== SHARED LAYOUT ==================== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ==================== WHITE SECTIONS ==================== */
+  .intro-section,
+  .stats-section,
+  .approach-section,
+  .faq-section,
+  .cta-section-white {
+    padding: 5rem 0;
+    background: #ffffff;
+    color: #1a1a2e;
+  }
+
+  .intro-section h2,
+  .stats-section h2,
+  .approach-section h2,
+  .faq-section h2,
+  .cta-section-white h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #0c1e43;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ==================== VIDEO BG SECTIONS ==================== */
+  .video-bg-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 20, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* ==================== BENEFITS / CARDS GRID ==================== */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .benefits-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 260px;
+  }
+
+  .benefit-card {
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== STATS ==================== */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stats-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 220px;
+  }
+
+  .stat-card {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0c1e43;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ==================== PROCESS STEPS ==================== */
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc(25% - 1.2rem);
+    min-width: 200px;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-content h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-content p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== APPROACH ==================== */
+  .approach-intro {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .approach-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .approach-list li strong {
+    color: #0c1e43;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: #f0f4f8;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0c1e43;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #888;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ==================== RELATED SERVICES ==================== */
+  .related-intro {
+    text-align: center;
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .related-pill {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .related-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+  }
+
+  /* ==================== WHITE CTA ==================== */
+  .cta-section-white {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .cta-section-white p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ==================== BUTTON ==================== */
+  .btn-red {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #b82232;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

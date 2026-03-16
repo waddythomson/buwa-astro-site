@@ -1,0 +1,136 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  badge?: string;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  badge,
+} = Astro.props;
+---
+
+<!--
+  PageHero — full-viewport hero for interior/service pages.
+  No video element here — the persistent .page-bg-video in BaseLayout
+  supplies the background. This section is transparent so that video
+  shows through naturally.
+
+  IMPORTANT: The outermost element must remain <section class="hero"> so that
+  Header.astro's scroll detection (querySelector('main > section.hero:first-child'))
+  correctly identifies this as a secondary hero page and hides the nav until
+  the user scrolls past it.
+-->
+<section class="hero page-hero">
+  <!-- Dark tint overlay for text legibility over the background video -->
+  <div class="page-hero-overlay" aria-hidden="true"></div>
+
+  <div class="page-hero-content">
+    {badge && <span class="page-hero-badge">{badge}</span>}
+    <h1 class="page-hero-title">{title}</h1>
+    {subtitle && <p class="page-hero-subtitle">{subtitle}</p>}
+    {description && <p class="page-hero-description">{description}</p>}
+    <div class="page-hero-actions">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Outer shell ──────────────────────────────────────────────────── */
+  .page-hero {
+    position: relative;
+    min-height: 100vh;
+    padding-top: var(--site-header-height, 72px);
+    padding-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    /* Transparent — the persistent background video in BaseLayout shows through */
+    background: transparent;
+  }
+
+  /* ── Dark tint for legibility ─────────────────────────────────────── */
+  .page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(4, 14, 42, 0.72) 0%,
+      rgba(6, 20, 58, 0.58) 50%,
+      rgba(3, 10, 32, 0.76) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Content ──────────────────────────────────────────────────────── */
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    padding: 2rem clamp(1.25rem, 6vw, 5rem);
+    max-width: 860px;
+    width: 100%;
+  }
+
+  /* Optional category badge */
+  .page-hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 0.3rem 1rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(210, 232, 255, 0.95);
+    margin-bottom: 1.1rem;
+  }
+
+  .page-hero-title {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+
+  .page-hero-subtitle {
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+    max-width: 640px;
+    margin: 0 auto 1rem;
+  }
+
+  .page-hero-description {
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    line-height: 1.7;
+    color: rgba(210, 232, 255, 0.85);
+    max-width: 620px;
+    margin: 0 auto 1.75rem;
+  }
+
+  /* CTA slot wrapper — centres whatever button(s) are slotted in */
+  .page-hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Empty slot = no wasted space */
+  .page-hero-actions:empty {
+    display: none;
+  }
+</style>

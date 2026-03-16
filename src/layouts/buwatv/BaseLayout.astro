@@ -1,6 +1,7 @@
 ---
 // BaseLayout.astro - Shared layout for BuWa TV pages
 // Provides common head elements, footer, and slots for page content
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -102,6 +103,7 @@ const structuredData = {
   
   <!-- Page-specific head content -->
   <slot name="head" />
+  <ViewTransitions />
 </head>
 
 <body>

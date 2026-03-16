@@ -1,0 +1,75 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const {
+  title,
+  subtitle,
+  buttonText = "Let's Talk!",
+  buttonHref = '/contact-us/',
+} = Astro.props;
+---
+
+<!--
+  CtaSection — pre-footer CTA with video background.
+  No video element here — the persistent .page-bg-video in BaseLayout
+  supplies the background. This section is transparent so that video
+  shows through naturally.
+-->
+<section class="cta-video-section">
+  <!-- Tint overlay so text stays legible -->
+  <div class="cta-overlay" aria-hidden="true"></div>
+  <div class="cta-video-content">
+    <h2>{title}</h2>
+    {subtitle && <p class="cta-subtitle">{subtitle}</p>}
+    <a href={buttonHref} class="btn-red">{buttonText}</a>
+  </div>
+</section>
+
+<style>
+  .cta-video-section {
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 2rem;
+    text-align: center;
+    /* Transparent — persistent background video shows through */
+    background: transparent;
+  }
+
+  /* Dark tint for legibility */
+  .cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(4, 14, 42, 0.72) 0%,
+      rgba(6, 20, 58, 0.58) 50%,
+      rgba(3, 10, 32, 0.76) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cta-video-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-video-content h2 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .cta-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 2rem;
+  }
+</style>

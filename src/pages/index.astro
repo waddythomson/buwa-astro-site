@@ -6,46 +6,55 @@ const description = "Reach more customers where they live, work, and shop with t
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="intro-video" id="introVideo" aria-hidden="true">
-    <video
-      id="introVideoEl"
-      class="intro-video-el"
-      autoplay
-      muted
-      playsinline
-      preload="auto"
-      poster="/uploads/logos/buwa-digital-logo-1.png"
-    >
-      <source src="/uploads/BuWaSpinLogo_1_7.webm" type="video/webm" />
-      <source src="/uploads/BuWaSpinLogo_1_7.mp4" type="video/mp4" />
-    </video>
+  <script is:inline>
+    (function () {
+      // Apply page-type classes immediately (before paint) to prevent flash.
+      document.documentElement.classList.add('home-page', 'digital-home');
+      document.body.classList.add('home-page', 'digital-home');
+      // Lock scroll during reveal only on first visit.
+      // For return visits, add home-skip-reveal so CSS hides #homeReveal before first paint.
+      var isReturn = Boolean(sessionStorage.getItem('buwa-home-visited'));
+      if (!isReturn) {
+        document.documentElement.classList.add('home-loading');
+        document.body.classList.add('home-loading');
+      } else {
+        // Hide overlay before paint on return visits — only ViewTransitions slide-in should run
+        document.documentElement.classList.add('home-skip-reveal');
+      }
+    })();
+  </script>
+
+  <div class="home-reveal" id="homeReveal" aria-hidden="true">
+    <div class="home-reveal-logo-wrap">
+      <img src="/uploads/logos/buwa-digital-white.png" alt="" class="home-reveal-logo" />
+    </div>
   </div>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-media" aria-hidden="true">
-      <video class="hero-video hero-video-a is-active" muted playsinline preload="metadata">
-        <source src="/uploads/hero/1.mp4" type="video/mp4" />
+      <video class="hero-video hero-video-a is-active" muted playsinline preload="auto">
+        <source src="/uploads/hero/0.mp4" type="video/mp4" />
       </video>
       <video class="hero-video hero-video-b" muted playsinline preload="metadata">
         <source src="" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
       <div class="hero-stars"></div>
+      <div class="hero-stars hero-stars-secondary"></div>
       <div class="hero-moon"></div>
     </div>
     <div class="hero-content">
-      <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" class="hero-logo" />
-      <h1>Stop Flying Under The Radar!</h1>
+      <h1>Stop Flying Under<br />The Radar!</h1>
       <p class="hero-subtitle">We'll help you maintain a prominent community presence using strategically targeted services that keep your business top-of-mind and deliver real results.</p>
       <div class="hero-buttons">
-        <a href="/contact-us/" class="cta-button cta-button-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+        <a href="/contact-us/" class="cta-button cta-button-navy">Let's Talk!</a>
       </div>
     </div>
   </section>
 
   <!-- Problem/Solution Section -->
-  <section class="features">
+  <section class="features animated-bg-section">
     <div class="container">
       <div class="feature-grid">
         <div class="feature-image">
@@ -77,7 +86,7 @@ const description = "Reach more customers where they live, work, and shop with t
   </section>
 
   <!-- Stats Section -->
-  <section class="stats">
+  <section class="stats animated-bg-section">
     <div class="container">
       <div class="stat-grid">
         <div class="stat-item">
@@ -98,7 +107,6 @@ const description = "Reach more customers where they live, work, and shop with t
 
   <!-- Local Growth Partners -->
   <section class="network">
-    <div class="network-bg"></div>
     <div class="container">
       <div class="network-grid">
         <div class="network-content">
@@ -115,12 +123,12 @@ const description = "Reach more customers where they live, work, and shop with t
   </section>
 
   <!-- Marketing Solutions -->
-  <section class="solutions">
+  <section class="solutions animated-bg-section">
     <div class="container">
       <h2>Marketing Solutions</h2>
       <div class="solution-grid">
         <a href="/buwatv/" class="solution-card">
-          <img src="/uploads/logos/buwa-tv-logo.png" alt="BuWa TV" class="solution-icon solution-icon-image" loading="lazy" />
+          <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="solution-icon solution-icon-image" loading="lazy" />
           <h3>Indoor Digital Billboards</h3>
           <p>Showcase your brand on screens in locations where customers work, shop, eat, and play.</p>
         </a>
@@ -202,8 +210,7 @@ const description = "Reach more customers where they live, work, and shop with t
   </section>
 
   <!-- Write Us a Review -->
-  <section class="review">
-    <div class="review-bg"></div>
+  <section class="review animated-bg-section">
     <div class="container">
       <h2>Write Us a Review</h2>
       <p>We'd love to hear about your experience working with us!</p>
@@ -213,270 +220,369 @@ const description = "Reach more customers where they live, work, and shop with t
 </BaseLayout>
 
 <script>
-  // Stats animation
-  const statNumbers = document.querySelectorAll('.stat-number[data-count]');
-  const animateCount = (el) => {
-    const target = Number(el.dataset.count || '0');
-    const duration = 1200;
-    const start = performance.now();
-
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const value = Math.round(progress * target);
-      el.textContent = `${value}%`;
-      if (progress < 1) requestAnimationFrame(step);
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        if (el.dataset.animated) return;
-        el.dataset.animated = 'true';
-        animateCount(el);
-        obs.unobserve(el);
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  statNumbers.forEach((el) => observer.observe(el));
-
-  // Intro video splash (6 seconds)
-  const introDurationMs = 4500;
-  const introStartTimeoutMs = 900;
-  const introVideo = document.getElementById('introVideo');
-  const introVideoEl = document.getElementById('introVideoEl');
-  const heroVideoEls = Array.from(document.querySelectorAll('.hero-video'));
-  let heroPlaylist = ['/uploads/hero/1.mp4', '/uploads/hero/2.mp4', '/uploads/hero/3.mp4'];
-  let heroPlaylistIndex = 0;
-  let activeHeroVideoIndex = 0;
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const prefersSmallVideo = window.matchMedia('(max-width: 1024px)').matches
-    || Boolean(connection?.saveData)
-    || ['slow-2g', '2g', '3g'].includes(connection?.effectiveType || '');
-  const cameFromSameSite = (() => {
-    if (!document.referrer) return false;
-    try {
-      return new URL(document.referrer).origin === window.location.origin;
-    } catch {
-      return false;
-    }
-  })();
-  let playbackTimer;
-  let maxWaitTimer;
-  let hasPlayed = false;
-  let pendingSwap = false;
-
-  const clearTimers = () => {
-    if (playbackTimer) {
-      clearTimeout(playbackTimer);
-      playbackTimer = undefined;
-    }
-    if (maxWaitTimer) {
-      clearTimeout(maxWaitTimer);
-      maxWaitTimer = undefined;
-    }
-  };
-
-  const setVideoSource = (videoEl, src) => {
-    if (!(videoEl instanceof HTMLVideoElement)) return;
-    const sourceEl = videoEl.querySelector('source');
-    const typeFromSrc = (value) => (value.endsWith('.webm') ? 'video/webm' : 'video/mp4');
-    const withLowresVariant = (value) =>
-      value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-lowres$1$2');
-    const with720Variant = (value) =>
-      value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-720$1$2');
-    const candidateSources = prefersSmallVideo
-      ? [withLowresVariant(src), with720Variant(src), src]
-      : [src];
-    let sourceIndex = 0;
-
-    const applySource = (sourceUrl, type) => {
-      if (sourceEl) {
-        sourceEl.src = sourceUrl;
-        sourceEl.type = type;
-      } else {
-        videoEl.src = sourceUrl;
-      }
-      videoEl.load();
-    };
-
-    if (candidateSources.length > 1) {
-      videoEl.onerror = () => {
-        sourceIndex += 1;
-        const nextSrc = candidateSources[sourceIndex];
-        if (!nextSrc) {
-          videoEl.onerror = null;
-          return;
-        }
-        if (sourceIndex >= candidateSources.length - 1) {
-          videoEl.onerror = null;
-        }
-        applySource(nextSrc, typeFromSrc(nextSrc));
+  // astro:page-load fires on every ViewTransitions navigation (including initial load).
+  // Without this, the script only runs once and the video never starts on back-nav.
+  document.addEventListener('astro:page-load', () => {
+    if (!document.body.classList.contains('home-page')) return;
+    // Stats animation
+    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+    const animateCount = (el) => {
+      const target = Number(el.dataset.count || '0');
+      const duration = 1200;
+      const start = performance.now();
+  
+      const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.round(progress * target);
+        el.textContent = `${value}%`;
+        if (progress < 1) requestAnimationFrame(step);
       };
-    } else {
-      videoEl.onerror = null;
-    }
-
-    applySource(candidateSources[0], typeFromSrc(candidateSources[0]));
-  };
-
-  const loadHeroPlaylist = async () => {
-    try {
-      const response = await fetch('/uploads/hero/playlist.json', { cache: 'no-store' });
-      if (!response.ok) return;
-      const data = await response.json();
-      if (Array.isArray(data.videos) && data.videos.length > 0) {
-        heroPlaylist = data.videos;
-      }
-    } catch {
-      // Keep default list if playlist fails to load
-    }
-  };
-
-  const startHeroVideo = async () => {
-    if (prefersReducedMotion) return;
-    if (heroVideoEls.length < 2) return;
-    const crossfadeLeadSeconds = 0.35;
-
-    await loadHeroPlaylist();
-    if (heroPlaylist.length === 0) return;
-
-    // Single-clip playlists should use native looping to avoid
-    // any handoff flash from swapping between layered video elements.
-    if (heroPlaylist.length === 1) {
-      const primaryVideo = heroVideoEls[0];
-      const secondaryVideo = heroVideoEls[1];
-      if (!(primaryVideo instanceof HTMLVideoElement)) return;
-
-      primaryVideo.classList.add('is-active');
-      primaryVideo.loop = true;
-      primaryVideo.muted = true;
-      primaryVideo.playsInline = true;
-      setVideoSource(primaryVideo, heroPlaylist[0]);
-      primaryVideo.play().catch(() => {});
-
-      if (secondaryVideo instanceof HTMLVideoElement) {
-        secondaryVideo.classList.remove('is-active');
-        secondaryVideo.pause();
-      }
-      return;
-    }
-
-    const getActiveVideo = () => heroVideoEls[activeHeroVideoIndex];
-    const getBufferVideo = () => heroVideoEls[(activeHeroVideoIndex + 1) % heroVideoEls.length];
-
-    const preloadNextClip = () => {
-      const bufferVideo = getBufferVideo();
-      const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
-      setVideoSource(bufferVideo, heroPlaylist[nextIndex]);
+  
+      requestAnimationFrame(step);
     };
-
-    const swapToNextClip = () => {
-      if (pendingSwap) return;
-      pendingSwap = true;
-
-      const currentVideo = getActiveVideo();
-      const bufferVideo = getBufferVideo();
-      const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
-
-      bufferVideo.currentTime = 0;
-      bufferVideo.play()
-        .then(() => {
-          bufferVideo.classList.add('is-active');
-          currentVideo.classList.remove('is-active');
-          currentVideo.pause();
-          heroPlaylistIndex = nextIndex;
-          activeHeroVideoIndex = (activeHeroVideoIndex + 1) % heroVideoEls.length;
-          preloadNextClip();
-        })
-        .catch(() => {
-          // If buffered play fails, keep current frame and retry on next loop.
-        })
-        .finally(() => {
-          pendingSwap = false;
+  
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          if (el.dataset.animated) return;
+          el.dataset.animated = 'true';
+          animateCount(el);
+          obs.unobserve(el);
         });
+      },
+      { threshold: 0.4 }
+    );
+  
+    statNumbers.forEach((el) => observer.observe(el));
+  
+    // Intro video splash (6 seconds)
+    const introDurationMs = 4500;
+    const introStartTimeoutMs = 900;
+    const enableIntroSplash = false;
+    const introVideo = document.getElementById('introVideo');
+    const introVideoEl = document.getElementById('introVideoEl');
+    const homeReveal = document.getElementById('homeReveal');
+    const heroVideoEls = Array.from(document.querySelectorAll('.hero-video'));
+    let heroPlaylist = ['/uploads/hero/0.mp4'];
+    let heroPlaylistIndex = 0;
+    let activeHeroVideoIndex = 0;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const prefersSmallVideo = window.matchMedia('(max-width: 1024px)').matches
+      || Boolean(connection?.saveData)
+      || ['slow-2g', '2g', '3g'].includes(connection?.effectiveType || '');
+    // Track whether this is a same-session return (back button, etc.)
+    const isReturnVisit = Boolean(sessionStorage.getItem('buwa-home-visited'));
+    sessionStorage.setItem('buwa-home-visited', 'true');
+  
+    const cameFromSameSite = (() => {
+      if (!document.referrer) return false;
+      try {
+        return new URL(document.referrer).origin === window.location.origin;
+      } catch {
+        return false;
+      }
+    })();
+    const navEntry = performance.getEntriesByType('navigation')[0];
+    const isReloadNavigation = navEntry?.type === 'reload';
+    let playbackTimer;
+    let maxWaitTimer;
+    let hasPlayed = false;
+    let pendingSwap = false;
+    let introDismissed = false;
+    let heroStarted = false;
+  
+    const waitForHeroFirstFrame = (timeoutMs = 1800) => {
+      const activeVideo = heroVideoEls[activeHeroVideoIndex];
+      if (!(activeVideo instanceof HTMLVideoElement)) return Promise.resolve();
+      if (activeVideo.readyState >= 2) {
+        return new Promise((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        });
+      }
+  
+      return new Promise((resolve) => {
+        const done = () => {
+          clearTimeout(timer);
+          activeVideo.removeEventListener('loadeddata', done);
+          activeVideo.removeEventListener('playing', done);
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        };
+        const timer = window.setTimeout(done, timeoutMs);
+        activeVideo.addEventListener('loadeddata', done, { once: true });
+        activeVideo.addEventListener('playing', done, { once: true });
+      });
     };
-
-    heroVideoEls.forEach((video) => {
-      video.muted = true;
-      video.playsInline = true;
-      video.loop = false;
-      video.addEventListener('timeupdate', () => {
-        if (video !== getActiveVideo() || pendingSwap) return;
-        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-        const remaining = video.duration - video.currentTime;
-        if (remaining <= crossfadeLeadSeconds) {
-          swapToNextClip();
+  
+    const ensureHeroVideoStarted = () => {
+      if (heroStarted) return Promise.resolve();
+      heroStarted = true;
+      return startHeroVideo();
+    };
+  
+  
+    const clearTimers = () => {
+      if (playbackTimer) {
+        clearTimeout(playbackTimer);
+        playbackTimer = undefined;
+      }
+      if (maxWaitTimer) {
+        clearTimeout(maxWaitTimer);
+        maxWaitTimer = undefined;
+      }
+    };
+  
+    const setVideoSource = (videoEl, src) => {
+      if (!(videoEl instanceof HTMLVideoElement)) return;
+      const sourceEl = videoEl.querySelector('source');
+      const typeFromSrc = (value) => (value.endsWith('.webm') ? 'video/webm' : 'video/mp4');
+      const withLowresVariant = (value) =>
+        value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-lowres$1$2');
+      const with720Variant = (value) =>
+        value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-720$1$2');
+      const candidateSources = prefersSmallVideo
+        ? [withLowresVariant(src), with720Variant(src), src]
+        : [src];
+      let sourceIndex = 0;
+  
+      const applySource = (sourceUrl, type) => {
+        if (sourceEl) {
+          sourceEl.src = sourceUrl;
+          sourceEl.type = type;
+        } else {
+          videoEl.src = sourceUrl;
         }
+        videoEl.load();
+      };
+  
+      if (candidateSources.length > 1) {
+        videoEl.onerror = () => {
+          sourceIndex += 1;
+          const nextSrc = candidateSources[sourceIndex];
+          if (!nextSrc) {
+            videoEl.onerror = null;
+            return;
+          }
+          if (sourceIndex >= candidateSources.length - 1) {
+            videoEl.onerror = null;
+          }
+          applySource(nextSrc, typeFromSrc(nextSrc));
+        };
+      } else {
+        videoEl.onerror = null;
+      }
+  
+      applySource(candidateSources[0], typeFromSrc(candidateSources[0]));
+    };
+  
+    const loadHeroPlaylist = async () => {
+      try {
+        const response = await fetch('/uploads/hero/playlist.json', { cache: 'no-store' });
+        if (!response.ok) return;
+        const data = await response.json();
+        if (Array.isArray(data.videos) && data.videos.length > 0) {
+          heroPlaylist = data.videos;
+        }
+      } catch {
+        // Keep default list if playlist fails to load
+      }
+    };
+  
+    const startHeroVideo = async () => {
+      if (prefersReducedMotion) return;
+      if (heroVideoEls.length < 2) return;
+      const crossfadeLeadSeconds = 0.35;
+  
+      await loadHeroPlaylist();
+      if (heroPlaylist.length === 0) return;
+  
+      // Single-clip playlists should use native looping to avoid
+      // any handoff flash from swapping between layered video elements.
+      if (heroPlaylist.length === 1) {
+        const primaryVideo = heroVideoEls[0];
+        const secondaryVideo = heroVideoEls[1];
+        if (!(primaryVideo instanceof HTMLVideoElement)) return;
+  
+        primaryVideo.classList.add('is-active');
+        primaryVideo.loop = true;
+        primaryVideo.muted = true;
+        primaryVideo.playsInline = true;
+        setVideoSource(primaryVideo, heroPlaylist[0]);
+        primaryVideo.play().catch(() => {});
+  
+        if (secondaryVideo instanceof HTMLVideoElement) {
+          secondaryVideo.classList.remove('is-active');
+          secondaryVideo.pause();
+        }
+        return;
+      }
+  
+      const getActiveVideo = () => heroVideoEls[activeHeroVideoIndex];
+      const getBufferVideo = () => heroVideoEls[(activeHeroVideoIndex + 1) % heroVideoEls.length];
+  
+      const preloadNextClip = () => {
+        const bufferVideo = getBufferVideo();
+        const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
+        setVideoSource(bufferVideo, heroPlaylist[nextIndex]);
+      };
+  
+      const swapToNextClip = () => {
+        if (pendingSwap) return;
+        pendingSwap = true;
+  
+        const currentVideo = getActiveVideo();
+        const bufferVideo = getBufferVideo();
+        const nextIndex = (heroPlaylistIndex + 1) % heroPlaylist.length;
+  
+        bufferVideo.currentTime = 0;
+        bufferVideo.play()
+          .then(() => {
+            bufferVideo.classList.add('is-active');
+            currentVideo.classList.remove('is-active');
+            currentVideo.pause();
+            heroPlaylistIndex = nextIndex;
+            activeHeroVideoIndex = (activeHeroVideoIndex + 1) % heroVideoEls.length;
+            preloadNextClip();
+          })
+          .catch(() => {
+            // If buffered play fails, keep current frame and retry on next loop.
+          })
+          .finally(() => {
+            pendingSwap = false;
+          });
+      };
+  
+      heroVideoEls.forEach((video) => {
+        video.muted = true;
+        video.playsInline = true;
+        video.loop = false;
+        video.addEventListener('timeupdate', () => {
+          if (video !== getActiveVideo() || pendingSwap) return;
+          if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+          const remaining = video.duration - video.currentTime;
+          if (remaining <= crossfadeLeadSeconds) {
+            swapToNextClip();
+          }
+        });
+        video.addEventListener('ended', () => {
+          if (video !== getActiveVideo()) return;
+          swapToNextClip();
+        });
       });
-      video.addEventListener('ended', () => {
-        if (video !== getActiveVideo()) return;
-        swapToNextClip();
-      });
-    });
-
-    const activeVideo = getActiveVideo();
-    setVideoSource(activeVideo, heroPlaylist[heroPlaylistIndex]);
-    activeVideo.play().catch(() => {});
-    preloadNextClip();
-  };
-
-  const hideIntro = () => {
-    if (!introVideo) return;
-    introVideo.classList.add('done');
-    document.body.classList.remove('intro-active');
-    clearTimers();
-    if (introVideoEl) {
-      introVideoEl.pause();
-      introVideoEl.currentTime = 0;
-    }
-    setTimeout(() => introVideo.remove(), 500);
-    startHeroVideo();
-  };
-
-  const showIntro = () => {
-    if (!introVideo) return;
-    document.body.classList.add('intro-active');
-    introVideo.classList.add('active');
-    if (introVideoEl instanceof HTMLVideoElement) {
-      introVideoEl.muted = true;
-      introVideoEl.playsInline = true;
-      introVideoEl.addEventListener(
-        'playing',
-        () => {
-          hasPlayed = true;
-          playbackTimer = setTimeout(hideIntro, introDurationMs);
-        },
-        { once: true }
-      );
-      introVideoEl.addEventListener('error', hideIntro, { once: true });
-      maxWaitTimer = setTimeout(() => {
-        if (!hasPlayed) hideIntro();
-      }, introStartTimeoutMs);
-      introVideoEl.play().catch(() => {
+  
+      const activeVideo = getActiveVideo();
+      setVideoSource(activeVideo, heroPlaylist[heroPlaylistIndex]);
+      activeVideo.play().catch(() => {});
+      preloadNextClip();
+    };
+  
+    const hideIntro = async () => {
+      if (introDismissed) return;
+      introDismissed = true;
+      if (!enableIntroSplash) {
+        document.body.classList.remove('intro-active');
+        introVideo?.remove();
+        await ensureHeroVideoStarted();
+        await waitForHeroFirstFrame(2200);
+        const revealHoldMs = 1750;
+        const revealExitMs = 720;
+        requestAnimationFrame(() => {
+          homeReveal?.classList.add('is-ready');
+        });
+        setTimeout(() => {
+          homeReveal?.classList.add('is-opening');
+        }, revealHoldMs);
+        setTimeout(() => {
+          document.documentElement.classList.remove('home-loading');
+          document.body.classList.remove('home-loading');
+          homeReveal?.remove();
+        }, revealHoldMs + revealExitMs + 40);
+        return;
+      }
+      if (!introVideo) {
+        await ensureHeroVideoStarted();
+        await waitForHeroFirstFrame();
+        return;
+      }
+      const introWasVisible = introVideo.classList.contains('active');
+      if (!introWasVisible) {
+        // For skip-intro navigations, keep a solid cover until hero first frame.
+        introVideo.classList.add('active', 'boot-only');
+      }
+      document.body.classList.remove('intro-active');
+      clearTimers();
+      if (introVideoEl) {
+        introVideoEl.pause();
+        introVideoEl.currentTime = 0;
+      }
+      await ensureHeroVideoStarted();
+      await waitForHeroFirstFrame();
+      introVideo.classList.add('done');
+      setTimeout(() => introVideo.remove(), 500);
+    };
+  
+    const showIntro = () => {
+      if (!introVideo) return;
+      introVideo.classList.remove('boot-only');
+      document.body.classList.add('intro-active');
+      introVideo.classList.add('active');
+      if (introVideoEl instanceof HTMLVideoElement) {
+        introVideoEl.muted = true;
+        introVideoEl.playsInline = true;
+        introVideoEl.addEventListener(
+          'playing',
+          () => {
+            hasPlayed = true;
+            playbackTimer = setTimeout(hideIntro, introDurationMs);
+          },
+          { once: true }
+        );
+        introVideoEl.addEventListener('error', hideIntro, { once: true });
+        maxWaitTimer = setTimeout(() => {
+          if (!hasPlayed) hideIntro();
+        }, introStartTimeoutMs);
+        introVideoEl.play().catch(() => {
+          hideIntro();
+        });
+      } else {
         hideIntro();
-      });
+      }
+    };
+  
+    if (isReturnVisit) {
+      // Return visit — skip the logo-reveal panel.
+      // Astro ViewTransitions already plays the slide-in page animation.
+      document.documentElement.classList.remove('home-loading');
+      document.body.classList.remove('home-loading');
+      homeReveal?.remove();
+      ensureHeroVideoStarted();
+    } else if (
+      enableIntroSplash
+      && !prefersReducedMotion
+      && (!cameFromSameSite || isReloadNavigation)
+      && introVideoEl?.querySelector('source')?.getAttribute('src')
+    ) {
+      showIntro();
     } else {
       hideIntro();
     }
-  };
-
-  if (!prefersReducedMotion && !cameFromSameSite && introVideoEl?.querySelector('source')?.getAttribute('src')) {
-    showIntro();
-  } else {
-    hideIntro();
-  }
-
+  
+  });
 </script>
 
 <style>
+  :global(html.digital-home),
+  :global(body.digital-home) {
+    background: #1a1a2e;
+  }
+
+  :global(html.home-loading),
+  :global(body.home-loading) {
+    overflow: hidden;
+  }
+
   :global(body.intro-active) {
     overflow: hidden;
   }
@@ -501,11 +607,21 @@ const description = "Reach more customers where they live, work, and shop with t
     pointer-events: none;
   }
 
+  .intro-video.boot-only {
+    transition: none;
+    background: #000;
+  }
+
+  .intro-video.boot-only .intro-video-el {
+    visibility: hidden;
+  }
+
   .intro-video-el {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    visibility: hidden;
     background-color: #000;
     background-image: url('/uploads/logos/buwa-digital-logo-1.png');
     background-repeat: no-repeat;
@@ -513,10 +629,68 @@ const description = "Reach more customers where they live, work, and shop with t
     background-size: clamp(180px, 42vw, 420px) auto;
   }
 
+  .intro-video.active .intro-video-el {
+    visibility: visible;
+  }
+
+  :global(html.home-skip-reveal) #homeReveal {
+    display: none;
+  }
+
+  .home-reveal {
+    position: fixed;
+    inset: 0;
+    z-index: 10010;
+    background: #e6e4de;
+    display: grid;
+    place-items: center;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.72s cubic-bezier(0.2, 0.65, 0.2, 1), opacity 0.72s ease;
+    will-change: transform, opacity;
+    pointer-events: none;
+    perspective: 1200px;
+  }
+
+  .home-reveal-logo-wrap {
+    width: clamp(190px, 24vw, 320px);
+    opacity: 0;
+    transform: translateX(-12px) scale(0.16);
+    transition: transform 0.9s cubic-bezier(0.18, 0.8, 0.22, 1), opacity 0.52s ease;
+    will-change: transform, opacity;
+  }
+
+  .home-reveal.is-ready .home-reveal-logo-wrap {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .home-reveal-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: invert(1) brightness(0.08);
+  }
+
+  .home-reveal.is-opening {
+    transform: translateY(-108%);
+    opacity: 0;
+  }
+
+  .home-reveal.is-opening .home-reveal-logo-wrap {
+    transform: translate(-34vw, -30vh) scale(0.26);
+    opacity: 0.18;
+    transition-duration: 0.7s, 0.56s;
+    transition-timing-function: cubic-bezier(0.3, 0.74, 0.22, 1), ease;
+  }
+
   .hero {
+    --hero-header-overlap: var(--site-header-height, 94px);
+    --hero-overdraw: 50px;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: white;
-    padding: 3rem 2rem 6rem;
+    margin-top: calc(var(--hero-header-overlap) * -1 - var(--hero-overdraw));
+    padding: calc(1.2rem + var(--hero-header-overlap) + var(--hero-overdraw)) 2rem 2rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -524,7 +698,10 @@ const description = "Reach more customers where they live, work, and shop with t
 
   .hero-media {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 0;
   }
 
@@ -570,10 +747,19 @@ const description = "Reach more customers where they live, work, and shop with t
     z-index: 1;
   }
 
+  .hero-stars-secondary {
+    clip-path: inset(9% 0 70% 0);
+    opacity: 0;
+    background-size: 124px 72px, 142px 82px, 170px 94px, 106px 66px, 92px 58px;
+    background-position: 18px 6px, 38px 16px, 62px 22px, 26px 14px, 12px 8px;
+    animation: hero-stars-cycle-secondary 72s ease-in-out infinite, hero-stars-twinkle 7s ease-in-out infinite;
+    z-index: 1;
+  }
+
   .hero-moon {
     position: absolute;
-    top: 7%;
-    right: 6%;
+    top: 12%;
+    right: 16%;
     width: clamp(24px, 2.5vw, 38px);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
@@ -650,6 +836,26 @@ const description = "Reach more customers where they live, work, and shop with t
     }
   }
 
+  @keyframes hero-stars-cycle-secondary {
+    0%,
+    38% {
+      opacity: 0;
+    }
+    48% {
+      opacity: 0.52;
+    }
+    58% {
+      opacity: 0.52;
+    }
+    66% {
+      opacity: 0.24;
+    }
+    74%,
+    100% {
+      opacity: 0;
+    }
+  }
+
   @keyframes hero-stars-twinkle {
     0%,
     100% {
@@ -699,18 +905,19 @@ const description = "Reach more customers where they live, work, and shop with t
     }
   }
 
-  .hero-logo {
-    max-width: 280px;
-    height: auto;
-    margin: 0 auto 2rem;
-  }
-
   .hero-content {
     position: relative;
     z-index: 1;
+    min-height: calc(100svh - var(--hero-header-overlap) - 3.2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2.55rem, 5.4vw, 3.7rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
     max-width: 800px;
     margin: 0 auto 1.5rem;
     line-height: 1.2;
@@ -721,12 +928,13 @@ const description = "Reach more customers where they live, work, and shop with t
     font-weight: 700;
     opacity: 0.9;
     max-width: 600px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 2.85rem;
   }
 
   .hero-buttons {
     display: flex;
     gap: 1rem;
+    margin-top: clamp(3.2rem, 8vh, 5.4rem);
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -735,7 +943,7 @@ const description = "Reach more customers where they live, work, and shop with t
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(to bottom, #2a3a8c 0%, #17246c 100%);
+    background: linear-gradient(to bottom, #142a52 0%, #0c1e43 100%);
     color: white;
     padding: 1rem 2rem;
     border-radius: 8px;
@@ -792,12 +1000,23 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .cta-button.cta-button-navy {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: #0c1e43;
+    border: 1px solid #b82232;
     color: #fff;
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.22),
+      0 6px 14px rgba(0,0,0,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.08);
   }
 
   .cta-button.cta-button-navy:hover {
-    background: linear-gradient(135deg, #141427 0%, #101a33 100%);
+    background: #0f2350;
+    border-color: #d42a3e;
   }
 
   .cta-button-logo {
@@ -834,7 +1053,6 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .features {
-    background: #f8f9fa;
   }
 
   .feature-grid {
@@ -862,12 +1080,13 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .feature-item h3 {
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.5rem;
+    text-align: left;
   }
 
   .feature-item p {
-    color: #555;
+    color: rgba(210, 232, 255, 0.9);
     line-height: 1.7;
   }
 
@@ -877,7 +1096,6 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .stats {
-    background: #1a1a2e;
     color: white;
   }
 
@@ -901,30 +1119,18 @@ const description = "Reach more customers where they live, work, and shop with t
     opacity: 0.9;
   }
 
-  /* Host Partner Network with diagonal stripes */
   .network {
     position: relative;
     overflow: hidden;
-    background: #17246c;
+    background: transparent;
   }
 
-  .network-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
-      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
-      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
-      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
-    pointer-events: none;
-  }
+
+
 
   .network .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   .network-grid {
@@ -953,12 +1159,11 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .solutions {
-    background: #f8f9fa;
     text-align: center;
   }
 
   .solutions h2 {
-    color: #1a1a2e;
+    color: #ffffff;
     font-size: 2rem;
     margin-bottom: 3rem;
   }
@@ -971,41 +1176,41 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .solution-card {
-    background: white;
+    background: #0c1e43;
     padding: 2rem;
     border-radius: 12px;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
   .solution-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
   }
 
   .solution-card h3 {
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
   }
 
   .solution-card p {
-    color: #666;
+    color: rgba(210, 232, 255, 0.85);
     font-size: 0.9rem;
     line-height: 1.6;
   }
 
   .solution-icon {
     font-size: 2.5rem;
-    color: #17246c;
+    color: rgba(210, 232, 255, 0.85);
     margin-bottom: 1rem;
     display: block;
     transition: color 0.2s;
   }
 
   .solution-card:hover .solution-icon {
-    color: #a01c2b;
+    color: #ffffff;
   }
 
   .solution-icon-image {
@@ -1023,23 +1228,8 @@ const description = "Reach more customers where they live, work, and shop with t
   .review {
     position: relative;
     overflow: hidden;
-    background: #17246c;
     color: white;
     text-align: center;
-  }
-
-  .review-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      linear-gradient(135deg, transparent 40%, rgba(10, 16, 48, 0.6) 40%, rgba(10, 16, 48, 0.6) 45%, transparent 45%),
-      linear-gradient(135deg, transparent 55%, rgba(10, 16, 48, 0.5) 55%, rgba(10, 16, 48, 0.5) 60%, transparent 60%),
-      linear-gradient(135deg, transparent 70%, rgba(10, 16, 48, 0.4) 70%, rgba(10, 16, 48, 0.4) 75%, transparent 75%),
-      linear-gradient(135deg, transparent 20%, rgba(30, 50, 120, 0.3) 20%, rgba(30, 50, 120, 0.3) 25%, transparent 25%);
-    pointer-events: none;
   }
 
   .review .container {
@@ -1050,10 +1240,11 @@ const description = "Reach more customers where they live, work, and shop with t
   .review h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: #ffffff;
   }
 
   .review p {
-    opacity: 0.9;
+    color: rgba(210, 232, 255, 0.9);
     margin-bottom: 1.5rem;
     max-width: 500px;
     margin-left: auto;
@@ -1064,11 +1255,12 @@ const description = "Reach more customers where they live, work, and shop with t
     scroll-behavior: smooth;
   }
 
-  /* Testimonials Section */
   .testimonials {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     text-align: center;
     scroll-margin-top: 150px;
+    position: relative;
+    overflow: hidden;
   }
 
   .testimonials h2 {
@@ -1090,15 +1282,17 @@ const description = "Reach more customers where they live, work, and shop with t
     margin-bottom: 2rem;
   }
 
+  .testimonials .container {
+    position: relative;
+    z-index: 2;
+  }
+
   .testimonial-card {
-    background: #f8f9fa;
+    background: rgba(12, 30, 67, 0.85);
     padding: 2rem;
     border-radius: 12px;
     text-align: left;
-    box-shadow:
-      0 2px 4px rgba(0,0,0,0.04),
-      0 8px 24px rgba(0,0,0,0.08);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -1106,9 +1300,7 @@ const description = "Reach more customers where they live, work, and shop with t
 
   .testimonial-card:hover {
     transform: translateY(-4px);
-    box-shadow:
-      0 4px 8px rgba(0,0,0,0.06),
-      0 12px 32px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   }
 
   .testimonial-card .stars {
@@ -1122,7 +1314,7 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .testimonial-text {
-    color: #444;
+    color: rgba(210, 232, 255, 0.9);
     font-size: 0.95rem;
     line-height: 1.7;
     flex-grow: 1;
@@ -1131,21 +1323,21 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .testimonial-author {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     padding-top: 1rem;
   }
 
   .author-name {
     display: block;
     font-weight: 600;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.25rem;
   }
 
   .author-company {
     display: block;
     font-size: 0.85rem;
-    color: #666;
+    color: rgba(210, 232, 255, 0.7);
   }
 
   .google-attribution {
@@ -1163,12 +1355,12 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 1.75rem;
+    .hero-content {
+      min-height: calc(86svh - var(--hero-header-overlap));
     }
 
-    .hero-logo {
-      max-width: 220px;
+    .hero h1 {
+      font-size: clamp(1.9rem, 7.4vw, 2.35rem);
     }
 
     .hero-buttons {

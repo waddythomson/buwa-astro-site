@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const title = "Digital Marketing Solutions | BuWa Digital";
 const description = "Explore BuWa Digital's full range of digital marketing services, from screen advertising to website design and social media management.";
@@ -103,15 +104,15 @@ const services = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} hasTopHero={true}>
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Digital Marketing Services</h1>
-      <p class="hero-subtitle">A full range of services to make your business a digital powerhouse!</p>
-      <a href="/contact-us/" class="btn-red">Get In Touch</a>
-    </div>
-  </section>
+  <PageHero
+    title="Digital Marketing Services"
+    subtitle="A full range of services to make your business a digital powerhouse!"
+    badge="All Services"
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
 
   <!-- Image Section -->
   <section class="image-section">
@@ -172,50 +173,15 @@ const services = [
 </BaseLayout>
 
 <style>
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    position: relative;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
   
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
   
-  .hero-content {
-    color: white;
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
   
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
   
-  .hero-subtitle {
-    font-size: 1.25rem;
-    font-weight: 700;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-  }
+  
+  
+  
+  
+  
 
   /* Image Section */
   .image-section {
@@ -472,9 +438,7 @@ const services = [
   }
   
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 1.8rem;
-    }
+    
 
     .featured-image {
       max-width: 280px;

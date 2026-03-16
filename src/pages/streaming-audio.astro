@@ -1,0 +1,597 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faq = [
+  {
+    question: "What platforms do streaming audio ads run on?",
+    answer: "Your ads can run across major music streaming services like Spotify, Pandora, and iHeartRadio, as well as popular podcast networks and digital radio stations. We select the right mix of platforms based on your target audience's listening habits to maximize reach and engagement across the Midlands and beyond.",
+  },
+  {
+    question: "Can listeners skip my audio ad?",
+    answer: "In most cases, no. The majority of streaming audio ad placements are non-skippable — listeners hear your full :15 or :30 second message before returning to their content. This is a significant advantage over visual formats where users can scroll past or close an ad. Your message gets delivered in full, every time.",
+  },
+  {
+    question: "Do I need to provide a finished audio ad?",
+    answer: "Not at all. If you have existing audio assets, we can optimize them for streaming platforms. If you're starting from scratch, we handle everything — scriptwriting, professional voice talent, music licensing, and final production. We'll make sure your ad sounds polished and compelling on every device, from earbuds to smart speakers.",
+  },
+  {
+    question: "How do you target the right listeners?",
+    answer: "Streaming audio platforms offer incredibly granular targeting options. We can reach listeners by age, gender, location, music genre preferences, listening habits, device type, and even real-time context like workout playlists or morning commutes. For local businesses in the Midlands, we layer geographic targeting to ensure your budget reaches the right ears.",
+  },
+  {
+    question: "What kind of results can I expect?",
+    answer: "Streaming audio consistently delivers strong performance metrics. Expect listen-through rates above 90%, measurable lifts in brand awareness, and increased website traffic or store visits. We provide detailed reporting on impressions, completion rates, audience demographics, and frequency — so you always know exactly how your campaign is performing.",
+  },
+];
+
+const relatedServices = [
+  { label: "Connected TV/OTT", href: "/connected-tv-ott-ads/" },
+  { label: "Pre-Roll Advertising", href: "/pre-roll-advertising/" },
+  { label: "YouTube Ads", href: "/youtube-ads/" },
+  { label: "Social Media Ads", href: "/social-media-ads/" },
+];
+---
+
+<BaseLayout 
+  title="Streaming Audio Advertising | BuWa Digital - The Midlands"
+  description="Reach listeners on Spotify, Pandora, podcasts & digital radio with targeted streaming audio ads. BuWa Digital delivers audio advertising that captures attention across the Midlands."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Streaming Audio Advertising"
+    subtitle="Your Customers Are Listening — Is Your Brand Part of the Conversation?"
+    description="Streaming audio reaches people during the moments visual ads can't touch — commutes, workouts, cooking, and focus time. Put your brand in their ears with targeted, non-skippable audio ads on Spotify, Pandora, podcasts, and digital radio."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Intro Section — WHITE -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>Advertising for the Screen-Free Moments</h2>
+      <p class="intro-text">Streaming audio advertising places your message directly into listeners' ears on the platforms they use every day — Spotify, Pandora, iHeartRadio, Apple Podcasts, and hundreds more. Unlike display or video ads, audio reaches people when their eyes are busy but their ears are wide open. It's intimate, un-skippable, and drives real brand recall.</p>
+    </div>
+  </section>
+
+  <!-- Why Streaming Audio — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Why Streaming Audio?</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🎧</div>
+          <div class="benefit-content">
+            <h3>Captive Audience</h3>
+            <p>Audio ads are non-skippable on most platforms. Listeners hear your full message — no skip button, no scrolling, no looking away. Your brand gets undivided attention.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">💡</div>
+          <div class="benefit-content">
+            <h3>Emotional Connection</h3>
+            <p>The human voice creates an intimate, one-to-one connection that visual ads struggle to replicate. Audio drives emotional resonance and long-term brand recall.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Precise Targeting</h3>
+            <p>Reach listeners by demographics, location, music taste, podcast interests, device type, and even real-time context — like workout playlists or morning commutes.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🔗</div>
+          <div class="benefit-content">
+            <h3>Complements Visual Campaigns</h3>
+            <p>Audio reinforces your display, video, and social campaigns by reaching audiences during screen-free moments — creating a true omnichannel brand presence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Numbers — WHITE -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>Audio Advertising by the Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">73%</div>
+          <div class="stat-label">of U.S. adults listen to streaming audio monthly, totaling over 210 million listeners</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">93%</div>
+          <div class="stat-label">average listen-through rate for streaming audio ads — far exceeding video ad completion rates</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">61%</div>
+          <div class="stat-label">of streaming audio listeners say they pay attention to ads, compared to 19% for TV viewers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Audience Identification</h3>
+            <p>We pinpoint your ideal listeners by location, demographics, interests, and listening behavior to ensure every impression reaches someone who matters.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Script & Production</h3>
+            <p>Our team writes compelling scripts and produces broadcast-quality audio ads with professional voice talent, music, and sound design.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Campaign Launch</h3>
+            <p>Your ads go live across the right mix of streaming platforms — reaching targeted listeners across the Midlands and your broader market area.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Optimization & Reporting</h3>
+            <p>We monitor performance daily and refine targeting, creative rotation, and platform mix to maximize your return on every dollar spent.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach — WHITE -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <p class="approach-intro">Every streaming audio campaign follows our proven five-step process to deliver measurable results.</p>
+      <ol class="approach-list">
+        <li><strong>Discovery</strong> — We learn your business, audience, and goals to build an audio strategy that connects.</li>
+        <li><strong>Strategy</strong> — We define platform mix, targeting parameters, ad formats, and budget allocation for maximum reach.</li>
+        <li><strong>Execution</strong> — Your ads launch across premium streaming platforms, reaching the right listeners at the right moments.</li>
+        <li><strong>Evaluation</strong> — We analyze listen-through rates, reach, frequency, and audience engagement to measure what's working.</li>
+        <li><strong>Optimization</strong> — We continuously refine targeting, creative, and platform mix to improve performance throughout the campaign.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Who It's For — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Who It's For</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-content">
+            <h3>Home Services</h3>
+            <p>HVAC, plumbing, roofing, and contractors — reach homeowners during their daily routines with audio ads that stick. Be the name they remember when they need you.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚖️</div>
+          <div class="benefit-content">
+            <h3>Professional Services</h3>
+            <p>Law firms, medical practices, and financial advisors — build trust and authority with the intimate, personal touch that only voice can deliver.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🛒</div>
+          <div class="benefit-content">
+            <h3>Retail & Restaurants</h3>
+            <p>Drive foot traffic with location-targeted audio ads that reach potential customers during their commute — right when they're deciding where to stop.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏥</div>
+          <div class="benefit-content">
+            <h3>Healthcare & Wellness</h3>
+            <p>Reach health-conscious listeners on fitness and wellness playlists. Audio delivers your message in a trusted, personal format that feels natural.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — WHITE -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <p class="faq-answer">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services That Pair Well — VIDEO BG -->
+  <section class="animated-bg-section related-section">
+  <div class="container section-content">
+      <h2>Services That Pair Well</h2>
+      <p class="related-intro">Amplify your streaming audio campaigns with these complementary strategies.</p>
+      <div class="related-services">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-pill">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — WHITE -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready to Be Heard?</h2>
+      <p>Your customers are already listening — let's make sure your story is the one being heard. Get started with streaming audio advertising in the Midlands today.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== SHARED LAYOUT ==================== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ==================== WHITE SECTIONS ==================== */
+  .intro-section,
+  .stats-section,
+  .approach-section,
+  .faq-section,
+  .cta-section-white {
+    padding: 5rem 0;
+    background: #ffffff;
+    color: #1a1a2e;
+  }
+
+  .intro-section h2,
+  .stats-section h2,
+  .approach-section h2,
+  .faq-section h2,
+  .cta-section-white h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #0c1e43;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ==================== VIDEO BG SECTIONS ==================== */
+  .video-bg-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 20, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* ==================== BENEFITS / CARDS GRID ==================== */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .benefits-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 260px;
+  }
+
+  .benefit-card {
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== STATS ==================== */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stats-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 220px;
+  }
+
+  .stat-card {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0c1e43;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ==================== PROCESS STEPS ==================== */
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc(25% - 1.2rem);
+    min-width: 200px;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-content h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-content p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== APPROACH ==================== */
+  .approach-intro {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .approach-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .approach-list li strong {
+    color: #0c1e43;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: #f0f4f8;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0c1e43;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #888;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ==================== RELATED SERVICES ==================== */
+  .related-intro {
+    text-align: center;
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .related-pill {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .related-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+  }
+
+  /* ==================== WHITE CTA ==================== */
+  .cta-section-white {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .cta-section-white p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ==================== BUTTON ==================== */
+  .btn-red {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #b82232;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

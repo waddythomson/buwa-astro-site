@@ -1,0 +1,597 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faq = [
+  {
+    question: "What's the difference between CTV and OTT?",
+    answer: "OTT (Over-The-Top) refers to any content delivered over the internet, bypassing traditional cable — think Hulu, Peacock, or Pluto TV. CTV (Connected TV) specifically refers to the device used to stream that content — smart TVs, Roku, Fire Stick, Apple TV, and gaming consoles. When we say CTV/OTT advertising, we mean placing your video ads within streaming content on these platforms.",
+  },
+  {
+    question: "Are CTV ads really non-skippable?",
+    answer: "Yes — the vast majority of CTV/OTT ad placements are non-skippable. Viewers watch your full :15 or :30 second ad before returning to their content. This is a massive advantage over platforms like YouTube where viewers can skip after 5 seconds.",
+  },
+  {
+    question: "How is this different from regular TV advertising?",
+    answer: "Traditional TV buys are broad — you pick a channel and time slot and hope your audience is watching. CTV/OTT lets you target specific households based on demographics, interests, location, and behavior. You also get real-time performance data — impressions, completion rates, and reach — instead of relying on Nielsen estimates.",
+  },
+  {
+    question: "What kind of budget do I need?",
+    answer: "CTV/OTT advertising is far more accessible than traditional TV. There are no massive upfront commitments — campaigns can be scaled to fit local business budgets. We'll work with you to find a spend level that delivers meaningful reach in the Midlands.",
+  },
+  {
+    question: "Do I need to have a video ad already produced?",
+    answer: "Not necessarily. If you have existing video assets, we can optimize them for CTV formats. If you're starting from scratch, we can help with professional video production through our Design Services team. Either way, we'll make sure your ad looks polished on the big screen.",
+  },
+];
+
+const relatedServices = [
+  { label: "Pre-roll Advertising", href: "/pre-roll-advertising/" },
+  { label: "YouTube Ads", href: "/youtube-ads/" },
+  { label: "Streaming Audio", href: "/streaming-audio/" },
+  { label: "Display & Geofencing", href: "/geofencing/" },
+];
+---
+
+<BaseLayout 
+  title="Connected TV & OTT Advertising | BuWa Digital - The Midlands"
+  description="Reach streaming audiences across the Midlands with non-skippable video ads on ESPN, CNN, Fox & more. BuWa Digital delivers Connected TV & OTT advertising that gets results."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Connected TV & OTT Advertising"
+    subtitle="Your Customers Cut the Cord — Did Your Advertising Follow?"
+    description="Millions of viewers have ditched cable for streaming. CTV and OTT advertising puts your brand on the big screen — with non-skippable ads, precise targeting, and real performance data that traditional TV can't match."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Intro Section — WHITE -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>TV Advertising, Reimagined</h2>
+      <p class="intro-text">Connected TV and OTT advertising delivers your message directly to viewers streaming content on smart TVs, Roku, Fire Stick, Apple TV, and gaming consoles. You get the impact of a television commercial with the precision of digital marketing — target the right households, track real results, and pay only for the impressions that matter.</p>
+    </div>
+  </section>
+
+  <!-- Why CTV — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Why Connected TV?</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">📺</div>
+          <div class="benefit-content">
+            <h3>Non-Skippable Ads</h3>
+            <p>Unlike YouTube or social media, CTV ads play in full. Viewers watch your entire :15 or :30 second message — no skip button, no scrolling past.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Precision Targeting</h3>
+            <p>Go beyond channel and time slot. Target households by demographics, interests, viewing habits, and geographic location — right down to specific neighborhoods in your area.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⭐</div>
+          <div class="benefit-content">
+            <h3>Premium Content</h3>
+            <p>Your ads appear alongside trusted networks like ESPN, CNN, Fox, HGTV, and hundreds more — the same shows your customers are already watching.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">📊</div>
+          <div class="benefit-content">
+            <h3>Real-Time Analytics</h3>
+            <p>Track impressions, video completion rates, reach, and frequency in real time. No more guessing whether your TV investment is working.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Numbers — WHITE -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>The Streaming Shift Is Real</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">88%</div>
+          <div class="stat-label">of U.S. households have at least one connected TV device</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">97%</div>
+          <div class="stat-label">average video completion rate for CTV ads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">46%</div>
+          <div class="stat-label">of streaming viewers say they've taken action after seeing a CTV ad</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Audience Definition</h3>
+            <p>We identify exactly who you want to reach — by location, demographics, interests, and viewing behavior — so every impression counts.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Creative Development</h3>
+            <p>We produce or optimize your video ad for the big screen — ensuring it looks polished and delivers your message in :15 or :30 seconds.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Campaign Launch</h3>
+            <p>Your ads go live across premium streaming platforms, reaching targeted households across the Midlands and beyond.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Performance Optimization</h3>
+            <p>We monitor results daily and refine targeting, creative, and budget allocation to maximize your return on ad spend.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach — WHITE -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <p class="approach-intro">Every CTV/OTT campaign follows our proven five-step process to ensure measurable results.</p>
+      <ol class="approach-list">
+        <li><strong>Discovery</strong> — We learn your business, audience, and goals to build a campaign that fits.</li>
+        <li><strong>Strategy</strong> — We define targeting parameters, platform mix, and budget allocation for maximum impact.</li>
+        <li><strong>Execution</strong> — Your ads launch across premium streaming platforms, reaching the right viewers at the right time.</li>
+        <li><strong>Evaluation</strong> — We analyze completion rates, reach, frequency, and audience engagement to measure what's working.</li>
+        <li><strong>Optimization</strong> — We continuously refine targeting and creative to improve results throughout the campaign.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Who It's For — VIDEO BG -->
+  <section class="animated-bg-section">
+  <div class="container section-content">
+      <h2>Who It's For</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-content">
+            <h3>Home Services</h3>
+            <p>HVAC, plumbing, roofing, and contractors — build brand awareness in the neighborhoods you serve with targeted household reach.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚖️</div>
+          <div class="benefit-content">
+            <h3>Professional Services</h3>
+            <p>Law firms, medical practices, and financial advisors — establish authority and trust with a premium big-screen presence.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏪</div>
+          <div class="benefit-content">
+            <h3>Local Retail & Restaurants</h3>
+            <p>Drive foot traffic and promote special offers by reaching households within miles of your location.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏗️</div>
+          <div class="benefit-content">
+            <h3>Real Estate & Development</h3>
+            <p>Showcase properties and communities with stunning video ads that reach targeted demographics in your market area.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — WHITE -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <p class="faq-answer">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services That Pair Well — VIDEO BG -->
+  <section class="animated-bg-section related-section">
+  <div class="container section-content">
+      <h2>Services That Pair Well</h2>
+      <p class="related-intro">Amplify your CTV campaigns with these complementary strategies.</p>
+      <div class="related-services">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-pill">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — WHITE -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready to Put Your Brand on the Big Screen?</h2>
+      <p>Don't let your competitors own the living room — let's get your business in front of streaming viewers across the Midlands.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== SHARED LAYOUT ==================== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ==================== WHITE SECTIONS ==================== */
+  .intro-section,
+  .stats-section,
+  .approach-section,
+  .faq-section,
+  .cta-section-white {
+    padding: 5rem 0;
+    background: #ffffff;
+    color: #1a1a2e;
+  }
+
+  .intro-section h2,
+  .stats-section h2,
+  .approach-section h2,
+  .faq-section h2,
+  .cta-section-white h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #0c1e43;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ==================== VIDEO BG SECTIONS ==================== */
+  .video-bg-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 20, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* ==================== BENEFITS / CARDS GRID ==================== */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .benefits-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 260px;
+  }
+
+  .benefit-card {
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== STATS ==================== */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stats-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 220px;
+  }
+
+  .stat-card {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0c1e43;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ==================== PROCESS STEPS ==================== */
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc(25% - 1.2rem);
+    min-width: 200px;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-content h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-content p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== APPROACH ==================== */
+  .approach-intro {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .approach-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .approach-list li strong {
+    color: #0c1e43;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: #f0f4f8;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0c1e43;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #888;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ==================== RELATED SERVICES ==================== */
+  .related-intro {
+    text-align: center;
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .related-pill {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .related-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+  }
+
+  /* ==================== WHITE CTA ==================== */
+  .cta-section-white {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .cta-section-white p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ==================== BUTTON ==================== */
+  .btn-red {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #b82232;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

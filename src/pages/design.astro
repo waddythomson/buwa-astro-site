@@ -1,0 +1,589 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faq = [
+  {
+    question: "How long does a logo design project take?",
+    answer: "Most logo design projects are completed within 2–3 weeks, depending on complexity and revision rounds. We start with a discovery session to understand your brand, then present 2–3 initial concepts. From there, we refine your chosen direction until it's perfect. Rush timelines are available if you have a hard launch date — just let us know upfront.",
+  },
+  {
+    question: "What file formats will I receive for my designs?",
+    answer: "You'll receive a complete file package including vector formats (AI, EPS, SVG) for print and scalability, high-resolution raster files (PNG, JPG) for digital use, and PDF versions for easy sharing. For logos, we also provide variations — full color, black, white, and icon-only — so you're covered across every use case.",
+  },
+  {
+    question: "Do I own the final designs?",
+    answer: "Absolutely. Once the project is complete and paid in full, you receive full ownership and commercial rights to all final approved designs. We provide all source files so you or any future designer can modify them as needed. We may request permission to feature the work in our portfolio, but that's always optional.",
+  },
+  {
+    question: "Can you match my existing brand guidelines?",
+    answer: "Yes — we work within established brand guidelines regularly. If you have a brand style guide, color palette, or typography standards, share them at the start of the project and we'll ensure every deliverable is perfectly on-brand. If you don't have formal guidelines yet, we can help create them as part of a brand identity package.",
+  },
+  {
+    question: "What if I need design work on an ongoing basis?",
+    answer: "Many of our Midlands clients rely on us for continuous design support — social media graphics, seasonal promotions, event materials, and more. We offer flexible retainer arrangements that give you priority scheduling and a consistent team who already knows your brand, so turnaround is faster and quality stays high.",
+  },
+];
+
+const relatedServices = [
+  { label: "Website Design", href: "/website-design/" },
+  { label: "Social Media Management", href: "/social-media-management/" },
+  { label: "Social Media Ads", href: "/social-media-ads/" },
+  { label: "Screen Advertising", href: "/screen-advertising/" },
+];
+---
+
+<BaseLayout 
+  title="Design Services | BuWa Digital - The Midlands"
+  description="Professional graphic design and branding for Midlands businesses. Logo design, marketing materials, packaging, digital graphics, and video ad creation from BuWa Digital."
+  faq={faq}
+  hasTopHero={true}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Design Services"
+    subtitle="Is Your Brand Making the Right First Impression?"
+    description="Great design isn't decoration — it's your competitive edge. From logo creation and brand identity to marketing materials and digital graphics, BuWa Digital transforms your vision into visuals that stop the scroll and win the customer."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
+
+  <!-- Why Design — VIDEO BG -->
+  <section class="video-bg-section animated-bg-section">
+    <div class="container section-content">
+      <h2>Why Professional Design Matters</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🎨</div>
+          <div class="benefit-content">
+            <h3>Brand Recognition</h3>
+            <p>Consistent, polished design builds instant credibility. Your logo, colors, and visual language become the face of your business — the thing customers remember and trust.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Higher Conversions</h3>
+            <p>Professional marketing materials outperform DIY every time. Clean layouts, compelling visuals, and strategic design guide your audience from attention to action.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-content">
+            <h3>Local Market Expertise</h3>
+            <p>We know the Midlands — the audience, the culture, the competitive landscape. Our designs speak directly to this market because we live and work here too.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-content">
+            <h3>Full-Service Convenience</h3>
+            <p>Design plus marketing under one roof means your visuals stay consistent across every channel — print, digital, social, and video — with no handoff headaches.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Numbers — WHITE -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>Design Drives Real Results</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">75%</div>
+          <div class="stat-label">of consumers judge a company's credibility based on its visual design</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">80%</div>
+          <div class="stat-label">increase in brand recognition achieved through consistent color and design</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">94%</div>
+          <div class="stat-label">of first impressions are design-related, formed in under 50 milliseconds</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — VIDEO BG -->
+  <section class="video-bg-section animated-bg-section">
+    <div class="container section-content">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Creative Brief</h3>
+            <p>We sit down with you to understand your brand, goals, audience, and aesthetic preferences — so every design decision is intentional.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Concept Development</h3>
+            <p>Our designers create multiple initial concepts for your review, each rooted in strategy and tailored to your brand identity.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Refinement</h3>
+            <p>You give feedback, we refine. We offer unlimited revisions to ensure the final product matches your vision exactly.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Final Delivery</h3>
+            <p>You receive production-ready files in all formats — print, web, and social — plus source files for future flexibility.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach — WHITE -->
+  <section class="approach-section">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <p class="approach-intro">Every design project follows our proven five-step process to ensure work that's strategic, polished, and on time.</p>
+      <ol class="approach-list">
+        <li><strong>Discovery</strong> — We learn your business, brand story, and competitive landscape to ground every design in strategy.</li>
+        <li><strong>Strategy</strong> — We define the visual direction, messaging hierarchy, and deliverable scope before a single pixel is placed.</li>
+        <li><strong>Execution</strong> — Our designers bring the strategy to life with concepts that balance creativity, clarity, and brand consistency.</li>
+        <li><strong>Evaluation</strong> — We review each deliverable against your goals and gather your feedback for focused revisions.</li>
+        <li><strong>Optimization</strong> — Final files are prepared for every medium, and we ensure your brand visuals are ready to perform everywhere.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Who It's For — VIDEO BG -->
+  <section class="video-bg-section animated-bg-section">
+    <div class="container section-content">
+      <h2>Who It's For</h2>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🚀</div>
+          <div class="benefit-content">
+            <h3>Startups & New Brands</h3>
+            <p>Launching a business in the Midlands? Start strong with a professional logo, business cards, and brand identity that commands attention from day one.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏪</div>
+          <div class="benefit-content">
+            <h3>Local Retail & Restaurants</h3>
+            <p>Menus, signage, promotional flyers, and seasonal campaigns — we create materials that drive foot traffic and keep customers coming back.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚖️</div>
+          <div class="benefit-content">
+            <h3>Professional Services</h3>
+            <p>Law firms, medical practices, and consultants need design that conveys trust and authority. We deliver polished branding and collateral that matches your expertise.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">📦</div>
+          <div class="benefit-content">
+            <h3>Product Brands & E-Commerce</h3>
+            <p>Packaging design, product photography support, and digital assets that make your products stand out on shelves and screens alike.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — WHITE -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <p class="faq-answer">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services That Pair Well — VIDEO BG -->
+  <section class="video-bg-section related-section animated-bg-section">
+    <div class="container section-content">
+      <h2>Services That Pair Well</h2>
+      <p class="related-intro">Maximize the impact of your new designs with these complementary services.</p>
+      <div class="related-services">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="related-pill">{service.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — WHITE -->
+  <section class="cta-section-white">
+    <div class="container">
+      <h2>Ready to Elevate Your Brand?</h2>
+      <p>Stop blending in with forgettable design — let's create visuals that make your business impossible to ignore.</p>
+      <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== SHARED LAYOUT ==================== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ==================== WHITE SECTIONS ==================== */
+  .intro-section,
+  .stats-section,
+  .approach-section,
+  .faq-section,
+  .cta-section-white {
+    padding: 5rem 0;
+    background: #ffffff;
+    color: #1a1a2e;
+  }
+
+  .intro-section h2,
+  .stats-section h2,
+  .approach-section h2,
+  .faq-section h2,
+  .cta-section-white h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #0c1e43;
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ==================== VIDEO BG SECTIONS ==================== */
+  .video-bg-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .section-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .section-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 20, 0.55);
+    z-index: 1;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-bg-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* ==================== BENEFITS / CARDS GRID ==================== */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .benefits-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 260px;
+  }
+
+  .benefit-card {
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-card p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== STATS ==================== */
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stats-grid > * {
+    flex: 0 1 calc(33.333% - 1rem);
+    min-width: 220px;
+  }
+
+  .stat-card {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0c1e43;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ==================== PROCESS STEPS ==================== */
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc(25% - 1.2rem);
+    min-width: 200px;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-content h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-content p {
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== APPROACH ==================== */
+  .approach-intro {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .approach-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .approach-list li strong {
+    color: #0c1e43;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: #f0f4f8;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0c1e43;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #888;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ==================== RELATED SERVICES ==================== */
+  .related-intro {
+    text-align: center;
+    color: rgba(210, 232, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .related-pill {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .related-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+  }
+
+  /* ==================== WHITE CTA ==================== */
+  .cta-section-white {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .cta-section-white p {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ==================== BUTTON ==================== */
+  .btn-red {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #b82232;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

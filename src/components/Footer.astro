@@ -42,7 +42,7 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
         <a href={smsLink} class="footer-qr-link" aria-label="Text BuWa Digital">
           <img src={smsQrUrl} alt="QR code to text BuWa Digital" class="footer-qr" loading="lazy" />
         </a>
-        <a href={smsLink} class="footer-cta footer-cta-text"><i class="fa-solid fa-comment-dots"></i> Text 803-403-2922</a>
+        <a href={smsLink} class="footer-cta footer-cta-text">803-403-2922</a>
       </div>
     </div>
 
@@ -54,12 +54,29 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
 
 <style>
   .site-footer {
-    background: #1a1a2e;
+    background: transparent;
     color: white;
-    padding: 4rem 0 2rem;
+    padding: 2.5rem 0 1.25rem;
+    position: relative;
+    overflow: hidden;
   }
 
+  @media (max-width: 768px) {
+    .site-footer {
+      background: #1a1a2e;
+    }
+  }
+
+  :global(body.home-page) .site-footer {
+    margin-top: -1px;
+    padding-top: 1rem;
+  }
+
+
+
   .footer-container {
+    position: relative;
+    z-index: 2;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -69,7 +86,7 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .footer-brand img {
@@ -148,6 +165,7 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
   .footer-cta.footer-cta-text {
     background: transparent;
     border: 1px solid rgba(255,255,255,0.4);
+    white-space: nowrap;
   }
 
   .footer-cta.footer-cta-text:hover {
@@ -159,8 +177,8 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    padding-top: 1.25rem;
     text-align: center;
   }
 

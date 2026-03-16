@@ -298,9 +298,14 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
       max-width: 1200px;
       margin: 0 auto;
       padding: 15px 40px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-logo {
+      justify-self: start;
     }
 
     .header-logo img {
@@ -311,8 +316,9 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
     .header-nav {
       display: flex;
       align-items: center;
+      justify-content: center;
+      justify-self: center;
       gap: 25px;
-      margin-right: 10px;
     }
 
     .nav-link {
@@ -337,6 +343,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
       border: none;
       cursor: pointer;
       padding: 0;
+      justify-self: end;
     }
 
     .mobile-menu-btn span {

@@ -8,7 +8,7 @@ ogImage: "/uploads/2024/07/buwa-logo.png"
 ---
 **Use location data to reach your audience on the websites they love most.**
 
-<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+<a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Let's Talk!</a>
 
 Leveraging Geofencing technology, Display Advertising targets precise geographic regions, delivering personalized ads to users within and near those locations. Your audience will encounter these tailored messages seamlessly integrated as dynamic, full-motion ads across their favorite websites and online platforms.
 

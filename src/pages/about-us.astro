@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const title = "About BuWa Digital | Local Advertising in Columbia, SC";
 const description = "Learn how BuWa Digital helps local businesses in Columbia, SC grow with affordable, high-impact digital advertising and marketing strategies.";
@@ -33,15 +34,15 @@ const reasons = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} hasTopHero={true}>
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>About Us</h1>
-      <p class="hero-subtitle">Unleash the Power of Digital Marketing!</p>
-      <a href="/contact-us/" class="btn-red">Get In Touch</a>
-    </div>
-  </section>
+  <PageHero
+    title="About Us"
+    subtitle="Your Local Growth Partner in the Midlands"
+    description="BuWa Digital was built on one idea: local businesses deserve big-brand marketing without the big-brand price tag. From indoor digital billboards to full-scale digital campaigns, we help businesses across the Columbia, SC area connect with the customers who matter most."
+  >
+    <a href="/contact-us/" class="btn-red">Let's Talk!</a>
+  </PageHero>
 
   <!-- About Section -->
   <section class="about-section">
@@ -74,7 +75,8 @@ const reasons = [
   </section>
 
   <!-- 5 Reasons Section -->
-  <section class="reasons-section">
+  <section class="reasons-section animated-bg-section">
+
     <div class="container">
       <h2>5 Reasons To Choose Us</h2>
       <div class="reasons-grid">
@@ -98,7 +100,7 @@ const reasons = [
     <div class="container">
       <h2>Ready to Grow Your Business?</h2>
       <p>Let's discuss how we can help you reach more customers and build your brand.</p>
-      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-phone"></i> Schedule a Call</a>
+      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-phone"></i> Let's Talk!</a>
     </div>
   </section>
 
@@ -131,50 +133,15 @@ const reasons = [
 </BaseLayout>
 
 <style>
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 5rem 2rem;
-    text-align: center;
-    position: relative;
-  }
   
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.03) 10px,
-      rgba(255,255,255,0.03) 20px
-    );
-    pointer-events: none;
-  }
   
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
   
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
   
-  .hero-subtitle {
-    font-size: 1.1rem;
-    font-weight: 700;
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-  }
+  
+  
+  
+  
+  
   
   .btn-red {
     display: inline-block;
@@ -289,31 +256,27 @@ const reasons = [
   /* Reasons Section */
   .reasons-section {
     padding: 4rem 0;
-    background: #17246c;
     color: white;
     position: relative;
+    overflow: hidden;
   }
-  
-  .reasons-section::before {
-    content: '';
+
+  .reasons-video-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
   }
+
+
   
   .reasons-section .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   
   .reasons-section h2 {
@@ -388,9 +351,7 @@ const reasons = [
 
   /* Responsive */
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 1.8rem;
-    }
+    
     
     .about-grid {
       grid-template-columns: 1fr;

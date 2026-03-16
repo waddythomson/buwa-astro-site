@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 
 const faq = [
   {
@@ -31,21 +33,24 @@ const partnerQuote = {
 ---
 
 <BaseLayout 
-  title="Google Business Profile Management | BuWa Digital"
-  description="Improve your Google Business Profile performance so you appear in more relevant local searches and attract more customers."
+  title="Google Business Profile Optimization | BuWa Digital"
+  description="Are customers finding you or your competition? We optimize your Google Business Profile so you rank higher in local searches and attract more customers."
   faq={faq}
+  hasTopHero={true}
 >
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Google Business Profile</h1>
-      <p>Boost the performance of your Google Business Profile so you appear on more relevant search result pages.</p>
-      <a href="#open-scan-popup" class="btn-red"><i class="fa-solid fa-magnifying-glass"></i> Ask For A Free Scan</a>
-    </div>
-  </section>
+  <PageHero
+    title="Google Business Profile Optimization"
+    subtitle="Are Customers Finding You — or Your Competition?"
+    description="Customers are finding someone so let's make sure it's you. Your Google Business Profile plays a major role in how Google ranks local businesses. We optimize your profile, clean up your listings across the web, and help customers find you first."
+  >
+    <a href="#open-scan-popup" class="btn-red">
+      <i class="fa-solid fa-magnifying-glass"></i> Ask For A Free Scan
+    </a>
+  </PageHero>
 
   <!-- Intro Section -->
-  <section class="intro-section">
+  <section class="intro-section animated-bg-section">
     <div class="container">
       <h2>Google Business Profile Management</h2>
       <p class="intro-text">Our Google Business Profile Management service offers a dedicated account specialist who expertly optimizes your profile. They will handle everything from weekly posts to photo uploads. With us, your Google presence will be professionally managed, leaving you to focus on what you do best – running your business.</p>
@@ -54,7 +59,7 @@ const partnerQuote = {
   </section>
 
   <!-- Impact Section -->
-  <section class="impact-section">
+  <section class="impact-section animated-bg-section">
     <div class="container">
       <h2>Google Business Profile has a Huge Impact on Your Local SEO</h2>
       <p>Your Google Business Profile is often a customer's first online exposure to your business. A properly managed profile drives local visibility, engagement, and credibility. This foundational marketing tool is crucial to maximizing the success of your business and any supplemental marketing efforts such as <a href="/connected-tv-ott-ads/">CTV | OTT</a>, <a href="/pay-per-click-ppc/">Pay-Per-Click</a>, or <a href="/geofencing/">Display Advertising</a>.</p>
@@ -62,7 +67,7 @@ const partnerQuote = {
   </section>
 
   <!-- Benefits Grid -->
-  <section class="benefits-section">
+  <section class="benefits-section animated-bg-section">
     <div class="container">
       <h2>Boosting Visibility With Google Business Profile</h2>
       
@@ -103,7 +108,7 @@ const partnerQuote = {
   </section>
 
   <!-- Process Steps -->
-  <section class="process-section">
+  <section class="process-section animated-bg-section">
     <div class="container">
       <h2>Steps to Setting Up Your Google Business Profile</h2>
       
@@ -136,7 +141,7 @@ const partnerQuote = {
   </section>
 
   <!-- Approach Section -->
-  <section class="approach-section">
+  <section class="approach-section animated-bg-section">
     <div class="container">
       <h2>Our Marketing Service Approach Is Simple</h2>
       <ul class="approach-list">
@@ -150,7 +155,7 @@ const partnerQuote = {
   </section>
 
   <!-- Partner Results -->
-  <section class="proof-section">
+  <section class="proof-section animated-bg-section">
     <div class="container">
       <h2>What Local Partners Are Saying</h2>
       <blockquote class="proof-quote">
@@ -162,7 +167,7 @@ const partnerQuote = {
   </section>
 
   <!-- FAQ Section -->
-  <section class="faq-section">
+  <section class="faq-section animated-bg-section">
     <div class="container">
       <h2>Common Questions About Google Business Profile</h2>
 
@@ -172,12 +177,12 @@ const partnerQuote = {
           <p>{item.answer}</p>
         </div>
       ))}
-      <p class="faq-cta">Have a specific question? <a href="/contact-us/">Contact us</a> and we’ll walk you through the best next steps.</p>
+      <p class="faq-cta">Have a specific question? <a href="/contact-us/">Contact us</a> and we'll walk you through the best next steps.</p>
     </div>
   </section>
 
   <!-- Related Services -->
-  <section class="related-section">
+  <section class="related-section animated-bg-section">
     <div class="container">
       <h2>Related Services That Support Local Search</h2>
       <p>Pair GBP management with digital channels that reinforce your local visibility and conversions.</p>
@@ -189,61 +194,13 @@ const partnerQuote = {
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Ready to Boost Your Google Presence?</h2>
-      <p>Let us help you optimize your Google Business Profile and reach more local customers.</p>
-      <a href="/contact-us/" class="btn-red"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
-    </div>
-  </section>
+  <CtaSection
+    title="Ready to Boost Your Google Presence?"
+    subtitle="Let us help you optimize your Google Business Profile and reach more local customers."
+  />
 
 <style>
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 3rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .hero h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero p {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-  }
+  /* Hero styles are handled entirely by PageHero.astro */
 
   /* Buttons */
   .btn-red {
@@ -294,20 +251,17 @@ const partnerQuote = {
   section h2 {
     font-family: 'Inter', sans-serif;
     font-size: 2rem;
-    color: #1a1a2e;
     margin-bottom: 1.5rem;
     text-align: center;
   }
 
   /* Intro Section */
   .intro-section {
-    background: #f8f9fa;
   }
 
   .intro-text {
     font-size: 1.25rem;
     line-height: 1.8;
-    color: #444;
     max-width: 800px;
     margin: 0 auto 2rem;
     text-align: center;
@@ -325,33 +279,25 @@ const partnerQuote = {
   }
 
   /* Impact Section */
-  .impact-section {
-    background: white;
-  }
-
   .impact-section p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #444;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
   }
 
   .impact-section a {
-    color: #a01c2b;
+    color: #7db8ff;
     text-decoration: none;
   }
 
   .impact-section a:hover {
     text-decoration: underline;
+    color: #a8d4ff;
   }
 
   /* Benefits Grid */
-  .benefits-section {
-    background: #f8f9fa;
-  }
-
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -360,20 +306,14 @@ const partnerQuote = {
   }
 
   .benefit-card {
-    background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 
-      0 2px 4px rgba(0,0,0,0.08),
-      0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .benefit-card:hover {
     transform: translateY(-4px);
-    box-shadow: 
-      0 4px 8px rgba(0,0,0,0.12),
-      0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   }
 
   .benefit-card img {
@@ -389,60 +329,22 @@ const partnerQuote = {
   .benefit-content h3 {
     font-family: 'Inter', sans-serif;
     font-size: 1.25rem;
-    color: #1a1a2e;
     margin-bottom: 0.75rem;
   }
 
   .benefit-content p {
-    color: #555;
     line-height: 1.6;
   }
 
   /* Process Steps */
   .process-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: white;
-    position: relative;
-  }
-
-  .process-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
-
-  .process-section h2 {
-    color: white;
-    position: relative;
-    z-index: 1;
   }
 
   .process-steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .process-step {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: center;
-    color: #2d3748;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
 
   .step-number {
@@ -460,24 +362,7 @@ const partnerQuote = {
     margin-bottom: 1rem;
   }
 
-  .process-step h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-    color: #1a202c;
-  }
-
-  .process-step p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #4a5568;
-  }
-
   /* Approach Section */
-  .approach-section {
-    background: white;
-  }
-
   .approach-list {
     list-style: none;
     padding: 0;
@@ -488,49 +373,46 @@ const partnerQuote = {
   .approach-list li {
     padding: 1rem 1.5rem;
     margin-bottom: 0.75rem;
-    background: #f8f9fa;
+    background: rgba(12, 30, 67, 0.85);
     border-radius: 8px;
     border-left: 4px solid #a01c2b;
     font-size: 1.1rem;
   }
 
   .approach-list strong {
-    color: #1a1a2e;
+    color: #ffffff;
   }
 
   /* FAQ Section */
-  .faq-section {
-    background: #f8f9fa;
-  }
-
   .faq-item {
     max-width: 800px;
     margin: 0 auto 2rem;
-    background: white;
+    background: rgba(12, 30, 67, 0.85);
     padding: 1.5rem 2rem;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .faq-item h3 {
     font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.75rem;
   }
 
   .faq-item p {
-    color: #555;
+    color: rgba(210, 232, 255, 0.9);
     line-height: 1.7;
   }
 
   .faq-item a {
-    color: #a01c2b;
+    color: #7db8ff;
     text-decoration: none;
   }
 
   .faq-item a:hover {
     text-decoration: underline;
+    color: #a8d4ff;
   }
 
   .faq-cta {
@@ -538,10 +420,17 @@ const partnerQuote = {
     margin-top: 1.5rem;
   }
 
+  .faq-cta a {
+    color: #7db8ff;
+  }
+
+  .faq-cta a:hover {
+    color: #a8d4ff;
+  }
+
   /* Partner Results */
   .proof-section {
     padding: 4rem 2rem;
-    background: #f8f9fa;
     text-align: center;
   }
 
@@ -549,29 +438,32 @@ const partnerQuote = {
     max-width: 800px;
     margin: 2rem auto 0;
     padding: 2rem;
-    background: #fff;
+    background: rgba(12, 30, 67, 0.85);
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .proof-quote p {
     font-size: 1.1rem;
-    color: #333;
+    color: rgba(210, 232, 255, 0.9);
     margin-bottom: 1rem;
     line-height: 1.7;
     font-style: italic;
   }
 
   .proof-quote footer {
-    color: #555;
+    color: rgba(210, 232, 255, 0.7);
     font-weight: 600;
   }
 
   /* Related Services */
   .related-section {
     padding: 4rem 2rem;
-    background: #fff;
     text-align: center;
+  }
+
+  .related-section p {
+    color: rgba(210, 232, 255, 0.9);
   }
 
   .related-links {
@@ -588,52 +480,20 @@ const partnerQuote = {
     justify-content: center;
     padding: 0.75rem 1.25rem;
     border-radius: 999px;
-    border: 2px solid #17246c;
-    color: #17246c;
+    border: 2px solid rgba(196, 220, 249, 0.6);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.2s ease;
   }
 
   .related-link:hover {
-    background: #17246c;
+    background: rgba(196, 220, 249, 0.2);
+    border-color: #ffffff;
     color: #fff;
   }
 
-  /* CTA Section */
-  .cta-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    text-align: center;
-    position: relative;
-  }
 
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
-  }
-
-  .cta-section h2 {
-    color: white;
-  }
-
-  .cta-section p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-  }
 
   /* Responsive */
   @media (max-width: 900px) {
@@ -665,5 +525,3 @@ const partnerQuote = {
   }
 </style>
 </BaseLayout>
-
-
