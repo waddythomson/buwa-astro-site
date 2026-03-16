@@ -57,11 +57,7 @@ const relatedServices = [
   </section>
 
   <!-- What We Build — VIDEO BG -->
-  <section class="video-bg-section">
-    <video class="section-video" autoplay muted loop playsinline>
-      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-    </video>
-    <div class="section-video-overlay"></div>
+  <section class="animated-bg-section">
     <div class="container section-content">
       <h2>What We Build</h2>
       
@@ -124,11 +120,7 @@ const relatedServices = [
   </section>
 
   <!-- How We Build — VIDEO BG -->
-  <section class="video-bg-section">
-    <video class="section-video" autoplay muted loop playsinline>
-      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-    </video>
-    <div class="section-video-overlay"></div>
+  <section class="animated-bg-section">
     <div class="container section-content">
       <h2>How We Build Your Website</h2>
       
@@ -175,11 +167,7 @@ const relatedServices = [
   </section>
 
   <!-- Why BuWa — VIDEO BG -->
-  <section class="video-bg-section">
-    <video class="section-video" autoplay muted loop playsinline>
-      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-    </video>
-    <div class="section-video-overlay"></div>
+  <section class="animated-bg-section">
     <div class="container section-content">
       <h2>Why Choose BuWa Digital?</h2>
       <div class="why-grid">
@@ -219,11 +207,7 @@ const relatedServices = [
   </section>
 
   <!-- Related Services — VIDEO BG -->
-  <section class="video-bg-section">
-    <video class="section-video" autoplay muted loop playsinline>
-      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
-    </video>
-    <div class="section-video-overlay"></div>
+  <section class="animated-bg-section">
     <div class="container section-content related-content">
       <h2>Services That Pair Well With Web Design</h2>
       <p class="related-desc">A great website is just the beginning. Pair it with digital marketing to drive traffic and convert more customers.</p>
@@ -302,27 +286,9 @@ const relatedServices = [
   /* ========================
      VIDEO BACKGROUND SECTIONS
      ======================== */
-  .video-bg-section {
+  .animated-bg-section {
     position: relative;
     overflow: hidden;
-  }
-
-  .section-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .section-video-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(10, 20, 50, 0.55);
-    z-index: 1;
   }
 
   .section-content {
@@ -330,39 +296,39 @@ const relatedServices = [
     z-index: 2;
   }
 
-  .video-bg-section h2 {
+  .animated-bg-section h2 {
     color: white;
   }
 
   /* Cards on video backgrounds — navy with white text */
-  .video-bg-section .benefit-card,
-  .video-bg-section .why-card {
+  .animated-bg-section .benefit-card,
+  .animated-bg-section .why-card {
     background: rgba(12, 30, 67, 0.85);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .video-bg-section .benefit-content h3,
-  .video-bg-section .why-card h3 {
+  .animated-bg-section .benefit-content h3,
+  .animated-bg-section .why-card h3 {
     color: white;
   }
 
-  .video-bg-section .benefit-content p,
-  .video-bg-section .why-card p {
+  .animated-bg-section .benefit-content p,
+  .animated-bg-section .why-card p {
     color: rgba(210, 232, 255, 0.9);
   }
 
   /* Process steps on video — keep white cards */
-  .video-bg-section .process-step {
+  .animated-bg-section .process-step {
     background: white;
     color: #2d3748;
   }
 
-  .video-bg-section .process-step h3 {
+  .animated-bg-section .process-step h3 {
     color: #1a202c;
   }
 
-  .video-bg-section .process-step p {
+  .animated-bg-section .process-step p {
     color: #4a5568;
   }
 

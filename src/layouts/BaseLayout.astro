@@ -1,6 +1,5 @@
 ---
 import Header from '../components/Header.astro';
-import HomeHeader from '../components/HomeHeader.astro';
 import Footer from '../components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
 
@@ -23,7 +22,6 @@ export interface Props {
   tags?: string[];
   breadcrumbs?: Array<{ name: string; url: string }>;
   faq?: Array<{ question: string; answer: string }>;
-  useHomeHeader?: boolean;
 }
 
 const {
@@ -44,7 +42,6 @@ const {
   tags = [],
   breadcrumbs,
   faq = [],
-  useHomeHeader = false,
   hasTopHero = false,
 } = Astro.props;
 
@@ -281,7 +278,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   </script>
 </head>
 <body class={rootClassName}>
-  {useHomeHeader ? <HomeHeader /> : <Header />}
+  <Header />
 
   <main>
     <slot />
@@ -326,7 +323,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
             <textarea name="message" placeholder="How can we help? (optional)" rows="3"></textarea>
           </div>
           <button type="submit" class="contact-popup-submit">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
+            Send Message
           </button>
           <p class="contact-popup-disclaimer">By submitting this form, you agree to our <a href="/terms/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>. SMS messages are only sent if you opt in above.</p>
         </form>
@@ -408,9 +405,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     };
 
     // ── Global Contact Modal — ViewTransitions-compatible ──────────────
-    // Uses capture phase so our handler fires BEFORE Astro's ViewTransitions
-    // router intercepts the click, letting e.preventDefault() actually stop
-    // the navigation.
     document.addEventListener('astro:page-load', () => {
       const controller = new AbortController();
       const { signal } = controller;
@@ -438,7 +432,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }, 200);
       };
 
-      // capture: true — fires before ViewTransitions router so preventDefault works
       document.addEventListener('click', (e) => {
         const target = e.target.closest(
           'a[href="/contact-us/"], a[href="/contact-us"], button[data-contact-popup], .get-in-touch-popup'
@@ -473,7 +466,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         const submitBtn = contactForm.querySelector('.contact-popup-submit');
         const originalHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        submitBtn.innerHTML = 'Sending...';
 
         try {
           const formData = new FormData(contactForm);
@@ -491,10 +484,8 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     let gbpPopupController;
 
     document.addEventListener('astro:page-load', () => {
-      // Clean up previous listeners
       gbpPopupController?.abort();
 
-      // Only run on Google Business Profile page
       if (!window.location.pathname.includes('google-business-profile')) return;
 
       gbpPopupController = new AbortController();
@@ -503,7 +494,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       const popup = document.getElementById('gbp-popup');
       if (!popup) return;
 
-      // Check if scan was just requested (returning from form submission)
       if (window.location.search.includes('scan-requested=true')) {
         const formSide = document.querySelector('.popup-form-side');
         if (formSide) {
@@ -536,7 +526,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }
       };
 
-      // Auto-show popup after 1.5s if not seen before
       if (!window.location.search.includes('scan-requested=true')) {
         const autoTimer = setTimeout(() => {
           const hasSeenPopup = sessionStorage.getItem('gbp-popup-seen');
@@ -544,11 +533,9 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
             openPopup();
           }
         }, 1500);
-        // Clear timeout if navigating away before it fires
         signal.addEventListener('abort', () => clearTimeout(autoTimer));
       }
 
-      // Handle "Ask For A Free Scan" button clicks
       document.addEventListener('click', (e) => {
         const link = e.target.closest('a[href="#open-scan-popup"]');
         if (link) {
@@ -557,7 +544,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         }
       }, { signal });
 
-      // Close popup handlers
       const closeBtn = popup.querySelector('.popup-close');
       closeBtn?.addEventListener('click', closePopup, { signal });
       popup.addEventListener('click', (e) => {
@@ -567,7 +553,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
         if (e.key === 'Escape') closePopup();
       }, { signal });
 
-      // Handle popup form submission
       const popupForm = document.getElementById('popup-form');
       if (popupForm) {
         initSmsPreferenceGroup(popupForm);
@@ -597,7 +582,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       }
     });
 
-    // Clean up if navigating away while popup is open
     document.addEventListener('astro:before-swap', () => {
       gbpPopupController?.abort();
       const popup = document.getElementById('gbp-popup');
@@ -607,11 +591,9 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       }
     });
   </script>
+
   <script>
     // ── Mobile video prevention ─────────────────────────────────────────
-    // On mobile (<= 768px), strip source elements from section videos so the
-    // browser never downloads the video file. CSS hides the elements; this
-    // script prevents the network request entirely.
     document.addEventListener('astro:page-load', () => {
       if (window.innerWidth <= 768) {
         document.querySelectorAll('.section-video').forEach(video => {
@@ -624,8 +606,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   </script>
 
   <script>
-    // ViewTransitions does NOT replace the <html> element — only <body> is swapped.
-    // Keep html's page-type classes in sync manually on every SPA navigation.
+    // Keep html's page-type classes in sync with ViewTransitions
     document.addEventListener('astro:before-swap', () => {
       document.documentElement.classList.remove(
         'home-page', 'digital-home', 'secondary-top-hero',
@@ -667,11 +648,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   }
 
   /* ─── Page-transition animations (Astro View Transitions) ─── */
-  /*
-   * New page: slides up from below as a narrow card, then expands to fill
-   * the viewport — inspired by fluid.glass's reveal style.
-   * Old page: quick scale-down fade.
-   */
   @keyframes buwa-page-enter {
     from {
       clip-path: inset(0 7vw 0 7vw round 20px 20px 0 0);
@@ -710,14 +686,10 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     background: #081a43;
   }
 
-  /* Header is position:fixed on secondary-hero pages — it floats over the hero
-     with zero flow impact. The hero just needs enough padding-top so its
-     content clears the header. No negative margin tricks needed. */
   body.secondary-top-hero main > section.hero:first-child {
     padding-top: calc(3rem + var(--site-header-height, 94px));
   }
 
-  /* Headers use Inter */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', system-ui, sans-serif;
   }
@@ -731,7 +703,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     color: #a01c2b;
   }
 
-  /* Content pages styling */
   .content-page {
     max-width: 800px;
     margin: 0 auto;
@@ -744,7 +715,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     margin-bottom: 1.5rem;
   }
 
-  /* Intro paragraph (first p after h1) - bold and slightly larger */
   .content-page h1 + p {
     font-weight: 700;
     font-size: 1.1rem;
@@ -814,7 +784,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       0 2px 3px rgba(23, 36, 108, 0.3),
       0 1px 2px rgba(0, 0, 0, 0.15),
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
+  }
 
   /* Red button - 3D style */
   .btn-red {
@@ -849,7 +819,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       inset 0 1px 3px rgba(0, 0, 0, 0.15);
   }
 
-  /* Auto-style "Let's Talk!" links to /contact-us as navy 3D buttons */
   .content-page a[href="/contact-us/"] {
     display: inline-block;
     background: linear-gradient(to bottom, #1e2f8a 0%, #17246c 50%, #111b52 100%);
@@ -884,7 +853,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
-  /* Process Steps with numbered circles */
+  /* Process Steps */
   .process-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1147,7 +1116,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     }
   }
 
-  /* Global Contact Modal - matches video popup styling */
+  /* Global Contact Modal */
   .contact-modal {
     display: none;
     position: fixed;
@@ -1294,6 +1263,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    width: 100%;
   }
 
   .contact-popup-submit:hover:not(:disabled) {
@@ -1334,7 +1304,20 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   }
 
   /* ── Section video backgrounds ────────────────────────────────────── */
-  /* Dark navy fallback shown before video loads or on mobile */
+  /* Animated gradient — replaces static video sections on service pages */
+  .animated-bg-section {
+    background: linear-gradient(135deg, #0a1628, #0d2450, #1a3a6b, #0a1628);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Dark navy fallback for any remaining video-bg-sections */
   .video-bg-section {
     background: #08152e;
   }
