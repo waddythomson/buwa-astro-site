@@ -3229,12 +3229,17 @@ const bumpers = bumpersData;
     const siteHeader = document.querySelector('.site-header');
     const heroSection = document.querySelector('.hero');
     if (!menuToggle || !menuPanel || !siteHeader || !heroSection) return;
+    if (menuToggle.dataset.bound === 'true') return;
+    menuToggle.dataset.bound = 'true';
 
     const navFadeThreshold = 30;
     const controller = new AbortController();
     const { signal } = controller;
 
-    document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+    document.addEventListener('astro:before-swap', () => {
+      controller.abort();
+      delete menuToggle.dataset.bound;
+    }, { once: true });
 
     const closeHeaderMenu = () => {
       menuPanel.classList.remove('is-open');
@@ -3279,7 +3284,6 @@ const bumpers = bumpersData;
     }, { signal });
   }
 
-  initHeaderMenu();
   document.addEventListener('astro:page-load', initHeaderMenu);
 
   // Scroll reveal - add .visible when section enters viewport
