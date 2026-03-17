@@ -134,13 +134,14 @@ const structuredData = {
         <a href="/buwatv/signup/">Sign Up</a>
         <a href="/" target="_self">BuWa Digital</a>
       </nav>
+      <div class="footer-menu-legal">
+        <a href="/buwatv/privacy/">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/buwatv/terms/">Terms &amp; Conditions</a>
+      </div>
     </div>
     <div class="footer-legal">
       <p>&copy; {currentYear} BuWa TV</p>
-      <span class="footer-sep">&middot;</span>
-      <a href="/buwatv/privacy/">Privacy Policy</a>
-      <span class="footer-sep">&middot;</span>
-      <a href="/buwatv/terms/">Terms &amp; Conditions</a>
     </div>
   </footer>
 </body>
@@ -319,7 +320,7 @@ const structuredData = {
     text-align: center;
     will-change: transform;
     pointer-events: none;
-    z-index: 1200;
+    z-index: 980;
   }
 
   .footer-menu-panel.is-visible {
@@ -355,6 +356,26 @@ const structuredData = {
     color: #fff;
   }
 
+  .footer-menu-legal {
+    margin-top: 0.7rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-menu-legal a,
+  .footer-menu-legal span {
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.68rem;
+  }
+
+  .footer-menu-legal a:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
   .footer-legal {
     display: flex;
     align-items: center;
@@ -363,16 +384,10 @@ const structuredData = {
     flex-wrap: wrap;
   }
 
-  .footer-legal p,
-  .footer-legal a,
-  .footer-sep {
+  .footer-legal p {
     color: rgba(255, 255, 255, 0.56);
     font-size: 0.72rem;
     margin: 0;
-  }
-
-  .footer-legal a:hover {
-    color: rgba(255, 255, 255, 0.86);
   }
 
   @media (max-width: 768px) {
