@@ -75,56 +75,36 @@ const bumpers = bumpersData;
       <a href="/" class="header-logo">
         <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital">
       </a>
-      <nav class="header-nav">
-        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
-        <div class="nav-dropdown">
-          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-            Advertisers <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="nav-dropdown-menu">
-            <a href="#advertisers" class="scroll-link">Interested in Advertising?</a>
-            <a href="#partners" class="scroll-link">Our Partners</a>
-            <a href="/buwatv/locations/">Locations</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-            Host Partners <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="nav-dropdown-menu">
-            <a href="#host-partner" class="scroll-link">Become a Host Partner</a>
-            <a href="/buwatv/locations/#host-partner-locations">Our Host Partners</a>
-            <a href="/buwatv/locations/">Locations</a>
-          </div>
-        </div>
+      <nav class="main-nav" aria-label="BuWa TV menu">
+        <button type="button" class="menu-toggle" id="buwatvMenuToggle" aria-expanded="false" aria-controls="buwatvMenuPanel">
+          <span class="menu-pill-label" id="buwatvMenuLabel">Menu</span>
+          <span class="menu-chevron" aria-hidden="true">&#8964;</span>
+        </button>
       </nav>
       <div class="header-actions">
         <a href="#contact" class="btn btn-red header-cta open-contact-popup">
           <i class="fas fa-paper-plane"></i> Get In Touch
         </a>
-        <button class="mobile-menu-btn" id="mobile-menu-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
     </div>
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
-      <span class="mobile-link mobile-link-static">Advertisers</span>
-      <a href="#advertisers" class="mobile-link mobile-sub-link scroll-link">Interested in Advertising?</a>
-      <a href="#partners" class="mobile-link mobile-sub-link scroll-link">Our Partners</a>
-      <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
-      <span class="mobile-link mobile-link-static">Host Partners</span>
-      <a href="#host-partner" class="mobile-link mobile-sub-link scroll-link">Become a Host Partner</a>
-      <a href="/buwatv/locations/#host-partner-locations" class="mobile-link mobile-sub-link">Our Host Partners</a>
-      <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
-      <a href="#contact" class="btn btn-red mobile-cta open-contact-popup">
-        <i class="fas fa-paper-plane"></i> Get In Touch
-      </a>
-    </div>
   </header>
+  <div class="menu-overlay" id="buwatvMenuPanel" aria-hidden="true">
+    <div class="menu-panel" id="buwatvMenuCard">
+      <div class="menu-panel-top">
+        <span class="menu-title">Menu</span>
+      </div>
+      <nav class="menu-nav-primary">
+        <a href="/buwatv/" class="menu-item" data-roll-label="BuWa TV Home"><span class="menu-item-label">BuWa TV Home</span></a>
+        <a href="#advertisers" class="menu-item scroll-link" data-roll-label="Advertisers"><span class="menu-item-label">Advertisers</span></a>
+        <a href="#host-partner" class="menu-item scroll-link" data-roll-label="Host Partners"><span class="menu-item-label">Host Partners</span></a>
+        <a href="/buwatv/locations/" class="menu-item" data-roll-label="Locations"><span class="menu-item-label">Locations</span></a>
+        <a href="/buwatv/pricing/" class="menu-item" data-roll-label="Pricing"><span class="menu-item-label">Pricing</span></a>
+        <a href="/buwatv/faq/" class="menu-item" data-roll-label="FAQ"><span class="menu-item-label">FAQ</span></a>
+        <a href="/buwatv/signup/" class="menu-item" data-roll-label="Sign Up"><span class="menu-item-label">Sign Up</span></a>
+        <a href="/" class="menu-item" data-roll-label="BuWa Digital"><span class="menu-item-label">BuWa Digital</span></a>
+      </nav>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero section-accent-bar-bottom" id="see-it-in-action">
@@ -582,6 +562,10 @@ const bumpers = bumpersData;
   }
 
   .section-heading {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
     color: #f5f9ff;
   }
 
@@ -713,14 +697,6 @@ const bumpers = bumpersData;
     width: auto;
   }
 
-  .header-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    justify-self: center;
-  }
-
   .header-actions {
     display: flex;
     align-items: center;
@@ -728,88 +704,152 @@ const bumpers = bumpersData;
     gap: 16px;
     justify-self: end;
   }
-  .nav-dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
+
+  .main-nav {
+    justify-self: center;
   }
 
-  .nav-dropdown-toggle {
+  .menu-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: none;
-    border: none;
-    padding: 0;
+    gap: 0.45rem;
+    width: min(90vw, 138px);
+    height: 54px;
+    padding: 0.5rem 1.15rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    color: rgba(238, 246, 255, 0.96);
+    background: transparent;
     cursor: pointer;
-    font-size: 1rem;
   }
 
-  .nav-dropdown-toggle i {
-    font-size: 0.75rem;
-    color: currentColor;
+  .menu-pill-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .menu-chevron {
+    font-size: 0.88rem;
     transition: transform 0.2s ease;
   }
 
-  .nav-dropdown-menu {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    min-width: 220px;
-    background: var(--dropdown-bg);
-    border: 1px solid var(--dropdown-border);
-    border-radius: 10px;
-    box-shadow: var(--dropdown-shadow);
-    padding: 10px 0;
-    display: none;
-    flex-direction: column;
-    z-index: 1001;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  .nav-dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    right: 0;
-    height: 10px;
-  }
-
-  .nav-dropdown-menu a {
-    padding: 10px 16px;
-    color: var(--dropdown-link);
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .nav-dropdown-menu a:hover {
-    background: var(--dropdown-hover-bg);
-    color: var(--dropdown-hover-color);
-  }
-
-  .nav-dropdown:hover .nav-dropdown-menu,
-  .nav-dropdown:focus-within .nav-dropdown-menu {
-    display: flex;
-  }
-
-  .nav-dropdown:hover .nav-dropdown-toggle i,
-  .nav-dropdown:focus-within .nav-dropdown-toggle i {
+  .menu-toggle.is-open .menu-chevron {
     transform: rotate(180deg);
   }
 
-  .nav-link {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: rgba(238, 246, 255, 0.92);
-    font-size: 1rem;
-    transition: color 0.2s ease;
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1005;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
   }
 
-  .nav-link:hover {
-    color: #ffffff;
+  .menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .menu-panel {
+    position: fixed;
+    top: 88px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90vw, 360px);
+    padding: 1.5rem 1.5rem 1.25rem;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+
+  .menu-panel-top {
+    margin-bottom: 1rem;
+  }
+
+  .menu-title {
+    color: #e8f2ff;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+
+  .menu-nav-primary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .menu-item {
+    display: block;
+    color: transparent;
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-item-label {
+    display: block;
+    color: rgba(242, 248, 255, 0.85);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .menu-item::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.35rem 0.5rem;
+    text-align: center;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.2;
+    color: rgba(210, 224, 245, 0.45);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item .menu-item-label {
+    transform: translateY(-115%);
+    opacity: 0;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item::after {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item:hover .menu-item-label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item:hover::after {
+    transform: translateY(115%);
+    opacity: 0;
   }
 
   .header-cta {
@@ -817,82 +857,6 @@ const bumpers = bumpersData;
     font-size: 0.9rem;
   }
 
-  .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-  }
-
-  .mobile-menu-btn span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: rgba(245, 250, 255, 0.95);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-
-  .mobile-menu-btn.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    padding: 20px;
-    background: rgba(24, 28, 38, 0.88);
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-
-  .mobile-link {
-    display: block;
-    padding: 15px 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: rgba(237, 245, 255, 0.92);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .mobile-link-static {
-    cursor: default;
-  }
-
-  .mobile-sub-link {
-    padding-left: 14px;
-    font-size: 0.95rem;
-    color: #fff;
-    background: #17246c;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-  }
-
-  .mobile-sub-link:hover {
-    background: #a01c2b;
-    color: #fff;
-  }
-
-  .mobile-cta {
-    margin-top: 20px;
-    text-align: center;
-    justify-content: center;
-  }
 
   /* Buttons */
   .btn {
@@ -1423,7 +1387,7 @@ const bumpers = bumpersData;
 
   .how-it-works h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     color: #f5f9ff;
     margin-bottom: 60px;
   }
@@ -1497,7 +1461,7 @@ const bumpers = bumpersData;
 
   .benefits h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     color: white;
     margin-bottom: 60px;
   }
@@ -1586,7 +1550,7 @@ const bumpers = bumpersData;
   }
 
   .cta-section h2 {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     margin-bottom: 20px;
     color: #f5f9ff;
   }
@@ -1662,7 +1626,7 @@ const bumpers = bumpersData;
 
   .host-partner h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     color: white;
     margin-bottom: 15px;
   }
@@ -1760,8 +1724,8 @@ const bumpers = bumpersData;
 
   .carousel-title {
     text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 2.2rem;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 1.75rem;
     font-weight: 700;
     color: #f5f9ff;
     margin-bottom: 0.5rem;
@@ -1964,7 +1928,7 @@ const bumpers = bumpersData;
   }
 
   .services-text h2 {
-    font-size: 2.2rem;
+    font-size: 1.75rem;
     color: white;
     margin-bottom: 20px;
   }
@@ -2316,20 +2280,8 @@ const bumpers = bumpersData;
 
   /* Responsive */
   @media (max-width: 992px) {
-    .header-nav {
-      display: none;
-    }
-
     .header-cta {
       display: inline-flex;
-    }
-
-    .mobile-menu-btn {
-      display: flex;
-    }
-
-    .mobile-cta {
-      display: none;
     }
 
     .steps-grid,
@@ -2364,8 +2316,73 @@ const bumpers = bumpersData;
       display: none;
     }
 
-    .mobile-cta {
-      display: inline-flex;
+    .header-container {
+      padding: 12px 20px;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.5rem;
+    }
+
+    .main-nav {
+      justify-self: center;
+    }
+
+    .menu-toggle {
+      width: 54px;
+      min-width: 54px;
+      height: 46px;
+      padding: 0;
+      position: relative;
+      justify-content: center;
+    }
+
+    .menu-pill-label {
+      font-size: 0;
+      letter-spacing: 0;
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .menu-chevron {
+      display: none;
+    }
+
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 2px;
+      border-radius: 99px;
+      background: rgba(235, 245, 255, 0.95);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .menu-toggle::before {
+      transform: translate(-50%, -50%);
+      box-shadow: 0 -6px 0 rgba(235, 245, 255, 0.95), 0 6px 0 rgba(235, 245, 255, 0.95);
+    }
+
+    .menu-toggle::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+      opacity: 0;
+    }
+
+    .menu-toggle.is-open::before {
+      box-shadow: none;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .menu-toggle.is-open::after {
+      opacity: 1;
+    }
+
+    .menu-panel {
+      width: min(92vw, 340px);
+      top: 74px;
     }
 
     .hero {
@@ -2432,7 +2449,7 @@ const bumpers = bumpersData;
     .cta-section h2,
     .services-text h2,
     .host-partner h2 {
-      font-size: 1.8rem;
+      font-size: 1.55rem;
     }
 
     .video-popup {
@@ -2492,7 +2509,7 @@ const bumpers = bumpersData;
     }
 
     .carousel-title {
-      font-size: 1.8rem;
+      font-size: 1.55rem;
     }
 
     .logo-track {
@@ -2937,12 +2954,15 @@ const bumpers = bumpersData;
             behavior: 'smooth'
           });
           
-          // Close mobile menu if open
-          const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-          const mobileMenu = document.getElementById('mobile-menu');
-          if (mobileMenu.classList.contains('active')) {
-            mobileMenuBtn.classList.remove('active');
-            mobileMenu.classList.remove('active');
+          // Close header menu overlay after selecting a link
+          const menuToggle = document.getElementById('buwatvMenuToggle');
+          const menuPanel = document.getElementById('buwatvMenuPanel');
+          if (menuPanel?.classList.contains('is-open')) {
+            menuPanel.classList.remove('is-open');
+            menuPanel.setAttribute('aria-hidden', 'true');
+            menuToggle?.setAttribute('aria-expanded', 'false');
+            menuToggle?.classList.remove('is-open');
+            document.querySelector('.site-header')?.classList.remove('menu-open');
           }
         }
       }
@@ -3130,12 +3150,12 @@ const bumpers = bumpersData;
       if (contactOverlay.classList.contains('active')) {
         closeContactPopup();
       }
+      closeHeaderMenu();
     }
   });
 
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const menuToggle = document.getElementById('buwatvMenuToggle');
+  const menuPanel = document.getElementById('buwatvMenuPanel');
   const siteHeader = document.querySelector('.site-header');
   const heroSection = document.querySelector('.hero');
 
@@ -3151,19 +3171,26 @@ const bumpers = bumpersData;
   window.addEventListener('scroll', syncHeaderState, { passive: true });
   window.addEventListener('resize', syncHeaderState);
 
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    siteHeader?.classList.toggle('menu-open', mobileMenu.classList.contains('active'));
+  const closeHeaderMenu = () => {
+    menuPanel?.classList.remove('is-open');
+    menuPanel?.setAttribute('aria-hidden', 'true');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    menuToggle?.classList.remove('is-open');
+    siteHeader?.classList.remove('menu-open');
+  };
+
+  menuToggle?.addEventListener('click', () => {
+    if (!menuPanel) return;
+    const nextOpen = !menuPanel.classList.contains('is-open');
+    menuPanel.classList.toggle('is-open', nextOpen);
+    menuPanel.setAttribute('aria-hidden', nextOpen ? 'false' : 'true');
+    menuToggle.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+    menuToggle.classList.toggle('is-open', nextOpen);
+    siteHeader?.classList.toggle('menu-open', nextOpen);
   });
 
-  // Close mobile menu when clicking a link
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenuBtn.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      siteHeader?.classList.remove('menu-open');
-    });
+  menuPanel?.addEventListener('click', (event) => {
+    if (event.target === menuPanel) closeHeaderMenu();
   });
 
   // Scroll reveal - add .visible when section enters viewport
