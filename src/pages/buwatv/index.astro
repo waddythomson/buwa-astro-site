@@ -715,29 +715,51 @@ const bumpers = bumpersData;
   }
 
   .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    width: auto;
-    height: 54px;
-    padding: 0.4rem 0.2rem;
+    color: rgba(236, 245, 255, 0.96);
     border: none;
-    color: rgba(238, 246, 255, 0.96);
+    border-radius: 0;
+    width: min(90vw, 272px);
+    height: 54px;
+    padding: 0.5rem 1.15rem;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
     background: transparent;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .menu-pill-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.76rem;
-    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 500;
+    letter-spacing: 0.11em;
+    font-size: 0.84rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .menu-toggle.is-open {
+    background: transparent;
+  }
+
+  .menu-toggle:hover {
+    background: transparent;
+    transform: translateY(-1px);
+  }
+
+  .menu-toggle:active {
+    transform: translateY(0);
   }
 
   .menu-chevron {
-    font-size: 0.88rem;
-    transition: transform 0.2s ease;
+    display: inline-block;
+    margin-left: 0.35em;
+    font-size: 0.78em;
+    line-height: 1;
+    vertical-align: middle;
+    transition: transform 0.22s ease;
+    opacity: 0.75;
   }
 
   .menu-toggle.is-open .menu-chevron {

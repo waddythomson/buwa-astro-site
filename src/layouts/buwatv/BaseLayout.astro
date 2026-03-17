@@ -124,22 +124,17 @@ const structuredData = {
   
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="footer-menu-shell">
-      <button type="button" class="footer-menu-toggle" id="buwatvFooterMenuToggle" aria-expanded="false" aria-controls="buwatvFooterMenuPanel">
-        Menu
-      </button>
-      <div class="footer-menu-overlay" id="buwatvFooterMenuPanel" aria-hidden="true">
-        <div class="footer-menu-panel">
-          <span class="footer-menu-label">Menu</span>
-          <nav class="footer-menu-links">
-            <a href="/buwatv/">BuWa TV Home</a>
-            <a href="/buwatv/pricing/">Pricing</a>
-            <a href="/buwatv/locations/">Locations</a>
-            <a href="/buwatv/faq/">FAQ</a>
-            <a href="/buwatv/signup/">Sign Up</a>
-            <a href="/" target="_self">BuWa Digital</a>
-          </nav>
-        </div>
+    <div class="footer-reveal" id="buwatvFooterReveal">
+      <div class="footer-menu-panel" id="buwatvFooterPanel">
+        <span class="footer-menu-label">Menu</span>
+        <nav class="footer-menu-links">
+          <a href="/buwatv/">BuWa TV Home</a>
+          <a href="/buwatv/pricing/">Pricing</a>
+          <a href="/buwatv/locations/">Locations</a>
+          <a href="/buwatv/faq/">FAQ</a>
+          <a href="/buwatv/signup/">Sign Up</a>
+          <a href="/" target="_self">BuWa Digital</a>
+        </nav>
       </div>
     </div>
     <div class="footer-legal">
@@ -155,34 +150,39 @@ const structuredData = {
 
 <script is:inline>
   document.addEventListener('astro:page-load', () => {
-    const toggle = document.getElementById('buwatvFooterMenuToggle');
-    const panel = document.getElementById('buwatvFooterMenuPanel');
-    if (!toggle || !panel) return;
+    const reveal = document.getElementById('buwatvFooterReveal');
+    const panel = document.getElementById('buwatvFooterPanel');
+    if (!reveal || !panel) return;
 
-    const close = () => {
-      panel.classList.remove('is-open');
-      panel.setAttribute('aria-hidden', 'true');
-      toggle.setAttribute('aria-expanded', 'false');
+    const measure = () => {
+      panel.style.transform = 'translateY(0)';
+      const panelHeight = panel.offsetHeight;
+      reveal.style.height = `${panelHeight}px`;
+      panel.style.transform = 'translateY(100%)';
+      return panelHeight;
     };
 
-    const open = () => {
-      panel.classList.add('is-open');
-      panel.setAttribute('aria-hidden', 'false');
-      toggle.setAttribute('aria-expanded', 'true');
+    let panelHeight = measure();
+
+    const update = () => {
+      const rect = reveal.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / Math.max(panelHeight, 1)));
+      panel.style.transform = `translateY(${(1 - progress) * 100}%)`;
     };
 
-    toggle.addEventListener('click', () => {
-      if (panel.classList.contains('is-open')) close();
-      else open();
-    });
+    const onResize = () => {
+      panelHeight = measure();
+      update();
+    };
 
-    panel.addEventListener('click', (event) => {
-      if (event.target === panel) close();
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') close();
-    });
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', onResize);
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', onResize);
+    }, { once: true });
   });
 </script>
 
@@ -258,51 +258,16 @@ const structuredData = {
     position: relative;
   }
 
-  .footer-menu-shell {
+  .footer-reveal {
+    overflow: hidden;
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     margin-bottom: 1.35rem;
   }
 
-  .footer-menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 112px;
-    height: 46px;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(30, 30, 35, 0.55);
-    color: rgba(240, 247, 255, 0.95);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.76rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-
-  .footer-menu-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1100;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-  }
-
-  .footer-menu-overlay.is-open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
   .footer-menu-panel {
-    position: fixed;
-    left: 50%;
-    bottom: 84px;
-    transform: translateX(-50%);
+    transform: translateY(100%);
     width: min(90vw, 360px);
     padding: 1.5rem 1.5rem 1.25rem;
     border-radius: 14px;
@@ -312,6 +277,7 @@ const structuredData = {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     text-align: center;
+    will-change: transform;
   }
 
   .footer-menu-label {
