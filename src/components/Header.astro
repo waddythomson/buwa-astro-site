@@ -270,9 +270,8 @@ const trustedItems = [
     const updateNavVisibility = () => {
       if (!siteHeader) return;
       const scrolled = window.scrollY > navFadeThreshold;
-      const nearBottom = siteFooter
-        ? siteFooter.getBoundingClientRect().top <= window.innerHeight + 80
-        : false;
+      const scrollRemaining = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
+      const nearBottom = scrollRemaining < 60;
 
       siteHeader.classList.toggle('nav-hidden', scrolled);
 
