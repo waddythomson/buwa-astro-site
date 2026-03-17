@@ -1363,17 +1363,6 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     text-align: center;
   }
 
-  /* Subtle scrim so heading text stays legible over the video */
-  .animated-bg-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(5, 15, 45, 0.35);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Content inside animated-bg-section sits above the scrim */
   .animated-bg-section > * {
     position: relative;
     z-index: 1;
