@@ -99,6 +99,7 @@ const bumpers = bumpersData;
         <a href="/buwatv/pricing/" class="menu-item" data-roll-label="Pricing"><span class="menu-item-label">Pricing</span></a>
         <a href="/buwatv/faq/" class="menu-item" data-roll-label="FAQ"><span class="menu-item-label">FAQ</span></a>
         <a href="/buwatv/signup/" class="menu-item" data-roll-label="Sign Up"><span class="menu-item-label">Sign Up</span></a>
+        <a href="#contact" class="menu-item open-contact-popup" data-roll-label="Contact Us"><span class="menu-item-label">Contact Us</span></a>
         <a href="/" class="menu-item" data-roll-label="BuWa Digital"><span class="menu-item-label">BuWa Digital</span></a>
       </nav>
     </div>
@@ -709,6 +710,12 @@ const bumpers = bumpersData;
   }
 
   .site-header.nav-hidden .main-nav {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .site-header.nav-hidden .header-cta {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -3132,6 +3139,16 @@ const bumpers = bumpersData;
   openContactBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      const menuToggle = document.getElementById('buwatvMenuToggle');
+      const menuPanel = document.getElementById('buwatvMenuPanel');
+      const siteHeader = document.querySelector('.site-header');
+      if (menuPanel && menuToggle && siteHeader) {
+        menuPanel.classList.remove('is-open');
+        menuPanel.setAttribute('aria-hidden', 'true');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.classList.remove('is-open');
+        siteHeader.classList.remove('menu-open');
+      }
       openContactPopup();
     });
   });
