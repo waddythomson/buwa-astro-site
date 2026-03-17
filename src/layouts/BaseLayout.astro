@@ -1385,10 +1385,12 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     color: rgba(210, 232, 255, 0.9);
   }
 
-  /* Cards on transparent video sections — frosted navy with white text */
+  /* Cards on transparent video sections — frosted gray with white text */
   .animated-bg-section .benefit-card,
   .animated-bg-section .why-card {
-    background: rgba(12, 30, 67, 0.85);
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
