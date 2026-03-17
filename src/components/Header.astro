@@ -41,32 +41,33 @@ const trustedItems = [
     <div class="menu-panel-top">
       <span class="menu-title">Menu</span>
     </div>
-    <div class="menu-body">
-      <div class="menu-primary">
-        <button type="button" class="menu-item" data-menu-key="seen" data-roll-label="Be Seen"><span class="menu-item-label">Be Seen</span></button>
-        <button type="button" class="menu-item" data-menu-key="trusted" data-roll-label="Be Trusted"><span class="menu-item-label">Be Trusted</span></button>
-        <a href="/about-us/" class="menu-item" data-roll-label="Who We Are"><span class="menu-item-label">Who We Are</span></a>
-        <a href="/contact-us/" class="menu-item" data-roll-label="Contact"><span class="menu-item-label">Contact</span></a>
-        <a href="/partners/" class="menu-item" data-roll-label="Our Partners"><span class="menu-item-label">Our Partners</span></a>
+
+    <div class="menu-services">
+      <div class="menu-svc-group">
+        <h4>Be Seen</h4>
+        {seenItems.map((item) => (
+          <a href={item.href} class="menu-subitem" data-roll-label={item.label}>
+            <span class="menu-subitem-label">{item.label}</span>
+          </a>
+        ))}
       </div>
-      <div class="menu-secondary">
-        <div class="menu-submenu" data-menu-section="seen">
-          <h4>Be Seen</h4>
-          {seenItems.map((item) => (
-            <a href={item.href} class="menu-subitem" data-roll-label={item.label}>
-              <span class="menu-subitem-label">{item.label}</span>
-            </a>
-          ))}
-        </div>
-        <div class="menu-submenu" data-menu-section="trusted">
-          <h4>Be Trusted</h4>
-          {trustedItems.map((item) => (
-            <a href={item.href} class="menu-subitem" data-roll-label={item.label}>
-              <span class="menu-subitem-label">{item.label}</span>
-            </a>
-          ))}
-        </div>
+      <div class="menu-svc-group">
+        <h4>Be Trusted</h4>
+        {trustedItems.map((item) => (
+          <a href={item.href} class="menu-subitem" data-roll-label={item.label}>
+            <span class="menu-subitem-label">{item.label}</span>
+          </a>
+        ))}
       </div>
+    </div>
+
+    <nav class="menu-nav-primary">
+      <a href="/partners/" class="menu-item" data-roll-label="Our Partners"><span class="menu-item-label">Our Partners</span></a>
+      <a href="/about-us/" class="menu-item" data-roll-label="Who We Are"><span class="menu-item-label">Who We Are</span></a>
+    </nav>
+
+    <div class="menu-panel-cta">
+      <a href="/contact-us/">&#8594; Contact Us</a>
     </div>
   </div>
 </div>
@@ -79,38 +80,17 @@ const trustedItems = [
     // Clean up all listeners before next navigation
     document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
 
+    const siteHeader = document.getElementById('siteHeader');
     const menuToggle = document.getElementById('siteMenuToggle');
     const menuToggleLabel = document.getElementById('siteMenuLabel');
     const menuPanel = document.getElementById('siteMenuPanel');
     const menuCard = document.getElementById('siteMenuCard');
-    const menuPrimaryButtons = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-key]')) : [];
-    const menuSubmenus = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-section]')) : [];
-
-    const setMenuSection = (key) => {
-      if (!key) return;
-      menuPrimaryButtons.forEach((button) => {
-        button.classList.toggle('is-active', button.dataset.menuKey === key);
-      });
-      menuSubmenus.forEach((section) => {
-        section.classList.toggle('is-active', section.dataset.menuSection === key);
-      });
-      menuCard?.classList.add('has-submenu');
-    };
-
-    const clearMenuSection = () => {
-      menuPrimaryButtons.forEach((button) => button.classList.remove('is-active'));
-      menuSubmenus.forEach((section) => section.classList.remove('is-active'));
-      menuCard?.classList.remove('has-submenu');
-    };
 
     const positionMenuCard = () => {
-      if (!menuToggle || !menuCard) return;
-      const rect = menuToggle.getBoundingClientRect();
+      if (!menuCard) return;
       const headerRect = siteHeader?.getBoundingClientRect();
-      const top = (headerRect ? headerRect.bottom : rect.bottom) + 2;
-      const left = rect.left + (rect.width / 2);
+      const top = headerRect ? headerRect.bottom + 2 : 60;
       menuCard.style.setProperty('--menu-top', `${top.toFixed(1)}px`);
-      menuCard.style.setProperty('--menu-left', `${left.toFixed(1)}px`);
     };
 
     const openMenuPanel = () => {
@@ -130,7 +110,6 @@ const trustedItems = [
       menuToggle.setAttribute('aria-expanded', 'false');
       menuToggle.classList.remove('is-open');
       if (menuToggleLabel) menuToggleLabel.textContent = 'Menu';
-      clearMenuSection();
     };
 
     menuToggle?.addEventListener('click', () => {
@@ -140,12 +119,6 @@ const trustedItems = [
       } else {
         openMenuPanel();
       }
-    });
-
-    menuPrimaryButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        setMenuSection(button.dataset.menuKey);
-      });
     });
 
     menuPanel?.addEventListener('click', (event) => {
@@ -160,7 +133,6 @@ const trustedItems = [
       if (menuPanel?.classList.contains('is-open')) positionMenuCard();
     }, { signal });
 
-    const siteHeader = document.getElementById('siteHeader');
     const headerLogo = siteHeader?.querySelector('.logo');
     const path = window.location.pathname.replace(/\/+$/, '') || '/';
     const isHomePage = document.body.classList.contains('home-page')
@@ -501,241 +473,69 @@ const trustedItems = [
 
   .menu-panel {
     position: fixed;
-    top: var(--menu-top, 110px);
-    left: var(--menu-left, 50%);
+    top: var(--menu-top, 60px);
+    left: 50%;
     transform: translateX(-50%);
-    width: min(90vw, 272px);
-    padding: 1rem;
-    background: rgba(12, 30, 67, 0.94);
-    border: 1px solid rgba(187, 212, 246, 0.35);
-    backdrop-filter: blur(12px);
-    transition: width 0.18s ease;
-  }
-
-  .menu-panel.has-submenu {
-    width: min(92vw, 580px);
-    padding-top: 1.1rem;
-    padding-bottom: 1.1rem;
+    width: min(90vw, 420px);
+    padding: 2rem 2rem 1.5rem;
+    background: rgba(30, 30, 35, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 14px;
+    text-align: center;
   }
 
   .menu-panel-top {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
   }
 
   .menu-title {
     color: #e8f2ff;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     font-weight: 500;
-    opacity: 0.9;
+    opacity: 0.7;
   }
 
-  .menu-body {
+  /* Service link groups */
+  .menu-services {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    justify-items: center;
-  }
-
-  .menu-primary {
-    padding-right: 0;
-    width: min(100%, 170px);
-    margin: 0 auto;
-  }
-
-  .menu-primary a,
-  .menu-primary button {
-    display: block;
-    color: transparent;
-    text-decoration: none;
-    padding: 0.46rem 0.5rem;
-    font-size: 1.08rem;
-    font-weight: 650;
-    line-height: 1.2;
-    width: 100%;
-    text-align: center;
-    border: none;
-    background: transparent;
-    border-radius: 8px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.18s ease, transform 0.18s ease;
-  }
-
-  .menu-primary button[data-menu-key] {
-    padding-right: 1.35rem;
-  }
-
-  .menu-primary button[data-menu-key]::before {
-    content: '\203A';
-    position: absolute;
-    right: 0.35rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.02rem;
-    line-height: 1;
-    color: rgba(206, 222, 245, 0.58);
-    transition: color 0.18s ease, transform 0.18s ease;
-    pointer-events: none;
-  }
-
-  .menu-item-label {
-    display: block;
-    color: #f2f8ff;
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform 0.22s ease, opacity 0.22s ease;
-  }
-
-  .menu-primary .menu-item::after {
-    content: attr(data-roll-label);
-    position: absolute;
-    inset: 0;
-    display: block;
-    padding: 0.46rem 0.5rem;
-    text-align: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: 1.2;
-    letter-spacing: inherit;
-    color: rgba(210, 224, 245, 0.58);
-    transform: translateY(115%);
-    opacity: 0;
-    transition: transform 0.22s ease, opacity 0.22s ease;
-    pointer-events: none;
-  }
-
-  .menu-primary:has(.menu-item:hover) .menu-item .menu-item-label {
-    transform: translateY(-115%);
-    opacity: 0;
-  }
-
-  .menu-primary:has(.menu-item:hover) .menu-item::after {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .menu-primary:has(.menu-item:hover) .menu-item:hover .menu-item-label,
-  .menu-primary:has(.menu-item:hover) .menu-item.is-active .menu-item-label {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .menu-primary:has(.menu-item:hover) .menu-item:hover::after,
-  .menu-primary:has(.menu-item:hover) .menu-item.is-active::after {
-    transform: translateY(115%);
-    opacity: 0;
-  }
-
-  .menu-primary a:hover,
-  .menu-primary button:hover,
-  .menu-primary button.is-active {
-    background: transparent;
-    transform: none;
-  }
-
-  .menu-primary button[data-menu-key]:hover::before,
-  .menu-primary button[data-menu-key].is-active::before {
-    color: rgba(238, 248, 255, 0.9);
-    transform: translateY(-50%) translateX(1px);
-  }
-
-  .menu-secondary {
-    display: none;
-    padding-left: 0.2rem;
-    position: relative;
-  }
-
-  .menu-panel.has-submenu .menu-body {
-    grid-template-columns: minmax(190px, 240px) 1fr;
-    justify-items: stretch;
-    gap: 1.15rem;
-  }
-
-  .menu-panel.has-submenu .menu-primary {
-    border-right: 1px solid rgba(194, 217, 248, 0.28);
-    padding-right: 0.75rem;
-    width: auto;
-    margin: 0;
-  }
-
-  .menu-panel.has-submenu .menu-primary a,
-  .menu-panel.has-submenu .menu-primary button {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
     text-align: left;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.25rem;
   }
 
-  .menu-panel.has-submenu .menu-secondary {
-    display: block;
-  }
-
-  .menu-panel.has-submenu .menu-panel-top {
-    justify-content: flex-start;
-    position: relative;
-    margin-bottom: 0.95rem;
-    padding-bottom: 0.55rem;
-  }
-
-  .menu-panel.has-submenu .menu-panel-top::after {
-    content: '';
-    position: absolute;
-    left: 0.5rem;
-    right: 0.5rem;
-    bottom: 0;
-    height: 1px;
-    background: rgba(200, 220, 245, 0.28);
-    pointer-events: none;
-  }
-
-  .menu-panel.has-submenu .menu-title {
-    padding-left: 0.5rem;
-  }
-
-  .menu-submenu {
-    position: relative;
-    display: none;
-    opacity: 0;
-    transform: translateX(10px);
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-
-  .menu-submenu.is-active {
-    display: block;
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-  }
-
-  .menu-submenu h4 {
-    margin: 0 0 0.65rem;
-    font-size: 0.62rem;
+  .menu-svc-group h4 {
+    margin: 0 0 0.45rem;
+    font-size: 0.58rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: #dcecff;
     font-weight: 500;
-    opacity: 0.9;
+    opacity: 0.7;
   }
 
-  .menu-submenu .menu-subitem {
+  .menu-subitem {
     display: block;
     color: transparent;
     text-decoration: none;
-    padding: 0.42rem 0.2rem;
-    line-height: 1.25;
-    font-size: 0.95rem;
-    border-radius: 8px;
+    padding: 0.22rem 0;
+    font-size: 0.82rem;
+    line-height: 1.4;
     position: relative;
     overflow: hidden;
   }
 
   .menu-subitem-label {
     display: block;
-    color: #f2f8ff;
+    color: rgba(242, 248, 255, 0.8);
     transform: translateY(0);
     opacity: 1;
     transition: transform 0.22s ease, opacity 0.22s ease;
@@ -746,43 +546,118 @@ const trustedItems = [
     position: absolute;
     inset: 0;
     display: block;
-    padding: 0.42rem 0.2rem;
-    line-height: 1.25;
-    font-size: 0.95rem;
-    color: rgba(210, 224, 245, 0.58);
+    padding: 0.22rem 0;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: rgba(210, 224, 245, 0.45);
     transform: translateY(115%);
     opacity: 0;
     transition: transform 0.22s ease, opacity 0.22s ease;
     pointer-events: none;
   }
 
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem .menu-subitem-label {
+  .menu-svc-group:has(.menu-subitem:hover) .menu-subitem .menu-subitem-label {
     transform: translateY(-115%);
     opacity: 0;
   }
 
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem::after {
+  .menu-svc-group:has(.menu-subitem:hover) .menu-subitem::after {
     transform: translateY(0);
     opacity: 1;
   }
 
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem:hover .menu-subitem-label,
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem.is-active .menu-subitem-label,
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem[aria-current='page'] .menu-subitem-label {
+  .menu-svc-group:has(.menu-subitem:hover) .menu-subitem:hover .menu-subitem-label {
     transform: translateY(0);
     opacity: 1;
   }
 
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem:hover::after,
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem.is-active::after,
-  .menu-submenu:has(.menu-subitem:hover) .menu-subitem[aria-current='page']::after {
+  .menu-svc-group:has(.menu-subitem:hover) .menu-subitem:hover::after {
     transform: translateY(115%);
     opacity: 0;
   }
 
-  .menu-subitem:focus-visible {
-    outline: 1px solid rgba(222, 237, 255, 0.5);
-    outline-offset: 2px;
+  /* Primary nav links */
+  .menu-nav-primary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .menu-item {
+    display: block;
+    color: transparent;
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-item-label {
+    display: block;
+    color: #f2f8ff;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .menu-item::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.35rem 0.5rem;
+    text-align: center;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.2;
+    color: rgba(210, 224, 245, 0.45);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item .menu-item-label {
+    transform: translateY(-115%);
+    opacity: 0;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item::after {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item:hover .menu-item-label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item:hover::after {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+
+  /* CTA */
+  .menu-panel-cta a {
+    color: rgba(242, 248, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+
+  .menu-panel-cta a:hover {
+    color: #fff;
   }
 
   @media (max-width: 980px) {
@@ -807,30 +682,6 @@ const trustedItems = [
       justify-content: center;
       justify-self: center;
       z-index: auto;
-    }
-
-    .menu-panel {
-      width: min(90vw, 272px);
-    }
-
-    .menu-panel.has-submenu {
-      width: min(94vw, 560px);
-    }
-
-    .menu-panel.has-submenu .menu-body {
-      grid-template-columns: 1fr;
-    }
-
-    .menu-panel.has-submenu .menu-primary {
-      border-right: none;
-      border-bottom: 1px solid rgba(194, 217, 248, 0.28);
-      padding-right: 0;
-      padding-bottom: 0.65rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .menu-secondary {
-      min-height: 0;
     }
   }
 
@@ -903,12 +754,17 @@ const trustedItems = [
       font-size: 0.6rem;
     }
 
-    .menu-panel {
-      width: min(90vw, 272px);
+    .menu-services {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
-    .menu-panel.has-submenu {
-      width: min(96vw, 430px);
+    .menu-panel {
+      padding: 1.5rem 1.25rem 1.25rem;
+    }
+
+    .menu-item {
+      font-size: 1.15rem;
     }
   }
 
