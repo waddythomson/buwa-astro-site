@@ -184,6 +184,14 @@ const structuredData = {
       }
     };
 
+    const resetBottomMenu = () => {
+      progress = 0;
+      lockBottom = false;
+      applyProgress();
+    };
+
+    window.__buwatvResetBottomMenu = resetBottomMenu;
+
     const adjustProgress = (deltaY) => {
       if (!panelHeight) measure();
       const deltaProgress = Math.abs(deltaY) / Math.max(panelHeight, 1);
@@ -253,6 +261,7 @@ const structuredData = {
       window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('resize', measure);
       window.removeEventListener('scroll', onScrollLock);
+      try { delete window.__buwatvResetBottomMenu; } catch {}
     }, { once: true });
   });
 </script>

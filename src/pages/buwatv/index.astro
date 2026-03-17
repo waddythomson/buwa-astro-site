@@ -654,7 +654,7 @@ const bumpers = bumpersData;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 1600;
     background: transparent;
     border-bottom: 1px solid transparent;
     backdrop-filter: none;
@@ -776,7 +776,7 @@ const bumpers = bumpersData;
   .menu-overlay {
     position: fixed;
     inset: 0;
-    z-index: 1005;
+    z-index: 1605;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -3259,6 +3259,9 @@ const bumpers = bumpersData;
     window.addEventListener('resize', syncHeaderState, { signal });
 
     menuToggle.addEventListener('click', () => {
+      if (typeof window.__buwatvResetBottomMenu === 'function') {
+        window.__buwatvResetBottomMenu();
+      }
       const nextOpen = !menuPanel.classList.contains('is-open');
       menuPanel.classList.toggle('is-open', nextOpen);
       menuPanel.setAttribute('aria-hidden', nextOpen ? 'false' : 'true');
