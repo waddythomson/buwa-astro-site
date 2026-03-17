@@ -1821,27 +1821,51 @@ const bumpers = bumpersData;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 160px;
-  }
-
-  .logo-item img {
-    max-height: 140px;
-    max-width: 300px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    transition: all 0.3s ease;
+    height: 170px;
   }
 
   .logo-item a {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 260px;
+    height: 150px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(8, 14, 28, 0.28);
     cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .logo-item img:hover {
+  .logo-item > img {
+    width: 260px;
+    height: 150px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(8, 14, 28, 0.28);
+  }
+
+  .logo-item img {
+    max-height: 110px;
+    max-width: 220px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .logo-item a:hover,
+  .logo-item > img:hover {
     transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 12px 30px rgba(8, 14, 28, 0.34);
   }
 
   @keyframes scroll-logos {
@@ -2551,12 +2575,19 @@ const bumpers = bumpersData;
     }
 
     .logo-item {
-      height: 120px;
+      height: 136px;
+    }
+
+    .logo-item a,
+    .logo-item > img {
+      width: 210px;
+      height: 118px;
+      padding: 12px;
     }
 
     .logo-item img {
-      max-height: 100px;
-      max-width: 240px;
+      max-height: 84px;
+      max-width: 178px;
     }
 
     .logo-carousel-wrapper::before,
