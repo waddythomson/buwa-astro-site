@@ -175,7 +175,8 @@ const structuredData = {
       if (progress < 0.002) progress = 0;
       if (progress > 0.998) progress = 1;
       const hiddenPercent = (1 - progress) * 100;
-      panel.style.transform = `translate(-50%, ${hiddenPercent}%)`;
+      const hiddenOffsetPx = Math.round((1 - progress) * 16);
+      panel.style.transform = `translate(-50%, calc(${hiddenPercent}% + ${hiddenOffsetPx}px))`;
       panel.classList.toggle('is-visible', progress > 0.001);
       lockBottom = progress > 0;
       if (lockBottom) {
