@@ -107,6 +107,15 @@ const structuredData = {
 </head>
 
 <body>
+  <div class="buwatv-bg-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="/uploads/background/buwatv/background-main.webm" type="video/webm" />
+      <source src="/uploads/background/buwatv/background-main.mp4" type="video/mp4" />
+      <source src="/uploads/hero/0.mp4" type="video/mp4" />
+    </video>
+    <div class="buwatv-bg-overlay"></div>
+  </div>
+
   <!-- Header slot - pages provide their own header -->
   <slot name="header" />
   
@@ -169,6 +178,33 @@ const structuredData = {
   body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
+    background: #050914;
+    color: #eaf3ff;
+  }
+
+  .buwatv-bg-video {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+    background: #050914;
+  }
+
+  .buwatv-bg-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.1) contrast(1.05) brightness(0.7);
+  }
+
+  .buwatv-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(120, 170, 255, 0.2), transparent 52%),
+      radial-gradient(circle at 82% 78%, rgba(70, 120, 220, 0.18), transparent 45%),
+      linear-gradient(180deg, rgba(5, 10, 24, 0.72), rgba(4, 8, 20, 0.82));
   }
 
   h1, h2, h3, h4, h5, h6 {

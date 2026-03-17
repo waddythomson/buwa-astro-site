@@ -73,7 +73,7 @@ const bumpers = bumpersData;
   <header slot="header" class="site-header">
     <div class="header-container">
       <a href="/" class="header-logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+        <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital">
       </a>
       <nav class="header-nav">
         <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
@@ -563,9 +563,10 @@ const bumpers = bumpersData;
 
   body {
     font-family: 'Montserrat', sans-serif;
-    color: #333;
+    color: #eaf3ff;
     line-height: 1.6;
     overflow-x: hidden;
+    background: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -578,6 +579,10 @@ const bumpers = bumpersData;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+  }
+
+  .section-heading {
+    color: #f5f9ff;
   }
 
   .anchor-target {
@@ -667,14 +672,17 @@ const bumpers = bumpersData;
     left: 0;
     right: 0;
     z-index: 1000;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    --dropdown-bg: #fff;
-    --dropdown-border: rgba(23,36,108,0.2);
-    --dropdown-link: #17246c;
-    --dropdown-hover-bg: rgba(23,36,108,0.08);
-    --dropdown-hover-color: #a01c2b;
-    --dropdown-shadow: 0 18px 48px rgba(15,23,42,0.22);
+    background: rgba(30, 30, 35, 0.62);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.32);
+    --dropdown-bg: rgba(30, 30, 35, 0.84);
+    --dropdown-border: rgba(255, 255, 255, 0.16);
+    --dropdown-link: rgba(238, 246, 255, 0.92);
+    --dropdown-hover-bg: rgba(255, 255, 255, 0.08);
+    --dropdown-hover-color: #ffffff;
+    --dropdown-shadow: 0 18px 48px rgba(4, 10, 22, 0.55);
   }
 
   .header-container {
@@ -746,6 +754,8 @@ const bumpers = bumpersData;
     display: none;
     flex-direction: column;
     z-index: 1001;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .nav-dropdown-menu::before {
@@ -783,13 +793,13 @@ const bumpers = bumpersData;
   .nav-link {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    color: #17246c;
+    color: rgba(238, 246, 255, 0.92);
     font-size: 1rem;
     transition: color 0.2s ease;
   }
 
   .nav-link:hover {
-    color: #a01c2b;
+    color: #ffffff;
   }
 
   .header-cta {
@@ -811,7 +821,7 @@ const bumpers = bumpersData;
     display: block;
     width: 25px;
     height: 3px;
-    background: #333;
+    background: rgba(245, 250, 255, 0.95);
     border-radius: 2px;
     transition: all 0.3s ease;
   }
@@ -832,8 +842,10 @@ const bumpers = bumpersData;
     display: none;
     flex-direction: column;
     padding: 20px;
-    background: white;
-    border-top: 1px solid #eee;
+    background: rgba(24, 28, 38, 0.88);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .mobile-menu.active {
@@ -845,8 +857,8 @@ const bumpers = bumpersData;
     padding: 15px 0;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    color: #333;
-    border-bottom: 1px solid #eee;
+    color: rgba(237, 245, 255, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .mobile-link-static {
@@ -1396,13 +1408,13 @@ const bumpers = bumpersData;
   /* How It Works */
   .how-it-works {
     padding: 100px 0;
-    background: white;
+    background: transparent;
   }
 
   .how-it-works h2 {
     text-align: center;
     font-size: 2.5rem;
-    color: #17246c;
+    color: #f5f9ff;
     margin-bottom: 60px;
   }
 
@@ -1469,7 +1481,7 @@ const bumpers = bumpersData;
   /* Benefits */
   .benefits {
     padding: 60px 0 100px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     color: white;
   }
 
@@ -1554,9 +1566,9 @@ const bumpers = bumpersData;
   .cta-section {
     position: relative;
     padding: 100px 0;
-    color: #333;
+    color: #e8f2ff;
     text-align: center;
-    background: white;
+    background: transparent;
   }
 
   .cta-bg {
@@ -1566,12 +1578,12 @@ const bumpers = bumpersData;
   .cta-section h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #17246c;
+    color: #f5f9ff;
   }
 
   .cta-section > .container > p {
     font-size: 1.15rem;
-    color: #555;
+    color: rgba(232, 242, 255, 0.88);
     margin-bottom: 50px;
   }
 
@@ -1634,7 +1646,7 @@ const bumpers = bumpersData;
   /* Host Partner Section */
   .host-partner {
     padding: 100px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     color: white;
   }
 
@@ -1732,7 +1744,7 @@ const bumpers = bumpersData;
   /* Partner Logos Carousel */
   .partner-logos-section {
     padding: 60px 0;
-    background: white;
+    background: transparent;
     overflow: hidden;
   }
 
@@ -1741,7 +1753,7 @@ const bumpers = bumpersData;
     font-family: 'Inter', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: #f5f9ff;
     margin-bottom: 0.5rem;
   }
 
@@ -1749,7 +1761,7 @@ const bumpers = bumpersData;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
-    color: #555;
+    color: rgba(232, 242, 255, 0.82);
     margin-bottom: 40px;
   }
 
@@ -1772,12 +1784,12 @@ const bumpers = bumpersData;
 
   .logo-carousel-wrapper::before {
     left: 0;
-    background: linear-gradient(to right, #f5f5f5 0%, transparent 100%);
+    background: linear-gradient(to right, rgba(5, 10, 20, 0.88) 0%, transparent 100%);
   }
 
   .logo-carousel-wrapper::after {
     right: 0;
-    background: linear-gradient(to left, #e0e0e0 0%, transparent 100%);
+    background: linear-gradient(to left, rgba(5, 10, 20, 0.88) 0%, transparent 100%);
   }
 
   .logo-carousel {
@@ -1837,13 +1849,13 @@ const bumpers = bumpersData;
   /* Spotted Feed */
   .spotted-section {
     padding: 80px 0;
-    background: #f8fafc;
+    background: transparent;
   }
 
   .spotted-subtitle {
     text-align: center;
     font-size: 1.05rem;
-    color: #475569;
+    color: rgba(232, 242, 255, 0.82);
     max-width: 720px;
     margin: 0 auto 42px;
   }
@@ -1930,7 +1942,7 @@ const bumpers = bumpersData;
   /* Other Services */
   .other-services {
     padding: 100px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     color: white;
   }
 
