@@ -1,41 +1,20 @@
 ---
 const currentYear = new Date().getFullYear();
-const smsNumber = '8034032922';
-const smsMessage = "Hi, I'm interested in learning more about marketing services at BuWa Digital. My name is: ";
-const smsLink = `sms:${smsNumber}?&body=${encodeURIComponent(smsMessage)}`;
-const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(smsLink)}`;
 ---
 
 <footer class="site-footer">
   <div class="footer-container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" height="40" />
-        <p>Helping local businesses grow through smart, results-driven digital marketing.</p>
-      </div>
-
-      <div class="footer-links">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/about-us/">About Us</a></li>
-          <li><a href="/contact-us/">Contact Us</a></li>
-          <li><a href="/privacy-policy/">Privacy Policy</a></li>
-          <li><a href="/terms/">Terms & Conditions</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-contact">
-        <h4>Text Us</h4>
-        <p class="footer-contact-note">Scan or tap to text us.</p>
-        <a href={smsLink} class="footer-qr-link" aria-label="Text BuWa Digital">
-          <img src={smsQrUrl} alt="QR code to text BuWa Digital" class="footer-qr" loading="lazy" />
-        </a>
-        <a href={smsLink} class="footer-cta footer-cta-text">803-403-2922</a>
-      </div>
+    <div class="footer-brand">
+      <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" height="32" />
+      <p>Helping local businesses grow through smart, results-driven digital marketing.</p>
     </div>
 
     <div class="footer-bottom">
       <p>&copy; {currentYear} BuWa Digital. All rights reserved.</p>
+      <span class="footer-legal-sep">&middot;</span>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <span class="footer-legal-sep">&middot;</span>
+      <a href="/terms/">Terms &amp; Conditions</a>
     </div>
   </div>
 </footer>
@@ -44,19 +23,14 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
   .site-footer {
     background: transparent;
     color: white;
-    padding: 2.5rem 0 1.25rem;
+    padding: 1.5rem 0 1rem;
     position: relative;
     overflow: hidden;
   }
 
-  
-
   :global(body.home-page) .site-footer {
     margin-top: -1px;
-    padding-top: 1rem;
   }
-
-
 
   .footer-container {
     position: relative;
@@ -66,115 +40,63 @@ const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=
     padding: 0 2rem;
   }
 
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 1.5rem;
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .footer-brand img {
-    height: 40px;
+    height: 32px;
     width: auto;
-    margin-bottom: 1rem;
+    flex-shrink: 0;
   }
 
   .footer-brand p {
-    color: rgba(255,255,255,0.7);
-    line-height: 1.7;
-    font-size: 0.9rem;
-  }
-
-  .footer-links h4,
-  .footer-contact h4 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-
-  .footer-contact-note {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
     font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-
-  .footer-qr-link {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    background: white;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-  }
-
-  .footer-qr {
-    width: 140px;
-    height: 140px;
-    display: block;
-  }
-
-  .footer-links ul {
-    list-style: none;
-    padding: 0;
     margin: 0;
   }
 
-  .footer-links li {
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-links a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover {
-    color: #a01c2b;
-  }
-
-  .footer-cta {
-    display: inline-block;
-    background: #a01c2b;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.2s;
-  }
-
-  .footer-cta.footer-cta-text {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.4);
-    white-space: nowrap;
-  }
-
-  .footer-cta.footer-cta-text:hover {
-    background: rgba(255,255,255,0.12);
-  }
-
-  .footer-cta:hover {
-    background: #7d1521;
-  }
-
   .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.5);
-    padding-top: 1.25rem;
-    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .footer-bottom p {
-    color: rgba(255,255,255,0.5);
-    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .footer-legal-sep {
+    color: rgba(255,255,255,0.25);
+    font-size: 0.8rem;
+  }
+
+  .footer-bottom a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+
+  .footer-bottom a:hover {
+    color: rgba(255,255,255,0.7);
   }
 
   @media (max-width: 768px) {
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+    .footer-brand {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
   }
 </style>
