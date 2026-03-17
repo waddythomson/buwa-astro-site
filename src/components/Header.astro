@@ -64,11 +64,8 @@ const trustedItems = [
     <nav class="menu-nav-primary">
       <a href="/partners/" class="menu-item" data-roll-label="Our Partners"><span class="menu-item-label">Our Partners</span></a>
       <a href="/about-us/" class="menu-item" data-roll-label="Who We Are"><span class="menu-item-label">Who We Are</span></a>
+      <a href="/contact-us/" class="menu-item" data-roll-label="Contact Us"><span class="menu-item-label">Contact Us</span></a>
     </nav>
-
-    <div class="menu-panel-cta">
-      <a href="/contact-us/">&#8594; Contact Us</a>
-    </div>
   </div>
 </div>
 
@@ -582,9 +579,6 @@ const trustedItems = [
     flex-direction: column;
     align-items: center;
     gap: 0.15rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .menu-item {
@@ -645,21 +639,6 @@ const trustedItems = [
   .menu-nav-primary:has(.menu-item:hover) .menu-item:hover::after {
     transform: translateY(115%);
     opacity: 0;
-  }
-
-  /* CTA */
-  .menu-panel-cta a {
-    color: rgba(242, 248, 255, 0.8);
-    text-decoration: none;
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.15s ease;
-  }
-
-  .menu-panel-cta a:hover {
-    color: #fff;
   }
 
   @media (max-width: 980px) {
