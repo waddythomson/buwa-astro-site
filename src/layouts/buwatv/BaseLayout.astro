@@ -227,6 +227,12 @@ const structuredData = {
     };
 
     const onScrollLock = () => {
+      // Safety reset: if page has left the bottom region, fully close the panel state.
+      if (!isAtPageBottom() && progress > 0) {
+        progress = 0;
+        applyProgress();
+        return;
+      }
       if (lockBottom) {
         window.scrollTo(0, getPageBottomY());
       }
