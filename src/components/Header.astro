@@ -83,12 +83,8 @@ const trustedItems = [
     const menuToggleLabel = document.getElementById('siteMenuLabel');
     const menuPanel = document.getElementById('siteMenuPanel');
     const menuCard = document.getElementById('siteMenuCard');
-    const bottomNav = document.getElementById('bottomNav');
-    const bottomMenuToggle = document.getElementById('bottomMenuToggle');
     const menuPrimaryButtons = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-key]')) : [];
     const menuSubmenus = menuPanel ? Array.from(menuPanel.querySelectorAll('[data-menu-section]')) : [];
-
-    let openedFromBottom = false;
 
     const setMenuSection = (key) => {
       if (!key) return;
@@ -108,51 +104,32 @@ const trustedItems = [
     };
 
     const positionMenuCard = () => {
-      if (!menuCard) return;
-      if (openedFromBottom && bottomNav) {
-        menuCard.classList.add('is-bottom');
-        const navRect = bottomNav.getBoundingClientRect();
-        const bottom = window.innerHeight - navRect.top + 4;
-        menuCard.style.setProperty('--menu-bottom', `${bottom.toFixed(1)}px`);
-        menuCard.style.setProperty('--menu-left', `${(window.innerWidth / 2).toFixed(1)}px`);
-      } else if (menuToggle) {
-        menuCard.classList.remove('is-bottom');
-        const rect = menuToggle.getBoundingClientRect();
-        const headerRect = siteHeader?.getBoundingClientRect();
-        const top = (headerRect ? headerRect.bottom : rect.bottom) + 2;
-        const left = rect.left + (rect.width / 2);
-        menuCard.style.setProperty('--menu-top', `${top.toFixed(1)}px`);
-        menuCard.style.setProperty('--menu-left', `${left.toFixed(1)}px`);
-      }
+      if (!menuToggle || !menuCard) return;
+      const rect = menuToggle.getBoundingClientRect();
+      const headerRect = siteHeader?.getBoundingClientRect();
+      const top = (headerRect ? headerRect.bottom : rect.bottom) + 2;
+      const left = rect.left + (rect.width / 2);
+      menuCard.style.setProperty('--menu-top', `${top.toFixed(1)}px`);
+      menuCard.style.setProperty('--menu-left', `${left.toFixed(1)}px`);
     };
 
-    const openMenuPanel = (fromBottom = false) => {
-      if (!menuPanel) return;
-      openedFromBottom = fromBottom;
+    const openMenuPanel = () => {
+      if (!menuPanel || !menuToggle) return;
       positionMenuCard();
       menuPanel.classList.add('is-open');
       menuPanel.setAttribute('aria-hidden', 'false');
-      if (fromBottom) {
-        bottomMenuToggle?.classList.add('is-open');
-      } else if (menuToggle) {
-        menuToggle.setAttribute('aria-expanded', 'true');
-        menuToggle.classList.add('is-open');
-        if (menuToggleLabel) menuToggleLabel.textContent = 'Close';
-      }
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.classList.add('is-open');
+      if (menuToggleLabel) menuToggleLabel.textContent = 'Close';
     };
 
     const closeMenuPanel = () => {
-      if (!menuPanel) return;
+      if (!menuPanel || !menuToggle) return;
       menuPanel.classList.remove('is-open');
       menuPanel.setAttribute('aria-hidden', 'true');
-      menuCard?.classList.remove('is-bottom');
-      openedFromBottom = false;
-      if (menuToggle) {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('is-open');
-        if (menuToggleLabel) menuToggleLabel.textContent = 'Menu';
-      }
-      bottomMenuToggle?.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.classList.remove('is-open');
+      if (menuToggleLabel) menuToggleLabel.textContent = 'Menu';
       clearMenuSection();
     };
 
@@ -160,41 +137,23 @@ const trustedItems = [
       if (!menuPanel) return;
       if (menuPanel.classList.contains('is-open')) {
         closeMenuPanel();
-        if (wasNearBottom) userClosedAtBottom = true;
       } else {
-        openMenuPanel(false);
+        openMenuPanel();
       }
     });
-
-    bottomMenuToggle?.addEventListener('click', () => {
-      if (!menuPanel) return;
-      if (menuPanel.classList.contains('is-open')) {
-        closeMenuPanel();
-        userClosedAtBottom = true;
-      } else {
-        openMenuPanel(true);
-      }
-    }, { signal });
 
     menuPrimaryButtons.forEach((button) => {
       button.addEventListener('click', () => {
         setMenuSection(button.dataset.menuKey);
-        if (openedFromBottom) positionMenuCard();
       });
     });
 
     menuPanel?.addEventListener('click', (event) => {
-      if (event.target === menuPanel) {
-        closeMenuPanel();
-        if (wasNearBottom) userClosedAtBottom = true;
-      }
+      if (event.target === menuPanel) closeMenuPanel();
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        closeMenuPanel();
-        if (wasNearBottom) userClosedAtBottom = true;
-      }
+      if (event.key === 'Escape') closeMenuPanel();
     }, { signal });
 
     window.addEventListener('resize', () => {
@@ -244,40 +203,16 @@ const trustedItems = [
     };
 
     const navFadeThreshold = 30;
-    let wasNearBottom = false;
-    let userClosedAtBottom = false;
-    let bottomNavVisible = false;
 
     const updateNavVisibility = () => {
       if (!siteHeader) return;
       const scrolled = window.scrollY > navFadeThreshold;
       siteHeader.classList.toggle('nav-hidden', scrolled);
 
-      if (scrolled && !bottomNavVisible && menuPanel?.classList.contains('is-open')) {
+      if (scrolled && menuPanel?.classList.contains('is-open')) {
         closeMenuPanel();
       }
     };
-
-    if (bottomNav) {
-      const observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          bottomNavVisible = entry.isIntersecting;
-          if (entry.isIntersecting) {
-            if (!userClosedAtBottom && !menuPanel?.classList.contains('is-open')) {
-              userClosedAtBottom = false;
-              openMenuPanel(true);
-            }
-          } else {
-            if (menuPanel?.classList.contains('is-open') && openedFromBottom) {
-              closeMenuPanel();
-            }
-            userClosedAtBottom = false;
-          }
-        }
-      }, { threshold: 0.5 });
-      observer.observe(bottomNav);
-      controller.signal.addEventListener('abort', () => observer.disconnect());
-    }
 
     if (homeHero && headerLogo) {
       siteHeader?.classList.remove('after-hero');
@@ -977,9 +912,4 @@ const trustedItems = [
     }
   }
 
-  /* Upward-opening panel when triggered from bottom */
-  .menu-panel.is-bottom {
-    top: auto;
-    bottom: var(--menu-bottom, 60px);
-  }
 </style>

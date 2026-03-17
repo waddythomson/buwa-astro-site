@@ -1,12 +1,54 @@
 ---
 const currentYear = new Date().getFullYear();
+
+const seenItems = [
+  { label: 'BuWa TV Indoor Billboards', href: '/buwatv/' },
+  { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott-ads/' },
+  { label: 'Display | Geofencing', href: '/geofencing/' },
+  { label: 'Streaming Audio', href: '/streaming-audio/' },
+  { label: 'Pre-roll Ads', href: '/pre-roll-advertising/' },
+  { label: 'Youtube Advertising', href: '/youtube-ads/' },
+  { label: 'Social Media Advertising', href: '/social-media-ads/' },
+  { label: 'Pay Per Click', href: '/pay-per-click-ppc/' },
+];
+
+const trustedItems = [
+  { label: 'Website Design', href: '/website-design/' },
+  { label: 'Google Business Profile', href: '/google-business-profile/' },
+  { label: 'Social Media Management', href: '/social-media-management/' },
+  { label: 'Design Services', href: '/design/' },
+];
 ---
 
 <footer class="site-footer">
-  <div class="footer-nav" id="bottomNav">
-    <div class="footer-nav-inner">
-      <button type="button" class="footer-menu-toggle" id="bottomMenuToggle">Menu</button>
-      <a href="/contact-us/" class="footer-nav-cta">Contact us</a>
+  <div class="footer-menu">
+    <div class="footer-menu-panel">
+      <span class="footer-menu-label">Menu</span>
+
+      <nav class="footer-nav-primary">
+        <a href="/about-us/">Who We Are</a>
+        <a href="/contact-us/">Contact</a>
+        <a href="/partners/">Our Partners</a>
+      </nav>
+
+      <div class="footer-nav-services">
+        <div class="footer-nav-group">
+          <h4>Be Seen</h4>
+          {seenItems.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+        </div>
+        <div class="footer-nav-group">
+          <h4>Be Trusted</h4>
+          {trustedItems.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <div class="footer-panel-cta">
+        <a href="/contact-us/">&#8594; Contact Us</a>
+      </div>
     </div>
   </div>
 
@@ -23,7 +65,7 @@ const currentYear = new Date().getFullYear();
   .site-footer {
     background: transparent;
     color: white;
-    padding: 16rem 0 1rem;
+    padding: 14rem 0 1.25rem;
     position: relative;
   }
 
@@ -31,56 +73,103 @@ const currentYear = new Date().getFullYear();
     margin-top: -1px;
   }
 
-  .footer-nav {
+  .footer-menu {
     display: flex;
     justify-content: center;
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-menu-panel {
+    width: min(90vw, 420px);
+    padding: 2rem 2rem 1.5rem;
+    background: rgba(10, 24, 56, 0.92);
+    border: 1px solid rgba(187, 212, 246, 0.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .footer-menu-label {
+    display: block;
+    color: #e8f2ff;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-nav-primary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .footer-nav-primary a {
+    color: #f2f8ff;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 600;
+    padding: 0.35rem 0;
+    transition: color 0.15s ease;
+  }
+
+  .footer-nav-primary a:hover {
+    color: rgba(210, 224, 245, 0.55);
+  }
+
+  .footer-nav-services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    text-align: left;
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(200, 220, 245, 0.15);
+    border-bottom: 1px solid rgba(200, 220, 245, 0.15);
     margin-bottom: 1.25rem;
   }
 
-  .footer-nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 0.65rem 1.5rem;
-    background: linear-gradient(180deg, rgba(6, 17, 43, 0.78) 0%, rgba(4, 12, 32, 0.88) 100%);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(186, 212, 255, 0.2);
-    border-radius: 999px;
-  }
-
-  .footer-menu-toggle {
-    color: rgba(236, 245, 255, 0.96);
-    border: none;
-    background: transparent;
-    font-family: inherit;
+  .footer-nav-group h4 {
+    margin: 0 0 0.45rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    letter-spacing: 0.11em;
-    font-size: 0.84rem;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 0.35rem 0.6rem;
-    transition: opacity 0.2s ease;
-  }
-
-  .footer-menu-toggle:hover {
+    color: #dcecff;
+    font-weight: 500;
     opacity: 0.7;
   }
 
-  .footer-nav-cta {
+  .footer-nav-group a {
+    display: block;
+    color: rgba(242, 248, 255, 0.8);
     text-decoration: none;
-    background: #fff;
-    color: #102043;
-    border-radius: 999px;
-    padding: 0.48rem 0.85rem;
-    font-size: 0.73rem;
-    font-weight: 700;
-    transition: opacity 0.2s;
+    padding: 0.22rem 0;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    transition: color 0.15s ease;
   }
 
-  .footer-nav-cta:hover {
-    opacity: 0.85;
+  .footer-nav-group a:hover {
+    color: rgba(210, 224, 245, 0.5);
+  }
+
+  .footer-panel-cta a {
+    color: rgba(242, 248, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+
+  .footer-panel-cta a:hover {
+    color: #fff;
   }
 
   .footer-legal {
@@ -93,24 +182,39 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-legal p {
-    color: rgba(255,255,255,0.35);
-    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.72rem;
     margin: 0;
   }
 
   .footer-sep {
-    color: rgba(255,255,255,0.2);
-    font-size: 0.75rem;
+    color: rgba(255,255,255,0.15);
+    font-size: 0.72rem;
   }
 
   .footer-legal a {
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.3);
     text-decoration: none;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     transition: color 0.2s;
   }
 
   .footer-legal a:hover {
     color: rgba(255,255,255,0.6);
+  }
+
+  @media (max-width: 480px) {
+    .footer-menu-panel {
+      padding: 1.5rem 1.25rem 1.25rem;
+    }
+
+    .footer-nav-primary a {
+      font-size: 1.15rem;
+    }
+
+    .footer-nav-services {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
   }
 </style>
