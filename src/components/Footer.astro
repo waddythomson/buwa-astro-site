@@ -29,20 +29,28 @@ const trustedItems = [
         <div class="footer-nav-group">
           <h4>Be Seen</h4>
           {seenItems.map((item) => (
-            <a href={item.href}>{item.label}</a>
+            <a href={item.href} class="ftr-sub" data-roll-label={item.label}>
+              <span class="ftr-sub-label">{item.label}</span>
+            </a>
           ))}
         </div>
         <div class="footer-nav-group">
           <h4>Be Trusted</h4>
           {trustedItems.map((item) => (
-            <a href={item.href}>{item.label}</a>
+            <a href={item.href} class="ftr-sub" data-roll-label={item.label}>
+              <span class="ftr-sub-label">{item.label}</span>
+            </a>
           ))}
         </div>
       </div>
 
       <nav class="footer-nav-primary">
-        <a href="/about-us/">Who We Are</a>
-        <a href="/partners/">Our Partners</a>
+        <a href="/partners/" class="ftr-item" data-roll-label="Our Partners">
+          <span class="ftr-item-label">Our Partners</span>
+        </a>
+        <a href="/about-us/" class="ftr-item" data-roll-label="Who We Are">
+          <span class="ftr-item-label">Who We Are</span>
+        </a>
       </nav>
 
       <div class="footer-panel-cta">
@@ -120,10 +128,10 @@ const trustedItems = [
   .footer-menu-panel {
     width: min(90vw, 420px);
     padding: 2rem 2rem 1.5rem;
-    background: rgba(10, 24, 56, 0.92);
-    border: 1px solid rgba(187, 212, 246, 0.2);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(10, 24, 56, 0.65);
+    border: 1px solid rgba(187, 212, 246, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-radius: 14px;
     text-align: center;
     will-change: transform;
@@ -140,37 +148,16 @@ const trustedItems = [
     margin-bottom: 1.5rem;
   }
 
+  /* --- Service link groups --- */
+
   .footer-nav-services {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
     text-align: left;
     padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(200, 220, 245, 0.15);
+    border-bottom: 1px solid rgba(200, 220, 245, 0.12);
     margin-bottom: 1.25rem;
-  }
-
-  .footer-nav-primary {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(200, 220, 245, 0.15);
-  }
-
-  .footer-nav-primary a {
-    color: #f2f8ff;
-    text-decoration: none;
-    font-size: 1.35rem;
-    font-weight: 600;
-    padding: 0.35rem 0;
-    transition: color 0.15s ease;
-  }
-
-  .footer-nav-primary a:hover {
-    color: rgba(210, 224, 245, 0.55);
   }
 
   .footer-nav-group h4 {
@@ -183,19 +170,133 @@ const trustedItems = [
     opacity: 0.7;
   }
 
-  .footer-nav-group a {
+  /* Sub-item roll hover */
+
+  .ftr-sub {
     display: block;
-    color: rgba(242, 248, 255, 0.8);
+    color: transparent;
     text-decoration: none;
     padding: 0.22rem 0;
     font-size: 0.82rem;
     line-height: 1.4;
-    transition: color 0.15s ease;
+    position: relative;
+    overflow: hidden;
   }
 
-  .footer-nav-group a:hover {
-    color: rgba(210, 224, 245, 0.5);
+  .ftr-sub-label {
+    display: block;
+    color: rgba(242, 248, 255, 0.8);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
   }
+
+  .ftr-sub::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.22rem 0;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: rgba(210, 224, 245, 0.45);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub .ftr-sub-label {
+    transform: translateY(-115%);
+    opacity: 0;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub::after {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub:hover .ftr-sub-label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub:hover::after {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+
+  /* --- Primary nav links --- */
+
+  .footer-nav-primary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(200, 220, 245, 0.12);
+  }
+
+  .ftr-item {
+    display: block;
+    color: transparent;
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ftr-item-label {
+    display: block;
+    color: #f2f8ff;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .ftr-item::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.35rem 0.5rem;
+    text-align: center;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.2;
+    color: rgba(210, 224, 245, 0.45);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item .ftr-item-label {
+    transform: translateY(-115%);
+    opacity: 0;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item::after {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item:hover .ftr-item-label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item:hover::after {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+
+  /* --- CTA & legal --- */
 
   .footer-panel-cta a {
     color: rgba(242, 248, 255, 0.8);
@@ -247,7 +348,7 @@ const trustedItems = [
       padding: 1.5rem 1.25rem 1.25rem;
     }
 
-    .footer-nav-primary a {
+    .ftr-item {
       font-size: 1.15rem;
     }
 
