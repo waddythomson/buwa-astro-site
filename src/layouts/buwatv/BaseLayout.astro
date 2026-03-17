@@ -124,18 +124,16 @@ const structuredData = {
   
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="footer-reveal" id="buwatvFooterReveal">
-      <div class="footer-menu-panel" id="buwatvFooterPanel">
-        <span class="footer-menu-label">Menu</span>
-        <nav class="footer-menu-links">
-          <a href="/buwatv/">BuWa TV Home</a>
-          <a href="/buwatv/pricing/">Pricing</a>
-          <a href="/buwatv/locations/">Locations</a>
-          <a href="/buwatv/faq/">FAQ</a>
-          <a href="/buwatv/signup/">Sign Up</a>
-          <a href="/" target="_self">BuWa Digital</a>
-        </nav>
-      </div>
+    <div class="footer-menu-panel" id="buwatvFooterPanel">
+      <span class="footer-menu-label">Menu</span>
+      <nav class="footer-menu-links">
+        <a href="/buwatv/">BuWa TV Home</a>
+        <a href="/buwatv/pricing/">Pricing</a>
+        <a href="/buwatv/locations/">Locations</a>
+        <a href="/buwatv/faq/">FAQ</a>
+        <a href="/buwatv/signup/">Sign Up</a>
+        <a href="/" target="_self">BuWa Digital</a>
+      </nav>
     </div>
     <div class="footer-legal">
       <p>&copy; {currentYear} BuWa TV</p>
@@ -150,38 +148,85 @@ const structuredData = {
 
 <script is:inline>
   document.addEventListener('astro:page-load', () => {
-    const reveal = document.getElementById('buwatvFooterReveal');
     const panel = document.getElementById('buwatvFooterPanel');
-    if (!reveal || !panel) return;
+    if (!panel) return;
+
+    let panelHeight = 0;
+    let progress = 0; // 0 = hidden, 1 = fully revealed
+    let touchStartY = 0;
+    let touchActive = false;
+
+    const isAtPageBottom = () =>
+      window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
 
     const measure = () => {
-      panel.style.transform = 'translateY(0)';
-      const panelHeight = panel.offsetHeight;
-      reveal.style.height = `${panelHeight}px`;
-      panel.style.transform = 'translateY(100%)';
-      return panelHeight;
+      const prevTransform = panel.style.transform;
+      panel.style.transform = 'translate(-50%, 100%)';
+      panelHeight = panel.offsetHeight || panelHeight || 1;
+      panel.style.transform = prevTransform;
     };
 
-    let panelHeight = measure();
-
-    const update = () => {
-      const rect = reveal.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / Math.max(panelHeight, 1)));
-      panel.style.transform = `translateY(${(1 - progress) * 100}%)`;
+    const applyProgress = () => {
+      const hiddenPercent = (1 - progress) * 100;
+      panel.style.transform = `translate(-50%, ${hiddenPercent}%)`;
+      panel.classList.toggle('is-visible', progress > 0.001);
     };
 
-    const onResize = () => {
-      panelHeight = measure();
-      update();
+    const adjustProgress = (deltaY) => {
+      if (!panelHeight) measure();
+      const deltaProgress = Math.abs(deltaY) / Math.max(panelHeight, 1);
+      if (deltaY > 0) progress = Math.min(1, progress + deltaProgress);
+      else progress = Math.max(0, progress - deltaProgress);
+      applyProgress();
     };
 
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', onResize);
+    const onWheel = (event) => {
+      const deltaY = event.deltaY;
+      const atBottom = isAtPageBottom();
+      const captureDown = deltaY > 0 && (atBottom || progress > 0);
+      const captureUp = deltaY < 0 && progress > 0;
+      if (!captureDown && !captureUp) return;
+      event.preventDefault();
+      adjustProgress(deltaY);
+    };
+
+    const onTouchStart = (event) => {
+      if (!event.touches || event.touches.length === 0) return;
+      touchStartY = event.touches[0].clientY;
+      touchActive = true;
+    };
+
+    const onTouchMove = (event) => {
+      if (!touchActive || !event.touches || event.touches.length === 0) return;
+      const currentY = event.touches[0].clientY;
+      const deltaY = touchStartY - currentY;
+      if (Math.abs(deltaY) < 2) return;
+      const atBottom = isAtPageBottom();
+      const captureDown = deltaY > 0 && (atBottom || progress > 0);
+      const captureUp = deltaY < 0 && progress > 0;
+      if (!captureDown && !captureUp) return;
+      event.preventDefault();
+      adjustProgress(deltaY);
+      touchStartY = currentY;
+    };
+
+    const onTouchEnd = () => {
+      touchActive = false;
+    };
+
+    measure();
+    applyProgress();
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('resize', measure);
     document.addEventListener('astro:before-swap', () => {
-      window.removeEventListener('scroll', update);
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('resize', measure);
     }, { once: true });
   });
 </script>
@@ -254,20 +299,15 @@ const structuredData = {
   .site-footer {
     background: transparent;
     color: #fff;
-    padding: 3.5rem 1.25rem 1.25rem;
+    padding: 1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
     position: relative;
   }
 
-  .footer-reveal {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-bottom: 1.35rem;
-  }
-
   .footer-menu-panel {
-    transform: translateY(100%);
+    position: fixed;
+    left: 50%;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    transform: translate(-50%, 100%);
     width: min(90vw, 360px);
     padding: 1.5rem 1.5rem 1.25rem;
     border-radius: 14px;
@@ -278,6 +318,12 @@ const structuredData = {
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     text-align: center;
     will-change: transform;
+    pointer-events: none;
+    z-index: 1200;
+  }
+
+  .footer-menu-panel.is-visible {
+    pointer-events: auto;
   }
 
   .footer-menu-label {
