@@ -1,192 +1,346 @@
 ---
 const currentYear = new Date().getFullYear();
-const smsNumber = '8034032922';
-const smsMessage = "Hi, I'm interested in learning more about marketing services at BuWa Digital. My name is: ";
-const smsLink = `sms:${smsNumber}?&body=${encodeURIComponent(smsMessage)}`;
-const smsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(smsLink)}`;
+
+const seenItems = [
+  { label: 'BuWa TV Indoor Billboards', href: '/buwatv/' },
+  { label: 'Connected TV | OTT Ads', href: '/connected-tv-ott-ads/' },
+  { label: 'Display | Geofencing', href: '/geofencing/' },
+  { label: 'Streaming Audio', href: '/streaming-audio/' },
+  { label: 'Pre-roll Ads', href: '/pre-roll-advertising/' },
+  { label: 'Youtube Advertising', href: '/youtube-ads/' },
+  { label: 'Social Media Advertising', href: '/social-media-ads/' },
+  { label: 'Pay Per Click', href: '/pay-per-click-ppc/' },
+];
+
+const trustedItems = [
+  { label: 'Website Design', href: '/website-design/' },
+  { label: 'Google Business Profile', href: '/google-business-profile/' },
+  { label: 'Social Media Management', href: '/social-media-management/' },
+  { label: 'Design Services', href: '/design/' },
+];
 ---
 
 <footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" height="40" />
-        <p>Helping local businesses grow through smart, results-driven digital marketing.</p>
+  <div class="footer-reveal" id="footerReveal">
+    <div class="footer-menu-panel" id="footerPanel">
+      <span class="footer-menu-label">Menu</span>
+
+      <div class="footer-nav-services">
+        <div class="footer-nav-group">
+          <h4>Be Seen</h4>
+          {seenItems.map((item) => (
+            <a href={item.href} class="ftr-sub" data-roll-label={item.label}>
+              <span class="ftr-sub-label">{item.label}</span>
+            </a>
+          ))}
+        </div>
+        <div class="footer-nav-group">
+          <h4>Be Trusted</h4>
+          {trustedItems.map((item) => (
+            <a href={item.href} class="ftr-sub" data-roll-label={item.label}>
+              <span class="ftr-sub-label">{item.label}</span>
+            </a>
+          ))}
+        </div>
       </div>
 
-      <div class="footer-links">
-        <h4>Solutions</h4>
-        <ul>
-          <li><a href="/google-business-profile/">Google Business Profile</a></li>
-          <li><a href="/pay-per-click-ppc/">Pay-Per-Click (PPC)</a></li>
-          <li><a href="/website-design/">Website Design</a></li>
-          <li><a href="/geofencing/">Geofencing</a></li>
-          <li><a href="/buwatv/">BuWaTV</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/about-us/">About Us</a></li>
-          <li><a href="/buwatv/">BuWaTV</a></li>
-          <li><a href="/contact-us/">Contact Us</a></li>
-          <li><a href="/privacy-policy/">Privacy Policy</a></li>
-          <li><a href="/terms/">Terms & Conditions</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-contact">
-        <h4>Text Us</h4>
-        <p class="footer-contact-note">Scan or tap to text us.</p>
-        <a href={smsLink} class="footer-qr-link" aria-label="Text BuWa Digital">
-          <img src={smsQrUrl} alt="QR code to text BuWa Digital" class="footer-qr" loading="lazy" />
+      <nav class="footer-nav-primary">
+        <a href="/partners/" class="ftr-item" data-roll-label="Our Partners">
+          <span class="ftr-item-label">Our Partners</span>
         </a>
-        <a href={smsLink} class="footer-cta footer-cta-text">803-403-2922</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; {currentYear} BuWa Digital. All rights reserved.</p>
+        <a href="/about-us/" class="ftr-item" data-roll-label="Who We Are">
+          <span class="ftr-item-label">Who We Are</span>
+        </a>
+        <a href="/contact-us/" class="ftr-item" data-roll-label="Contact Us">
+          <span class="ftr-item-label">Contact Us</span>
+        </a>
+      </nav>
     </div>
   </div>
+
+  <div class="footer-legal">
+    <p>&copy; {currentYear} BuWa Digital</p>
+    <span class="footer-sep">&middot;</span>
+    <a href="/privacy-policy/">Privacy Policy</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="/terms/">Terms</a>
+  </div>
 </footer>
+
+<script>
+  function initFooterReveal() {
+    const reveal = document.getElementById('footerReveal');
+    const panel = document.getElementById('footerPanel');
+    if (!reveal || !panel) return;
+
+    const measure = () => {
+      panel.style.transform = 'translateY(0)';
+      const h = panel.offsetHeight;
+      reveal.style.height = `${h}px`;
+      panel.style.transform = 'translateY(100%)';
+      return h;
+    };
+
+    let panelH = measure();
+
+    const update = () => {
+      const rect = reveal.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / panelH));
+      panel.style.transform = `translateY(${(1 - progress) * 100}%)`;
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', () => { panelH = measure(); update(); });
+
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', initFooterReveal);
+</script>
 
 <style>
   .site-footer {
     background: transparent;
     color: white;
-    padding: 2.5rem 0 1.25rem;
+    padding: 4rem 0 1.25rem;
+    position: relative;
+  }
+
+  :global(body.home-page) .site-footer {
+    margin-top: -1px;
+  }
+
+  .footer-reveal {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-menu-panel {
+    width: min(90vw, 360px);
+    padding: 2rem 2rem 1.5rem;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 14px;
+    text-align: center;
+    will-change: transform;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-menu-label {
+    display: block;
+    color: #e8f2ff;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* --- Service link groups --- */
+
+  .footer-nav-services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    text-align: left;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-nav-group h4 {
+    margin: 0 0 0.45rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #dcecff;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+
+  /* Sub-item roll hover */
+
+  .ftr-sub {
+    display: block;
+    color: transparent;
+    text-decoration: none;
+    padding: 0.22rem 0;
+    font-size: 0.92rem;
+    line-height: 1.4;
     position: relative;
     overflow: hidden;
   }
 
-  
-
-  :global(body.home-page) .site-footer {
-    margin-top: -1px;
-    padding-top: 1rem;
-  }
-
-
-
-  .footer-container {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .footer-brand img {
-    height: 40px;
-    width: auto;
-    margin-bottom: 1rem;
-  }
-
-  .footer-brand p {
-    color: rgba(255,255,255,0.7);
-    line-height: 1.7;
-    font-size: 0.9rem;
-  }
-
-  .footer-links h4,
-  .footer-contact h4 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-
-  .footer-contact-note {
-    color: rgba(255,255,255,0.7);
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-
-  .footer-qr-link {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    background: white;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-  }
-
-  .footer-qr {
-    width: 140px;
-    height: 140px;
+  .ftr-sub-label {
     display: block;
+    color: rgba(242, 248, 255, 0.8);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
   }
 
-  .footer-links ul {
-    list-style: none;
-    padding: 0;
+  .ftr-sub::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.22rem 0;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    color: rgba(210, 224, 245, 0.45);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub .ftr-sub-label {
+    transform: translateY(-115%);
+    opacity: 0;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub::after {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub:hover .ftr-sub-label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-group:has(.ftr-sub:hover) .ftr-sub:hover::after {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+
+  /* --- Primary nav links --- */
+
+  .footer-nav-primary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .ftr-item {
+    display: block;
+    color: transparent;
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ftr-item-label {
+    display: block;
+    color: rgba(242, 248, 255, 0.8);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .ftr-item::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.35rem 0.5rem;
+    text-align: center;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.2;
+    color: rgba(210, 224, 245, 0.45);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item .ftr-item-label {
+    transform: translateY(-115%);
+    opacity: 0;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item::after {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item:hover .ftr-item-label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .footer-nav-primary:has(.ftr-item:hover) .ftr-item:hover::after {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 0 1.5rem;
+  }
+
+  .footer-legal p {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.72rem;
     margin: 0;
   }
 
-  .footer-links li {
-    margin-bottom: 0.5rem;
+  .footer-sep {
+    color: rgba(255,255,255,0.15);
+    font-size: 0.72rem;
   }
 
-  .footer-links a {
-    color: rgba(255,255,255,0.7);
+  .footer-legal a {
+    color: rgba(255,255,255,0.3);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.72rem;
     transition: color 0.2s;
   }
 
-  .footer-links a:hover {
-    color: #a01c2b;
+  .footer-legal a:hover {
+    color: rgba(255,255,255,0.6);
   }
 
-  .footer-cta {
-    display: inline-block;
-    background: #a01c2b;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.2s;
-  }
+  @media (max-width: 480px) {
+    .footer-menu-panel {
+      padding: 1.5rem 1.25rem 1.25rem;
+    }
 
-  .footer-cta.footer-cta-text {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.4);
-    white-space: nowrap;
-  }
+    .ftr-item {
+      font-size: 0.78rem;
+    }
 
-  .footer-cta.footer-cta-text:hover {
-    background: rgba(255,255,255,0.12);
-  }
-
-  .footer-cta:hover {
-    background: #7d1521;
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.5);
-    padding-top: 1.25rem;
-    text-align: center;
-  }
-
-  .footer-bottom p {
-    color: rgba(255,255,255,0.5);
-    font-size: 0.85rem;
-  }
-
-  @media (max-width: 768px) {
-    .footer-grid {
+    .footer-nav-services {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1rem;
     }
   }
 </style>

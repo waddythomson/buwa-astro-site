@@ -48,7 +48,7 @@ const description = "Reach more customers where they live, work, and shop with t
       <h1>Stop Flying Under<br />The Radar!</h1>
       <p class="hero-subtitle">We'll help you maintain a prominent community presence using strategically targeted services that keep your business top-of-mind and deliver real results.</p>
       <div class="hero-buttons">
-        <a href="/contact-us/" class="cta-button cta-button-navy">Let's Talk!</a>
+        <a href="/contact-us/" class="cta-button cta-button-red">Let's Talk!</a>
       </div>
     </div>
   </section>
@@ -915,7 +915,7 @@ const description = "Reach more customers where they live, work, and shop with t
     justify-content: center;
   }
   .hero h1 {
-    font-size: clamp(2.55rem, 5.4vw, 3.7rem);
+    font-size: clamp(2.1rem, 4.2vw, 3rem);
     font-weight: 600;
     letter-spacing: 0.01em;
     max-width: 800px;
@@ -924,8 +924,10 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .hero-subtitle {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.2;
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto 2.85rem;
@@ -943,7 +945,7 @@ const description = "Reach more customers where they live, work, and shop with t
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(30, 30, 35, 0.45);
+    background: rgba(30, 30, 35, 0.82);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     color: white;
@@ -951,19 +953,19 @@ const description = "Reach more customers where they live, work, and shop with t
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     cursor: pointer;
     font-size: 1rem;
     box-shadow:
-      0 2px 4px rgba(0,0,0,0.2),
-      0 4px 8px rgba(0,0,0,0.15),
-      inset 0 1px 0 rgba(255,255,255,0.2);
+      0 4px 24px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
   .cta-button:hover {
     transform: translateY(-2px);
-    background: rgba(40, 40, 45, 0.55);
+    background: rgba(40, 40, 45, 0.88);
     box-shadow:
       0 4px 8px rgba(0,0,0,0.25),
       0 8px 16px rgba(0,0,0,0.2),
@@ -978,11 +980,32 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .cta-button.cta-button-red {
-    background: linear-gradient(to bottom, #c42535 0%, #a01c2b 100%);
+    background: linear-gradient(to bottom, #d42a3e 0%, #c42535 40%, #a01c2b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow:
+      0 4px 12px rgba(180, 30, 50, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .cta-button.cta-button-red:hover {
-    background: linear-gradient(to bottom, #b22030 0%, #7d1521 100%);
+    background: linear-gradient(to bottom, #e03248 0%, #d42a3e 40%, #b22030 100%);
+    box-shadow:
+      0 6px 20px rgba(180, 30, 50, 0.5),
+      0 3px 6px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .cta-button.cta-button-red:active {
+    background: linear-gradient(to bottom, #b82232 0%, #a01c2b 100%);
+    box-shadow:
+      0 1px 4px rgba(180, 30, 50, 0.3),
+      inset 0 2px 3px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
   }
 
   .cta-button.cta-button-white {
@@ -1003,8 +1026,10 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .cta-button.cta-button-navy {
-    background: #0c1e43;
-    border: 1px solid #b82232;
+    background: rgba(30, 30, 35, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
     font-family: inherit;
     font-size: 0.84rem;
@@ -1018,8 +1043,8 @@ const description = "Reach more customers where they live, work, and shop with t
   }
 
   .cta-button.cta-button-navy:hover {
-    background: #0f2350;
-    border-color: #d42a3e;
+    background: rgba(40, 40, 45, 0.88);
+    border-color: rgba(255, 255, 255, 0.18);
   }
 
   .cta-button-logo {
@@ -1368,7 +1393,7 @@ const description = "Reach more customers where they live, work, and shop with t
     }
 
     .hero h1 {
-      font-size: clamp(1.9rem, 7.4vw, 2.35rem);
+      font-size: clamp(1.7rem, 6vw, 2.1rem);
     }
 
     .hero-buttons {
