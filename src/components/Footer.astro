@@ -3,19 +3,12 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" height="32" />
-      <p>Helping local businesses grow through smart, results-driven digital marketing.</p>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; {currentYear} BuWa Digital. All rights reserved.</p>
-      <span class="footer-legal-sep">&middot;</span>
-      <a href="/privacy-policy/">Privacy Policy</a>
-      <span class="footer-legal-sep">&middot;</span>
-      <a href="/terms/">Terms &amp; Conditions</a>
-    </div>
+  <div class="footer-bottom">
+    <p>&copy; {currentYear} BuWa Digital</p>
+    <span class="footer-sep">&middot;</span>
+    <a href="/privacy-policy/">Privacy Policy</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="/terms/">Terms</a>
   </div>
 </footer>
 
@@ -23,80 +16,42 @@ const currentYear = new Date().getFullYear();
   .site-footer {
     background: transparent;
     color: white;
-    padding: 1.5rem 0 1rem;
+    padding: 0.75rem 0;
     position: relative;
-    overflow: hidden;
   }
 
   :global(body.home-page) .site-footer {
     margin-top: -1px;
   }
 
-  .footer-container {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  .footer-brand img {
-    height: 32px;
-    width: auto;
-    flex-shrink: 0;
-  }
-
-  .footer-brand p {
-    color: rgba(255,255,255,0.6);
-    line-height: 1.5;
-    font-size: 0.85rem;
-    margin: 0;
-  }
-
   .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.15);
-    padding-top: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+    padding: 0 1.5rem;
   }
 
   .footer-bottom p {
-    color: rgba(255,255,255,0.4);
-    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.75rem;
     margin: 0;
   }
 
-  .footer-legal-sep {
-    color: rgba(255,255,255,0.25);
-    font-size: 0.8rem;
+  .footer-sep {
+    color: rgba(255,255,255,0.2);
+    font-size: 0.75rem;
   }
 
   .footer-bottom a {
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.35);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     transition: color 0.2s;
   }
 
   .footer-bottom a:hover {
-    color: rgba(255,255,255,0.7);
-  }
-
-  @media (max-width: 768px) {
-    .footer-brand {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
+    color: rgba(255,255,255,0.6);
   }
 </style>

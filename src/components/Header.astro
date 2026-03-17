@@ -137,6 +137,7 @@ const trustedItems = [
       if (!menuPanel) return;
       if (menuPanel.classList.contains('is-open')) {
         closeMenuPanel();
+        if (wasNearBottom) userClosedAtBottom = true;
       } else {
         openMenuPanel();
       }
@@ -149,11 +150,17 @@ const trustedItems = [
     });
 
     menuPanel?.addEventListener('click', (event) => {
-      if (event.target === menuPanel) closeMenuPanel();
+      if (event.target === menuPanel) {
+        closeMenuPanel();
+        if (wasNearBottom) userClosedAtBottom = true;
+      }
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeMenuPanel();
+      if (event.key === 'Escape') {
+        closeMenuPanel();
+        if (wasNearBottom) userClosedAtBottom = true;
+      }
     }, { signal });
 
     window.addEventListener('resize', () => {
@@ -204,17 +211,37 @@ const trustedItems = [
 
     const navFadeThreshold = 30;
     const siteFooter = document.querySelector('.site-footer');
+    let wasNearBottom = false;
+    let userClosedAtBottom = false;
+
     const updateNavVisibility = () => {
       if (!siteHeader) return;
       const scrolled = window.scrollY > navFadeThreshold;
       const nearBottom = siteFooter
-        ? siteFooter.getBoundingClientRect().top <= window.innerHeight + 50
+        ? siteFooter.getBoundingClientRect().top <= window.innerHeight + 80
         : false;
       const shouldHide = scrolled && !nearBottom;
       siteHeader.classList.toggle('nav-hidden', shouldHide);
+
+      if (nearBottom && !wasNearBottom) {
+        userClosedAtBottom = false;
+      }
+
+      if (nearBottom && !userClosedAtBottom && !menuPanel?.classList.contains('is-open')) {
+        openMenuPanel();
+      }
+
+      if (!nearBottom && wasNearBottom) {
+        if (menuPanel?.classList.contains('is-open')) {
+          closeMenuPanel();
+        }
+      }
+
       if (shouldHide && menuPanel?.classList.contains('is-open')) {
         closeMenuPanel();
       }
+
+      wasNearBottom = nearBottom;
     };
 
     if (homeHero && headerLogo) {
