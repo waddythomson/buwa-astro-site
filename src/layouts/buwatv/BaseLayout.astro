@@ -156,9 +156,13 @@ const structuredData = {
     let progress = 0; // 0 = hidden, 1 = fully revealed
     let touchStartY = 0;
     let touchActive = false;
+    let lockBottom = false;
 
     const isAtPageBottom = () =>
       window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+
+    const getPageBottomY = () =>
+      Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 
     const measure = () => {
       const prevTransform = panel.style.transform;
@@ -168,9 +172,15 @@ const structuredData = {
     };
 
     const applyProgress = () => {
+      if (progress < 0.002) progress = 0;
+      if (progress > 0.998) progress = 1;
       const hiddenPercent = (1 - progress) * 100;
       panel.style.transform = `translate(-50%, ${hiddenPercent}%)`;
       panel.classList.toggle('is-visible', progress > 0.001);
+      lockBottom = progress > 0;
+      if (lockBottom) {
+        window.scrollTo(0, getPageBottomY());
+      }
     };
 
     const adjustProgress = (deltaY) => {
@@ -184,9 +194,9 @@ const structuredData = {
     const onWheel = (event) => {
       const deltaY = event.deltaY;
       const atBottom = isAtPageBottom();
-      const captureDown = deltaY > 0 && (atBottom || progress > 0);
-      const captureUp = deltaY < 0 && progress > 0;
-      if (!captureDown && !captureUp) return;
+      const captureWhileOpen = progress > 0;
+      const captureDownAtBottom = deltaY > 0 && atBottom;
+      if (!captureWhileOpen && !captureDownAtBottom) return;
       event.preventDefault();
       adjustProgress(deltaY);
     };
@@ -203,9 +213,9 @@ const structuredData = {
       const deltaY = touchStartY - currentY;
       if (Math.abs(deltaY) < 2) return;
       const atBottom = isAtPageBottom();
-      const captureDown = deltaY > 0 && (atBottom || progress > 0);
-      const captureUp = deltaY < 0 && progress > 0;
-      if (!captureDown && !captureUp) return;
+      const captureWhileOpen = progress > 0;
+      const captureDownAtBottom = deltaY > 0 && atBottom;
+      if (!captureWhileOpen && !captureDownAtBottom) return;
       event.preventDefault();
       adjustProgress(deltaY);
       touchStartY = currentY;
@@ -215,6 +225,12 @@ const structuredData = {
       touchActive = false;
     };
 
+    const onScrollLock = () => {
+      if (lockBottom) {
+        window.scrollTo(0, getPageBottomY());
+      }
+    };
+
     measure();
     applyProgress();
     window.addEventListener('wheel', onWheel, { passive: false });
@@ -222,12 +238,14 @@ const structuredData = {
     window.addEventListener('touchmove', onTouchMove, { passive: false });
     window.addEventListener('touchend', onTouchEnd, { passive: true });
     window.addEventListener('resize', measure);
+    window.addEventListener('scroll', onScrollLock, { passive: true });
     document.addEventListener('astro:before-swap', () => {
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('resize', measure);
+      window.removeEventListener('scroll', onScrollLock);
     }, { once: true });
   });
 </script>
