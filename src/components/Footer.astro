@@ -3,7 +3,14 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="footer-bottom">
+  <div class="footer-nav" id="bottomNav">
+    <div class="footer-nav-inner">
+      <button type="button" class="footer-menu-toggle" id="bottomMenuToggle">Menu</button>
+      <a href="/contact-us/" class="footer-nav-cta">Contact us</a>
+    </div>
+  </div>
+
+  <div class="footer-legal">
     <p>&copy; {currentYear} BuWa Digital</p>
     <span class="footer-sep">&middot;</span>
     <a href="/privacy-policy/">Privacy Policy</a>
@@ -16,7 +23,7 @@ const currentYear = new Date().getFullYear();
   .site-footer {
     background: transparent;
     color: white;
-    padding: 18rem 0 0.75rem;
+    padding: 16rem 0 1rem;
     position: relative;
   }
 
@@ -24,7 +31,59 @@ const currentYear = new Date().getFullYear();
     margin-top: -1px;
   }
 
-  .footer-bottom {
+  .footer-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.65rem 1.5rem;
+    background: linear-gradient(180deg, rgba(6, 17, 43, 0.78) 0%, rgba(4, 12, 32, 0.88) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(186, 212, 255, 0.2);
+    border-radius: 999px;
+  }
+
+  .footer-menu-toggle {
+    color: rgba(236, 245, 255, 0.96);
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.84rem;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0.35rem 0.6rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer-menu-toggle:hover {
+    opacity: 0.7;
+  }
+
+  .footer-nav-cta {
+    text-decoration: none;
+    background: #fff;
+    color: #102043;
+    border-radius: 999px;
+    padding: 0.48rem 0.85rem;
+    font-size: 0.73rem;
+    font-weight: 700;
+    transition: opacity 0.2s;
+  }
+
+  .footer-nav-cta:hover {
+    opacity: 0.85;
+  }
+
+  .footer-legal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +92,7 @@ const currentYear = new Date().getFullYear();
     padding: 0 1.5rem;
   }
 
-  .footer-bottom p {
+  .footer-legal p {
     color: rgba(255,255,255,0.35);
     font-size: 0.75rem;
     margin: 0;
@@ -44,14 +103,14 @@ const currentYear = new Date().getFullYear();
     font-size: 0.75rem;
   }
 
-  .footer-bottom a {
+  .footer-legal a {
     color: rgba(255,255,255,0.35);
     text-decoration: none;
     font-size: 0.75rem;
     transition: color 0.2s;
   }
 
-  .footer-bottom a:hover {
+  .footer-legal a:hover {
     color: rgba(255,255,255,0.6);
   }
 </style>

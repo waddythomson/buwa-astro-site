@@ -71,13 +71,6 @@ const trustedItems = [
   </div>
 </div>
 
-<div class="bottom-nav" id="bottomNav" aria-hidden="true">
-  <div class="bottom-nav-inner">
-    <button type="button" class="bottom-menu-toggle" id="bottomMenuToggle">Menu</button>
-    <a href="/contact-us/" class="bottom-nav-cta">Contact us</a>
-  </div>
-</div>
-
 <script>
   function initHeader() {
     const controller = new AbortController();
@@ -251,52 +244,40 @@ const trustedItems = [
     };
 
     const navFadeThreshold = 30;
-    const siteFooter = document.querySelector('.site-footer');
     let wasNearBottom = false;
     let userClosedAtBottom = false;
-
-    const showBottomNav = () => {
-      if (!bottomNav) return;
-      bottomNav.classList.add('is-visible');
-      bottomNav.setAttribute('aria-hidden', 'false');
-    };
-
-    const hideBottomNav = () => {
-      if (!bottomNav) return;
-      bottomNav.classList.remove('is-visible');
-      bottomNav.setAttribute('aria-hidden', 'true');
-    };
+    let bottomNavVisible = false;
 
     const updateNavVisibility = () => {
       if (!siteHeader) return;
       const scrolled = window.scrollY > navFadeThreshold;
-      const scrollRemaining = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-      const nearBottom = scrollRemaining < 60;
-
       siteHeader.classList.toggle('nav-hidden', scrolled);
 
-      if (nearBottom && !wasNearBottom) {
-        userClosedAtBottom = false;
-        showBottomNav();
-      }
-
-      if (nearBottom && !userClosedAtBottom && !menuPanel?.classList.contains('is-open')) {
-        openMenuPanel(true);
-      }
-
-      if (!nearBottom && wasNearBottom) {
-        hideBottomNav();
-        if (menuPanel?.classList.contains('is-open')) {
-          closeMenuPanel();
-        }
-      }
-
-      if (scrolled && !nearBottom && menuPanel?.classList.contains('is-open')) {
+      if (scrolled && !bottomNavVisible && menuPanel?.classList.contains('is-open')) {
         closeMenuPanel();
       }
-
-      wasNearBottom = nearBottom;
     };
+
+    if (bottomNav) {
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          bottomNavVisible = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            if (!userClosedAtBottom && !menuPanel?.classList.contains('is-open')) {
+              userClosedAtBottom = false;
+              openMenuPanel(true);
+            }
+          } else {
+            if (menuPanel?.classList.contains('is-open') && openedFromBottom) {
+              closeMenuPanel();
+            }
+            userClosedAtBottom = false;
+          }
+        }
+      }, { threshold: 0.5 });
+      observer.observe(bottomNav);
+      controller.signal.addEventListener('abort', () => observer.disconnect());
+    }
 
     if (homeHero && headerLogo) {
       siteHeader?.classList.remove('after-hero');
@@ -994,69 +975,6 @@ const trustedItems = [
     .menu-panel.has-submenu {
       width: min(96vw, 430px);
     }
-  }
-
-  /* --- Bottom nav bar --- */
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: linear-gradient(180deg, rgba(6, 17, 43, 0.82) 0%, rgba(4, 12, 32, 0.94) 100%);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(186, 212, 255, 0.25);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(100%);
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-  }
-
-  .bottom-nav.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .bottom-nav-inner {
-    max-width: 1680px;
-    margin: 0 auto;
-    padding: 0.6rem clamp(0.9rem, 2.2vw, 2.6rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
-  .bottom-menu-toggle {
-    color: rgba(236, 245, 255, 0.96);
-    border: none;
-    background: transparent;
-    font-family: inherit;
-    text-transform: uppercase;
-    letter-spacing: 0.11em;
-    font-size: 0.84rem;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 0.4rem 0.8rem;
-    transition: opacity 0.2s ease;
-  }
-
-  .bottom-menu-toggle:hover {
-    opacity: 0.7;
-  }
-
-  .bottom-nav-cta {
-    text-decoration: none;
-    background: #fff;
-    color: #102043;
-    border-radius: 999px;
-    padding: 0.5rem 0.9rem;
-    font-size: 0.73rem;
-    font-weight: 700;
   }
 
   /* Upward-opening panel when triggered from bottom */
