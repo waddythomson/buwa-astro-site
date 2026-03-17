@@ -25,12 +25,6 @@ const trustedItems = [
     <div class="footer-menu-panel" id="footerPanel">
       <span class="footer-menu-label">Menu</span>
 
-      <nav class="footer-nav-primary">
-        <a href="/about-us/">Who We Are</a>
-        <a href="/contact-us/">Contact</a>
-        <a href="/partners/">Our Partners</a>
-      </nav>
-
       <div class="footer-nav-services">
         <div class="footer-nav-group">
           <h4>Be Seen</h4>
@@ -45,6 +39,11 @@ const trustedItems = [
           ))}
         </div>
       </div>
+
+      <nav class="footer-nav-primary">
+        <a href="/about-us/">Who We Are</a>
+        <a href="/partners/">Our Partners</a>
+      </nav>
 
       <div class="footer-panel-cta">
         <a href="/contact-us/">&#8594; Contact Us</a>
@@ -141,12 +140,24 @@ const trustedItems = [
     margin-bottom: 1.5rem;
   }
 
+  .footer-nav-services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    text-align: left;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(200, 220, 245, 0.15);
+    margin-bottom: 1.25rem;
+  }
+
   .footer-nav-primary {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.15rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(200, 220, 245, 0.15);
   }
 
   .footer-nav-primary a {
@@ -160,17 +171,6 @@ const trustedItems = [
 
   .footer-nav-primary a:hover {
     color: rgba(210, 224, 245, 0.55);
-  }
-
-  .footer-nav-services {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-    text-align: left;
-    padding: 1.25rem 0;
-    border-top: 1px solid rgba(200, 220, 245, 0.15);
-    border-bottom: 1px solid rgba(200, 220, 245, 0.15);
-    margin-bottom: 1.25rem;
   }
 
   .footer-nav-group h4 {
