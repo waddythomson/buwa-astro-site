@@ -51,11 +51,10 @@ const trustedItems = [
         <a href="/about-us/" class="ftr-item" data-roll-label="Who We Are">
           <span class="ftr-item-label">Who We Are</span>
         </a>
+        <a href="/contact-us/" class="ftr-item" data-roll-label="Contact Us">
+          <span class="ftr-item-label">Contact Us</span>
+        </a>
       </nav>
-
-      <div class="footer-panel-cta">
-        <a href="/contact-us/">&#8594; Contact Us</a>
-      </div>
     </div>
   </div>
 
@@ -126,15 +125,19 @@ const trustedItems = [
   }
 
   .footer-menu-panel {
-    width: min(90vw, 420px);
+    width: min(90vw, 360px);
     padding: 2rem 2rem 1.5rem;
     background: rgba(30, 30, 35, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 14px;
     text-align: center;
     will-change: transform;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
   .footer-menu-label {
@@ -156,7 +159,7 @@ const trustedItems = [
     gap: 1.25rem;
     text-align: left;
     padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(200, 220, 245, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     margin-bottom: 1.25rem;
   }
 
@@ -177,7 +180,7 @@ const trustedItems = [
     color: transparent;
     text-decoration: none;
     padding: 0.22rem 0;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     line-height: 1.4;
     position: relative;
     overflow: hidden;
@@ -197,7 +200,7 @@ const trustedItems = [
     inset: 0;
     display: block;
     padding: 0.22rem 0;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     line-height: 1.4;
     color: rgba(210, 224, 245, 0.45);
     transform: translateY(115%);
@@ -233,9 +236,6 @@ const trustedItems = [
     flex-direction: column;
     align-items: center;
     gap: 0.15rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(200, 220, 245, 0.12);
   }
 
   .ftr-item {
@@ -243,8 +243,10 @@ const trustedItems = [
     color: transparent;
     text-decoration: none;
     padding: 0.35rem 0.5rem;
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     line-height: 1.2;
     text-align: center;
     position: relative;
@@ -253,7 +255,7 @@ const trustedItems = [
 
   .ftr-item-label {
     display: block;
-    color: #f2f8ff;
+    color: rgba(242, 248, 255, 0.8);
     transform: translateY(0);
     opacity: 1;
     transition: transform 0.22s ease, opacity 0.22s ease;
@@ -296,22 +298,6 @@ const trustedItems = [
     opacity: 0;
   }
 
-  /* --- CTA & legal --- */
-
-  .footer-panel-cta a {
-    color: rgba(242, 248, 255, 0.8);
-    text-decoration: none;
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.15s ease;
-  }
-
-  .footer-panel-cta a:hover {
-    color: #fff;
-  }
-
   .footer-legal {
     display: flex;
     align-items: center;
@@ -349,7 +335,7 @@ const trustedItems = [
     }
 
     .ftr-item {
-      font-size: 1.15rem;
+      font-size: 0.78rem;
     }
 
     .footer-nav-services {
