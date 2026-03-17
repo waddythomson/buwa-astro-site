@@ -186,7 +186,7 @@ const partnerCount = partners.length;
 
   .partners-section {
     padding: 4rem 0;
-    background: white;
+    background: transparent;
     overflow: hidden;
     text-align: center;
     scroll-margin-top: 100px;
@@ -195,14 +195,14 @@ const partnerCount = partners.length;
   .partners-section h2 {
     font-family: 'Inter', sans-serif;
     font-size: 2rem;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 1rem;
   }
 
   .partners-section .intro {
     max-width: 700px;
     margin: 0 auto 2rem;
-    color: #4a5568;
+    color: rgba(210, 232, 255, 0.9);
     line-height: 1.7;
   }
 
@@ -287,7 +287,7 @@ const partnerCount = partners.length;
   }
 
   .review-section {
-    background: white;
+    background: transparent;
     text-align: center;
     padding: 4rem 0;
     scroll-margin-top: 100px;
@@ -296,12 +296,12 @@ const partnerCount = partners.length;
   .review-section h2 {
     font-family: 'Inter', sans-serif;
     font-size: 2rem;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.75rem;
   }
 
   .review-subtitle {
-    color: #4a5568;
+    color: rgba(210, 232, 255, 0.9);
     font-size: 1.1rem;
     margin-bottom: 2rem;
   }
@@ -331,14 +331,13 @@ const partnerCount = partners.length;
   }
 
   .testimonial-card {
-    background: #f8f9fa;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 2rem;
     border-radius: 12px;
     text-align: left;
-    box-shadow:
-      0 2px 4px rgba(0,0,0,0.04),
-      0 8px 24px rgba(0,0,0,0.08);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -362,7 +361,7 @@ const partnerCount = partners.length;
   }
 
   .testimonial-text {
-    color: #444;
+    color: rgba(210, 232, 255, 0.9);
     font-size: 0.95rem;
     line-height: 1.7;
     flex-grow: 1;
@@ -371,21 +370,21 @@ const partnerCount = partners.length;
   }
 
   .testimonial-author {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     padding-top: 1rem;
   }
 
   .author-name {
     display: block;
     font-weight: 600;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.25rem;
   }
 
   .author-company {
     display: block;
     font-size: 0.85rem;
-    color: #666;
+    color: rgba(210, 232, 255, 0.7);
   }
 
   .google-attribution {

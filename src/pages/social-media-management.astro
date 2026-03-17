@@ -257,15 +257,15 @@ const relatedServices = [
     padding: 0 1.5rem;
   }
 
-  /* ==================== WHITE SECTIONS ==================== */
+  /* ==================== TRANSPARENT SECTIONS ==================== */
   .intro-section,
   .stats-section,
   .approach-section,
   .faq-section,
   .cta-section-white {
     padding: 5rem 0;
-    background: #ffffff;
-    color: #1a1a2e;
+    background: transparent;
+    color: #ffffff;
   }
 
   .intro-section h2,
@@ -276,7 +276,7 @@ const relatedServices = [
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     margin-bottom: 1.5rem;
     text-align: center;
-    color: #0c1e43;
+    color: #ffffff;
   }
 
   .intro-text {
@@ -285,7 +285,7 @@ const relatedServices = [
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    color: #444;
+    color: rgba(210, 232, 255, 0.9);
   }
 
   /* ==================== VIDEO BG SECTIONS ==================== */
@@ -381,7 +381,10 @@ const relatedServices = [
   }
 
   .stat-card {
-    background: #f0f4f8;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 2rem 1.5rem;
     text-align: center;
@@ -390,13 +393,13 @@ const relatedServices = [
   .stat-number {
     font-size: 2.8rem;
     font-weight: 700;
-    color: #0c1e43;
+    color: #ffffff;
     margin-bottom: 0.5rem;
   }
 
   .stat-label {
     font-size: 0.95rem;
-    color: #555;
+    color: rgba(210, 232, 255, 0.85);
     line-height: 1.5;
   }
 
@@ -452,7 +455,7 @@ const relatedServices = [
   /* ==================== APPROACH ==================== */
   .approach-intro {
     text-align: center;
-    color: #555;
+    color: rgba(210, 232, 255, 0.9);
     font-size: 1.05rem;
     margin-bottom: 2rem;
   }
@@ -468,11 +471,11 @@ const relatedServices = [
   .approach-list li {
     font-size: 1.05rem;
     line-height: 1.6;
-    color: #333;
+    color: rgba(210, 232, 255, 0.85);
   }
 
   .approach-list li strong {
-    color: #0c1e43;
+    color: #ffffff;
   }
 
   /* ==================== FAQ ==================== */
@@ -484,7 +487,10 @@ const relatedServices = [
   }
 
   .faq-item {
-    background: #f0f4f8;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 1.25rem 1.5rem;
     cursor: pointer;
@@ -493,7 +499,7 @@ const relatedServices = [
   .faq-question {
     font-weight: 600;
     font-size: 1.05rem;
-    color: #0c1e43;
+    color: #ffffff;
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -504,7 +510,7 @@ const relatedServices = [
     content: "+";
     font-size: 1.3rem;
     font-weight: 300;
-    color: #888;
+    color: rgba(210, 232, 255, 0.6);
     transition: transform 0.2s;
   }
 
@@ -516,7 +522,7 @@ const relatedServices = [
     margin-top: 0.75rem;
     font-size: 0.95rem;
     line-height: 1.7;
-    color: #555;
+    color: rgba(210, 232, 255, 0.85);
   }
 
   /* ==================== RELATED SERVICES ==================== */
@@ -559,7 +565,7 @@ const relatedServices = [
 
   .cta-section-white p {
     font-size: 1.15rem;
-    color: #555;
+    color: rgba(210, 232, 255, 0.9);
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;

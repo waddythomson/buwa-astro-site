@@ -101,7 +101,7 @@ const description = "Terms and conditions for BuWa messaging program and service
     /* Terms Section */
     .terms-section {
       padding: 4rem 2rem;
-      background: #f8f9fa;
+      background: transparent;
     }
 
     .container {
@@ -110,20 +110,22 @@ const description = "Terms and conditions for BuWa messaging program and service
     }
 
     .terms-content {
-      background: #ffffff;
+      background: rgba(30, 30, 35, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 16px;
       padding: 3rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
 
     .intro-text {
       font-family: 'Montserrat', sans-serif;
       font-size: 1.125rem;
       line-height: 1.8;
-      color: #333;
+      color: rgba(210, 232, 255, 0.9);
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .terms-list {
@@ -136,7 +138,7 @@ const description = "Terms and conditions for BuWa messaging program and service
       font-family: 'Montserrat', sans-serif;
       font-size: 1rem;
       line-height: 1.8;
-      color: #555;
+      color: rgba(210, 232, 255, 0.85);
       padding-left: 1.5rem;
       position: relative;
       margin-bottom: 0.5rem;
@@ -144,7 +146,7 @@ const description = "Terms and conditions for BuWa messaging program and service
 
     .terms-list li::before {
       content: "•";
-      color: #17246c;
+      color: #7db8ff;
       font-weight: bold;
       position: absolute;
       left: 0;
@@ -162,7 +164,7 @@ const description = "Terms and conditions for BuWa messaging program and service
       font-family: 'Inter', sans-serif;
       font-size: 1.25rem;
       font-weight: 700;
-      color: #17246c;
+      color: #ffffff;
       margin-bottom: 0.75rem;
     }
 
@@ -170,12 +172,12 @@ const description = "Terms and conditions for BuWa messaging program and service
       font-family: 'Montserrat', sans-serif;
       font-size: 1rem;
       line-height: 1.7;
-      color: #555;
+      color: rgba(210, 232, 255, 0.85);
       margin-bottom: 0.5rem;
     }
 
     .terms-block a {
-      color: #17246c;
+      color: #7db8ff;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;

@@ -186,7 +186,7 @@ const services = [
   /* Image Section */
   .image-section {
     padding: 3rem 2rem;
-    background: #f8f9fa;
+    background: transparent;
     text-align: center;
   }
 
@@ -211,20 +211,20 @@ const services = [
   /* Intro Section */
   .intro-section {
     padding: 3rem 2rem 4rem;
-    background: #f8f9fa;
+    background: transparent;
     text-align: center;
   }
 
   .intro-section h2 {
     font-size: 2rem;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 1rem;
   }
 
   .intro-section p {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: #555;
+    color: rgba(210, 232, 255, 0.9);
     max-width: 800px;
     margin: 0 auto;
   }
@@ -255,12 +255,12 @@ const services = [
   /* Benefits Section */
   .benefits-section {
     padding: 4rem 0;
-    background: #f8f9fa;
+    background: transparent;
   }
   
   .benefits-section h2 {
     text-align: center;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 3rem;
     font-size: 2rem;
   }
@@ -274,20 +274,17 @@ const services = [
   .benefit-card {
     text-align: center;
     padding: 2rem;
-    background: white;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 10px;
-    border: 2px solid rgba(23, 36, 108, 0.08);
-    box-shadow: 
-      0 4px 15px rgba(0,0,0,0.08),
-      0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .benefit-card:hover {
     transform: translateY(-6px);
-    box-shadow: 
-      0 12px 35px rgba(23, 36, 108, 0.15),
-      0 6px 15px rgba(0,0,0,0.1);
+    background: rgba(40, 40, 45, 0.55);
   }
   
   .benefit-icon {
@@ -296,13 +293,13 @@ const services = [
   }
   
   .benefit-card h3 {
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
   }
   
   .benefit-card p {
-    color: #666;
+    color: rgba(210, 232, 255, 0.85);
     font-size: 0.95rem;
     line-height: 1.5;
   }
@@ -310,19 +307,19 @@ const services = [
   /* Services Section */
   .services-section {
     padding: 4rem 0;
-    background: white;
+    background: transparent;
   }
   
   .services-section h2 {
     text-align: center;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 0.5rem;
     font-size: 2rem;
   }
   
   .section-subtitle {
     text-align: center;
-    color: #666;
+    color: rgba(210, 232, 255, 0.85);
     margin-bottom: 3rem;
   }
   
@@ -336,24 +333,20 @@ const services = [
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-    background: white;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 10px;
     text-decoration: none;
     color: inherit;
-    border: 2px solid rgba(23, 36, 108, 0.1);
-    box-shadow: 
-      0 4px 15px rgba(0,0,0,0.08),
-      0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
   }
   
   .service-card:hover {
-    border-color: #17246c;
-    background: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(40, 40, 45, 0.55);
     transform: translateY(-6px);
-    box-shadow: 
-      0 12px 35px rgba(23, 36, 108, 0.2),
-      0 6px 15px rgba(0,0,0,0.1);
   }
   
   .service-icon {
@@ -362,20 +355,20 @@ const services = [
   }
   
   .service-card h3 {
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
   }
   
   .service-card p {
-    color: #666;
+    color: rgba(210, 232, 255, 0.85);
     font-size: 0.9rem;
     line-height: 1.5;
     flex-grow: 1;
   }
   
   .learn-more {
-    color: #a01c2b;
+    color: #7db8ff;
     font-weight: 600;
     font-size: 0.9rem;
     margin-top: 1rem;
