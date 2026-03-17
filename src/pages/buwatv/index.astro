@@ -82,9 +82,7 @@ const bumpers = bumpersData;
         </button>
       </nav>
       <div class="header-actions">
-        <a href="#contact" class="btn btn-red header-cta open-contact-popup">
-          <i class="fas fa-paper-plane"></i> Get In Touch
-        </a>
+        <a href="#contact" class="header-cta open-contact-popup">Contact us</a>
       </div>
     </div>
   </header>
@@ -707,17 +705,23 @@ const bumpers = bumpersData;
 
   .main-nav {
     justify-self: center;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .site-header.nav-hidden .main-nav {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .menu-toggle {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    width: min(90vw, 138px);
+    width: auto;
     height: 54px;
-    padding: 0.5rem 1.15rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.34);
+    padding: 0.4rem 0.2rem;
+    border: none;
     color: rgba(238, 246, 255, 0.96);
     background: transparent;
     cursor: pointer;
@@ -853,8 +857,15 @@ const bumpers = bumpersData;
   }
 
   .header-cta {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    text-decoration: none;
+    background: #fff;
+    color: #102043;
+    border-radius: 999px;
+    padding: 0.58rem 0.95rem;
+    font-size: 0.73rem;
+    font-weight: 700;
+    transform: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
 
@@ -3158,26 +3169,32 @@ const bumpers = bumpersData;
   const menuPanel = document.getElementById('buwatvMenuPanel');
   const siteHeader = document.querySelector('.site-header');
   const heroSection = document.querySelector('.hero');
+  const navFadeThreshold = 30;
+
+  function closeHeaderMenu() {
+    menuPanel?.classList.remove('is-open');
+    menuPanel?.setAttribute('aria-hidden', 'true');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    menuToggle?.classList.remove('is-open');
+    siteHeader?.classList.remove('menu-open');
+  }
 
   const syncHeaderState = () => {
     if (!siteHeader || !heroSection) return;
     const headerH = siteHeader.getBoundingClientRect().height;
     const heroRect = heroSection.getBoundingClientRect();
     const pastHero = window.scrollY > 20 && heroRect.bottom <= headerH + 8;
+    const scrolled = window.scrollY > navFadeThreshold;
     siteHeader.classList.toggle('after-hero', pastHero);
+    siteHeader.classList.toggle('nav-hidden', scrolled);
+    if (scrolled && menuPanel?.classList.contains('is-open')) {
+      closeHeaderMenu();
+    }
   };
 
   syncHeaderState();
   window.addEventListener('scroll', syncHeaderState, { passive: true });
   window.addEventListener('resize', syncHeaderState);
-
-  const closeHeaderMenu = () => {
-    menuPanel?.classList.remove('is-open');
-    menuPanel?.setAttribute('aria-hidden', 'true');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-    menuToggle?.classList.remove('is-open');
-    siteHeader?.classList.remove('menu-open');
-  };
 
   menuToggle?.addEventListener('click', () => {
     if (!menuPanel) return;
