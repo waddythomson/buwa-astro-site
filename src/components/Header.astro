@@ -203,11 +203,16 @@ const trustedItems = [
     };
 
     const navFadeThreshold = 30;
+    const siteFooter = document.querySelector('.site-footer');
     const updateNavVisibility = () => {
       if (!siteHeader) return;
       const scrolled = window.scrollY > navFadeThreshold;
-      siteHeader.classList.toggle('nav-hidden', scrolled);
-      if (scrolled && menuPanel?.classList.contains('is-open')) {
+      const nearBottom = siteFooter
+        ? siteFooter.getBoundingClientRect().top <= window.innerHeight + 50
+        : false;
+      const shouldHide = scrolled && !nearBottom;
+      siteHeader.classList.toggle('nav-hidden', shouldHide);
+      if (shouldHide && menuPanel?.classList.contains('is-open')) {
         closeMenuPanel();
       }
     };
