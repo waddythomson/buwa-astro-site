@@ -202,10 +202,21 @@ const trustedItems = [
       siteHeader.classList.toggle('after-hero', passedHero);
     };
 
+    const navFadeThreshold = 30;
+    const updateNavVisibility = () => {
+      if (!siteHeader) return;
+      const scrolled = window.scrollY > navFadeThreshold;
+      siteHeader.classList.toggle('nav-hidden', scrolled);
+      if (scrolled && menuPanel?.classList.contains('is-open')) {
+        closeMenuPanel();
+      }
+    };
+
     if (homeHero && headerLogo) {
       siteHeader?.classList.remove('after-hero');
       syncHeaderHeightVar();
       updateHomeLogoVisibility();
+      updateNavVisibility();
       const settleEnd = performance.now() + 1800;
       const enforceTopLock = () => {
         if (!siteHeader) return;
@@ -219,6 +230,7 @@ const trustedItems = [
       };
       requestAnimationFrame(settleTick);
       window.addEventListener('scroll', updateHomeLogoVisibility, { passive: true, signal });
+      window.addEventListener('scroll', updateNavVisibility, { passive: true, signal });
       window.addEventListener('resize', updateHomeLogoVisibility, { signal });
       window.addEventListener('resize', syncHeaderHeightVar, { signal });
     } else if (secondaryHero) {
@@ -226,11 +238,15 @@ const trustedItems = [
       document.documentElement.classList.add('secondary-top-hero');
       syncHeaderHeightVar();
       updateSecondaryHeaderState();
+      updateNavVisibility();
       window.addEventListener('scroll', updateSecondaryHeaderState, { passive: true, signal });
+      window.addEventListener('scroll', updateNavVisibility, { passive: true, signal });
       window.addEventListener('resize', updateSecondaryHeaderState, { signal });
       window.addEventListener('resize', syncHeaderHeightVar, { signal });
     } else {
       syncHeaderHeightVar();
+      updateNavVisibility();
+      window.addEventListener('scroll', updateNavVisibility, { passive: true, signal });
     }
   }
 
@@ -387,6 +403,14 @@ const trustedItems = [
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .site-header.nav-hidden .main-nav,
+  .site-header.nav-hidden .header-cta {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .menu-toggle {
@@ -453,6 +477,7 @@ const trustedItems = [
     font-size: 0.73rem;
     font-weight: 700;
     transform: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
   .menu-overlay {
