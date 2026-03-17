@@ -338,18 +338,20 @@ const relatedServices = [
     color: rgba(210, 232, 255, 0.9);
   }
 
-  /* Process steps on video — keep white cards */
   .video-bg-section .process-step {
-    background: white;
-    color: #2d3748;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
   }
 
   .video-bg-section .process-step h3 {
-    color: #1a202c;
+    color: #ffffff;
   }
 
   .video-bg-section .process-step p {
-    color: #4a5568;
+    color: rgba(210, 232, 255, 0.85);
   }
 
   /* ========================
@@ -358,13 +360,13 @@ const relatedServices = [
 
   /* Intro Section */
   .intro-section {
-    background: white;
+    background: transparent;
   }
 
   .intro-text {
     font-size: 1.25rem;
     line-height: 1.8;
-    color: #444;
+    color: rgba(210, 232, 255, 0.9);
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -411,7 +413,7 @@ const relatedServices = [
 
   /* Impact / Stats Section */
   .impact-section {
-    background: white;
+    background: transparent;
   }
 
   .stats-grid {
@@ -422,11 +424,13 @@ const relatedServices = [
   }
 
   .stat-card {
-    background: #f0f4f8;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
   .stat-number {
@@ -434,12 +438,12 @@ const relatedServices = [
     font-family: 'Inter', sans-serif;
     font-size: 3rem;
     font-weight: 800;
-    color: #a01c2b;
+    color: #ff6b7a;
     margin-bottom: 0.5rem;
   }
 
   .stat-card p {
-    color: #555;
+    color: rgba(210, 232, 255, 0.85);
     line-height: 1.6;
     font-size: 0.95rem;
   }
@@ -447,14 +451,14 @@ const relatedServices = [
   .impact-text {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #444;
+    color: rgba(210, 232, 255, 0.9);
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
   }
 
   .impact-text a {
-    color: #a01c2b;
+    color: #7db8ff;
     text-decoration: none;
   }
 
@@ -470,11 +474,13 @@ const relatedServices = [
   }
 
   .process-step {
-    background: white;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
 
   .step-number {
@@ -505,7 +511,7 @@ const relatedServices = [
 
   /* Approach Section */
   .approach-section {
-    background: white;
+    background: transparent;
   }
 
   .approach-list {
@@ -518,14 +524,17 @@ const relatedServices = [
   .approach-list li {
     padding: 1rem 1.5rem;
     margin-bottom: 0.75rem;
-    background: #f0f4f8;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 8px;
     border-left: 4px solid #a01c2b;
     font-size: 1.1rem;
+    color: rgba(210, 232, 255, 0.85);
   }
 
   .approach-list strong {
-    color: #1a1a2e;
+    color: #ffffff;
   }
 
   /* Why BuWa Section */
@@ -554,27 +563,29 @@ const relatedServices = [
 
   /* FAQ Section */
   .faq-section {
-    background: white;
+    background: transparent;
   }
 
   .faq-item {
     max-width: 800px;
     margin: 0 auto 2rem;
-    background: #f0f4f8;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1.5rem 2rem;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
   .faq-item h3 {
     font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.75rem;
   }
 
   .faq-item p {
-    color: #555;
+    color: rgba(210, 232, 255, 0.85);
     line-height: 1.7;
   }
 
@@ -584,7 +595,7 @@ const relatedServices = [
   }
 
   .faq-cta a {
-    color: #a01c2b;
+    color: #7db8ff;
     text-decoration: none;
   }
 
@@ -632,9 +643,9 @@ const relatedServices = [
     border-color: white;
   }
 
-  /* White CTA Section (pre-footer) */
+  /* CTA Section (pre-footer) */
   .cta-section-white {
-    background: white;
+    background: transparent;
     padding: 4rem 0;
     text-align: center;
   }
@@ -642,13 +653,13 @@ const relatedServices = [
   .cta-section-white h2 {
     font-family: 'Inter', sans-serif;
     font-size: 2rem;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 1rem;
   }
 
   .cta-desc {
     font-size: 1.15rem;
-    color: #555;
+    color: rgba(210, 232, 255, 0.9);
     max-width: 600px;
     margin: 0 auto 2rem;
     line-height: 1.7;

@@ -183,7 +183,7 @@ const reasons = [
   /* About Section */
   .about-section {
     padding: 4rem 0;
-    background: #f8f9fa;
+    background: transparent;
   }
   
   .about-text {
@@ -193,7 +193,7 @@ const reasons = [
   }
   
   .about-text h2 {
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 1.5rem;
     font-size: 2rem;
   }
@@ -201,12 +201,12 @@ const reasons = [
   .about-text p {
     margin-bottom: 1rem;
     line-height: 1.7;
-    color: #333;
+    color: rgba(210, 232, 255, 0.9);
   }
   
   .about-text .tagline {
     font-size: 1.1rem;
-    color: #17246c;
+    color: #ffffff;
     margin-top: 1.5rem;
   }
   
@@ -238,7 +238,7 @@ const reasons = [
   .award-text p {
     line-height: 1.7;
     margin-bottom: 1rem;
-    color: #333;
+    color: rgba(210, 232, 255, 0.9);
   }
   
   .award-links {
@@ -295,7 +295,10 @@ const reasons = [
     display: flex;
     gap: 2rem;
     align-items: flex-start;
-    background: rgba(255,255,255,0.1);
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 10px;
     transition: transform 0.3s ease, background 0.3s ease;
@@ -335,16 +338,16 @@ const reasons = [
   .cta-section {
     padding: 4rem 0;
     text-align: center;
-    background: #f8f9fa;
+    background: transparent;
   }
   
   .cta-section h2 {
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 1rem;
   }
   
   .cta-section p {
-    color: #666;
+    color: rgba(210, 232, 255, 0.9);
     margin-bottom: 2rem;
     font-size: 1.1rem;
   }
@@ -388,13 +391,13 @@ const reasons = [
   /* Affiliations Section */
   .affiliations-section {
     padding: 4rem 2rem;
-    background: #f8f9fa;
+    background: transparent;
     text-align: center;
   }
 
   .affiliations-section h2 {
     font-size: 2rem;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 2rem;
   }
 

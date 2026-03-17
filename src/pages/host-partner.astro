@@ -229,7 +229,7 @@ const steps = [
   /* Intro Section */
   .intro-section {
     padding: 4rem 0;
-    background: #f8f9fa;
+    background: transparent;
   }
   
   .intro-content {
@@ -240,7 +240,7 @@ const steps = [
   }
   
   .intro-text h2 {
-    color: #17246c;
+    color: #ffffff;
     font-size: 2rem;
     margin-bottom: 1.5rem;
   }
@@ -248,7 +248,7 @@ const steps = [
   .intro-lead {
     font-size: 1.25rem;
     line-height: 1.7;
-    color: #333;
+    color: rgba(210, 232, 255, 0.9);
   }
   
   .intro-image img {
@@ -260,12 +260,12 @@ const steps = [
   /* Benefits Section */
   .benefits-section {
     padding: 4rem 0;
-    background: white;
+    background: transparent;
   }
   
   .benefits-section h2 {
     text-align: center;
-    color: #17246c;
+    color: #ffffff;
     font-size: 2rem;
     margin-bottom: 3rem;
   }
@@ -281,10 +281,12 @@ const steps = [
     grid-template-columns: 1fr 1.5fr;
     gap: 3rem;
     align-items: center;
-    background: #f8f9fa;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -316,40 +318,23 @@ const steps = [
   }
   
   .benefit-content h3 {
-    color: #17246c;
+    color: #ffffff;
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
   
   .benefit-content p {
-    color: #555;
+    color: rgba(210, 232, 255, 0.85);
     line-height: 1.7;
   }
 
   /* Steps Section */
   .steps-section {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     color: white;
     text-align: center;
     position: relative;
-  }
-  
-  .steps-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
   }
   
   .steps-section .container {
@@ -383,7 +368,10 @@ const steps = [
   }
   
   .step-card {
-    background: rgba(255,255,255,0.1);
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 2rem;
     transition: transform 0.3s ease, background 0.3s ease;
@@ -391,7 +379,7 @@ const steps = [
   
   .step-card:hover {
     transform: translateY(-5px);
-    background: rgba(255,255,255,0.15);
+    background: rgba(40, 40, 45, 0.55);
   }
   
   .step-number {
@@ -433,12 +421,12 @@ const steps = [
   /* Featured Partner Section */
   .partner-section {
     padding: 4rem 0;
-    background: #f8f9fa;
+    background: transparent;
   }
   
   .partner-section h2 {
     text-align: center;
-    color: #17246c;
+    color: #ffffff;
     font-size: 2rem;
     margin-bottom: 2rem;
   }
@@ -450,10 +438,12 @@ const steps = [
     align-items: center;
     max-width: 900px;
     margin: 0 auto;
-    background: white;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2rem 3rem;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
   }
   
   .partner-logo img {
@@ -467,7 +457,7 @@ const steps = [
   }
   
   .partner-text p {
-    color: #555;
+    color: rgba(210, 232, 255, 0.85);
     line-height: 1.7;
     margin-bottom: 1.5rem;
   }
@@ -476,26 +466,9 @@ const steps = [
   .cta-section {
     padding: 4rem 0;
     text-align: center;
-    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
+    background: transparent;
     color: white;
     position: relative;
-  }
-  
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
   }
   
   .cta-section .container {

@@ -462,29 +462,12 @@ const partnerQuote = {
 
   /* Video Section */
   .video-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     color: white;
     padding: 4rem 2rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-  }
-
-  .video-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
   }
 
   .video-section .container {
@@ -566,7 +549,7 @@ const partnerQuote = {
   }
 
   .alt-bg {
-    background: #f8f9fa;
+    background: transparent;
   }
 
   .container {
@@ -576,7 +559,7 @@ const partnerQuote = {
 
   .container h2 {
     font-family: 'Inter', system-ui, sans-serif;
-    color: #1a1a2e;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 2rem;
   }
@@ -584,7 +567,7 @@ const partnerQuote = {
   .container p {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.8;
-    color: #444;
+    color: rgba(210, 232, 255, 0.9);
   }
 
   /* Intro paragraphs - 25% larger */
@@ -628,14 +611,12 @@ const partnerQuote = {
   .benefit-card {
     flex: 0 1 300px;
     max-width: 350px;
-    background: white;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow:
-      0 4px 6px rgba(0,0,0,0.07),
-      0 10px 20px rgba(0,0,0,0.05),
-      0 1px 3px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -662,7 +643,7 @@ const partnerQuote = {
 
   .benefit-card h3 {
     font-family: 'Inter', system-ui, sans-serif;
-    color: #1a1a2e;
+    color: #ffffff;
     padding: 1rem 1.5rem 0.5rem;
     margin: 0;
   }
@@ -702,7 +683,7 @@ const partnerQuote = {
 
   .process-step h3 {
     font-family: 'Inter', system-ui, sans-serif;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 0.5rem;
   }
 
@@ -712,29 +693,12 @@ const partnerQuote = {
 
   /* CTA Section */
   .cta-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: transparent;
     color: white;
     padding: 3rem 2rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 20px
-    );
-    pointer-events: none;
   }
 
   .cta-section h2 {
@@ -894,27 +858,29 @@ const partnerQuote = {
     max-width: 800px;
     margin: 2rem auto 0;
     padding: 2rem;
-    background: #fff;
+    background: rgba(30, 30, 35, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     text-align: center;
   }
 
   .proof-quote p {
     font-size: 1.1rem;
-    color: #333;
+    color: rgba(210, 232, 255, 0.9);
     margin-bottom: 1rem;
     line-height: 1.7;
     font-style: italic;
   }
 
   .proof-quote footer {
-    color: #555;
+    color: rgba(210, 232, 255, 0.85);
     font-weight: 600;
   }
 
   .related-section {
-    background: #f8f9fa;
+    background: transparent;
   }
 
   .related-links {
@@ -931,16 +897,16 @@ const partnerQuote = {
     justify-content: center;
     padding: 0.75rem 1.25rem;
     border-radius: 999px;
-    border: 2px solid #17246c;
-    color: #17246c;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.2s ease;
   }
 
   .related-link:hover {
-    background: #17246c;
-    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
   }
 
   /* Video Modal */
