@@ -24,6 +24,7 @@ const globalNoindex = import.meta.env.PUBLIC_BUWATV_NOINDEX === 'true';
 const shouldNoindex = noindex || globalNoindex;
 const robotsContent = shouldNoindex ? 'noindex, nofollow' : 'index, follow';
 const ogTypeValue = ogType ?? 'website';
+const currentYear = new Date().getFullYear();
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -78,7 +79,7 @@ const structuredData = {
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -107,6 +108,14 @@ const structuredData = {
 </head>
 
 <body>
+  <div class="buwatv-bg-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="/uploads/background/buwatv/background-main.webm" type="video/webm" />
+      <source src="/uploads/background/buwatv/background-main.mp4" type="video/mp4" />
+      <source src="/uploads/hero/0.mp4" type="video/mp4" />
+    </video>
+  </div>
+
   <!-- Header slot - pages provide their own header -->
   <slot name="header" />
   
@@ -114,40 +123,148 @@ const structuredData = {
   <slot />
   
   <!-- Footer -->
-  <footer class="footer section-accent-bar">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <img src="/uploads/logos/buwa-tv-dark.png" alt="BuWa TV" class="footer-logo">
-          <p class="footer-tagline">✦ Part of the BuWa Digital family ✦</p>
-        </div>
-        <div class="footer-links">
-          <a href="/buwatv/#contact" class="open-contact-popup">Contact Us</a>
-          <a href="/buwatv/pricing/">Pricing</a>
-          <a href="/buwatv/locations/">Locations</a>
-          <a href="/buwatv/faq/">FAQ</a>
-          <a href="/buwatv/#host-partner">Host Partner</a>
-          <a href="/about-us/">About Us</a>
-          <a href="/">BuWa Digital</a>
-        </div>
-        <div class="footer-social">
-          <a href="https://www.youtube.com/@BuWadigital" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/BuWaDigital" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.instagram.com/buwadigital" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-        </div>
+  <footer class="site-footer">
+    <div class="footer-menu-panel" id="buwatvFooterPanel">
+      <span class="footer-menu-label">Menu</span>
+      <nav class="footer-menu-links">
+        <a href="/buwatv/">BuWa TV Home</a>
+        <a href="/buwatv/pricing/">Pricing</a>
+        <a href="/buwatv/locations/">Locations</a>
+        <a href="/buwatv/faq/">FAQ</a>
+        <a href="/buwatv/signup/">Sign Up</a>
+        <a href="/" target="_self">BuWa Digital</a>
+      </nav>
+      <div class="footer-menu-legal">
+        <a href="/buwatv/privacy/">Privacy Policy</a>
+        <span>&middot;</span>
+        <a href="/buwatv/terms/">Terms &amp; Conditions</a>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 BuWa&reg; digital. All rights reserved.</p>
-        <div class="footer-legal">
-          <a href="/buwatv/privacy/">Privacy Policy</a>
-          <span class="separator">|</span>
-          <a href="/buwatv/terms/">Terms & Conditions</a>
-        </div>
-      </div>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; {currentYear} BuWa TV</p>
     </div>
   </footer>
 </body>
 </html>
+
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
+    const panel = document.getElementById('buwatvFooterPanel');
+    if (!panel) return;
+
+    let panelHeight = 0;
+    let progress = 0; // 0 = hidden, 1 = fully revealed
+    let touchStartY = 0;
+    let touchActive = false;
+    let lockBottom = false;
+
+    const isAtPageBottom = () =>
+      window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+
+    const getPageBottomY = () =>
+      Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+    const measure = () => {
+      const prevTransform = panel.style.transform;
+      panel.style.transform = 'translate(-50%, 100%)';
+      panelHeight = panel.offsetHeight || panelHeight || 1;
+      panel.style.transform = prevTransform;
+    };
+
+    const applyProgress = () => {
+      if (progress < 0.002) progress = 0;
+      if (progress > 0.998) progress = 1;
+      const hiddenPercent = (1 - progress) * 100;
+      const hiddenOffsetPx = Math.round((1 - progress) * 16);
+      panel.style.transform = `translate(-50%, calc(${hiddenPercent}% + ${hiddenOffsetPx}px))`;
+      panel.classList.toggle('is-visible', progress > 0.001);
+      lockBottom = progress > 0;
+      if (lockBottom) {
+        window.scrollTo(0, getPageBottomY());
+      }
+    };
+
+    const resetBottomMenu = () => {
+      progress = 0;
+      lockBottom = false;
+      applyProgress();
+    };
+
+    window.__buwatvResetBottomMenu = resetBottomMenu;
+
+    const adjustProgress = (deltaY) => {
+      if (!panelHeight) measure();
+      const deltaProgress = Math.abs(deltaY) / Math.max(panelHeight, 1);
+      if (deltaY > 0) progress = Math.min(1, progress + deltaProgress);
+      else progress = Math.max(0, progress - deltaProgress);
+      applyProgress();
+    };
+
+    const onWheel = (event) => {
+      const deltaY = event.deltaY;
+      const atBottom = isAtPageBottom();
+      const captureWhileOpen = progress > 0;
+      const captureDownAtBottom = deltaY > 0 && atBottom;
+      if (!captureWhileOpen && !captureDownAtBottom) return;
+      event.preventDefault();
+      adjustProgress(deltaY);
+    };
+
+    const onTouchStart = (event) => {
+      if (!event.touches || event.touches.length === 0) return;
+      touchStartY = event.touches[0].clientY;
+      touchActive = true;
+    };
+
+    const onTouchMove = (event) => {
+      if (!touchActive || !event.touches || event.touches.length === 0) return;
+      const currentY = event.touches[0].clientY;
+      const deltaY = touchStartY - currentY;
+      if (Math.abs(deltaY) < 2) return;
+      const atBottom = isAtPageBottom();
+      const captureWhileOpen = progress > 0;
+      const captureDownAtBottom = deltaY > 0 && atBottom;
+      if (!captureWhileOpen && !captureDownAtBottom) return;
+      event.preventDefault();
+      adjustProgress(deltaY);
+      touchStartY = currentY;
+    };
+
+    const onTouchEnd = () => {
+      touchActive = false;
+    };
+
+    const onScrollLock = () => {
+      // Safety reset: if page has left the bottom region, fully close the panel state.
+      if (!isAtPageBottom() && progress > 0) {
+        progress = 0;
+        applyProgress();
+        return;
+      }
+      if (lockBottom) {
+        window.scrollTo(0, getPageBottomY());
+      }
+    };
+
+    measure();
+    applyProgress();
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('resize', measure);
+    window.addEventListener('scroll', onScrollLock, { passive: true });
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('scroll', onScrollLock);
+      try { delete window.__buwatvResetBottomMenu; } catch {}
+    }, { once: true });
+  });
+</script>
 
 <style is:global>
   /* Honeypot (fax field) - hidden from users, bots fill it; Tasklet ignores when populated */
@@ -169,6 +286,24 @@ const structuredData = {
   body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
+    background: #050914;
+    color: #eaf3ff;
+  }
+
+  .buwatv-bg-video {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+    background: #050914;
+  }
+
+  .buwatv-bg-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.06) contrast(1.02) brightness(0.9);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -192,143 +327,106 @@ const structuredData = {
     padding: 0 40px;
   }
 
-  /* Red accent bar between white/blue sections */
-  .section-accent-bar {
-    position: relative;
-  }
   .section-accent-bar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #a01c2b, #b82232);
+    display: none;
   }
 
-  /* Footer Styles */
-  .footer {
-    background: #fff;
-    color: #1a1a2e;
-    padding: 60px 0 30px;
+  .site-footer {
+    background: transparent;
+    color: #fff;
+    padding: 1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
     position: relative;
-    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.04);
   }
 
-  .footer-tagline {
-    font-size: 0.9rem;
-    letter-spacing: 0.02em;
-  }
-
-  .footer-content {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 40px;
-    align-items: center;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-
-  .footer-logo {
-    width: 150px;
-  }
-
-  .footer-brand p {
-    color: rgba(26,26,46,0.6);
-    font-size: 0.9rem;
-    margin-top: 10px;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 30px;
-  }
-
-  .footer-links a {
-    color: rgba(26,26,46,0.8);
-    transition: color 0.2s ease;
-  }
-
-  .footer-links a:hover {
-    color: #1a1a2e;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-  }
-
-  .footer-social a {
-    width: 45px;
-    height: 45px;
-    background: rgba(26,26,46,0.08);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: #1a1a2e;
-    transition: all 0.2s ease;
-  }
-
-  .footer-social a:hover {
-    background: #a01c2b;
-    color: white;
-    transform: translateY(-3px);
-  }
-
-  .footer-bottom {
+  .footer-menu-panel {
+    position: fixed;
+    left: 50%;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    transform: translate(-50%, 100%);
+    width: min(90vw, 360px);
+    padding: 1.5rem 1.5rem 1.25rem;
+    border-radius: 14px;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     text-align: center;
-    padding-top: 30px;
-    color: rgba(26,26,46,0.6);
-    font-size: 0.9rem;
+    will-change: transform;
+    pointer-events: none;
+    z-index: 980;
+  }
+
+  .footer-menu-panel.is-visible {
+    pointer-events: auto;
+  }
+
+  .footer-menu-label {
+    display: block;
+    margin-bottom: 0.9rem;
+    color: #e8f2ff;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    opacity: 0.72;
+  }
+
+  .footer-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .footer-menu-links a {
+    color: rgba(242, 248, 255, 0.86);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.28rem 0;
+  }
+
+  .footer-menu-links a:hover {
+    color: #fff;
+  }
+
+  .footer-menu-legal {
+    margin-top: 0.7rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-menu-legal a,
+  .footer-menu-legal span {
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.68rem;
+  }
+
+  .footer-menu-legal a:hover {
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .footer-legal {
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
   }
 
-  .footer-legal a {
-    color: rgba(26,26,46,0.6);
-    transition: color 0.2s ease;
-  }
-
-  .footer-legal a:hover {
-    color: #1a1a2e;
-  }
-
-  .footer-legal .separator {
-    margin: 0 10px;
-    color: rgba(26,26,46,0.3);
-  }
-
-  /* Footer Responsive */
-  @media (max-width: 992px) {
-    .footer-content {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 30px;
-    }
-
-    .footer-social {
-      justify-content: center;
-    }
-
-    .footer-links {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+  .footer-legal p {
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 0.72rem;
+    margin: 0;
   }
 
   @media (max-width: 768px) {
     .container {
       padding: 0 20px;
-    }
-
-    .footer-links {
-      flex-direction: column;
-      gap: 15px;
     }
   }
 </style>

@@ -36,30 +36,6 @@ const uniquePartners = (items = []) => {
 const allPartners = uniquePartners([...hostPartners, ...communityPartners]);
 const livePartners = allPartners.filter((partner) => partner.status !== 'coming-soon');
 
-const spottedHighlights = [
-  {
-    quote: "Currently airing on BuWa TV screens at this host partner location.",
-    location: "Devine Nail Spa",
-    tag: "Salon",
-    timeframe: "2 days ago",
-    logo: "devine-nail-spa.png"
-  },
-  {
-    quote: "Spotted in rotation this week as part of the local host partner network.",
-    location: "Que Bueno",
-    tag: "Restaurant",
-    timeframe: "This week",
-    logo: "que-bueno.png"
-  },
-  {
-    quote: "Featured on indoor digital screens in this category across the Midlands.",
-    location: "Warrior Axe CrossFit",
-    tag: "Fitness",
-    timeframe: "Recently",
-    logo: "warrior-axe-crossfit.webp"
-  }
-];
-
 // Import bumper videos configuration
 import bumpersData from '../../data/buwatv/bumpers.json';
 const bumpers = bumpersData;
@@ -73,58 +49,42 @@ const bumpers = bumpersData;
   <header slot="header" class="site-header">
     <div class="header-container">
       <a href="/" class="header-logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+        <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital">
       </a>
-      <nav class="header-nav">
-        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
-        <div class="nav-dropdown">
-          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-            Advertisers <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="nav-dropdown-menu">
-            <a href="#advertisers" class="scroll-link">Interested in Advertising?</a>
-            <a href="#partners" class="scroll-link">Our Partners</a>
-            <a href="/buwatv/locations/">Locations</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-            Host Partners <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="nav-dropdown-menu">
-            <a href="#host-partner" class="scroll-link">Become a Host Partner</a>
-            <a href="/buwatv/locations/#host-partner-locations">Our Host Partners</a>
-            <a href="/buwatv/locations/">Locations</a>
-          </div>
-        </div>
+      <nav class="main-nav" aria-label="BuWa TV menu">
+        <button type="button" class="menu-toggle" id="buwatvMenuToggle" aria-expanded="false" aria-controls="buwatvMenuPanel">
+          <span class="menu-pill-label" id="buwatvMenuLabel">Menu</span>
+          <span class="menu-chevron" aria-hidden="true">&#8964;</span>
+        </button>
       </nav>
       <div class="header-actions">
-        <a href="#contact" class="btn btn-red header-cta open-contact-popup">
-          <i class="fas fa-paper-plane"></i> Get In Touch
-        </a>
-        <button class="mobile-menu-btn" id="mobile-menu-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <a href="#contact" class="header-cta open-contact-popup">Contact us</a>
       </div>
     </div>
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
-      <span class="mobile-link mobile-link-static">Advertisers</span>
-      <a href="#advertisers" class="mobile-link mobile-sub-link scroll-link">Interested in Advertising?</a>
-      <a href="#partners" class="mobile-link mobile-sub-link scroll-link">Our Partners</a>
-      <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
-      <span class="mobile-link mobile-link-static">Host Partners</span>
-      <a href="#host-partner" class="mobile-link mobile-sub-link scroll-link">Become a Host Partner</a>
-      <a href="/buwatv/locations/#host-partner-locations" class="mobile-link mobile-sub-link">Our Host Partners</a>
-      <a href="/buwatv/locations/" class="mobile-link mobile-sub-link">Locations</a>
-      <a href="#contact" class="btn btn-red mobile-cta open-contact-popup">
-        <i class="fas fa-paper-plane"></i> Get In Touch
-      </a>
-    </div>
   </header>
+  <div class="menu-overlay" id="buwatvMenuPanel" aria-hidden="true">
+    <div class="menu-panel" id="buwatvMenuCard">
+      <div class="menu-panel-top">
+        <span class="menu-title">Menu</span>
+      </div>
+      <nav class="menu-nav-primary">
+        <a href="/buwatv/" class="menu-item" data-roll-label="BuWa TV Home"><span class="menu-item-label">BuWa TV Home</span></a>
+        <a href="#how-it-works" class="menu-item scroll-link" data-roll-label="How It Works"><span class="menu-item-label">How It Works</span></a>
+        <a href="#why-indoor" class="menu-item scroll-link" data-roll-label="Why Indoor"><span class="menu-item-label">Why Indoor</span></a>
+        <a href="#coverage-partners" class="menu-item scroll-link" data-roll-label="Coverage & Partners"><span class="menu-item-label">Coverage & Partners</span></a>
+        <a href="#pricing-snapshot" class="menu-item scroll-link" data-roll-label="Pricing Snapshot"><span class="menu-item-label">Pricing Snapshot</span></a>
+        <a href="#host-snapshot" class="menu-item scroll-link" data-roll-label="Host Snapshot"><span class="menu-item-label">Host Snapshot</span></a>
+        <a href="#faq-snapshot" class="menu-item scroll-link" data-roll-label="FAQ"><span class="menu-item-label">FAQ</span></a>
+        <a href="#final-cta" class="menu-item scroll-link" data-roll-label="Get Started"><span class="menu-item-label">Get Started</span></a>
+        <a href="/buwatv/locations/" class="menu-item" data-roll-label="Locations"><span class="menu-item-label">Locations</span></a>
+        <a href="/buwatv/pricing/" class="menu-item" data-roll-label="Pricing"><span class="menu-item-label">Pricing</span></a>
+        <a href="/buwatv/faq/" class="menu-item" data-roll-label="FAQ"><span class="menu-item-label">FAQ</span></a>
+        <a href="/buwatv/signup/" class="menu-item" data-roll-label="Sign Up"><span class="menu-item-label">Sign Up</span></a>
+        <a href="#contact" class="menu-item open-contact-popup" data-roll-label="Contact Us"><span class="menu-item-label">Contact Us</span></a>
+        <a href="/" class="menu-item" data-roll-label="BuWa Digital"><span class="menu-item-label">BuWa Digital</span></a>
+      </nav>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero section-accent-bar-bottom" id="see-it-in-action">
@@ -158,14 +118,8 @@ const bumpers = bumpersData;
         <img src="/uploads/logos/buwa-tv-white.png" alt="BuWa TV" class="hero-logo" id="hero-logo" />
       </div>
       <div class="hero-text" id="hero-text">
-        <h1 class="hero-headline" id="hero-headline">Why Not You?</h1>
-        <p class="hero-subtitle">Whether a local legend or fresh startup, your business deserves attention. We'll help you command it by providing a constant reminder that keeps you top-of-mind and delivers real results.
-          <span class="hero-subtitle-tagline">
-            <span>BE SEEN.</span>
-            <span>BE TRUSTED.</span>
-            <span>BE CHOSEN.</span>
-          </span>
-        </p>
+        <h1 class="hero-headline" id="hero-headline">Your Business Belongs Here</h1>
+        <p class="hero-subtitle">Stay in front of your customers where they work, eat, shop, and play. We'll provide the constant reminder that keeps your business top-of-mind and delivers real results.</p>
         
         <div class="hero-buttons">
           <a href="/buwatv/signup/" class="btn btn-red">
@@ -183,7 +137,7 @@ const bumpers = bumpersData;
   </section>
 
   <!-- How It Works -->
-  <section class="how-it-works reveal-section" data-reveal>
+  <section class="how-it-works reveal-section" id="how-it-works" data-reveal>
     <div class="container">
       <h2 class="section-heading"><span class="star-accent">✦</span> How BuWa TV Works <span class="star-accent">✦</span></h2>
       <div class="steps-grid">
@@ -218,7 +172,7 @@ const bumpers = bumpersData;
   </section>
 
   <!-- Benefits -->
-  <section class="benefits reveal-section section-accent-bar" id="advertisers" data-reveal>
+  <section class="benefits reveal-section section-accent-bar" id="why-indoor" data-reveal>
     <div class="container">
       <h2 class="section-heading"><span class="star-accent">✦</span> Why Indoor Digital Billboards? <span class="star-accent">✦</span></h2>
       <div class="stats-grid">
@@ -281,45 +235,61 @@ const bumpers = bumpersData;
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section reveal-section section-accent-bar" data-reveal>
-    <div class="cta-bg"></div>
+  <!-- Mission + Coverage Snapshot -->
+  <section class="mission-coverage reveal-section section-accent-bar" id="coverage-partners" data-reveal>
     <div class="container">
-      <h2 class="section-heading"><span class="star-accent">✦</span> Ready to Get Started? <span class="star-accent">✦</span></h2>
-      <p>Whether you want to advertise your business or host a screen at your location, we'd love to hear from you.</p>
-      
-      <div class="cta-cards">
-        <a href="/buwatv/signup/" class="cta-card reveal-item">
-          <i class="fas fa-bullhorn"></i>
-          <h3>Advertise With Us</h3>
-          <p>Get your business on our screens and reach new customers every day.</p>
-          <span class="card-link"><i class="fas fa-arrow-right"></i></span>
+      <h2 class="section-heading"><span class="star-accent">✦</span> Built for Local Growth <span class="star-accent">✦</span></h2>
+      <p class="mission-coverage-intro">Local isn't just our market - it's our mission. BuWa TV helps Midlands businesses show up daily where people already spend time, with consistent video visibility that builds trust and action.</p>
+      <div class="coverage-grid">
+        <div class="coverage-stat-card reveal-item">
+          <h3>50+</h3>
+          <p>Screens across the Midlands network.</p>
+        </div>
+        <div class="coverage-stat-card reveal-item">
+          <h3>{livePartners.length}</h3>
+          <p>Active partner locations in rotation.</p>
+        </div>
+        <div class="coverage-stat-card reveal-item">
+          <h3>Monthly</h3>
+          <p>Flexible plans and frequent creative refreshes.</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <a href="/buwatv/locations/" class="btn btn-navy"><i class="fas fa-map-location-dot"></i> View Full Network</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Snapshot -->
+  <section class="pricing-snapshot reveal-section section-accent-bar" id="pricing-snapshot" data-reveal>
+    <div class="container">
+      <h2 class="section-heading"><span class="star-accent">✦</span> Pricing Snapshot <span class="star-accent">✦</span></h2>
+      <p class="pricing-snapshot-intro">Simple packages to match your reach goals. Start small, then scale as your momentum grows.</p>
+      <div class="pricing-snapshot-grid">
+        <a href="/buwatv/pricing/" class="snapshot-card reveal-item">
+          <h3>Foundation</h3>
+          <p class="snapshot-price">$250/mo</p>
+          <p>5 screens · ideal for focused local campaigns.</p>
         </a>
-        
-        <a href="#host-partner" class="cta-card scroll-link reveal-item">
-          <i class="fas fa-handshake"></i>
-          <h3>Become a Host Partner</h3>
-          <p>Get free advertising and support local businesses by hosting a screen.</p>
-          <span class="card-link"><i class="fas fa-arrow-right"></i></span>
+        <a href="/buwatv/pricing/" class="snapshot-card reveal-item is-featured">
+          <h3>Premium 10 – 30</h3>
+          <p class="snapshot-price">$300 – $600/mo</p>
+          <p>10 – 30 screens · our most popular growth package.</p>
         </a>
-        
-        <a href="/buwatv/locations/" class="cta-card reveal-item">
-          <i class="fas fa-map-location-dot"></i>
-          <h3>View Our Locations</h3>
-          <p>See where BuWa TV screens are currently installed in your area.</p>
-          <span class="card-link"><i class="fas fa-arrow-right"></i></span>
+        <a href="/buwatv/pricing/" class="snapshot-card reveal-item">
+          <h3>Pinnacle</h3>
+          <p class="snapshot-price">$1500/mo</p>
+          <p>Network-wide visibility for maximum consistency.</p>
         </a>
       </div>
       <div class="section-cta">
-        <a href="/buwatv/signup/" class="btn btn-red">
-          <i class="fas fa-user-plus"></i> Sign Up Now
-        </a>
+        <a href="/buwatv/pricing/" class="btn btn-red"><i class="fas fa-dollar-sign"></i> View Full Pricing</a>
       </div>
     </div>
   </section>
 
   <!-- Host Partner Section -->
-  <section class="host-partner reveal-section section-accent-bar" id="host-partner" data-reveal>
+  <section class="host-partner reveal-section section-accent-bar" id="host-snapshot" data-reveal>
     <div class="container">
       <h2 class="section-heading"><span class="star-accent">✦</span> Become a Host Partner <span class="star-accent">✦</span></h2>
       <p class="section-subtitle">Turn your business location or waiting room into an opportunity to entertain and speak to your customers—it's easy! We handle everything from installation to ad creation.</p>
@@ -417,53 +387,37 @@ const bumpers = bumpersData;
     </div>
   </section>
 
-  <!-- Spotted on BuWa TV -->
-  <section class="spotted-section reveal-section section-accent-bar" id="spotted" data-reveal>
+  <!-- FAQ Snapshot -->
+  <section class="faq-snapshot reveal-section section-accent-bar" id="faq-snapshot" data-reveal>
     <div class="container">
-      <h2 class="section-heading"><span class="star-accent">✦</span> Spotted on BuWa TV <span class="star-accent">✦</span></h2>
-      <p class="spotted-subtitle">A preview of the kind of real-world moments and partner feedback this feed can showcase.</p>
-      <div class="spotted-grid">
-        {spottedHighlights.map((item) => (
-          <article class="spotted-card reveal-item">
-            <div class="spotted-header">
-              <span class="spotted-tag">{item.tag}</span>
-              <span class="spotted-time">{item.timeframe}</span>
-            </div>
-            <p class="spotted-quote">{item.quote}</p>
-            <div class="spotted-footer">
-              <img src={`/uploads/partners/${item.logo}`} alt={`${item.location} logo`} loading="lazy" decoding="async" />
-              <div>
-                <p class="spotted-location">{item.location}</p>
-                <p class="spotted-meta">Host partner highlight</p>
-              </div>
-            </div>
-          </article>
-        ))}
+      <h2 class="section-heading"><span class="star-accent">✦</span> Frequently Asked Questions <span class="star-accent">✦</span></h2>
+      <div class="faq-snapshot-grid">
+        <article class="faq-snapshot-item reveal-item">
+          <h3>How much does it cost?</h3>
+          <p>Plans start as low as $50/month with flexible terms and no long-term contracts required.</p>
+        </article>
+        <article class="faq-snapshot-item reveal-item">
+          <h3>Do I need my own video ad?</h3>
+          <p>No. You can certainly provide one if you'd prefer, or our creative team will design one for you, and it's yours to keep.</p>
+        </article>
+        <article class="faq-snapshot-item reveal-item">
+          <h3>How often does my ad run?</h3>
+          <p>Your ad plays anywhere from every 5 minutes to every 15 minutes at each selected location, providing repeated exposure.</p>
+        </article>
+      </div>
+      <div class="section-cta">
+        <a href="/buwatv/faq/" class="btn btn-navy"><i class="fas fa-circle-question"></i> View Full FAQ</a>
       </div>
     </div>
   </section>
 
-  <!-- Other Services -->
-  <section class="other-services reveal-section section-accent-bar" data-reveal>
+  <!-- Final CTA -->
+  <section class="final-cta-section reveal-section section-accent-bar" id="final-cta" data-reveal>
     <div class="container">
-      <div class="services-content">
-        <div class="services-text">
-          <h2 class="section-heading"><span class="star-accent">✦</span> Need More Than Billboard Advertising? <span class="star-accent">✦</span></h2>
-          <p>BuWa TV is part of <strong>BuWa Digital</strong>, a full-service digital marketing agency. We offer a complete suite of services to help your business grow online.</p>
-          <ul class="services-list">
-            <li><i class="fas fa-check"></i> Google Business Profile Management</li>
-            <li><i class="fas fa-check"></i> Website Design & Development</li>
-            <li><i class="fas fa-check"></i> Social Media Marketing</li>
-            <li><i class="fas fa-check"></i> Search Engine Optimization</li>
-            <li><i class="fas fa-check"></i> And More...</li>
-          </ul>
-          <a href="https://buwadigital.com/" class="btn btn-red">
-            <i class="fas fa-globe"></i> Explore All Services
-          </a>
-        </div>
-        <div class="services-logo">
-          <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital">
-        </div>
+      <h2 class="section-heading"><span class="star-accent">✦</span> Ready to Get Started? <span class="star-accent">✦</span></h2>
+      <p class="final-cta-body">Whether you want to advertise your business, become a host partner, or both, we'll help you choose the right next step and launch quickly.</p>
+      <div class="section-cta">
+        <a href="#contact" class="btn btn-red open-contact-popup"><i class="fas fa-comments"></i> Let's Talk!</a>
       </div>
     </div>
   </section>
@@ -563,9 +517,10 @@ const bumpers = bumpersData;
 
   body {
     font-family: 'Montserrat', sans-serif;
-    color: #333;
+    color: #eaf3ff;
     line-height: 1.6;
     overflow-x: hidden;
+    background: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -578,6 +533,17 @@ const bumpers = bumpersData;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+  }
+
+  .section-heading {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    color: #f5f9ff;
+    text-wrap: balance;
+    text-align: center;
   }
 
   .anchor-target {
@@ -618,9 +584,6 @@ const bumpers = bumpersData;
   .reveal-section.visible .benefits-grid .reveal-item:nth-child(4) { transition-delay: 0.2s; }
   .reveal-section.visible .benefits-grid .reveal-item:nth-child(5) { transition-delay: 0.25s; }
   .reveal-section.visible .benefits-grid .reveal-item:nth-child(6) { transition-delay: 0.3s; }
-  .reveal-section.visible .cta-cards .reveal-item:nth-child(1) { transition-delay: 0.05s; }
-  .reveal-section.visible .cta-cards .reveal-item:nth-child(2) { transition-delay: 0.15s; }
-  .reveal-section.visible .cta-cards .reveal-item:nth-child(3) { transition-delay: 0.25s; }
   .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(1) { transition-delay: 0.05s; }
   .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(2) { transition-delay: 0.1s; }
   .reveal-section.visible .host-benefits-grid .reveal-item:nth-child(3) { transition-delay: 0.15s; }
@@ -666,15 +629,28 @@ const bumpers = bumpersData;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    --dropdown-bg: #fff;
-    --dropdown-border: rgba(23,36,108,0.2);
-    --dropdown-link: #17246c;
-    --dropdown-hover-bg: rgba(23,36,108,0.08);
-    --dropdown-hover-color: #a01c2b;
-    --dropdown-shadow: 0 18px 48px rgba(15,23,42,0.22);
+    z-index: 1600;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    transition: background 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, backdrop-filter 0.28s ease;
+    --dropdown-bg: rgba(30, 30, 35, 0.84);
+    --dropdown-border: rgba(255, 255, 255, 0.16);
+    --dropdown-link: rgba(238, 246, 255, 0.92);
+    --dropdown-hover-bg: rgba(255, 255, 255, 0.08);
+    --dropdown-hover-color: #ffffff;
+    --dropdown-shadow: 0 18px 48px rgba(4, 10, 22, 0.55);
+  }
+
+  .site-header.after-hero,
+  .site-header.menu-open {
+    background: rgba(30, 30, 35, 0.62);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.32);
   }
 
   .header-container {
@@ -695,14 +671,6 @@ const bumpers = bumpersData;
     width: auto;
   }
 
-  .header-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    justify-self: center;
-  }
-
   .header-actions {
     display: flex;
     align-items: center;
@@ -710,167 +678,200 @@ const bumpers = bumpersData;
     gap: 16px;
     justify-self: end;
   }
-  .nav-dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
+
+  .main-nav {
+    justify-self: center;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
-  .nav-dropdown-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: none;
+  .site-header.nav-hidden .main-nav {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .site-header.nav-hidden .header-cta {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .menu-toggle {
+    color: rgba(236, 245, 255, 0.96);
     border: none;
-    padding: 0;
+    border-radius: 0;
+    width: min(90vw, 272px);
+    height: 54px;
+    padding: 0.5rem 1.15rem;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+    background: transparent;
     cursor: pointer;
-    font-size: 1rem;
-  }
-
-  .nav-dropdown-toggle i {
-    font-size: 0.75rem;
-    color: currentColor;
-    transition: transform 0.2s ease;
-  }
-
-  .nav-dropdown-menu {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    min-width: 220px;
-    background: var(--dropdown-bg);
-    border: 1px solid var(--dropdown-border);
-    border-radius: 10px;
-    box-shadow: var(--dropdown-shadow);
-    padding: 10px 0;
-    display: none;
-    flex-direction: column;
-    z-index: 1001;
-  }
-
-  .nav-dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    right: 0;
-    height: 10px;
-  }
-
-  .nav-dropdown-menu a {
-    padding: 10px 16px;
-    color: var(--dropdown-link);
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .nav-dropdown-menu a:hover {
-    background: var(--dropdown-hover-bg);
-    color: var(--dropdown-hover-color);
-  }
-
-  .nav-dropdown:hover .nav-dropdown-menu,
-  .nav-dropdown:focus-within .nav-dropdown-menu {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
-  .nav-dropdown:hover .nav-dropdown-toggle i,
-  .nav-dropdown:focus-within .nav-dropdown-toggle i {
+  .menu-pill-label {
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.84rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .menu-toggle.is-open {
+    background: transparent;
+  }
+
+  .menu-toggle:hover {
+    background: transparent;
+    transform: translateY(-1px);
+  }
+
+  .menu-toggle:active {
+    transform: translateY(0);
+  }
+
+  .menu-chevron {
+    display: inline-block;
+    margin-left: 0.35em;
+    font-size: 0.78em;
+    line-height: 1;
+    vertical-align: middle;
+    transition: transform 0.22s ease;
+    opacity: 0.75;
+  }
+
+  .menu-toggle.is-open .menu-chevron {
     transform: rotate(180deg);
   }
 
-  .nav-link {
-    font-family: 'Inter', sans-serif;
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1605;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .menu-panel {
+    position: fixed;
+    top: 88px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90vw, 360px);
+    padding: 1.5rem 1.5rem 1.25rem;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+
+  .menu-panel-top {
+    margin-bottom: 1rem;
+  }
+
+  .menu-title {
+    color: #e8f2ff;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
     font-weight: 500;
-    color: #17246c;
-    font-size: 1rem;
-    transition: color 0.2s ease;
+    opacity: 0.7;
   }
 
-  .nav-link:hover {
-    color: #a01c2b;
-  }
-
-  .header-cta {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
-
-  .mobile-menu-btn {
-    display: none;
+  .menu-nav-primary {
+    display: flex;
     flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
+    align-items: center;
+    gap: 0.15rem;
   }
 
-  .mobile-menu-btn span {
+  .menu-item {
     display: block;
-    width: 25px;
-    height: 3px;
-    background: #333;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    color: transparent;
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+  .menu-item-label {
+    display: block;
+    color: rgba(242, 248, 255, 0.85);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
   }
 
-  .mobile-menu-btn.active span:nth-child(2) {
+  .menu-item::after {
+    content: attr(data-roll-label);
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0.35rem 0.5rem;
+    text-align: center;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.2;
+    color: rgba(210, 224, 245, 0.45);
+    transform: translateY(115%);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .menu-nav-primary:has(.menu-item:hover) .menu-item .menu-item-label {
+    transform: translateY(-115%);
     opacity: 0;
   }
 
-  .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+  .menu-nav-primary:has(.menu-item:hover) .menu-item::after {
+    transform: translateY(0);
+    opacity: 1;
   }
 
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    padding: 20px;
-    background: white;
-    border-top: 1px solid #eee;
+  .menu-nav-primary:has(.menu-item:hover) .menu-item:hover .menu-item-label {
+    transform: translateY(0);
+    opacity: 1;
   }
 
-  .mobile-menu.active {
-    display: flex;
+  .menu-nav-primary:has(.menu-item:hover) .menu-item:hover::after {
+    transform: translateY(115%);
+    opacity: 0;
   }
 
-  .mobile-link {
-    display: block;
-    padding: 15px 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: #333;
-    border-bottom: 1px solid #eee;
+  .header-cta {
+    text-decoration: none;
+    background: #fff;
+    color: #102043;
+    border-radius: 999px;
+    padding: 0.58rem 0.95rem;
+    font-size: 0.73rem;
+    font-weight: 700;
+    transform: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
-  .mobile-link-static {
-    cursor: default;
-  }
-
-  .mobile-sub-link {
-    padding-left: 14px;
-    font-size: 0.95rem;
-    color: #fff;
-    background: #17246c;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-  }
-
-  .mobile-sub-link:hover {
-    background: #a01c2b;
-    color: #fff;
-  }
-
-  .mobile-cta {
-    margin-top: 20px;
-    text-align: center;
-    justify-content: center;
-  }
 
   /* Buttons */
   .btn {
@@ -933,10 +934,10 @@ const bumpers = bumpersData;
 
   .section-cta {
     text-align: center;
-    margin-top: 2.5rem;
+    margin-top: 2.1rem;
     display: flex;
     justify-content: center;
-    gap: 24px;
+    gap: 16px;
     flex-wrap: wrap;
   }
 
@@ -954,7 +955,7 @@ const bumpers = bumpersData;
     justify-content: center;
     text-align: center;
     color: white;
-    padding: 120px 20px 60px;
+    padding: 100px 20px 50px;
     overflow: hidden;
     background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%); /* Static navy gradient - shows after videos end */
   }
@@ -1003,7 +1004,7 @@ const bumpers = bumpersData;
   .hero-video-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(15, 15, 35, 0.4);
+    background: rgba(15, 15, 35, 0.24);
     z-index: 1;
     opacity: 0; /* Hidden during video playback */
     transition: opacity 1s ease-in;
@@ -1141,7 +1142,7 @@ const bumpers = bumpersData;
     opacity: 0;
   }
   .hero-text {
-    transform: translateY(-10px);
+    transform: translateY(-30px);
     position: relative;
     z-index: 2;
   }
@@ -1312,6 +1313,7 @@ const bumpers = bumpersData;
     z-index: 5;
     opacity: 0; /* Hidden during video playback */
     transition: opacity 1s ease-in;
+    margin-top: -40px;
   }
 
   .hero-content.visible {
@@ -1328,39 +1330,24 @@ const bumpers = bumpersData;
   }
 
   .hero-headline {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    margin-bottom: 20px;
+    font-size: clamp(2.1rem, 4.2vw, 3rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.2;
     text-shadow: 0 2px 20px rgba(0,0,0,0.3);
   }
 
   .hero-subtitle {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.9);
-    max-width: 700px;
-    margin: 0 auto 40px;
-    line-height: 1.7;
-  }
-
-  .hero-subtitle-tagline {
-    display: flex;
-    margin-top: 22px;
-    font-family: 'Outfit', 'Inter', sans-serif;
-    font-size: clamp(1.45rem, 2.4vw, 2rem);
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 1.45rem;
+    font-weight: 500;
     line-height: 1.2;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px 18px;
-    text-align: center;
-  }
-
-  .hero-subtitle-tagline span {
-    white-space: nowrap;
+    color: rgba(255,255,255,0.9);
+    max-width: 600px;
+    margin: 0 auto 2.85rem;
+    opacity: 0.9;
   }
 
   .hero-buttons {
@@ -1396,14 +1383,12 @@ const bumpers = bumpersData;
   /* How It Works */
   .how-it-works {
     padding: 100px 0;
-    background: white;
+    background: transparent;
   }
 
   .how-it-works h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #17246c;
-    margin-bottom: 60px;
+    color: #f5f9ff;
+    margin-bottom: 46px;
   }
 
   .steps-grid {
@@ -1469,15 +1454,13 @@ const bumpers = bumpersData;
   /* Benefits */
   .benefits {
     padding: 60px 0 100px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     color: white;
   }
 
   .benefits h2 {
-    text-align: center;
-    font-size: 2.5rem;
     color: white;
-    margin-bottom: 60px;
+    margin-bottom: 46px;
   }
 
   .stats-grid {
@@ -1550,107 +1533,110 @@ const bumpers = bumpersData;
     font-size: 0.9rem;
   }
 
-  /* CTA Section */
-  .cta-section {
-    position: relative;
-    padding: 100px 0;
-    color: #333;
+  /* Mission, pricing, and FAQ snapshots */
+  .mission-coverage,
+  .pricing-snapshot,
+  .faq-snapshot {
+    padding: 90px 0;
+    background: transparent;
+    color: #e8f2ff;
+  }
+
+  .mission-coverage-intro,
+  .pricing-snapshot-intro {
     text-align: center;
-    background: white;
+    font-size: 1.08rem;
+    color: rgba(232, 242, 255, 0.9);
+    max-width: 760px;
+    line-height: 1.65;
+    margin: 0 auto 32px;
   }
 
-  .cta-bg {
-    display: none;
-  }
-
-  .cta-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #17246c;
-  }
-
-  .cta-section > .container > p {
-    font-size: 1.15rem;
-    color: #555;
-    margin-bottom: 50px;
-  }
-
-  .cta-cards {
+  .coverage-grid,
+  .pricing-snapshot-grid,
+  .faq-snapshot-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 2rem;
   }
 
-  .cta-card {
-    background: white;
-    color: #333;
-    padding: 40px 30px;
+  .coverage-stat-card,
+  .snapshot-card,
+  .faq-snapshot-item {
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 16px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+    padding: 28px 24px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
-  .cta-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  .coverage-stat-card:hover,
+  .snapshot-card:hover,
+  .faq-snapshot-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 
-  .cta-card i {
-    font-size: 3rem;
-    color: #17246c;
-    margin-bottom: 20px;
+  .coverage-stat-card h3,
+  .snapshot-card h3,
+  .faq-snapshot-item h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
   }
 
-  .cta-card h3 {
-    font-size: 1.3rem;
-    color: #17246c;
-    margin-bottom: 12px;
+  .coverage-stat-card h3 {
+    font-size: 2rem;
   }
 
-  .cta-card p {
-    color: #666;
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    flex-grow: 1;
+  .coverage-stat-card p,
+  .snapshot-card p,
+  .faq-snapshot-item p {
+    color: rgba(232, 242, 255, 0.9);
+    margin: 0;
+    line-height: 1.55;
   }
 
-  .card-link {
-    color: #a01c2b;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-    transition: gap 0.2s ease;
+  .snapshot-card {
+    text-decoration: none;
   }
 
-  .cta-card:hover .card-link {
-    gap: 12px;
+  .snapshot-card .snapshot-price {
+    color: #f5f9ff;
+    font-size: 1.65rem;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .snapshot-card.is-featured {
+    border-color: rgba(255, 255, 255, 0.36);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.34);
   }
 
   /* Host Partner Section */
   .host-partner {
     padding: 100px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
     color: white;
   }
 
   .host-partner h2 {
-    text-align: center;
-    font-size: 2.5rem;
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
 
   .host-partner .section-subtitle {
     text-align: center;
     font-size: 1.15rem;
+    line-height: 1.65;
     color: rgba(255,255,255,0.85);
     max-width: 700px;
-    margin: 0 auto 50px;
+    margin: 0 auto 42px;
   }
 
   .host-benefits-grid {
@@ -1732,25 +1718,21 @@ const bumpers = bumpersData;
   /* Partner Logos Carousel */
   .partner-logos-section {
     padding: 60px 0;
-    background: white;
+    background: transparent;
     overflow: hidden;
   }
 
   .carousel-title {
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.65rem;
   }
 
   .carousel-subtitle {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 40px;
+    line-height: 1.6;
+    color: rgba(232, 242, 255, 0.82);
+    margin-bottom: 32px;
   }
 
   .logo-carousel-wrapper {
@@ -1772,12 +1754,12 @@ const bumpers = bumpersData;
 
   .logo-carousel-wrapper::before {
     left: 0;
-    background: linear-gradient(to right, #f5f5f5 0%, transparent 100%);
+    background: linear-gradient(to right, rgba(5, 10, 20, 0.88) 0%, transparent 100%);
   }
 
   .logo-carousel-wrapper::after {
     right: 0;
-    background: linear-gradient(to left, #e0e0e0 0%, transparent 100%);
+    background: linear-gradient(to left, rgba(5, 10, 20, 0.88) 0%, transparent 100%);
   }
 
   .logo-carousel {
@@ -1798,31 +1780,44 @@ const bumpers = bumpersData;
   }
 
   .logo-item {
-    flex-shrink: 0;
+    flex: 0 0 280px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 160px;
-  }
-
-  .logo-item img {
-    max-height: 140px;
-    max-width: 300px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    transition: all 0.3s ease;
+    box-sizing: border-box;
+    height: 180px;
+    padding: 1.25rem;
+    margin: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(8, 14, 28, 0.28);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .logo-item a {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
   }
 
-  .logo-item img:hover {
+  .logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .logo-item:hover {
     transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 12px 30px rgba(8, 14, 28, 0.34);
   }
 
   @keyframes scroll-logos {
@@ -1834,153 +1829,20 @@ const bumpers = bumpersData;
     }
   }
 
-  /* Spotted Feed */
-  .spotted-section {
-    padding: 80px 0;
-    background: #f8fafc;
-  }
-
-  .spotted-subtitle {
+  /* Final CTA */
+  .final-cta-section {
+    padding: 90px 0 100px;
+    background: transparent;
+    color: white;
     text-align: center;
-    font-size: 1.05rem;
-    color: #475569;
-    max-width: 720px;
-    margin: 0 auto 42px;
   }
 
-  .spotted-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-  }
-
-  .spotted-card {
-    background: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
-  }
-
-  .spotted-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.14);
-  }
-
-  .spotted-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-  }
-
-  .spotted-tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #17246c;
-    background: rgba(23, 36, 108, 0.08);
-    border-radius: 999px;
-    padding: 6px 10px;
-  }
-
-  .spotted-time {
-    font-size: 0.82rem;
-    color: #64748b;
-  }
-
-  .spotted-quote {
-    color: #1e293b;
-    font-size: 0.98rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-
-  .spotted-footer {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .spotted-footer img {
-    width: 56px;
-    height: 56px;
-    border-radius: 10px;
-    object-fit: contain;
-    background: #fff;
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    padding: 6px;
-  }
-
-  .spotted-location {
-    margin: 0;
-    color: #0f172a;
-    font-weight: 700;
-    font-size: 0.95rem;
-  }
-
-  .spotted-meta {
-    margin: 2px 0 0;
-    color: #64748b;
-    font-size: 0.82rem;
-  }
-
-  /* Other Services */
-  .other-services {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-  }
-
-  .services-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-
-  .services-text h2 {
-    font-size: 2.2rem;
-    color: white;
-    margin-bottom: 20px;
-  }
-
-  .services-text > p {
+  .final-cta-body {
     font-size: 1.1rem;
+    line-height: 1.65;
     color: rgba(255,255,255,0.9);
-    margin-bottom: 30px;
-  }
-
-  .services-list {
-    list-style: none;
-    margin-bottom: 30px;
-  }
-
-  .services-list li {
-    padding: 10px 0;
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.9);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .services-list i {
-    color: #a01c2b;
-    font-size: 1.1rem;
-  }
-
-  .services-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .services-logo img {
-    max-width: 350px;
-    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+    max-width: 620px;
+    margin: 0 auto 24px;
   }
 
   /* Video Popup */
@@ -2294,47 +2156,20 @@ const bumpers = bumpersData;
 
   /* Responsive */
   @media (max-width: 992px) {
-    .header-nav {
-      display: none;
-    }
-
     .header-cta {
       display: inline-flex;
-    }
-
-    .mobile-menu-btn {
-      display: flex;
-    }
-
-    .mobile-cta {
-      display: none;
     }
 
     .steps-grid,
     .benefits-grid,
     .stats-grid,
-    .cta-cards,
-    .host-benefits-grid {
+    .host-benefits-grid,
+    .coverage-grid,
+    .pricing-snapshot-grid,
+    .faq-snapshot-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .services-content {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-
-    .spotted-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .services-list {
-      display: inline-block;
-      text-align: left;
-    }
-
-    .services-logo {
-      order: -1;
-    }
   }
 
   @media (max-width: 768px) {
@@ -2342,8 +2177,73 @@ const bumpers = bumpersData;
       display: none;
     }
 
-    .mobile-cta {
-      display: inline-flex;
+    .header-container {
+      padding: 12px 20px;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.5rem;
+    }
+
+    .main-nav {
+      justify-self: center;
+    }
+
+    .menu-toggle {
+      width: 54px;
+      min-width: 54px;
+      height: 46px;
+      padding: 0;
+      position: relative;
+      justify-content: center;
+    }
+
+    .menu-pill-label {
+      font-size: 0;
+      letter-spacing: 0;
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .menu-chevron {
+      display: none;
+    }
+
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 2px;
+      border-radius: 99px;
+      background: rgba(235, 245, 255, 0.95);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .menu-toggle::before {
+      transform: translate(-50%, -50%);
+      box-shadow: 0 -6px 0 rgba(235, 245, 255, 0.95), 0 6px 0 rgba(235, 245, 255, 0.95);
+    }
+
+    .menu-toggle::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+      opacity: 0;
+    }
+
+    .menu-toggle.is-open::before {
+      box-shadow: none;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .menu-toggle.is-open::after {
+      opacity: 1;
+    }
+
+    .menu-panel {
+      width: min(92vw, 340px);
+      top: 74px;
     }
 
     .hero {
@@ -2388,7 +2288,7 @@ const bumpers = bumpersData;
     }
 
     .hero-headline {
-      font-size: 1.8rem;
+      font-size: clamp(1.6rem, 4vw, 2rem);
     }
 
     .hero-buttons {
@@ -2399,18 +2299,34 @@ const bumpers = bumpersData;
     .steps-grid,
     .benefits-grid,
     .stats-grid,
-    .cta-cards,
     .host-benefits-grid,
-    .spotted-grid {
+    .coverage-grid,
+    .pricing-snapshot-grid,
+    .faq-snapshot-grid {
       grid-template-columns: 1fr;
     }
 
-    .how-it-works h2,
-    .benefits h2,
-    .cta-section h2,
-    .services-text h2,
-    .host-partner h2 {
-      font-size: 1.8rem;
+    .section-heading {
+      font-size: 1.55rem;
+    }
+
+    .mission-coverage-intro,
+    .pricing-snapshot-intro,
+    .host-partner .section-subtitle,
+    .carousel-subtitle,
+    .final-cta-body {
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .section-cta {
+      margin-top: 1.8rem;
+      gap: 12px;
+    }
+
+    .section-cta .btn {
+      width: min(100%, 320px);
+      justify-content: center;
     }
 
     .video-popup {
@@ -2469,9 +2385,6 @@ const bumpers = bumpersData;
       padding: 40px 0;
     }
 
-    .carousel-title {
-      font-size: 1.8rem;
-    }
 
     .logo-track {
       --logo-gap: 40px;
@@ -2479,12 +2392,9 @@ const bumpers = bumpersData;
     }
 
     .logo-item {
-      height: 120px;
-    }
-
-    .logo-item img {
-      max-height: 100px;
-      max-width: 240px;
+      flex: 0 0 200px;
+      height: 140px;
+      padding: 1rem;
     }
 
     .logo-carousel-wrapper::before,
@@ -2779,6 +2689,8 @@ const bumpers = bumpersData;
     
     // Helper to reveal all hero elements
     function revealHeroContent() {
+      // Mark splash as seen now that the video has played (or been skipped)
+      if (!isDev) sessionStorage.setItem(splashKey, '1');
       if (videoBg) videoBg.classList.add('hidden'); // Fade out light gray bg
       if (heroOverlay) heroOverlay.classList.add('visible');
       if (heroContent) heroContent.classList.add('visible');
@@ -2864,9 +2776,6 @@ const bumpers = bumpersData;
       }, crossfadeDelayMs + 8000);
     };
     
-    // Mark splash as seen for this session
-    if (!isDev) sessionStorage.setItem(splashKey, '1');
-
     const startSplashPlayback = () => {
       if (splashPlaybackStarted) return;
       splashPlaybackStarted = true;
@@ -2900,6 +2809,8 @@ const bumpers = bumpersData;
 
   // Smooth scroll for anchor links
   document.querySelectorAll('.scroll-link').forEach(link => {
+    if (link.dataset.scrollBound === 'true') return;
+    link.dataset.scrollBound = 'true';
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       if (href && href.startsWith('#')) {
@@ -2915,12 +2826,15 @@ const bumpers = bumpersData;
             behavior: 'smooth'
           });
           
-          // Close mobile menu if open
-          const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-          const mobileMenu = document.getElementById('mobile-menu');
-          if (mobileMenu.classList.contains('active')) {
-            mobileMenuBtn.classList.remove('active');
-            mobileMenu.classList.remove('active');
+          // Close header menu overlay after selecting a link
+          const menuToggle = document.getElementById('buwatvMenuToggle');
+          const menuPanel = document.getElementById('buwatvMenuPanel');
+          if (menuPanel?.classList.contains('is-open')) {
+            menuPanel.classList.remove('is-open');
+            menuPanel.setAttribute('aria-hidden', 'true');
+            menuToggle?.setAttribute('aria-expanded', 'false');
+            menuToggle?.classList.remove('is-open');
+            document.querySelector('.site-header')?.classList.remove('menu-open');
           }
         }
       }
@@ -2974,16 +2888,25 @@ const bumpers = bumpersData;
     }, 300);
   }
 
-  videoBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openVideoPopup();
-  });
+  if (videoBtn && videoBtn.dataset.bound !== 'true') {
+    videoBtn.dataset.bound = 'true';
+    videoBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openVideoPopup();
+    });
+  }
 
-  videoCloseBtn.addEventListener('click', closeVideoPopup);
+  if (videoCloseBtn && videoCloseBtn.dataset.bound !== 'true') {
+    videoCloseBtn.dataset.bound = 'true';
+    videoCloseBtn.addEventListener('click', closeVideoPopup);
+  }
 
-  videoOverlay.addEventListener('click', (e) => {
-    if (e.target === videoOverlay) closeVideoPopup();
-  });
+  if (videoOverlay && videoOverlay.dataset.bound !== 'true') {
+    videoOverlay.dataset.bound = 'true';
+    videoOverlay.addEventListener('click', (e) => {
+      if (e.target === videoOverlay) closeVideoPopup();
+    });
+  }
 
   // Contact Popup
   const contactOverlay = document.getElementById('contact-popup-overlay');
@@ -3045,20 +2968,40 @@ const bumpers = bumpersData;
   }
 
   openContactBtns.forEach(btn => {
+    if (btn.dataset.contactBound === 'true') return;
+    btn.dataset.contactBound = 'true';
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      const menuToggle = document.getElementById('buwatvMenuToggle');
+      const menuPanel = document.getElementById('buwatvMenuPanel');
+      const siteHeader = document.querySelector('.site-header');
+      if (menuPanel && menuToggle && siteHeader) {
+        menuPanel.classList.remove('is-open');
+        menuPanel.setAttribute('aria-hidden', 'true');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.classList.remove('is-open');
+        siteHeader.classList.remove('menu-open');
+      }
       openContactPopup();
     });
   });
 
-  contactCloseBtn.addEventListener('click', closeContactPopup);
+  if (contactCloseBtn && contactCloseBtn.dataset.bound !== 'true') {
+    contactCloseBtn.dataset.bound = 'true';
+    contactCloseBtn.addEventListener('click', closeContactPopup);
+  }
 
-  contactOverlay.addEventListener('click', (e) => {
-    if (e.target === contactOverlay) closeContactPopup();
-  });
+  if (contactOverlay && contactOverlay.dataset.bound !== 'true') {
+    contactOverlay.dataset.bound = 'true';
+    contactOverlay.addEventListener('click', (e) => {
+      if (e.target === contactOverlay) closeContactPopup();
+    });
+  }
 
   // Form submission
-  contactForm.addEventListener('submit', async (e) => {
+  if (contactForm && contactForm.dataset.submitBound !== 'true') {
+    contactForm.dataset.submitBound = 'true';
+    contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const submitBtn = contactForm.querySelector('.submit-btn');
@@ -3097,36 +3040,96 @@ const bumpers = bumpersData;
       submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
       alert('There was an error sending your message. Please try again.');
     }
-  });
+    });
+  }
 
   // Escape key closes popups
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (videoOverlay.classList.contains('active')) {
-        closeVideoPopup();
+  if (!window.__buwatvEscBound) {
+    window.__buwatvEscBound = true;
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (videoOverlay?.classList.contains('active')) {
+          closeVideoPopup();
+        }
+        if (contactOverlay?.classList.contains('active')) {
+          closeContactPopup();
+        }
+        const menuToggle = document.getElementById('buwatvMenuToggle');
+        const menuPanel = document.getElementById('buwatvMenuPanel');
+        const siteHeader = document.querySelector('.site-header');
+        if (menuPanel && menuToggle && siteHeader) {
+          menuPanel.classList.remove('is-open');
+          menuPanel.setAttribute('aria-hidden', 'true');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.classList.remove('is-open');
+          siteHeader.classList.remove('menu-open');
+        }
       }
-      if (contactOverlay.classList.contains('active')) {
-        closeContactPopup();
-      }
-    }
-  });
-
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-  });
-
-  // Close mobile menu when clicking a link
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenuBtn.classList.remove('active');
-      mobileMenu.classList.remove('active');
     });
-  });
+  }
+
+  function initHeaderMenu() {
+    const menuToggle = document.getElementById('buwatvMenuToggle');
+    const menuPanel = document.getElementById('buwatvMenuPanel');
+    const siteHeader = document.querySelector('.site-header');
+    const heroSection = document.querySelector('.hero');
+    if (!menuToggle || !menuPanel || !siteHeader || !heroSection) return;
+    if (menuToggle.dataset.bound === 'true') return;
+    menuToggle.dataset.bound = 'true';
+
+    const navFadeThreshold = 30;
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    document.addEventListener('astro:before-swap', () => {
+      controller.abort();
+      delete menuToggle.dataset.bound;
+    }, { once: true });
+
+    const closeHeaderMenu = () => {
+      menuPanel.classList.remove('is-open');
+      menuPanel.setAttribute('aria-hidden', 'true');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.classList.remove('is-open');
+      siteHeader.classList.remove('menu-open');
+    };
+
+    const syncHeaderState = () => {
+      const headerH = siteHeader.getBoundingClientRect().height;
+      const heroRect = heroSection.getBoundingClientRect();
+      const pastHero = window.scrollY > 20 && heroRect.bottom <= headerH + 8;
+      const scrolled = window.scrollY > navFadeThreshold;
+      siteHeader.classList.toggle('after-hero', pastHero);
+      siteHeader.classList.toggle('nav-hidden', scrolled);
+      if (scrolled && menuPanel.classList.contains('is-open')) closeHeaderMenu();
+    };
+
+    syncHeaderState();
+    window.addEventListener('scroll', syncHeaderState, { passive: true, signal });
+    window.addEventListener('resize', syncHeaderState, { signal });
+
+    menuToggle.addEventListener('click', () => {
+      if (typeof window.__buwatvResetBottomMenu === 'function') {
+        window.__buwatvResetBottomMenu();
+      }
+      const nextOpen = !menuPanel.classList.contains('is-open');
+      menuPanel.classList.toggle('is-open', nextOpen);
+      menuPanel.setAttribute('aria-hidden', nextOpen ? 'false' : 'true');
+      menuToggle.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+      menuToggle.classList.toggle('is-open', nextOpen);
+      siteHeader.classList.toggle('menu-open', nextOpen);
+    }, { signal });
+
+    menuPanel.addEventListener('click', (event) => {
+      if (event.target === menuPanel) closeHeaderMenu();
+    }, { signal });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeHeaderMenu();
+    }, { signal });
+  }
+
+  document.addEventListener('astro:page-load', initHeaderMenu);
 
   // Scroll reveal - add .visible when section enters viewport
   const revealSections = document.querySelectorAll('.reveal-section[data-reveal]');
@@ -3140,7 +3143,7 @@ const bumpers = bumpersData;
 
   revealSections.forEach(section => revealObserver.observe(section));
 
-  // Stats count-up (Advertisers section)
+  // Stats count-up (Why Indoor section)
   const statsGrid = document.querySelector('.stats-grid');
   const statValues = document.querySelectorAll('.stat-value');
   const animateStats = () => {
