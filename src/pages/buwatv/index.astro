@@ -2441,6 +2441,34 @@ const bumpers = bumpersData;
       font-size: 1.8rem;
     }
   }
+
+  /*
+   * Full-viewport bumper (main index pattern): header/menu stay hidden until reveal.
+   * .hero-video-bg becomes position:fixed above header (z-index 1600) while playing.
+   */
+  :global(html.buwatv-splash-playing),
+  :global(body.buwatv-splash-playing) {
+    overflow: hidden;
+  }
+
+  :global(body.buwatv-splash-playing) .hero-video-bg {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 1700 !important;
+    width: 100vw !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+  }
+
+  :global(body.buwatv-splash-playing) .site-header {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  :global(body.buwatv-splash-playing) .menu-overlay {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 </style>
 
 <script define:vars={{ displayDuration: bumpers.displayDuration, fadeDuration: bumpers.fadeDuration, webhookUrl: '/api/webhook/', isDev: import.meta.env.DEV }}>
@@ -2689,11 +2717,22 @@ const bumpers = bumpersData;
       starsAreVisible = true;
     }
     
+    function endSplashChrome() {
+      document.documentElement.classList.remove('buwatv-splash-playing');
+      document.body.classList.remove('buwatv-splash-playing');
+    }
+
+    function startSplashChrome() {
+      document.documentElement.classList.add('buwatv-splash-playing');
+      document.body.classList.add('buwatv-splash-playing');
+    }
+
     // Helper to reveal all hero elements
     function revealHeroContent() {
+      endSplashChrome();
       // Mark splash as seen now that the video has played (or been skipped)
       if (!isDev) sessionStorage.setItem(splashKey, '1');
-      if (videoBg) videoBg.classList.add('hidden'); // Fade out light gray bg
+      if (videoBg) videoBg.classList.add('hidden'); // Fade out video wrapper
       if (heroOverlay) heroOverlay.classList.add('visible');
       if (heroContent) heroContent.classList.add('visible');
       if (scrollIndicator) scrollIndicator.classList.add('visible');
@@ -2729,6 +2768,9 @@ const bumpers = bumpersData;
         v.style.display = 'none'; // Hide others completely
       }
     });
+
+    // Full-screen splash above header (matches main index intro behavior)
+    startSplashChrome();
     
     // Track if crossfade has started
     let crossfadeStarted = false;
@@ -2808,6 +2850,11 @@ const bumpers = bumpersData;
       startCrossfade();
     });
   })();
+
+  document.addEventListener('astro:before-swap', () => {
+    document.documentElement.classList.remove('buwatv-splash-playing');
+    document.body.classList.remove('buwatv-splash-playing');
+  });
 
   // Smooth scroll for anchor links
   document.querySelectorAll('.scroll-link').forEach(link => {
