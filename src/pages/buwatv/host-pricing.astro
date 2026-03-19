@@ -189,7 +189,7 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
             <li><i class="fas fa-check"></i> All upgraded in-location benefits</li>
             <li><i class="fas fa-check"></i> Additional premium perks</li>
           </ul>
-          <a href="/buwatv/signup/" class="btn btn-white">Get Started</a>
+          <a href="/buwatv/signup/" class="btn btn-red">Let's get started</a>
         </div>
       </div>
 
@@ -627,9 +627,21 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
 
   .pricing-card.pinnacle {
     grid-column: span 2;
-    background: rgba(22, 28, 48, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: white;
+    background: #ffffff;
+    border: 1px solid rgba(23, 36, 108, 0.12);
+    color: #1a1a2e;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.1),
+      0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .pricing-card.pinnacle:hover {
+    border-color: rgba(23, 36, 108, 0.2);
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, 0.14),
+      0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   .popular-badge {
@@ -652,7 +664,7 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
   }
 
   .pricing-card.pinnacle .card-header h3 {
-    color: white;
+    color: #17246c;
   }
 
   .card-subtitle {
@@ -661,7 +673,7 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
   }
 
   .pricing-card.pinnacle .card-subtitle {
-    color: rgba(255,255,255,0.8);
+    color: #555;
   }
 
   .price {
@@ -675,7 +687,7 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
   }
 
   .pricing-card.pinnacle .amount {
-    color: white;
+    color: #a01c2b;
   }
 
   .period {
@@ -684,7 +696,7 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
   }
 
   .pricing-card.pinnacle .period {
-    color: rgba(255,255,255,0.8);
+    color: #666;
   }
 
   .savings {
@@ -695,7 +707,7 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
   }
 
   .pricing-card.pinnacle .savings {
-    color: rgba(255,255,255,0.85);
+    color: #15803d;
   }
 
   .features {
@@ -719,7 +731,7 @@ import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
   }
 
   .pricing-card.pinnacle .features li {
-    color: rgba(255,255,255,0.9);
+    color: #444;
   }
 
   /* Custom Note */

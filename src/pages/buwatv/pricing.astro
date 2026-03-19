@@ -162,7 +162,7 @@ const pricingSchema = {
             <li><i class="fas fa-check"></i> Community sponsor recognition</li>
             <li><i class="fas fa-check"></i> One of only two in this category</li>
           </ul>
-          <a href="/buwatv/signup/" class="btn btn-red">Get Started</a>
+          <a href="/buwatv/signup/" class="btn btn-red">Let's get started</a>
         </div>
       </div>
 
@@ -261,7 +261,7 @@ const pricingSchema = {
       <h2>Ready to Get Started?</h2>
       <p>Join the BuWa TV network and reach thousands of local customers.</p>
       <a href="/buwatv/signup/" class="btn btn-red">
-        <i class="fas fa-user-plus"></i> Sign Up Now
+        <i class="fas fa-user-plus"></i> Let's get started
       </a>
     </div>
   </section>
@@ -383,10 +383,21 @@ const pricingSchema = {
 
   .pricing-card.pinnacle {
     grid-column: span 2;
-    background: rgba(22, 28, 48, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: #fff;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    background: #ffffff;
+    border: 1px solid rgba(23, 36, 108, 0.12);
+    color: #1a1a2e;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.1),
+      0 2px 10px rgba(0, 0, 0, 0.06);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .pricing-card.pinnacle:hover {
+    border-color: rgba(23, 36, 108, 0.2);
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, 0.14),
+      0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   .popular-badge {
@@ -409,12 +420,12 @@ const pricingSchema = {
   }
 
   .pinnacle .card-header h3 {
-    color: white;
+    color: #17246c;
   }
 
   .card-subtitle {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.8);
+    color: #555;
     margin-bottom: 10px;
   }
 
@@ -429,7 +440,7 @@ const pricingSchema = {
   }
 
   .pinnacle .amount {
-    color: white;
+    color: #a01c2b;
   }
 
   .period {
@@ -438,7 +449,7 @@ const pricingSchema = {
   }
 
   .pinnacle .period {
-    color: rgba(255,255,255,0.8);
+    color: #666;
   }
 
   .features {
@@ -457,7 +468,7 @@ const pricingSchema = {
   }
 
   .pinnacle .features li {
-    color: rgba(255,255,255,0.9);
+    color: #444;
   }
 
   .features i {
