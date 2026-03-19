@@ -1,0 +1,145 @@
+---
+/**
+ * BuWa TV pill menu + frosted overlay — matches buwatv/index.
+ * @prop isHome - Use in-page #anchors + contact popup; omit on subpages (deep links to /buwatv/#…).
+ */
+interface Props {
+  isHome?: boolean;
+}
+
+const { isHome = false } = Astro.props;
+
+const hashLink = (id: string) => (isHome ? id : `/buwatv/${id}`);
+---
+
+<div class="buwatv-header-anchor">
+  <header class="site-header">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital" width="180" height="45" />
+      </a>
+      <nav class="main-nav" aria-label="BuWa TV menu">
+        <button
+          type="button"
+          class="menu-toggle"
+          id="buwatvMenuToggle"
+          aria-expanded="false"
+          aria-controls="buwatvMenuPanel"
+        >
+          <span class="menu-pill-label" id="buwatvMenuLabel">Menu</span>
+          <span class="menu-chevron" aria-hidden="true">&#8964;</span>
+        </button>
+      </nav>
+      <div class="header-actions">
+        {
+          isHome ? (
+            <a href="#contact" class="header-cta open-contact-popup">
+              Contact us
+            </a>
+          ) : (
+            <a href="/buwatv/#final-cta" class="header-cta">
+              Contact us
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </header>
+  <div class="menu-overlay" id="buwatvMenuPanel" aria-hidden="true">
+    <div class="menu-panel" id="buwatvMenuCard">
+      <div class="menu-panel-top">
+        <span class="menu-title">Menu</span>
+      </div>
+      <nav class="menu-nav-primary">
+        <a href="/buwatv/" class="menu-item" data-roll-label="BuWa TV Home">
+          <span class="menu-item-label">BuWa TV Home</span>
+        </a>
+        <a
+          href={hashLink('#how-it-works')}
+          class:list={['menu-item', { 'scroll-link': isHome }]}
+          data-roll-label="How It Works"
+        >
+          <span class="menu-item-label">How It Works</span>
+        </a>
+        <a
+          href={hashLink('#why-indoor')}
+          class:list={['menu-item', { 'scroll-link': isHome }]}
+          data-roll-label="Why Indoor"
+        >
+          <span class="menu-item-label">Why Indoor</span>
+        </a>
+        <a
+          href={hashLink('#coverage-partners')}
+          class:list={['menu-item', { 'scroll-link': isHome }]}
+          data-roll-label="Coverage & Partners"
+        >
+          <span class="menu-item-label">Coverage &amp; Partners</span>
+        </a>
+        <a
+          href={hashLink('#pricing-snapshot')}
+          class:list={['menu-item', { 'scroll-link': isHome }]}
+          data-roll-label="Pricing Snapshot"
+        >
+          <span class="menu-item-label">Pricing Snapshot</span>
+        </a>
+        <a
+          href={hashLink('#host-snapshot')}
+          class:list={['menu-item', { 'scroll-link': isHome }]}
+          data-roll-label="Host Snapshot"
+        >
+          <span class="menu-item-label">Host Snapshot</span>
+        </a>
+        <a
+          href={hashLink('#faq-snapshot')}
+          class:list={['menu-item', { 'scroll-link': isHome }]}
+          data-roll-label="FAQ"
+        >
+          <span class="menu-item-label">FAQ</span>
+        </a>
+        <a
+          href={hashLink('#final-cta')}
+          class:list={['menu-item', { 'scroll-link': isHome }]}
+          data-roll-label="Get Started"
+        >
+          <span class="menu-item-label">Get Started</span>
+        </a>
+        <a href="/buwatv/locations/" class="menu-item" data-roll-label="Locations">
+          <span class="menu-item-label">Locations</span>
+        </a>
+        <a href="/buwatv/pricing/" class="menu-item" data-roll-label="Pricing">
+          <span class="menu-item-label">Pricing</span>
+        </a>
+        <a href="/buwatv/faq/" class="menu-item" data-roll-label="FAQ Page">
+          <span class="menu-item-label">FAQ</span>
+        </a>
+        <a href="/buwatv/signup/" class="menu-item" data-roll-label="Sign Up">
+          <span class="menu-item-label">Sign Up</span>
+        </a>
+        {
+          isHome ? (
+            <a
+              href="#contact"
+              class="menu-item open-contact-popup"
+              data-roll-label="Contact Us"
+            >
+              <span class="menu-item-label">Contact Us</span>
+            </a>
+          ) : (
+            <a href="/buwatv/#final-cta" class="menu-item" data-roll-label="Contact Us">
+              <span class="menu-item-label">Contact Us</span>
+            </a>
+          )
+        }
+        <a href="/" class="menu-item" data-roll-label="BuWa Digital">
+          <span class="menu-item-label">BuWa Digital</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .buwatv-header-anchor {
+    display: contents;
+  }
+</style>
