@@ -971,12 +971,13 @@ const bumpers = bumpersData;
     pointer-events: none;
   }
 
-  /* Video Background */
+  /* Video Background — full-bleed like main index (cover, not contain) */
   .hero-video-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: #f8f9fa; /* Light gray - blends with page during video */
+    /* Dark fallback while video loads / no letterboxing bars (was #f8f9fa with contain) */
+    background: #050914;
     opacity: 1;
     transition: opacity 1s ease-in-out;
   }
@@ -991,7 +992,8 @@ const bumpers = bumpersData;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
     background: transparent;
     opacity: 0;
     transition: opacity 1s ease-in-out;
