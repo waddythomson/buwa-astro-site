@@ -2689,6 +2689,8 @@ const bumpers = bumpersData;
     
     // Helper to reveal all hero elements
     function revealHeroContent() {
+      // Mark splash as seen now that the video has played (or been skipped)
+      if (!isDev) sessionStorage.setItem(splashKey, '1');
       if (videoBg) videoBg.classList.add('hidden'); // Fade out light gray bg
       if (heroOverlay) heroOverlay.classList.add('visible');
       if (heroContent) heroContent.classList.add('visible');
@@ -2774,9 +2776,6 @@ const bumpers = bumpersData;
       }, crossfadeDelayMs + 8000);
     };
     
-    // Mark splash as seen for this session
-    if (!isDev) sessionStorage.setItem(splashKey, '1');
-
     const startSplashPlayback = () => {
       if (splashPlaybackStarted) return;
       splashPlaybackStarted = true;
