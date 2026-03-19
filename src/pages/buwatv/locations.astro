@@ -169,11 +169,11 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   title="Locations | BuWa TV Indoor Digital Billboard Network"
   description="BuWa TV screens are located at 50+ businesses across the Midlands. See where your ads could appear — restaurants, shops, offices, and more."
 >
-  <!-- Header -->
+  <!-- Header — transparent over video; frosted after scrolling past hero (matches BuWa TV home) -->
   <header slot="header" class="site-header">
     <div class="header-container">
       <a href="/" class="header-logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
+        <img src="/uploads/logos/buwa-digital-white.png" alt="BuWa Digital">
       </a>
       <nav class="header-nav">
         <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
@@ -202,7 +202,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   </header>
 
   <!-- Hero Section -->
-  <section class="page-hero">
+  <section class="page-hero locations-hero">
     <div class="container">
       <h1>Our Network</h1>
       <p class="hero-subtitle">50+ screens across the Midlands — reaching thousands of local customers daily.</p>
@@ -507,10 +507,10 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
 </BaseLayout>
 
 <style>
-  /* Page Hero */
+  /* Page Hero — video shows through BaseLayout .buwatv-bg-video */
   .page-hero {
-    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
-    color: white;
+    background: transparent;
+    color: #fff;
     padding: 140px 20px 80px;
     text-align: center;
   }
@@ -518,13 +518,15 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   .page-hero h1 {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 15px;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
   }
 
   .hero-subtitle {
     font-size: 1.2rem;
-    opacity: 0.9;
+    color: rgba(232, 242, 255, 0.92);
     max-width: 600px;
     margin: 0 auto;
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
   }
 
   /* Header Styles */
@@ -533,9 +535,21 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1600;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    transition: background 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, backdrop-filter 0.28s ease;
+  }
+
+  .site-header.after-hero {
+    background: rgba(30, 30, 35, 0.62);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.32);
   }
 
   .header-container {
@@ -568,12 +582,12 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   .nav-link {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    color: #333;
+    color: rgba(238, 246, 255, 0.92);
     transition: color 0.2s ease;
   }
 
   .nav-link:hover {
-    color: #a01c2b;
+    color: #fff;
   }
 
   .mobile-menu-btn {
@@ -591,7 +605,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     display: block;
     width: 25px;
     height: 3px;
-    background: #333;
+    background: rgba(255, 255, 255, 0.92);
     border-radius: 2px;
   }
 
@@ -599,8 +613,10 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     display: none;
     flex-direction: column;
     padding: 20px;
-    background: white;
-    border-top: 1px solid #eee;
+    background: rgba(30, 30, 35, 0.94);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .mobile-menu.active {
@@ -611,8 +627,8 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     padding: 15px 0;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    color: #333;
-    border-bottom: 1px solid #eee;
+    color: rgba(238, 246, 255, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .mobile-cta {
@@ -662,25 +678,33 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   /* Coverage Section */
   .coverage-section {
     padding: 80px 0;
-    background: white;
+    background: transparent;
+    color: #e8f2ff;
   }
 
   .coverage-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 40px;
     align-items: center;
+    padding: 32px 36px;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
   }
 
   .coverage-text h2 {
     font-size: 2.2rem;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 20px;
   }
 
   .coverage-text > p {
     font-size: 1.1rem;
-    color: #555;
+    color: rgba(232, 242, 255, 0.9);
     line-height: 1.7;
     margin-bottom: 30px;
   }
@@ -714,7 +738,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
 
   .stat-label {
     font-size: 0.9rem;
-    color: #666;
+    color: rgba(232, 242, 255, 0.78);
   }
 
   .coverage-map {
@@ -739,38 +763,40 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   .map-link {
     text-align: right;
     font-size: 0.95rem;
-    color: #17246c;
+    color: rgba(232, 242, 255, 0.95);
     text-decoration: underline;
   }
 
   .map-link:hover {
-    color: #a01c2b;
+    color: #fff;
   }
 
   /* Location Types */
   .location-types-section {
     padding: 80px 0;
-    background: #f8f9fa;
+    background: transparent;
+    color: #e8f2ff;
   }
 
   .location-types-section h2 {
     text-align: center;
     font-size: 2rem;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 10px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
   }
 
   .section-subtitle {
     text-align: center;
     font-size: 1.1rem;
-    color: #666;
+    color: rgba(232, 242, 255, 0.88);
     margin-bottom: 50px;
   }
 
   /* Host Partner List */
   .locations-list-section {
     padding: 80px 0;
-    background: #17246c;
+    background: transparent;
   }
 
   .locations-list-section h2 {
@@ -778,10 +804,11 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     font-size: 2rem;
     color: #fff;
     margin-bottom: 10px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
   }
 
   .locations-list-section .section-subtitle {
-    color: rgba(255,255,255,0.85);
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .locations-list-section .updated-note {
@@ -826,13 +853,15 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .location-item {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.94);
     border-radius: 12px;
     padding: 16px 18px;
     text-align: center;
-    border: 1px solid rgba(23,36,108,0.08);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     flex: 0 0 240px;
     display: flex;
     align-items: center;
@@ -841,7 +870,8 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
 
   .location-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    border-color: rgba(255, 255, 255, 0.55);
   }
 
   .location-link,
@@ -904,14 +934,20 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   /* Partner Badge */
   .partner-badge-section {
     padding: 80px 0;
-    background: #fff;
+    background: transparent;
+    color: #e8f2ff;
   }
 
   .partner-badge-section h2 {
     text-align: center;
     font-size: 2rem;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 10px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  .partner-badge-section .section-subtitle {
+    color: rgba(232, 242, 255, 0.88);
   }
 
   .partner-badge-grid {
@@ -922,15 +958,17 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .partner-badge-card {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.94);
     border-radius: 18px;
     padding: 32px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .partner-badge-logo {
@@ -942,11 +980,13 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .partner-badge-code {
-    background: #f8fafc;
+    background: rgba(30, 30, 35, 0.82);
     border-radius: 18px;
     padding: 24px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .badge-code-header {
@@ -959,7 +999,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   .badge-code-header span {
     font-size: 1rem;
     font-weight: 600;
-    color: #17246c;
+    color: #ffffff;
   }
 
   .badge-copy-btn {
@@ -1002,11 +1042,11 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   .badge-note {
     margin-top: 12px;
     font-size: 0.95rem;
-    color: #475569;
+    color: rgba(232, 242, 255, 0.85);
   }
 
   .badge-note a {
-    color: #a01c2b;
+    color: #f5a3ad;
     text-decoration: underline;
   }
 
@@ -1017,27 +1057,32 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .type-card {
-    background: white;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 35px;
     border-radius: 16px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+    transition: transform 0.3s ease, border-color 0.25s ease;
   }
 
   .type-card:hover {
     transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.28);
   }
 
   .type-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
+    background: rgba(255, 255, 255, 0.12);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .type-icon i {
@@ -1047,20 +1092,21 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
 
   .type-card h3 {
     font-size: 1.2rem;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 10px;
   }
 
   .type-card p {
     font-size: 0.95rem;
-    color: #666;
+    color: rgba(232, 242, 255, 0.9);
     line-height: 1.6;
   }
 
   /* Why Location Section */
   .why-location-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
+    color: #e8f2ff;
   }
 
   .why-location-section h2 {
@@ -1068,12 +1114,13 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     font-size: 2rem;
     color: #fff;
     margin-bottom: 50px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
   }
 
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    gap: 24px;
     max-width: 900px;
     margin: 0 auto;
   }
@@ -1081,17 +1128,25 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   .benefit-item {
     display: flex;
     gap: 20px;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
   }
 
   .benefit-icon {
     flex-shrink: 0;
     width: 60px;
     height: 60px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.1);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .benefit-icon i {
@@ -1107,22 +1162,31 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
 
   .benefit-content p {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.85);
+    color: rgba(232, 242, 255, 0.9);
     line-height: 1.6;
   }
 
   /* Host CTA Section */
   .host-cta-section {
     padding: 80px 0;
-    background: #f8f9fa;
+    background: transparent;
   }
 
   .host-cta-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 40px;
     align-items: center;
     justify-items: center;
+    padding: 36px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
   }
 
   .host-text {
@@ -1131,13 +1195,13 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
 
   .host-text h2 {
     font-size: 2rem;
-    color: #17246c;
+    color: #ffffff;
     margin-bottom: 15px;
   }
 
   .host-text > p {
     font-size: 1.1rem;
-    color: #555;
+    color: rgba(232, 242, 255, 0.9);
     line-height: 1.7;
     margin-bottom: 25px;
     margin-left: auto;
@@ -1171,7 +1235,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #444;
+    color: rgba(232, 242, 255, 0.92);
     justify-content: center;
   }
 
@@ -1212,19 +1276,31 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   /* CTA Section */
   .cta-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
+    background: transparent;
+    color: #e8f2ff;
     text-align: center;
+  }
+
+  .cta-section .container {
+    max-width: 720px;
+    padding: 40px 36px;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
   }
 
   .cta-section h2 {
     font-size: 2.2rem;
     margin-bottom: 15px;
+    color: #fff;
   }
 
   .cta-section > .container > p {
     font-size: 1.1rem;
-    opacity: 0.9;
+    color: rgba(232, 242, 255, 0.9);
     margin-bottom: 30px;
   }
 
@@ -1301,12 +1377,47 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
 </style>
 
 <script>
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  document.addEventListener('astro:page-load', () => {
+    const hero = document.querySelector('.locations-hero');
+    const header = document.querySelector('header.site-header');
+    if (hero && header) {
+      if (header.dataset.locationsHeaderBound !== 'true') {
+        header.dataset.locationsHeaderBound = 'true';
 
-  mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    mobileMenu?.classList.toggle('active');
+        const controller = new AbortController();
+        const { signal } = controller;
+
+        document.addEventListener(
+          'astro:before-swap',
+          () => {
+            controller.abort();
+            delete header.dataset.locationsHeaderBound;
+          },
+          { once: true }
+        );
+
+        const syncHeader = () => {
+          const headerH = header.getBoundingClientRect().height;
+          const heroRect = hero.getBoundingClientRect();
+          const pastHero = window.scrollY > 20 && heroRect.bottom <= headerH + 8;
+          header.classList.toggle('after-hero', pastHero);
+        };
+
+        syncHeader();
+        window.addEventListener('scroll', syncHeader, { passive: true, signal });
+        window.addEventListener('resize', syncHeader, { signal });
+      }
+    }
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu && mobileMenuBtn.dataset.locMobileBound !== 'true') {
+      mobileMenuBtn.dataset.locMobileBound = 'true';
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+    }
   });
 
   const statsGrid = document.querySelector('.coverage-stats');
