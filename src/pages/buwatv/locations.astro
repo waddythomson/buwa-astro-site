@@ -543,14 +543,18 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     -webkit-backdrop-filter: none;
     box-shadow: none;
     transition: background 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, backdrop-filter 0.28s ease;
+    isolation: isolate;
   }
 
   .site-header.after-hero {
-    background: rgba(30, 30, 35, 0.62);
+    /* Slightly more opaque base so brief backdrop-filter churn is less noticeable */
+    background: rgba(30, 30, 35, 0.72);
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.32);
+    /* Keep paints isolated from page hover effects below */
+    isolation: isolate;
   }
 
   .header-container {
@@ -649,13 +653,15 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: box-shadow 0.2s ease, filter 0.2s ease, background 0.2s ease;
     border: none;
     text-decoration: none;
+    /* Avoid transform on hover — can interact badly with fixed header + scroll/compositor */
   }
 
   .btn:hover {
-    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
   }
 
   .btn-red {
@@ -897,7 +903,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     text-align: center;
     border: 1px solid rgba(23, 36, 108, 0.1);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
     flex: 0 0 240px;
     display: flex;
     align-items: center;
@@ -905,7 +911,6 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .location-item:hover {
-    transform: translateY(-2px);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
     border-color: rgba(160, 28, 43, 0.25);
   }
@@ -1101,11 +1106,11 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     border-radius: 16px;
     text-align: center;
     box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
-    transition: transform 0.3s ease, border-color 0.25s ease;
+    transition: box-shadow 0.3s ease, border-color 0.25s ease;
   }
 
   .type-card:hover {
-    transform: translateY(-5px);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.3);
     border-color: rgba(255, 255, 255, 0.28);
   }
 
@@ -1139,7 +1144,7 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     line-height: 1.6;
   }
 
-  /* Why Location Section */
+  /* Why Location Section — white cards / dark type (matches BuWa TV index step cards) */
   .why-location-section {
     padding: 80px 0;
     background: transparent;
@@ -1160,31 +1165,41 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
     gap: 24px;
     max-width: 900px;
     margin: 0 auto;
+    align-items: stretch;
   }
 
   .benefit-item {
     display: flex;
     gap: 20px;
-    background: rgba(30, 30, 35, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(23, 36, 108, 0.08);
     border-radius: 16px;
-    padding: 24px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+    padding: 28px 26px;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.08),
+      0 2px 10px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .benefit-item:hover {
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.1),
+      0 4px 14px rgba(0, 0, 0, 0.06);
+    border-color: rgba(23, 36, 108, 0.14);
   }
 
   .benefit-icon {
     flex-shrink: 0;
     width: 60px;
     height: 60px;
-    background: linear-gradient(to bottom, #ffffff, #f0f2f6);
+    background: linear-gradient(to bottom, #ffffff, #f5f5f7);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(184, 34, 50, 0.22);
-    box-shadow: 0 4px 14px rgba(160, 28, 43, 0.1);
+    border: 1px solid rgba(184, 34, 50, 0.25);
+    box-shadow: 0 4px 14px rgba(160, 28, 43, 0.12);
   }
 
   .benefit-icon i {
@@ -1193,15 +1208,16 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
   }
 
   .benefit-content h3 {
-    font-size: 1.1rem;
-    color: #fff;
+    font-size: 1.15rem;
+    color: #17246c;
     margin-bottom: 8px;
   }
 
   .benefit-content p {
     font-size: 0.95rem;
-    color: rgba(232, 242, 255, 0.9);
-    line-height: 1.6;
+    color: #555;
+    line-height: 1.65;
+    margin: 0;
   }
 
   /* Host CTA Section */
@@ -1434,11 +1450,18 @@ const liveScrollDuration = Math.max(livePartnersUnique.length * 1.6, 30);
           { once: true }
         );
 
+        // Document-offset math avoids getBoundingClientRect() jitter during hovers / compositing
+        let headerTicking = false;
         const syncHeader = () => {
-          const headerH = header.getBoundingClientRect().height;
-          const heroRect = hero.getBoundingClientRect();
-          const pastHero = window.scrollY > 20 && heroRect.bottom <= headerH + 8;
-          header.classList.toggle('after-hero', pastHero);
+          if (headerTicking) return;
+          headerTicking = true;
+          requestAnimationFrame(() => {
+            headerTicking = false;
+            const headerH = header.offsetHeight;
+            const heroEnd = hero.offsetTop + hero.offsetHeight;
+            const pastHero = window.scrollY + headerH >= heroEnd - 10;
+            header.classList.toggle('after-hero', pastHero);
+          });
         };
 
         syncHeader();
