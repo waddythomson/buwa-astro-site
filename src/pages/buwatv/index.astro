@@ -37,10 +37,6 @@ const uniquePartners = (items = []) => {
 const allPartners = uniquePartners([...hostPartners, ...communityPartners]);
 const livePartners = allPartners.filter((partner) => partner.status !== 'coming-soon');
 
-// Import bumper videos configuration
-import bumpersData from '../../data/buwatv/bumpers.json';
-const bumpers = bumpersData;
-const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%)';
 ---
 
 <BaseLayout 
@@ -51,28 +47,7 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
 
   <!-- Hero Section -->
   <section class="hero section-accent-bar-bottom" id="see-it-in-action">
-    <!-- Video Background Container -->
-    <div class="hero-video-bg">
-      <div
-        class="hero-video-fallback"
-        aria-hidden="true"
-        style={`background: ${heroFallbackGradient}`}
-      />
-      {bumpers.videos.map((video, index) => (
-        <video 
-          class={`hero-video ${index === 0 ? 'active' : ''}`}
-          muted 
-          playsinline
-          preload="metadata"
-          
-          loop={bumpers.videos.length === 1}
-          data-index={index}
-        >
-          <source src={`/buwatv/uploads/bumpers/${video}`} type="video/mp4" />
-        </video>
-      ))}
-      <div class="hero-video-overlay"></div>
-    </div>
+    <div class="hero-video-overlay visible"></div>
     
     <!-- Stars layer - outside video-bg so it's visible when video-bg fades out -->
     <div class="hero-stars" id="hero-stars"></div>
@@ -691,60 +666,12 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
   }
 
   /* Video Background — full-bleed like main index (cover, not contain) */
-  .hero-video-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    /* Gradient + .hero-video-fallback when video can't paint (mobile, autoplay quirks) */
-    background: transparent;
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .hero-video-fallback {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-color: #0f0f23;
-    background-size: cover, cover;
-    background-position: center, center;
-    background-repeat: no-repeat;
-  }
-
-  .hero-video-bg.hidden {
-    opacity: 0;
-  }
-
-  .hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    background: transparent;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .hero-video.active {
-    opacity: 1;
-  }
-
   .hero-video-overlay {
     position: absolute;
     inset: 0;
     background: rgba(15, 15, 35, 0.24);
-    z-index: 2;
-    opacity: 0; /* Hidden during video playback */
-    transition: opacity 1s ease-in;
-  }
-
-  .hero-video-overlay.visible {
-    opacity: 1;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .hero-stars {
@@ -2141,44 +2068,12 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
     }
   }
 
-  /*
-   * Full-viewport bumper (main index pattern): header/menu stay hidden until reveal.
-   * .hero-video-bg becomes position:fixed above header (z-index 1600) while playing.
-   */
-  :global(html.buwatv-splash-playing),
-  :global(body.buwatv-splash-playing) {
-    overflow: hidden;
-  }
-
-  :global(body.buwatv-splash-playing) .hero-video-bg {
-    position: fixed !important;
-    inset: 0 !important;
-    z-index: 1700 !important;
-    width: 100vw !important;
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
-  }
-
-  :global(body.buwatv-splash-playing) .site-header {
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-
-  :global(body.buwatv-splash-playing) .menu-overlay {
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
 </style>
 
-<script define:vars={{ displayDuration: bumpers.displayDuration, fadeDuration: bumpers.fadeDuration, webhookUrl: '/api/webhook/', isDev: import.meta.env.DEV }}>
-  // Hero Video - plays ONE random video, then reveals hero content
-  // Timing controlled via src/data/bumpers.json
+<script define:vars={{ webhookUrl: '/api/webhook/', isDev: import.meta.env.DEV }}>
   (function() {
-    const videos = document.querySelectorAll('.hero-video');
-    const videoBg = document.querySelector('.hero-video-bg');
     const heroContent = document.getElementById('hero-content');
     const heroText = document.getElementById('hero-text');
-    const heroOverlay = document.querySelector('.hero-video-overlay');
     const heroStars = document.getElementById('hero-stars');
     const constellationLayer = document.getElementById('constellation-layer');
     const heroMoon = document.getElementById('hero-moon');
@@ -2187,9 +2082,6 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
     const heroHeadline = document.getElementById('hero-headline');
     const scrollIndicator = document.getElementById('scroll-indicator');
     const shootingStars = Array.from(document.querySelectorAll('.shooting-star'));
-    
-    // Config from bumpers.json
-    const crossfadeDelayMs = displayDuration * 1000;
     
     const initialStarCount = 50;
     const targetStarCount = initialStarCount * 3;
@@ -2416,167 +2308,13 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
       starsAreVisible = true;
     }
     
-    function endSplashChrome() {
-      document.documentElement.classList.remove('buwatv-splash-playing');
-      document.body.classList.remove('buwatv-splash-playing');
-    }
-
-    function startSplashChrome() {
-      document.documentElement.classList.add('buwatv-splash-playing');
-      document.body.classList.add('buwatv-splash-playing');
-    }
-
-    // Helper to reveal all hero elements
-    function revealHeroContent() {
-      endSplashChrome();
-      // Mark splash as seen now that the video has played (or been skipped)
-      if (!isDev) sessionStorage.setItem(splashKey, '1');
-      if (videoBg) videoBg.classList.add('hidden'); // Fade out video wrapper
-      if (heroOverlay) heroOverlay.classList.add('visible');
-      if (heroContent) heroContent.classList.add('visible');
-      if (scrollIndicator) scrollIndicator.classList.add('visible');
-      
-      // Stars appear 3 seconds after content, then stagger in
-      setTimeout(revealStars, 3000);
-      // Keep slowly adding stars until we reach 3x density
-      setTimeout(startStarGrowth, 3500);
-      // Briefly connect nearby stars every so often for a subtle "signal lock" effect
-      startConstellationTraces();
-    }
-    
-    // Skip splash if already seen this session or no videos
-    const splashKey = 'buwatv-splash-seen';
-    const splashSeen = isDev ? null : sessionStorage.getItem(splashKey);
-
-    if (videos.length === 0 || splashSeen) {
-      if (videoBg) videoBg.style.display = 'none';
-      revealHeroContent();
-      return;
-    }
-    
-    // Pick a random video
-    const randomIndex = Math.floor(Math.random() * videos.length);
-    const chosenVideo = videos[randomIndex];
-    
-    // Hide all videos, show only the chosen one
-    videos.forEach((v, i) => {
-      if (i === randomIndex) {
-        v.classList.add('active');
-      } else {
-        v.classList.remove('active');
-        v.style.display = 'none'; // Hide others completely
-      }
-    });
-
-    // Full-screen splash above header (matches main index intro behavior)
-    startSplashChrome();
-    
-    // Track if crossfade has started
-    let crossfadeStarted = false;
-    
-    function startCrossfade() {
-      if (crossfadeStarted) return; // Only trigger once
-      crossfadeStarted = true;
-
-      const fadeMs = Math.max(Math.round((Number(fadeDuration) || 0.75) * 1000), 450);
-      const contentDelayMs = Math.round(fadeMs * 0.35);
-
-      if (heroOverlay) {
-        heroOverlay.style.transition = `opacity ${Math.max(Math.round(fadeMs * 0.9), 350)}ms ease`;
-        heroOverlay.classList.add('visible');
-      }
-
-      // Fade video layer out first, then bring in text/content for a softer handoff.
-      setTimeout(() => {
-        if (videoBg) {
-          videoBg.style.transition = `opacity ${fadeMs}ms ease-out`;
-          videoBg.style.opacity = '0';
-        }
-        chosenVideo.style.transition = `opacity ${fadeMs}ms ease-out`;
-        chosenVideo.classList.remove('active');
-      }, 80);
-
-      setTimeout(() => {
-        revealHeroContent();
-      }, contentDelayMs);
-    }
-    
-    let crossfadeTimer = null;
-    let safetyTimeout = null;
-    let splashPlaybackStarted = false;
-    let splashFailed = false;
-
-    const onSplashVideoFailed = () => {
-      if (splashFailed) return;
-      splashFailed = true;
-      clearTimeout(crossfadeTimer);
-      clearTimeout(safetyTimeout);
-      if (videoBg) videoBg.style.opacity = '0';
-      revealHeroContent();
-    };
-
-    chosenVideo.addEventListener('error', onSplashVideoFailed);
-
-    let splashPlayingConfirmed = false;
-    chosenVideo.addEventListener(
-      'playing',
-      () => {
-        splashPlayingConfirmed = true;
-      },
-      { once: true }
-    );
-    window.setTimeout(() => {
-      if (!splashPlayingConfirmed && !splashFailed) {
-        onSplashVideoFailed();
-      }
-    }, 12000);
-
-    const scheduleCrossfadeTimers = () => {
-      if (crossfadeTimer || safetyTimeout) return;
-      // Start crossfade timing once playback is actually ready.
-      crossfadeTimer = setTimeout(() => {
-        startCrossfade();
-      }, crossfadeDelayMs);
-
-      // Safety timeout - ensure content shows after displayDuration + 8 seconds no matter what
-      safetyTimeout = setTimeout(() => {
-        console.log('Safety timeout: revealing content');
-        startCrossfade();
-      }, crossfadeDelayMs + 8000);
-    };
-    
-    const startSplashPlayback = () => {
-      if (splashPlaybackStarted) return;
-      splashPlaybackStarted = true;
-      scheduleCrossfadeTimers();
-      chosenVideo.play().catch((e) => {
-        // Autoplay blocked - show content immediately
-        console.log('Autoplay prevented:', e);
-        onSplashVideoFailed();
-      });
-    };
-
-    // Start playback as soon as enough data is available, with a short fallback.
-    if (chosenVideo.readyState >= 2) {
-      startSplashPlayback();
-    } else {
-      chosenVideo.addEventListener('loadeddata', startSplashPlayback, { once: true });
-      chosenVideo.addEventListener('canplay', startSplashPlayback, { once: true });
-      setTimeout(startSplashPlayback, 600);
-    }
-    
-    // If video ends before 10s (shorter video), trigger crossfade
-    chosenVideo.addEventListener('ended', () => {
-      clearTimeout(crossfadeTimer);
-      clearTimeout(safetyTimeout);
-      startCrossfade();
-    });
+    // Reveal hero content immediately (no bumper splash)
+    if (heroContent) heroContent.classList.add('visible');
+    if (scrollIndicator) scrollIndicator.classList.add('visible');
+    setTimeout(revealStars, 3000);
+    setTimeout(startStarGrowth, 3500);
+    startConstellationTraces();
   })();
-
-  document.addEventListener('astro:before-swap', () => {
-    document.documentElement.classList.remove('buwatv-splash-playing');
-    document.body.classList.remove('buwatv-splash-playing');
-  });
 
   // Video Popup
   const videoBtn = document.getElementById('video-btn');
@@ -2859,29 +2597,18 @@ document.addEventListener('astro:page-load', () => {
   // Only applies on the BuWaTV index page
   if (!document.getElementById('hero-content')) return;
   
-  const splashSeen = sessionStorage.getItem('buwatv-splash-seen');
   const heroContent = document.getElementById('hero-content');
   
-  // If content is still hidden but splash was already seen, force reveal
-  if (splashSeen && heroContent && !heroContent.classList.contains('visible')) {
-    // Disable transitions for instant reveal on back-navigation
-    const els = {
-      heroContent: heroContent,
-      heroOverlay: document.querySelector('.hero-video-overlay'),
-      scrollIndicator: document.getElementById('scroll-indicator'),
-      videoBg: document.querySelector('.hero-video-bg')
-    };
-    
-    Object.values(els).forEach(el => {
-      if (el) el.style.transition = 'none';
-    });
-    
-    if (els.videoBg) els.videoBg.style.display = 'none';
-    if (els.heroOverlay) els.heroOverlay.classList.add('visible');
-    if (els.heroContent) els.heroContent.classList.add('visible');
-    if (els.scrollIndicator) els.scrollIndicator.classList.add('visible');
-    
-    // Also reveal any sections already in viewport
+  // On back-navigation, ensure hero content is visible
+  if (heroContent && !heroContent.classList.contains('visible')) {
+    heroContent.style.transition = 'none';
+    heroContent.classList.add('visible');
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    if (scrollIndicator) {
+      scrollIndicator.style.transition = 'none';
+      scrollIndicator.classList.add('visible');
+    }
+
     document.querySelectorAll('.reveal-section:not(.visible)').forEach(section => {
       section.style.transition = 'none';
       section.classList.add('visible');
