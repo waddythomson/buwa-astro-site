@@ -2209,7 +2209,7 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
       setTimeout(() => {
         drawConstellationTrace();
         setInterval(drawConstellationTrace, 24000);
-      }, 20000);
+      }, 8000);
     }
     
     // Shooting star: first at 20s, then every 10s, random direction (always downward, never same twice in a row)
@@ -2250,19 +2250,16 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
         setInterval(() => triggerShootingStar(starEl), 8000);
       }, offsetMs);
     }
-    // Stage 1: current cadence starts around 20s
-    setTimeout(() => startShootingStarStream(shootingStars[0], 0), 20000);
-    // Stage 2: after ~18s more, add a second stream in the same 8s cycle
-    setTimeout(() => startShootingStarStream(shootingStars[1], 2600), 38000);
-    // Stage 3: ~28s later, add a third stream to further increase activity
-    setTimeout(() => startShootingStarStream(shootingStars[2], 5200), 66000);
+    setTimeout(() => startShootingStarStream(shootingStars[0], 0), 6000);
+    setTimeout(() => startShootingStarStream(shootingStars[1], 2600), 14000);
+    setTimeout(() => startShootingStarStream(shootingStars[2], 5200), 24000);
     setTimeout(() => {
       heroMoon?.classList.add('visible');
       if (heroLogo) {
         heroLogo.classList.add('moon-shrink');
       }
       heroText?.classList.add('spotlight-on');
-    }, 10000);
+    }, 3000);
     function triggerBroadcastPing() {
       if (!heroMark) return;
       heroMark.classList.add('broadcast-ping');
@@ -2282,11 +2279,11 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
     setTimeout(() => {
       triggerBroadcastPing();
       setInterval(triggerBroadcastPing, 10000);
-    }, 25000);
+    }, 8000);
     setTimeout(() => {
       triggerHeadlineGlowPulse();
       setInterval(triggerHeadlineGlowPulse, 20000);
-    }, 20000);
+    }, 10000);
     
     // Staggered star reveal - stars appear a few at a time
     function revealStars() {
@@ -2308,11 +2305,11 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
       starsAreVisible = true;
     }
     
-    // Reveal hero content immediately (no bumper splash)
+    // Reveal hero content immediately
     if (heroContent) heroContent.classList.add('visible');
     if (scrollIndicator) scrollIndicator.classList.add('visible');
-    setTimeout(revealStars, 3000);
-    setTimeout(startStarGrowth, 3500);
+    setTimeout(revealStars, 1500);
+    setTimeout(startStarGrowth, 2000);
     startConstellationTraces();
   })();
 
@@ -2591,23 +2588,35 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
   }
 </script>
 
-<!-- ViewTransitions back-navigation safety: force content visible if splash already seen -->
+<!-- ViewTransitions back-navigation safety: show the "settled" hero state -->
 <script is:inline>
 document.addEventListener('astro:page-load', () => {
-  // Only applies on the BuWaTV index page
   if (!document.getElementById('hero-content')) return;
   
   const heroContent = document.getElementById('hero-content');
   
-  // On back-navigation, ensure hero content is visible
   if (heroContent && !heroContent.classList.contains('visible')) {
     heroContent.style.transition = 'none';
     heroContent.classList.add('visible');
+
     const scrollIndicator = document.getElementById('scroll-indicator');
     if (scrollIndicator) {
       scrollIndicator.style.transition = 'none';
       scrollIndicator.classList.add('visible');
     }
+
+    const heroMoon = document.getElementById('hero-moon');
+    const heroLogo = document.getElementById('hero-logo');
+    const heroText = document.getElementById('hero-text');
+
+    if (heroMoon) { heroMoon.style.transition = 'none'; heroMoon.classList.add('visible'); }
+    if (heroLogo) { heroLogo.style.transition = 'none'; heroLogo.classList.add('moon-shrink'); }
+    if (heroText) { heroText.style.transition = 'none'; heroText.classList.add('spotlight-on'); }
+
+    document.querySelectorAll('.star').forEach(s => {
+      s.style.transition = 'none';
+      s.classList.add('visible');
+    });
 
     document.querySelectorAll('.reveal-section:not(.visible)').forEach(section => {
       section.style.transition = 'none';
@@ -2617,13 +2626,12 @@ document.addEventListener('astro:page-load', () => {
       });
     });
     
-    // Restore transitions after a tick so future animations still work
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        Object.values(els).forEach(el => {
+        [heroContent, scrollIndicator, heroMoon, heroLogo, heroText].forEach(el => {
           if (el) el.style.transition = '';
         });
-        document.querySelectorAll('.reveal-section, .reveal-item').forEach(el => {
+        document.querySelectorAll('.reveal-section, .reveal-item, .star').forEach(el => {
           el.style.transition = '';
         });
       });
