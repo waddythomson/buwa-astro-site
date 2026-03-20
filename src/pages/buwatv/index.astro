@@ -39,9 +39,8 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
 
 // Import bumper videos configuration
 import bumpersData from '../../data/buwatv/bumpers.json';
-import brandHeroBg from '../../data/brand-hero-background.json';
 const bumpers = bumpersData;
-const heroFallbackPoster = brandHeroBg.poster;
+const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%)';
 ---
 
 <BaseLayout 
@@ -57,7 +56,7 @@ const heroFallbackPoster = brandHeroBg.poster;
       <div
         class="hero-video-fallback"
         aria-hidden="true"
-        style={`background-image: linear-gradient(135deg, rgba(15, 15, 35, 0.72) 0%, rgba(23, 36, 108, 0.58) 50%, rgba(15, 15, 35, 0.72) 100%), url('${heroFallbackPoster}')`}
+        style={`background: ${heroFallbackGradient}`}
       />
       {bumpers.videos.map((video, index) => (
         <video 
@@ -65,7 +64,7 @@ const heroFallbackPoster = brandHeroBg.poster;
           muted 
           playsinline
           preload="metadata"
-          poster={heroFallbackPoster}
+          
           loop={bumpers.videos.length === 1}
           data-index={index}
         >
