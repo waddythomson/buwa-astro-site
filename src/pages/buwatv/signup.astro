@@ -1,31 +1,13 @@
 ---
 import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
 ---
 
 <BaseLayout
   title="Sign Up | BuWa TV"
   description="Sign up to advertise your business or celebrate a special moment on BuWa TV indoor digital billboards."
 >
-  <header slot="header" class="site-header">
-    <div class="header-container">
-      <a href="/" class="header-logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
-      </a>
-      <nav class="header-nav">
-        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
-        <a href="https://buwadigital.com/" class="nav-link">BuWa Digital</a>
-      </nav>
-      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
-      <a href="https://buwadigital.com/" class="mobile-link">BuWa Digital</a>
-    </div>
-  </header>
+  <BuWaTvSiteHeader slot="header" />
 
   <div class="signup-page-wrapper">
     <main class="signup-page">
@@ -273,7 +255,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
 <style is:global>
   .signup-page-wrapper {
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+    background: transparent;
     min-height: 100vh;
     color: #fff;
   }
@@ -284,98 +266,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
     padding: 0 20px;
   }
 
-  .site-header {
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-
-  .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 15px 40px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .header-logo {
-      justify-self: start;
-    }
-
-    .header-logo img {
-      height: 45px;
-      width: auto;
-    }
-
-    .header-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      justify-self: center;
-      gap: 25px;
-    }
-
-    .nav-link {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      color: #333;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-link:hover {
-      color: #a01c2b;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 24px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      justify-self: end;
-    }
-
-    .mobile-menu-btn span {
-      width: 100%;
-      height: 3px;
-      background: #333;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: #fff;
-      padding: 20px;
-      border-top: 1px solid #eee;
-    }
-
-    .mobile-menu.active {
-      display: flex;
-    }
-
-    .mobile-link {
-      padding: 12px 0;
-      color: #333;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      border-bottom: 1px solid #eee;
-    }
-
-    /* Signup Page - Navy Background */
+    /* Signup Page */
     .signup-page-wrapper .signup-page {
       padding: 120px 0 60px;
     }
@@ -712,14 +603,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
-      .header-nav {
-        display: none;
-      }
-
-      .mobile-menu-btn {
-        display: flex;
-      }
-
       .signup-header h1 {
         font-size: 1.8rem;
       }
@@ -833,15 +716,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
       setupFileUpload('business-file-input', 'business-images', 'business-upload-status', 'business-upload-progress', 'business-btn-text');
       setupFileUpload('personal-file-input', 'personal-images', 'personal-upload-status', 'personal-upload-progress', 'personal-btn-text');
     }
-
-    // Mobile menu toggle
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    mobileBtn?.addEventListener('click', () => {
-      mobileMenu?.classList.toggle('active');
-      mobileBtn.classList.toggle('active');
-    });
 
     // Form type toggle
     const toggleBtns = document.querySelectorAll('.toggle-btn');

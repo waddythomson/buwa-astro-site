@@ -1,33 +1,13 @@
 ---
 import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
 ---
 
 <BaseLayout
   title="Host Partner Evaluation | BuWa TV"
   description="Find out if your business is a great fit for a BuWa TV screen. Free evaluation for potential host partners."
 >
-  <header slot="header" class="site-header">
-    <div class="header-container">
-      <a href="/" class="header-logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
-      </a>
-      <nav class="header-nav">
-        <a href="/buwatv/#host-partner" class="nav-link">Host Partner</a>
-        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
-        <a href="https://buwadigital.com/" class="nav-link">BuWa Digital</a>
-      </nav>
-      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/buwatv/#host-partner" class="mobile-link">Host Partner</a>
-      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
-      <a href="https://buwadigital.com/" class="mobile-link">BuWa Digital</a>
-    </div>
-  </header>
+  <BuWaTvSiteHeader slot="header" />
 
   <div class="evaluation-page-wrapper">
     <main class="evaluation-page">
@@ -179,7 +159,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
 <style is:global>
   .evaluation-page-wrapper {
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+    background: transparent;
     min-height: 100vh;
     color: #fff;
   }
@@ -188,93 +168,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-  }
-
-  .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .header-logo {
-    justify-self: start;
-  }
-
-  .header-logo img {
-    height: 45px;
-    width: auto;
-  }
-
-  .header-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-    gap: 30px;
-  }
-
-  .nav-link {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: #333;
-    transition: color 0.2s ease;
-  }
-
-  .nav-link:hover {
-    color: #a01c2b;
-  }
-
-  .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    justify-self: end;
-  }
-
-  .mobile-menu-btn span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: #333;
-    border-radius: 2px;
-  }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    background: white;
-    border-top: 1px solid #eee;
-    padding: 20px;
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-
-  .mobile-link {
-    padding: 12px 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: #333;
-    border-bottom: 1px solid #eee;
   }
 
   .btn {
@@ -523,8 +416,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   }
 
   @media (max-width: 768px) {
-    .header-nav { display: none; }
-    .mobile-menu-btn { display: flex; }
     .evaluation-page-wrapper .evaluation-header h1 { font-size: 2rem; }
     .evaluation-page-wrapper .evaluation-form { padding: 30px 20px; }
     .form-row { grid-template-columns: 1fr; }
@@ -532,10 +423,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 </style>
 
 <script define:vars={{ webhookUrl: '/api/webhook/' }}>
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  mobileMenuBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('active'));
-
   const form = document.getElementById('hostEvaluationForm');
   const resultQualified = document.getElementById('result-qualified');
   const resultFollowup = document.getElementById('result-followup');

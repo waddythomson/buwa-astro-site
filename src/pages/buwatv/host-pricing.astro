@@ -1,42 +1,13 @@
 ---
 import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
 ---
 
 <BaseLayout 
   title="Host Partner Pricing | BuWa TV"
   description="Host partners receive free in-location advertising plus exclusive discounted rates to reach customers across the BuWa TV network."
 >
-  <!-- Header -->
-  <header slot="header" class="site-header">
-    <div class="header-container">
-      <a href="/" class="header-logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
-      </a>
-      <nav class="header-nav">
-        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
-        <a href="/buwatv/about/" class="nav-link">About</a>
-        <a href="/buwatv/locations/" class="nav-link">Locations</a>
-        <a href="/buwatv/faq/" class="nav-link">FAQ</a>
-      </nav>
-      <a href="/buwatv/signup/" class="btn btn-red header-cta">
-        <i class="fas fa-paper-plane"></i> Get Started
-      </a>
-      <button class="mobile-menu-btn" id="mobile-menu-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
-      <a href="/buwatv/about/" class="mobile-link">About</a>
-      <a href="/buwatv/locations/" class="mobile-link">Locations</a>
-      <a href="/buwatv/faq/" class="mobile-link">FAQ</a>
-      <a href="/buwatv/signup/" class="btn btn-red mobile-cta">
-        <i class="fas fa-paper-plane"></i> Get Started
-      </a>
-    </div>
-  </header>
+  <BuWaTvSiteHeader slot="header" />
 
   <!-- Hero Section -->
   <section class="page-hero" id="host-partner-intro">
@@ -218,7 +189,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
             <li><i class="fas fa-check"></i> All upgraded in-location benefits</li>
             <li><i class="fas fa-check"></i> Additional premium perks</li>
           </ul>
-          <a href="/buwatv/signup/" class="btn btn-white">Get Started</a>
+          <a href="/buwatv/signup/" class="btn btn-red">Let's get started</a>
         </div>
       </div>
 
@@ -368,116 +339,25 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 <style>
   /* Page Hero */
   .page-hero {
-    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
-    color: white;
+    background: transparent;
+    color: #fff;
     padding: 140px 20px 80px;
     text-align: center;
   }
 
   .page-hero h1 {
+    font-family: 'Outfit', 'Inter', sans-serif;
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 15px;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
   }
 
   .hero-subtitle {
     font-size: 1.2rem;
-    opacity: 0.9;
+    color: rgba(232, 242, 255, 0.92);
     max-width: 700px;
     margin: 0 auto;
-  }
-
-  /* Header Styles */
-  .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 40px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .header-logo {
-    justify-self: start;
-  }
-
-  .header-logo img {
-    height: 45px;
-    width: auto;
-  }
-
-  .header-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-    gap: 30px;
-  }
-
-  .nav-link {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: #333;
-    transition: color 0.2s ease;
-  }
-
-  .nav-link:hover {
-    color: #a01c2b;
-  }
-
-  .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    justify-self: end;
-  }
-
-  .mobile-menu-btn span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: #333;
-    border-radius: 2px;
-  }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    padding: 20px;
-    background: white;
-    border-top: 1px solid #eee;
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-
-  .mobile-link {
-    padding: 15px 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: #333;
-    border-bottom: 1px solid #eee;
-  }
-
-  .mobile-cta {
-    margin-top: 20px;
-    text-align: center;
-    justify-content: center;
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
   }
 
   /* Buttons */
@@ -534,10 +414,16 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
     color: white;
   }
 
-  .header-cta {
-    justify-self: end;
-    padding: 10px 20px;
-    font-size: 0.9rem;
+  .pricing-section .pricing-card:not(.pinnacle) .btn-outline,
+  .custom-note .btn-outline {
+    border-color: rgba(255, 255, 255, 0.45);
+    color: #fff;
+  }
+
+  .pricing-section .pricing-card:not(.pinnacle) .btn-outline:hover,
+  .custom-note .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
   }
 
   /* Section Headers */
@@ -548,13 +434,15 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
   .section-header h2 {
     font-size: 2.2rem;
-    color: #17246c;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #e8f2ff;
     margin-bottom: 12px;
+    text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
   }
 
   .section-header p {
     font-size: 1.1rem;
-    color: #666;
+    color: rgba(232, 242, 255, 0.88);
     max-width: 700px;
     margin: 0 auto;
   }
@@ -580,7 +468,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   /* Included Section */
   .included-section {
     padding: 40px 0 80px;
-    background: #f8f9fa;
+    background: transparent;
   }
 
   .included-grid {
@@ -636,20 +524,23 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   /* Upgrade Section */
   .upgrade-section {
     padding: 40px 0 80px;
-    background: white;
+    background: transparent;
   }
 
   .upgrade-card {
-    background: linear-gradient(135deg, #eef2ff 0%, #f5f7ff 100%);
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 16px;
     padding: 40px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
   }
 
   .upgrade-card h3 {
     text-align: center;
     font-size: 1.3rem;
-    color: #17246c;
+    color: #fff;
     margin-bottom: 25px;
   }
 
@@ -697,7 +588,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   /* Pricing Section */
   .pricing-section {
     padding: 80px 0;
-    background: #f8f9fa;
+    background: transparent;
   }
 
   .pricing-grid {
@@ -708,28 +599,49 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   }
 
   .pricing-card {
-    background: white;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 16px;
     padding: 35px 30px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #e8f2ff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
   }
 
   .pricing-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.32);
+    border-color: rgba(255, 255, 255, 0.28);
   }
 
   .pricing-card.popular {
-    border: 3px solid #a01c2b;
+    border: 2px solid rgba(168, 28, 43, 0.85);
+    box-shadow:
+      0 16px 30px rgba(0, 0, 0, 0.24),
+      0 0 0 1px rgba(168, 28, 43, 0.35);
   }
 
   .pricing-card.pinnacle {
     grid-column: span 2;
-    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
-    color: white;
+    background: #ffffff;
+    border: 1px solid rgba(23, 36, 108, 0.12);
+    color: #1a1a2e;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.1),
+      0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .pricing-card.pinnacle:hover {
+    border-color: rgba(23, 36, 108, 0.2);
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, 0.14),
+      0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   .popular-badge {
@@ -747,21 +659,21 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
   .card-header h3 {
     font-size: 1.5rem;
-    color: #17246c;
+    color: #fff;
     margin-bottom: 5px;
   }
 
   .pricing-card.pinnacle .card-header h3 {
-    color: white;
+    color: #17246c;
   }
 
   .card-subtitle {
     font-size: 0.95rem;
-    color: #666;
+    color: rgba(232, 242, 255, 0.72);
   }
 
   .pricing-card.pinnacle .card-subtitle {
-    color: rgba(255,255,255,0.8);
+    color: #555;
   }
 
   .price {
@@ -775,16 +687,16 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   }
 
   .pricing-card.pinnacle .amount {
-    color: white;
+    color: #a01c2b;
   }
 
   .period {
     font-size: 1rem;
-    color: #666;
+    color: rgba(232, 242, 255, 0.72);
   }
 
   .pricing-card.pinnacle .period {
-    color: rgba(255,255,255,0.8);
+    color: #666;
   }
 
   .savings {
@@ -795,7 +707,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   }
 
   .pricing-card.pinnacle .savings {
-    color: rgba(255,255,255,0.85);
+    color: #15803d;
   }
 
   .features {
@@ -807,7 +719,7 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
   .features li {
     padding: 10px 0;
-    color: #555;
+    color: rgba(232, 242, 255, 0.9);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -819,18 +731,21 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   }
 
   .pricing-card.pinnacle .features li {
-    color: rgba(255,255,255,0.9);
+    color: #444;
   }
 
   /* Custom Note */
   .custom-note {
-    background: white;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 16px;
     padding: 35px;
     display: flex;
     align-items: center;
     gap: 25px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
@@ -838,46 +753,53 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
   .custom-note i {
     font-size: 2.5rem;
-    color: #f59e0b;
+    color: #fbbf24;
   }
 
   .custom-note p {
     flex: 1;
     min-width: 250px;
-    color: #555;
+    color: rgba(232, 242, 255, 0.92);
     font-size: 1.05rem;
   }
 
   /* Comparison Section */
   .comparison-section {
     padding: 40px 0 80px;
-    background: white;
+    background: transparent;
   }
 
   .comparison-section h2 {
     text-align: center;
     font-size: 2rem;
-    color: #17246c;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #e8f2ff;
     margin-bottom: 10px;
+    text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
   }
 
   .section-subtitle {
     text-align: center;
-    color: #666;
+    color: rgba(232, 242, 255, 0.85);
     margin-bottom: 40px;
   }
 
   .table-wrapper {
     overflow-x: auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
   }
 
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    box-shadow: none;
   }
 
   .comparison-table th,
@@ -913,19 +835,32 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
   /* CTA Section */
   .cta-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
+    background: transparent;
+    color: #e8f2ff;
     text-align: center;
+  }
+
+  .cta-section .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 36px;
+    background: rgba(30, 30, 35, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
   }
 
   .cta-section h2 {
     font-size: 2.2rem;
     margin-bottom: 15px;
+    color: #fff;
   }
 
   .cta-section > .container > p {
     font-size: 1.1rem;
-    opacity: 0.9;
+    color: rgba(232, 242, 255, 0.9);
     margin-bottom: 30px;
   }
 
@@ -1109,14 +1044,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
   /* Responsive */
   @media (max-width: 992px) {
-    .header-nav {
-      display: none;
-    }
-
-    .mobile-menu-btn {
-      display: flex;
-    }
-
     .pricing-card.pinnacle {
       grid-column: span 1;
     }
@@ -1158,14 +1085,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 </style>
 
 <script define:vars={{ webhookUrl: '/api/webhook/' }}>
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    mobileMenu?.classList.toggle('active');
-  });
-
   const contactOverlay = document.getElementById('contact-popup-overlay');
   const contactCloseBtn = document.getElementById('contact-close-btn');
   const contactForm = document.getElementById('contact-form');

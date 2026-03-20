@@ -1,24 +1,14 @@
 ---
 // Terms & Conditions page for BuWa TV
 import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
 ---
 
 <BaseLayout 
   title="Terms & Conditions | BuWa TV" 
   description="BuWa TV terms and conditions for our messaging program and services."
 >
-  <!-- Header -->
-  <header slot="header" class="header">
-    <div class="container">
-      <a href="/" class="logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
-      </a>
-      <nav class="nav">
-        <a href="/buwatv/">BuWa TV Home</a>
-        <a href="/buwatv/privacy/">Privacy</a>
-      </nav>
-    </div>
-  </header>
+  <BuWaTvSiteHeader slot="header" />
 
   <!-- Main Content -->
   <main class="terms-page">
@@ -88,50 +78,10 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .header {
-    background: white;
-    padding: 20px 0;
-    position: relative;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .header .container {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .logo {
-    justify-self: start;
-  }
-
-  .logo img {
-    height: 50px;
-    width: auto;
-  }
-
-  .nav {
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    gap: 30px;
-  }
-
-  .nav a {
-    color: #17246c;
-    font-weight: 500;
-    transition: opacity 0.2s ease;
-  }
-
-  .nav a:hover {
-    opacity: 0.7;
-  }
-
   .terms-page {
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+    background: transparent;
     min-height: 100vh;
-    padding: 60px 0 100px;
+    padding: 100px 0 100px;
   }
 
   .terms-page h1 {
@@ -231,10 +181,6 @@ import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
 
     .terms-section h2 {
       font-size: 1.15rem;
-    }
-
-    .nav {
-      gap: 20px;
     }
   }
 </style>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/buwatv/BaseLayout.astro';
+import BuWaTvSiteHeader from '../../components/buwatv/BuWaTvSiteHeader.astro';
 import partnersData from '../../data/buwatv/partners.json';
 
 const hostPartners = partnersData.hostPartners ?? partnersData.partners ?? [];
@@ -34,28 +35,7 @@ const logoSrc = (partner) =>
   title="Host Partners | BuWa TV"
   description="Meet the local businesses hosting BuWa TV screens across the Midlands of South Carolina."
 >
-  <header slot="header" class="site-header">
-    <div class="header-container">
-      <a href="/" class="header-logo">
-        <img src="/uploads/logos/buwa-digital-dark.png" alt="BuWa Digital">
-      </a>
-      <nav class="header-nav">
-        <a href="/buwatv/" class="nav-link">BuWa TV Home</a>
-        <a href="/buwatv/locations/" class="nav-link">Locations</a>
-        <a href="/buwatv/hostEval/" class="nav-link">Become a Host</a>
-      </nav>
-      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/buwatv/" class="mobile-link">BuWa TV Home</a>
-      <a href="/buwatv/locations/" class="mobile-link">Locations</a>
-      <a href="/buwatv/hostEval/" class="mobile-link">Become a Host</a>
-    </div>
-  </header>
+  <BuWaTvSiteHeader slot="header" />
 
   <main>
     <section class="hero">
@@ -143,97 +123,11 @@ const logoSrc = (partner) =>
     padding: 0 24px;
   }
 
-  /* Header */
-  .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 14px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .header-logo img {
-    height: 42px;
-    width: auto;
-    display: block;
-  }
-
-  .header-nav {
-    display: flex;
-    align-items: center;
-    gap: 26px;
-  }
-
-  .nav-link {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-  }
-
-  .nav-link:hover {
-    color: #a01c2b;
-  }
-
-  .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-  }
-
-  .mobile-menu-btn span {
-    display: block;
-    width: 26px;
-    height: 3px;
-    background: #333;
-    border-radius: 2px;
-  }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    padding: 18px 24px;
-    background: white;
-    border-top: 1px solid #eee;
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-
-  .mobile-link {
-    padding: 14px 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    text-decoration: none;
-  }
-
-  .mobile-link:hover {
-    color: #a01c2b;
-  }
-
   /* Hero */
   .hero {
     padding: 150px 0 70px;
-    background: linear-gradient(135deg, #17246c 0%, #1a1a2e 100%);
-    color: white;
+    background: transparent;
+    color: #fff;
     text-align: center;
   }
 
@@ -241,14 +135,16 @@ const logoSrc = (partner) =>
     font-size: clamp(2.4rem, 4.6vw, 3.2rem);
     margin: 0 0 12px;
     letter-spacing: -0.02em;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
   }
 
   .subtitle {
     max-width: 760px;
     margin: 0 auto 26px;
-    opacity: 0.9;
+    color: rgba(232, 242, 255, 0.92);
     font-size: 1.12rem;
     line-height: 1.7;
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
   }
 
   .hero-actions {
@@ -293,19 +189,20 @@ const logoSrc = (partner) =>
   .hosts,
   .coming-soon {
     padding: 70px 0;
-    background: #fff;
+    background: transparent;
   }
 
   .coming-soon {
-    background: #f8f9fa;
+    background: transparent;
   }
 
   .section-heading {
     font-family: 'Outfit', sans-serif;
-    color: #17246c;
+    color: #e8f2ff;
     text-align: center;
     font-size: clamp(1.9rem, 3vw, 2.2rem);
     margin: 0 0 10px;
+    text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
   }
 
   .star-accent {
@@ -316,7 +213,7 @@ const logoSrc = (partner) =>
     text-align: center;
     margin: 0 auto 34px;
     max-width: 760px;
-    color: #5a6472;
+    color: rgba(232, 242, 255, 0.88);
     line-height: 1.7;
   }
 
@@ -390,14 +287,6 @@ const logoSrc = (partner) =>
   }
 
   @media (max-width: 760px) {
-    .header-nav {
-      display: none;
-    }
-
-    .mobile-menu-btn {
-      display: flex;
-    }
-
     .host-grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -413,14 +302,3 @@ const logoSrc = (partner) =>
     }
   }
 </style>
-
-<script>
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    mobileMenu?.classList.toggle('active');
-  });
-</script>
-
