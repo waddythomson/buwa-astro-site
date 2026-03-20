@@ -5,5 +5,6 @@
     "BUWA_3.mp4"
   ],
   "displayDuration": 6,
-  "fadeDuration": 0.75
+  "fadeDuration": 0.75,
+  "fallbackPoster": "/uploads/new/hero/abstract/abstract-blue-1-poster.jpg"
 }

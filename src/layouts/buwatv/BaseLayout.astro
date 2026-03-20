@@ -14,6 +14,8 @@ interface Props {
 }
 
 const { title, description, canonical, image, imageAlt, noindex, ogType } = Astro.props;
+/** Still shown under / instead of a black frame when background video can't play (mobile, low-power, etc.) */
+const buwaTvBgStill = '/uploads/new/hero/abstract/abstract-blue-1-poster.jpg';
 const baseUrl = Astro.site ?? Astro.url;
 const buwaTvUrl = new URL('/buwatv/', baseUrl).toString();
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, baseUrl).toString();
@@ -109,9 +111,14 @@ const structuredData = {
 
 <body>
   <div class="buwatv-bg-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="/uploads/background/buwatv/background-main.webm" type="video/webm" />
+    <div
+      class="buwatv-bg-fallback"
+      style={`background-image: linear-gradient(135deg, rgba(15, 15, 35, 0.82) 0%, rgba(23, 36, 108, 0.7) 50%, rgba(15, 15, 35, 0.82) 100%), url('${buwaTvBgStill}')`}
+    ></div>
+    <video autoplay muted loop playsinline preload="metadata" poster={buwaTvBgStill}>
+      <!-- MP4 first: iOS Safari doesn't play WebM; avoid a futile WebM decode first -->
       <source src="/uploads/background/buwatv/background-main.mp4" type="video/mp4" />
+      <source src="/uploads/background/buwatv/background-main.webm" type="video/webm" />
       <source src="/uploads/hero/0.mp4" type="video/mp4" />
     </video>
   </div>
@@ -252,9 +259,38 @@ const structuredData = {
     }, { signal });
   }
 
+  function initBuwaTvBackgroundVideo() {
+    const wrap = document.querySelector('.buwatv-bg-video');
+    const video = wrap?.querySelector('video');
+    if (!wrap || !video) return;
+    if (video.dataset.buwaBgInit === 'true') return;
+    video.dataset.buwaBgInit = 'true';
+
+    const useStill = () => wrap.classList.add('buwatv-bg-video--still');
+
+    let sawPlaying = false;
+    video.addEventListener(
+      'playing',
+      () => {
+        sawPlaying = true;
+      },
+      { once: true }
+    );
+    video.addEventListener('error', useStill);
+
+    video.play()?.catch(useStill);
+
+    window.setTimeout(() => {
+      if (!sawPlaying && (video.networkState === 3 || (video.readyState < 2 && video.paused))) {
+        useStill();
+      }
+    }, 6000);
+  }
+
   document.addEventListener('astro:page-load', () => {
     bindBuwaTvScrollLinks();
     initBuwaTvHeaderMenu();
+    initBuwaTvBackgroundVideo();
 
     const panel = document.getElementById('buwatvFooterPanel');
     if (!panel) return;
@@ -403,14 +439,35 @@ const structuredData = {
     z-index: -2;
     pointer-events: none;
     overflow: hidden;
-    background: #050914;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
+  }
+
+  .buwatv-bg-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: #0f0f23;
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat;
   }
 
   .buwatv-bg-video video {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: saturate(1.06) contrast(1.02) brightness(0.9);
+    background: transparent;
+    transition: opacity 0.45s ease;
+  }
+
+  .buwatv-bg-video.buwatv-bg-video--still video {
+    opacity: 0;
+    visibility: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
