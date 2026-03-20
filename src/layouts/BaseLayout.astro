@@ -294,6 +294,7 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
       <source src={brandHeroBg.mp4} type="video/mp4" />
       <source src={brandHeroBg.webm} type="video/webm" />
     </video>
+    <div class="page-bg-video-tint"></div>
   </div>
 
   <div class="page-content-layer">
@@ -1351,6 +1352,13 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  .page-bg-video-tint {
+    position: absolute;
+    inset: 0;
+    background: rgba(23, 36, 108, 0.38);
+    pointer-events: none;
   }
 
   /* ── "Blue" sections on service pages ───────────────────────────── */
