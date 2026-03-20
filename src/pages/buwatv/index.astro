@@ -2493,51 +2493,54 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
     });
   }
 
-  // Scroll reveal - add .visible when section enters viewport
-  const revealSections = document.querySelectorAll('.reveal-section[data-reveal]');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { rootMargin: '0px 0px -80px 0px', threshold: 0 });
+  function initBuwaTvRevealSections() {
+    var revealSections = document.querySelectorAll('.reveal-section[data-reveal]');
+    if (!revealSections.length) return;
 
-  revealSections.forEach(section => revealObserver.observe(section));
-
-  // Stats count-up (Why Indoor section)
-  const statsGrid = document.querySelector('.stats-grid');
-  const statValues = document.querySelectorAll('.stat-value');
-  const animateStats = () => {
-    statValues.forEach((el) => {
-      if (el.dataset.animated === 'true') return;
-      const target = Number(el.getAttribute('data-target') || '0');
-      const duration = 1200;
-      const start = performance.now();
-      const step = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const value = Math.round(target * progress);
-        el.textContent = value.toString();
-        if (progress < 1) {
-          requestAnimationFrame(step);
-        } else {
-          el.dataset.animated = 'true';
-        }
-      };
-      requestAnimationFrame(step);
-    });
-  };
-
-  if (statsGrid) {
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          animateStats();
-          statsObserver.disconnect();
+          entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.4 });
-    statsObserver.observe(statsGrid);
+    }, { rootMargin: '0px 0px -80px 0px', threshold: 0 });
+
+    revealSections.forEach(function (section) {
+      revealObserver.observe(section);
+    });
+
+    var statsGrid = document.querySelector('.stats-grid');
+    var statValues = document.querySelectorAll('.stat-value');
+    var animateStats = function () {
+      statValues.forEach(function (el) {
+        if (el.dataset.animated === 'true') return;
+        var target = Number(el.getAttribute('data-target') || '0');
+        var duration = 1200;
+        var start = performance.now();
+        var step = function (now) {
+          var progress = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(target * progress).toString();
+          if (progress < 1) requestAnimationFrame(step);
+          else el.dataset.animated = 'true';
+        };
+        requestAnimationFrame(step);
+      });
+    };
+
+    if (statsGrid) {
+      var statsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateStats();
+            statsObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      statsObserver.observe(statsGrid);
+    }
   }
+
+  document.addEventListener('astro:page-load', initBuwaTvRevealSections);
+  initBuwaTvRevealSections();
 </script>
 
