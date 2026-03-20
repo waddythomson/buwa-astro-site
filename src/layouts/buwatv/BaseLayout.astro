@@ -117,6 +117,7 @@ const structuredData = {
       <source src={brandHeroBg.mp4} type="video/mp4" />
       <source src={brandHeroBg.webm} type="video/webm" />
     </video>
+    <div class="buwatv-bg-video-tint"></div>
   </div>
 
   <!-- Header slot - pages provide their own header -->
@@ -461,6 +462,14 @@ const structuredData = {
   .buwatv-bg-video.buwatv-bg-video--still video {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .buwatv-bg-video-tint {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(23, 36, 108, 0.38);
+    pointer-events: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
