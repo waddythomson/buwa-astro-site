@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
+import brandHeroBg from '../data/brand-hero-background.json';
 
 export interface Props {
   title: string;
@@ -282,10 +283,16 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
   {/* Persistent full-viewport background video — only on non-homepage pages.
       transition:persist keeps this element alive across SPA navigations so
       the video loads ONCE per session and never restarts. */}
-  <div class="page-bg-video" transition:persist="page-bg-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="none">
-      <source src="/uploads/new/hero/abstract/abstract-blue-1.webm" type="video/webm" />
-      <source src="/uploads/new/hero/abstract/abstract-blue-1.mp4" type="video/mp4" />
+  <div
+    class="page-bg-video"
+    transition:persist="page-bg-video"
+    aria-hidden="true"
+    style={`background-image: url('${brandHeroBg.poster}')`}
+  >
+    <!-- Same ambient loop as BuWa TV (see src/data/brand-hero-background.json) -->
+    <video autoplay muted loop playsinline preload="metadata" poster={brandHeroBg.poster}>
+      <source src={brandHeroBg.mp4} type="video/mp4" />
+      <source src={brandHeroBg.webm} type="video/webm" />
     </video>
   </div>
 
@@ -1326,8 +1333,10 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: url('/uploads/new/hero/abstract/abstract-blue-1-poster.jpg') center/cover no-repeat;
-    background-color: #081a43;
+    background-color: #0f0f23;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   /* All page chrome (header / main / footer) sits above the fixed video */
