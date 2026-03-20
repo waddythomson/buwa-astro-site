@@ -13,9 +13,9 @@ interface Props {
   ogType?: string;
 }
 
+import brandHeroBg from '../../data/brand-hero-background.json';
+
 const { title, description, canonical, image, imageAlt, noindex, ogType } = Astro.props;
-/** Still shown under / instead of a black frame when background video can't play (mobile, low-power, etc.) */
-const buwaTvBgStill = '/uploads/new/hero/abstract/abstract-blue-1-poster.jpg';
 const baseUrl = Astro.site ?? Astro.url;
 const buwaTvUrl = new URL('/buwatv/', baseUrl).toString();
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, baseUrl).toString();
@@ -113,13 +113,12 @@ const structuredData = {
   <div class="buwatv-bg-video" aria-hidden="true">
     <div
       class="buwatv-bg-fallback"
-      style={`background-image: linear-gradient(135deg, rgba(15, 15, 35, 0.82) 0%, rgba(23, 36, 108, 0.7) 50%, rgba(15, 15, 35, 0.82) 100%), url('${buwaTvBgStill}')`}
+      style={`background-image: linear-gradient(135deg, rgba(15, 15, 35, 0.82) 0%, rgba(23, 36, 108, 0.7) 50%, rgba(15, 15, 35, 0.82) 100%), url('${brandHeroBg.poster}')`}
     ></div>
-    <video autoplay muted loop playsinline preload="metadata" poster={buwaTvBgStill}>
-      <!-- MP4 first: iOS Safari doesn't play WebM; avoid a futile WebM decode first -->
-      <source src="/uploads/background/buwatv/background-main.mp4" type="video/mp4" />
-      <source src="/uploads/background/buwatv/background-main.webm" type="video/webm" />
-      <source src="/uploads/hero/0.mp4" type="video/mp4" />
+    <video autoplay muted loop playsinline preload="metadata" poster={brandHeroBg.poster}>
+      <!-- MP4 first: iOS Safari doesn't play WebM -->
+      <source src={brandHeroBg.mp4} type="video/mp4" />
+      <source src={brandHeroBg.webm} type="video/webm" />
     </video>
   </div>
 

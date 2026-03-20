@@ -39,8 +39,9 @@ const livePartners = allPartners.filter((partner) => partner.status !== 'coming-
 
 // Import bumper videos configuration
 import bumpersData from '../../data/buwatv/bumpers.json';
+import brandHeroBg from '../../data/brand-hero-background.json';
 const bumpers = bumpersData;
-const heroFallbackPoster = bumpers.fallbackPoster ?? '/uploads/new/hero/abstract/abstract-blue-1-poster.jpg';
+const heroFallbackPoster = brandHeroBg.poster;
 ---
 
 <BaseLayout 
