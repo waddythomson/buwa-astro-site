@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import brandHeroBg from '../data/brand-hero-background.json';
 
 const title = "BuWa Digital - Marketing & Advertising for Local Businesses";
 const description = "Reach more customers where they live, work, and shop with targeted digital marketing that builds trust and drives action.";
@@ -34,10 +33,10 @@ const description = "Reach more customers where they live, work, and shop with t
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-media" aria-hidden="true">
-      <video class="hero-video hero-video-a is-active" muted playsinline preload="metadata" poster={brandHeroBg.poster}>
-        <source src={brandHeroBg.mp4} type="video/mp4" />
+      <video class="hero-video hero-video-a is-active" muted playsinline preload="auto">
+        <source src="/uploads/hero/0.mp4" type="video/mp4" />
       </video>
-      <video class="hero-video hero-video-b" muted playsinline preload="metadata" poster={brandHeroBg.poster}>
+      <video class="hero-video hero-video-b" muted playsinline preload="metadata">
         <source src="" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
@@ -220,7 +219,7 @@ const description = "Reach more customers where they live, work, and shop with t
   </section>
 </BaseLayout>
 
-<script define:vars={{ brandHeroBg }}>
+<script>
   // astro:page-load fires on every ViewTransitions navigation (including initial load).
   // Without this, the script only runs once and the video never starts on back-nav.
   document.addEventListener('astro:page-load', () => {
@@ -266,7 +265,7 @@ const description = "Reach more customers where they live, work, and shop with t
     const introVideoEl = document.getElementById('introVideoEl');
     const homeReveal = document.getElementById('homeReveal');
     const heroVideoEls = Array.from(document.querySelectorAll('.hero-video'));
-    let heroPlaylist = [brandHeroBg.mp4];
+    let heroPlaylist = ['/uploads/hero/0.mp4'];
     let heroPlaylistIndex = 0;
     let activeHeroVideoIndex = 0;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
