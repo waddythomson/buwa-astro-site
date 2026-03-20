@@ -111,11 +111,8 @@ const structuredData = {
 
 <body>
   <div class="buwatv-bg-video" aria-hidden="true">
-    <div
-      class="buwatv-bg-fallback"
-      style={`background-image: linear-gradient(135deg, rgba(15, 15, 35, 0.82) 0%, rgba(23, 36, 108, 0.7) 50%, rgba(15, 15, 35, 0.82) 100%), url('${brandHeroBg.poster}')`}
-    ></div>
-    <video autoplay muted loop playsinline preload="metadata" poster={brandHeroBg.poster}>
+    <div class="buwatv-bg-fallback"></div>
+    <video autoplay muted loop playsinline preload="metadata">
       <!-- MP4 first: iOS Safari doesn't play WebM -->
       <source src={brandHeroBg.mp4} type="video/mp4" />
       <source src={brandHeroBg.webm} type="video/webm" />
@@ -446,10 +443,7 @@ const structuredData = {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-color: #0f0f23;
-    background-size: cover, cover;
-    background-position: center, center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%);
   }
 
   .buwatv-bg-video video {

@@ -287,10 +287,9 @@ const rootClassName = isDigitalHome ? 'home-page digital-home' : (hasTopHero ? '
     class="page-bg-video"
     transition:persist="page-bg-video"
     aria-hidden="true"
-    style={`background-image: url('${brandHeroBg.poster}')`}
   >
     <!-- Same ambient loop as BuWa TV (see src/data/brand-hero-background.json) -->
-    <video autoplay muted loop playsinline preload="metadata" poster={brandHeroBg.poster}>
+    <video autoplay muted loop playsinline preload="metadata">
       <source src={brandHeroBg.mp4} type="video/mp4" />
       <source src={brandHeroBg.webm} type="video/webm" />
     </video>
