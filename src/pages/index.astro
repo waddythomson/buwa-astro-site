@@ -269,10 +269,7 @@ const description = "Reach more customers where they live, work, and shop with t
     let heroPlaylistIndex = 0;
     let activeHeroVideoIndex = 0;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const prefersSmallVideo = window.matchMedia('(max-width: 1024px)').matches
-      || Boolean(connection?.saveData)
-      || ['slow-2g', '2g', '3g'].includes(connection?.effectiveType || '');
+    
     // Track whether this is a same-session return (back button, etc.)
     const isReturnVisit = Boolean(sessionStorage.getItem('buwa-home-visited'));
     sessionStorage.setItem('buwa-home-visited', 'true');
@@ -337,44 +334,14 @@ const description = "Reach more customers where they live, work, and shop with t
     const setVideoSource = (videoEl, src) => {
       if (!(videoEl instanceof HTMLVideoElement)) return;
       const sourceEl = videoEl.querySelector('source');
-      const typeFromSrc = (value) => (value.endsWith('.webm') ? 'video/webm' : 'video/mp4');
-      const withLowresVariant = (value) =>
-        value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-lowres$1$2');
-      const with720Variant = (value) =>
-        value.replace(/(\.[a-z0-9]+)(\?.*)?$/i, '-720$1$2');
-      const candidateSources = prefersSmallVideo
-        ? [withLowresVariant(src), with720Variant(src), src]
-        : [src];
-      let sourceIndex = 0;
-  
-      const applySource = (sourceUrl, type) => {
-        if (sourceEl) {
-          sourceEl.src = sourceUrl;
-          sourceEl.type = type;
-        } else {
-          videoEl.src = sourceUrl;
-        }
-        videoEl.load();
-      };
-  
-      if (candidateSources.length > 1) {
-        videoEl.onerror = () => {
-          sourceIndex += 1;
-          const nextSrc = candidateSources[sourceIndex];
-          if (!nextSrc) {
-            videoEl.onerror = null;
-            return;
-          }
-          if (sourceIndex >= candidateSources.length - 1) {
-            videoEl.onerror = null;
-          }
-          applySource(nextSrc, typeFromSrc(nextSrc));
-        };
+      const type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
+      if (sourceEl) {
+        sourceEl.src = src;
+        sourceEl.type = type;
       } else {
-        videoEl.onerror = null;
+        videoEl.src = src;
       }
-  
-      applySource(candidateSources[0], typeFromSrc(candidateSources[0]));
+      videoEl.load();
     };
   
     const loadHeroPlaylist = async () => {
