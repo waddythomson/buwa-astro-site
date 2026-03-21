@@ -37,10 +37,6 @@ const uniquePartners = (items = []) => {
 const allPartners = uniquePartners([...hostPartners, ...communityPartners]);
 const livePartners = allPartners.filter((partner) => partner.status !== 'coming-soon');
 
-// Import bumper videos configuration
-import bumpersData from '../../data/buwatv/bumpers.json';
-const bumpers = bumpersData;
-const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #17246c 50%, #1a1a3e 75%, #0f0f23 100%)';
 ---
 
 <BaseLayout 
@@ -51,28 +47,7 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
 
   <!-- Hero Section -->
   <section class="hero section-accent-bar-bottom" id="see-it-in-action">
-    <!-- Video Background Container -->
-    <div class="hero-video-bg">
-      <div
-        class="hero-video-fallback"
-        aria-hidden="true"
-        style={`background: ${heroFallbackGradient}`}
-      />
-      {bumpers.videos.map((video, index) => (
-        <video 
-          class={`hero-video ${index === 0 ? 'active' : ''}`}
-          muted 
-          playsinline
-          preload="metadata"
-          
-          loop={bumpers.videos.length === 1}
-          data-index={index}
-        >
-          <source src={`/buwatv/uploads/bumpers/${video}`} type="video/mp4" />
-        </video>
-      ))}
-      <div class="hero-video-overlay"></div>
-    </div>
+    <div class="hero-video-overlay visible"></div>
     
     <!-- Stars layer - outside video-bg so it's visible when video-bg fades out -->
     <div class="hero-stars" id="hero-stars"></div>
@@ -375,7 +350,7 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
         </article>
       </div>
       <div class="section-cta">
-        <a href="/buwatv/faq/" class="btn btn-navy"><i class="fas fa-circle-question"></i> View Full FAQ</a>
+        <a href="/buwatv/faq/" class="btn btn-faq-card"><i class="fas fa-circle-question"></i> View Full FAQ</a>
       </div>
     </div>
   </section>
@@ -651,6 +626,19 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
     background: linear-gradient(to bottom, #2548a8, #1e3a8a);
   }
 
+  .btn-faq-card {
+    background: rgba(30, 30, 35, 0.82) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    backdrop-filter: blur(8px);
+    box-shadow: none !important;
+  }
+  .btn-faq-card:hover {
+    background: rgba(40, 40, 48, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3) !important;
+  }
+
   .section-cta {
     text-align: center;
     margin-top: 2.1rem;
@@ -691,60 +679,12 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
   }
 
   /* Video Background — full-bleed like main index (cover, not contain) */
-  .hero-video-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    /* Gradient + .hero-video-fallback when video can't paint (mobile, autoplay quirks) */
-    background: transparent;
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .hero-video-fallback {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-color: #0f0f23;
-    background-size: cover, cover;
-    background-position: center, center;
-    background-repeat: no-repeat;
-  }
-
-  .hero-video-bg.hidden {
-    opacity: 0;
-  }
-
-  .hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    background: transparent;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .hero-video.active {
-    opacity: 1;
-  }
-
   .hero-video-overlay {
     position: absolute;
     inset: 0;
     background: rgba(15, 15, 35, 0.24);
-    z-index: 2;
-    opacity: 0; /* Hidden during video playback */
-    transition: opacity 1s ease-in;
-  }
-
-  .hero-video-overlay.visible {
-    opacity: 1;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .hero-stars {
@@ -2141,45 +2081,16 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
     }
   }
 
-  /*
-   * Full-viewport bumper (main index pattern): header/menu stay hidden until reveal.
-   * .hero-video-bg becomes position:fixed above header (z-index 1600) while playing.
-   */
-  :global(html.buwatv-splash-playing),
-  :global(body.buwatv-splash-playing) {
-    overflow: hidden;
-  }
-
-  :global(body.buwatv-splash-playing) .hero-video-bg {
-    position: fixed !important;
-    inset: 0 !important;
-    z-index: 1700 !important;
-    width: 100vw !important;
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
-  }
-
-  :global(body.buwatv-splash-playing) .site-header {
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-
-  :global(body.buwatv-splash-playing) .menu-overlay {
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
 </style>
 
-<script define:vars={{ displayDuration: bumpers.displayDuration, fadeDuration: bumpers.fadeDuration, webhookUrl: '/api/webhook/', isDev: import.meta.env.DEV }}>
-  // Hero Video - plays ONE random video, then reveals hero content
-  // Timing controlled via src/data/bumpers.json
-  (function() {
-    const videos = document.querySelectorAll('.hero-video');
-    const videoBg = document.querySelector('.hero-video-bg');
+<script is:inline>
+  function initBuwaTvHeroEffects() {
+    const heroStars = document.getElementById('hero-stars');
+    if (!heroStars || heroStars.dataset.heroInit === 'true') return;
+    heroStars.dataset.heroInit = 'true';
+
     const heroContent = document.getElementById('hero-content');
     const heroText = document.getElementById('hero-text');
-    const heroOverlay = document.querySelector('.hero-video-overlay');
-    const heroStars = document.getElementById('hero-stars');
     const constellationLayer = document.getElementById('constellation-layer');
     const heroMoon = document.getElementById('hero-moon');
     const heroMark = document.getElementById('hero-mark');
@@ -2187,72 +2098,58 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
     const heroHeadline = document.getElementById('hero-headline');
     const scrollIndicator = document.getElementById('scroll-indicator');
     const shootingStars = Array.from(document.querySelectorAll('.shooting-star'));
-    
-    // Config from bumpers.json
-    const crossfadeDelayMs = displayDuration * 1000;
-    
+
     const initialStarCount = 50;
     const targetStarCount = initialStarCount * 3;
     const starGrowthBatchSize = 8;
     const starGrowthIntervalMs = 3000;
     let starsAreVisible = false;
     let starGrowthIntervalId = null;
-    let constellationTimerStarted = false;
 
     function createStar() {
-      const star = document.createElement('div');
+      var star = document.createElement('div');
       star.className = 'star';
-
-      // Random position
       star.style.left = Math.random() * 100 + '%';
       star.style.top = Math.random() * 100 + '%';
-
-      // Random size (1-3px)
-      const size = Math.random() * 2 + 1;
+      var size = Math.random() * 2 + 1;
       star.style.width = size + 'px';
       star.style.height = size + 'px';
-
-      // Random twinkle timing (slower, more subtle)
       star.style.setProperty('--twinkle-duration', (Math.random() * 4 + 4) + 's');
       star.style.setProperty('--twinkle-delay', (Math.random() * 5) + 's');
-      // Parallax drift - varied distances/timing for layered depth
-      const driftX = (Math.random() * 24 - 12).toFixed(2);
-      const driftY = (Math.random() * 16 - 8).toFixed(2);
-      star.style.setProperty('--drift-x', `${driftX}px`);
-      star.style.setProperty('--drift-y', `${driftY}px`);
+      var driftX = (Math.random() * 24 - 12).toFixed(2);
+      var driftY = (Math.random() * 16 - 8).toFixed(2);
+      star.style.setProperty('--drift-x', driftX + 'px');
+      star.style.setProperty('--drift-y', driftY + 'px');
       star.style.setProperty('--drift-duration', (Math.random() * 12 + 18).toFixed(2) + 's');
       star.style.setProperty('--drift-delay', (Math.random() * -20).toFixed(2) + 's');
       return star;
     }
 
-    // Generate initial stars
-    function generateStars(count = initialStarCount) {
+    function generateStars(count) {
       if (!heroStars) return;
-      for (let i = 0; i < count; i++) {
+      for (var i = 0; i < (count || initialStarCount); i++) {
         heroStars.appendChild(createStar());
       }
     }
     generateStars();
 
-    // Gradually increase star count up to 3x over time
     function startStarGrowth() {
       if (!heroStars || starGrowthIntervalId) return;
-      starGrowthIntervalId = setInterval(() => {
-        const currentCount = heroStars.querySelectorAll('.star').length;
+      starGrowthIntervalId = setInterval(function () {
+        var currentCount = heroStars.querySelectorAll('.star').length;
         if (currentCount >= targetStarCount) {
           clearInterval(starGrowthIntervalId);
           starGrowthIntervalId = null;
           return;
         }
-
-        const starsToAdd = Math.min(starGrowthBatchSize, targetStarCount - currentCount);
-        for (let i = 0; i < starsToAdd; i++) {
-          const star = createStar();
+        var starsToAdd = Math.min(starGrowthBatchSize, targetStarCount - currentCount);
+        for (var i = 0; i < starsToAdd; i++) {
+          var star = createStar();
           heroStars.appendChild(star);
           if (starsAreVisible) {
-            setTimeout(() => {
-              star.classList.add('visible');
-            }, i * 180);
+            (function (s, delay) {
+              setTimeout(function () { s.classList.add('visible'); }, delay);
+            })(star, i * 180);
           }
         }
       }, starGrowthIntervalMs);
@@ -2260,68 +2157,49 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
 
     function drawConstellationTrace() {
       if (!heroStars || !constellationLayer || constellationLayer.childElementCount > 0) return;
-      const starNodes = Array.from(heroStars.querySelectorAll('.star.visible'));
+      var starNodes = Array.from(heroStars.querySelectorAll('.star.visible'));
       if (starNodes.length < 4) return;
-
-      const containerRect = heroStars.getBoundingClientRect();
-      const points = starNodes.map((star) => {
-        const r = star.getBoundingClientRect();
-        return {
-          x: r.left - containerRect.left + r.width / 2,
-          y: r.top - containerRect.top + r.height / 2
-        };
+      var containerRect = heroStars.getBoundingClientRect();
+      var points = starNodes.map(function (star) {
+        var r = star.getBoundingClientRect();
+        return { x: r.left - containerRect.left + r.width / 2, y: r.top - containerRect.top + r.height / 2 };
       });
-
-      const anchor = points[Math.floor(Math.random() * points.length)];
-      const nearby = points
-        .filter((p) => p !== anchor)
-        .map((p) => ({ p, d: Math.hypot(p.x - anchor.x, p.y - anchor.y) }))
-        .filter(({ d }) => d < 340)
-        .sort((a, b) => a.d - b.d)
+      var anchor = points[Math.floor(Math.random() * points.length)];
+      var nearby = points
+        .filter(function (p) { return p !== anchor; })
+        .map(function (p) { return { p: p, d: Math.hypot(p.x - anchor.x, p.y - anchor.y) }; })
+        .filter(function (o) { return o.d < 340; })
+        .sort(function (a, b) { return a.d - b.d; })
         .slice(0, 4)
-        .map(({ p }) => p);
-
+        .map(function (o) { return o.p; });
       if (nearby.length < 2) return;
-
-      const chain = [anchor, ...nearby];
-      const traceGroup = document.createElement('div');
-
-      for (let i = 0; i < chain.length - 1; i++) {
-        const a = chain[i];
-        const b = chain[i + 1];
-        const dx = b.x - a.x;
-        const dy = b.y - a.y;
-        const distance = Math.hypot(dx, dy);
+      var chain = [anchor].concat(nearby);
+      var traceGroup = document.createElement('div');
+      for (var i = 0; i < chain.length - 1; i++) {
+        var a = chain[i], b = chain[i + 1];
+        var dx = b.x - a.x, dy = b.y - a.y;
+        var distance = Math.hypot(dx, dy);
         if (distance < 20) continue;
-
-        const line = document.createElement('div');
+        var line = document.createElement('div');
         line.className = 'constellation-line';
-        line.style.left = `${a.x}px`;
-        line.style.top = `${a.y}px`;
-        line.style.width = `${distance}px`;
-        line.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
-        line.style.animationDelay = `${i * 0.12}s`;
+        line.style.left = a.x + 'px';
+        line.style.top = a.y + 'px';
+        line.style.width = distance + 'px';
+        line.style.transform = 'rotate(' + Math.atan2(dy, dx) + 'rad)';
+        line.style.animationDelay = (i * 0.12) + 's';
         traceGroup.appendChild(line);
       }
-
       if (traceGroup.childElementCount === 0) return;
       constellationLayer.appendChild(traceGroup);
-      setTimeout(() => {
-        traceGroup.remove();
-      }, 2200);
+      setTimeout(function () { traceGroup.remove(); }, 2200);
     }
 
-    function startConstellationTraces() {
-      if (constellationTimerStarted) return;
-      constellationTimerStarted = true;
-      setTimeout(() => {
-        drawConstellationTrace();
-        setInterval(drawConstellationTrace, 24000);
-      }, 20000);
-    }
-    
-    // Shooting star: first at 20s, then every 10s, random direction (always downward, never same twice in a row)
-    const directions = [
+    setTimeout(function () {
+      drawConstellationTrace();
+      setInterval(drawConstellationTrace, 24000);
+    }, 8000);
+
+    var directions = [
       { startLeft: '-40px', startTop: '-20px', endLeft: 'calc(100% + 40px)', endTop: 'calc(100% + 20px)', tail: '-45deg' },
       { startLeft: 'calc(100% + 40px)', startTop: '-20px', endLeft: '-40px', endTop: 'calc(100% + 20px)', tail: '135deg' },
       { startLeft: '-60px', startTop: '-15px', endLeft: 'calc(100% + 60px)', endTop: 'calc(100% + 30px)', tail: '-38deg' },
@@ -2331,16 +2209,14 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
       { startLeft: '38%', startTop: '-20px', endLeft: 'calc(70% + 40px)', endTop: 'calc(100% + 25px)', tail: '-32deg' },
       { startLeft: '62%', startTop: '-25px', endLeft: 'calc(30% - 40px)', endTop: 'calc(100% + 20px)', tail: '148deg' }
     ];
-    const starLastDirectionIndex = new WeakMap();
+    var lastDirMap = new WeakMap();
     function triggerShootingStar(starEl) {
       if (!starEl) return;
-      let idx;
-      const lastDirectionIndex = starLastDirectionIndex.get(starEl) ?? -1;
-      do {
-        idx = Math.floor(Math.random() * directions.length);
-      } while (idx === lastDirectionIndex && directions.length > 1);
-      starLastDirectionIndex.set(starEl, idx);
-      const d = directions[idx];
+      var last = lastDirMap.get(starEl);
+      var idx;
+      do { idx = Math.floor(Math.random() * directions.length); } while (idx === last && directions.length > 1);
+      lastDirMap.set(starEl, idx);
+      var d = directions[idx];
       starEl.style.setProperty('--start-left', d.startLeft);
       starEl.style.setProperty('--start-top', d.startTop);
       starEl.style.setProperty('--end-left', d.endLeft);
@@ -2349,234 +2225,59 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
       starEl.classList.remove('animate');
       void starEl.offsetWidth;
       starEl.classList.add('animate');
-      setTimeout(() => starEl.classList.remove('animate'), 1600);
+      setTimeout(function () { starEl.classList.remove('animate'); }, 1600);
     }
-    function startShootingStarStream(starEl, offsetMs = 0) {
+    function startShootingStarStream(starEl, offsetMs) {
       if (!starEl) return;
-      setTimeout(() => {
+      setTimeout(function () {
         triggerShootingStar(starEl);
-        setInterval(() => triggerShootingStar(starEl), 8000);
-      }, offsetMs);
+        setInterval(function () { triggerShootingStar(starEl); }, 8000);
+      }, offsetMs || 0);
     }
-    // Stage 1: current cadence starts around 20s
-    setTimeout(() => startShootingStarStream(shootingStars[0], 0), 20000);
-    // Stage 2: after ~18s more, add a second stream in the same 8s cycle
-    setTimeout(() => startShootingStarStream(shootingStars[1], 2600), 38000);
-    // Stage 3: ~28s later, add a third stream to further increase activity
-    setTimeout(() => startShootingStarStream(shootingStars[2], 5200), 66000);
-    setTimeout(() => {
-      heroMoon?.classList.add('visible');
-      if (heroLogo) {
-        heroLogo.classList.add('moon-shrink');
-      }
-      heroText?.classList.add('spotlight-on');
-    }, 10000);
+    setTimeout(function () { startShootingStarStream(shootingStars[0], 0); }, 6000);
+    setTimeout(function () { startShootingStarStream(shootingStars[1], 2600); }, 14000);
+    setTimeout(function () { startShootingStarStream(shootingStars[2], 5200); }, 24000);
+
+    setTimeout(function () {
+      if (heroMoon) heroMoon.classList.add('visible');
+      if (heroLogo) heroLogo.classList.add('moon-shrink');
+      if (heroText) heroText.classList.add('spotlight-on');
+    }, 3000);
+
     function triggerBroadcastPing() {
       if (!heroMark) return;
       heroMark.classList.add('broadcast-ping');
-      setTimeout(() => {
-        heroMark.classList.remove('broadcast-ping');
-      }, 4300);
+      setTimeout(function () { heroMark.classList.remove('broadcast-ping'); }, 4300);
     }
     function triggerHeadlineGlowPulse() {
       if (!heroHeadline || !heroText) return;
       heroText.classList.remove('headline-focus');
       void heroHeadline.offsetWidth;
       heroText.classList.add('headline-focus');
-      setTimeout(() => {
-        heroText.classList.remove('headline-focus');
-      }, 2300);
+      setTimeout(function () { heroText.classList.remove('headline-focus'); }, 2300);
     }
-    setTimeout(() => {
-      triggerBroadcastPing();
-      setInterval(triggerBroadcastPing, 10000);
-    }, 25000);
-    setTimeout(() => {
-      triggerHeadlineGlowPulse();
-      setInterval(triggerHeadlineGlowPulse, 20000);
-    }, 20000);
-    
-    // Staggered star reveal - stars appear a few at a time
+    setTimeout(function () { triggerBroadcastPing(); setInterval(triggerBroadcastPing, 10000); }, 8000);
+    setTimeout(function () { triggerHeadlineGlowPulse(); setInterval(triggerHeadlineGlowPulse, 20000); }, 10000);
+
     function revealStars() {
-      const stars = heroStars?.querySelectorAll('.star');
-      if (!stars || stars.length === 0) return;
-      
-      // Shuffle the stars array for random reveal order
-      const shuffled = Array.from(stars).sort(() => Math.random() - 0.5);
-      
-      // Reveal stars in small batches over ~3 seconds
-      const totalDuration = 3000; // 3 seconds to reveal all
-      const delayPerStar = totalDuration / shuffled.length;
-      
-      shuffled.forEach((star, index) => {
-        setTimeout(() => {
-          star.classList.add('visible');
-        }, index * delayPerStar);
+      var stars = heroStars ? heroStars.querySelectorAll('.star') : [];
+      if (!stars.length) return;
+      var shuffled = Array.from(stars).sort(function () { return Math.random() - 0.5; });
+      var delayPerStar = 3000 / shuffled.length;
+      shuffled.forEach(function (star, index) {
+        setTimeout(function () { star.classList.add('visible'); }, index * delayPerStar);
       });
       starsAreVisible = true;
     }
-    
-    function endSplashChrome() {
-      document.documentElement.classList.remove('buwatv-splash-playing');
-      document.body.classList.remove('buwatv-splash-playing');
-    }
 
-    function startSplashChrome() {
-      document.documentElement.classList.add('buwatv-splash-playing');
-      document.body.classList.add('buwatv-splash-playing');
-    }
+    if (heroContent) heroContent.classList.add('visible');
+    if (scrollIndicator) scrollIndicator.classList.add('visible');
+    setTimeout(revealStars, 1500);
+    setTimeout(startStarGrowth, 2000);
+  }
 
-    // Helper to reveal all hero elements
-    function revealHeroContent() {
-      endSplashChrome();
-      // Mark splash as seen now that the video has played (or been skipped)
-      if (!isDev) sessionStorage.setItem(splashKey, '1');
-      if (videoBg) videoBg.classList.add('hidden'); // Fade out video wrapper
-      if (heroOverlay) heroOverlay.classList.add('visible');
-      if (heroContent) heroContent.classList.add('visible');
-      if (scrollIndicator) scrollIndicator.classList.add('visible');
-      
-      // Stars appear 3 seconds after content, then stagger in
-      setTimeout(revealStars, 3000);
-      // Keep slowly adding stars until we reach 3x density
-      setTimeout(startStarGrowth, 3500);
-      // Briefly connect nearby stars every so often for a subtle "signal lock" effect
-      startConstellationTraces();
-    }
-    
-    // Skip splash if already seen this session or no videos
-    const splashKey = 'buwatv-splash-seen';
-    const splashSeen = isDev ? null : sessionStorage.getItem(splashKey);
-
-    if (videos.length === 0 || splashSeen) {
-      if (videoBg) videoBg.style.display = 'none';
-      revealHeroContent();
-      return;
-    }
-    
-    // Pick a random video
-    const randomIndex = Math.floor(Math.random() * videos.length);
-    const chosenVideo = videos[randomIndex];
-    
-    // Hide all videos, show only the chosen one
-    videos.forEach((v, i) => {
-      if (i === randomIndex) {
-        v.classList.add('active');
-      } else {
-        v.classList.remove('active');
-        v.style.display = 'none'; // Hide others completely
-      }
-    });
-
-    // Full-screen splash above header (matches main index intro behavior)
-    startSplashChrome();
-    
-    // Track if crossfade has started
-    let crossfadeStarted = false;
-    
-    function startCrossfade() {
-      if (crossfadeStarted) return; // Only trigger once
-      crossfadeStarted = true;
-
-      const fadeMs = Math.max(Math.round((Number(fadeDuration) || 0.75) * 1000), 450);
-      const contentDelayMs = Math.round(fadeMs * 0.35);
-
-      if (heroOverlay) {
-        heroOverlay.style.transition = `opacity ${Math.max(Math.round(fadeMs * 0.9), 350)}ms ease`;
-        heroOverlay.classList.add('visible');
-      }
-
-      // Fade video layer out first, then bring in text/content for a softer handoff.
-      setTimeout(() => {
-        if (videoBg) {
-          videoBg.style.transition = `opacity ${fadeMs}ms ease-out`;
-          videoBg.style.opacity = '0';
-        }
-        chosenVideo.style.transition = `opacity ${fadeMs}ms ease-out`;
-        chosenVideo.classList.remove('active');
-      }, 80);
-
-      setTimeout(() => {
-        revealHeroContent();
-      }, contentDelayMs);
-    }
-    
-    let crossfadeTimer = null;
-    let safetyTimeout = null;
-    let splashPlaybackStarted = false;
-    let splashFailed = false;
-
-    const onSplashVideoFailed = () => {
-      if (splashFailed) return;
-      splashFailed = true;
-      clearTimeout(crossfadeTimer);
-      clearTimeout(safetyTimeout);
-      if (videoBg) videoBg.style.opacity = '0';
-      revealHeroContent();
-    };
-
-    chosenVideo.addEventListener('error', onSplashVideoFailed);
-
-    let splashPlayingConfirmed = false;
-    chosenVideo.addEventListener(
-      'playing',
-      () => {
-        splashPlayingConfirmed = true;
-      },
-      { once: true }
-    );
-    window.setTimeout(() => {
-      if (!splashPlayingConfirmed && !splashFailed) {
-        onSplashVideoFailed();
-      }
-    }, 12000);
-
-    const scheduleCrossfadeTimers = () => {
-      if (crossfadeTimer || safetyTimeout) return;
-      // Start crossfade timing once playback is actually ready.
-      crossfadeTimer = setTimeout(() => {
-        startCrossfade();
-      }, crossfadeDelayMs);
-
-      // Safety timeout - ensure content shows after displayDuration + 8 seconds no matter what
-      safetyTimeout = setTimeout(() => {
-        console.log('Safety timeout: revealing content');
-        startCrossfade();
-      }, crossfadeDelayMs + 8000);
-    };
-    
-    const startSplashPlayback = () => {
-      if (splashPlaybackStarted) return;
-      splashPlaybackStarted = true;
-      scheduleCrossfadeTimers();
-      chosenVideo.play().catch((e) => {
-        // Autoplay blocked - show content immediately
-        console.log('Autoplay prevented:', e);
-        onSplashVideoFailed();
-      });
-    };
-
-    // Start playback as soon as enough data is available, with a short fallback.
-    if (chosenVideo.readyState >= 2) {
-      startSplashPlayback();
-    } else {
-      chosenVideo.addEventListener('loadeddata', startSplashPlayback, { once: true });
-      chosenVideo.addEventListener('canplay', startSplashPlayback, { once: true });
-      setTimeout(startSplashPlayback, 600);
-    }
-    
-    // If video ends before 10s (shorter video), trigger crossfade
-    chosenVideo.addEventListener('ended', () => {
-      clearTimeout(crossfadeTimer);
-      clearTimeout(safetyTimeout);
-      startCrossfade();
-    });
-  })();
-
-  document.addEventListener('astro:before-swap', () => {
-    document.documentElement.classList.remove('buwatv-splash-playing');
-    document.body.classList.remove('buwatv-splash-playing');
-  });
+  document.addEventListener('astro:page-load', initBuwaTvHeroEffects);
+  initBuwaTvHeroEffects();
 
   // Video Popup
   const videoBtn = document.getElementById('video-btn');
@@ -2805,102 +2506,54 @@ const heroFallbackGradient = 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #
     });
   }
 
-  // Scroll reveal - add .visible when section enters viewport
-  const revealSections = document.querySelectorAll('.reveal-section[data-reveal]');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { rootMargin: '0px 0px -80px 0px', threshold: 0 });
+  function initBuwaTvRevealSections() {
+    var revealSections = document.querySelectorAll('.reveal-section[data-reveal]');
+    if (!revealSections.length) return;
 
-  revealSections.forEach(section => revealObserver.observe(section));
-
-  // Stats count-up (Why Indoor section)
-  const statsGrid = document.querySelector('.stats-grid');
-  const statValues = document.querySelectorAll('.stat-value');
-  const animateStats = () => {
-    statValues.forEach((el) => {
-      if (el.dataset.animated === 'true') return;
-      const target = Number(el.getAttribute('data-target') || '0');
-      const duration = 1200;
-      const start = performance.now();
-      const step = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const value = Math.round(target * progress);
-        el.textContent = value.toString();
-        if (progress < 1) {
-          requestAnimationFrame(step);
-        } else {
-          el.dataset.animated = 'true';
-        }
-      };
-      requestAnimationFrame(step);
-    });
-  };
-
-  if (statsGrid) {
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          animateStats();
-          statsObserver.disconnect();
+          entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.4 });
-    statsObserver.observe(statsGrid);
+    }, { rootMargin: '0px 0px -80px 0px', threshold: 0 });
+
+    revealSections.forEach(function (section) {
+      revealObserver.observe(section);
+    });
+
+    var statsGrid = document.querySelector('.stats-grid');
+    var statValues = document.querySelectorAll('.stat-value');
+    var animateStats = function () {
+      statValues.forEach(function (el) {
+        if (el.dataset.animated === 'true') return;
+        var target = Number(el.getAttribute('data-target') || '0');
+        var duration = 1200;
+        var start = performance.now();
+        var step = function (now) {
+          var progress = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(target * progress).toString();
+          if (progress < 1) requestAnimationFrame(step);
+          else el.dataset.animated = 'true';
+        };
+        requestAnimationFrame(step);
+      });
+    };
+
+    if (statsGrid) {
+      var statsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateStats();
+            statsObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      statsObserver.observe(statsGrid);
+    }
   }
+
+  document.addEventListener('astro:page-load', initBuwaTvRevealSections);
+  initBuwaTvRevealSections();
 </script>
 
-<!-- ViewTransitions back-navigation safety: force content visible if splash already seen -->
-<script is:inline>
-document.addEventListener('astro:page-load', () => {
-  // Only applies on the BuWaTV index page
-  if (!document.getElementById('hero-content')) return;
-  
-  const splashSeen = sessionStorage.getItem('buwatv-splash-seen');
-  const heroContent = document.getElementById('hero-content');
-  
-  // If content is still hidden but splash was already seen, force reveal
-  if (splashSeen && heroContent && !heroContent.classList.contains('visible')) {
-    // Disable transitions for instant reveal on back-navigation
-    const els = {
-      heroContent: heroContent,
-      heroOverlay: document.querySelector('.hero-video-overlay'),
-      scrollIndicator: document.getElementById('scroll-indicator'),
-      videoBg: document.querySelector('.hero-video-bg')
-    };
-    
-    Object.values(els).forEach(el => {
-      if (el) el.style.transition = 'none';
-    });
-    
-    if (els.videoBg) els.videoBg.style.display = 'none';
-    if (els.heroOverlay) els.heroOverlay.classList.add('visible');
-    if (els.heroContent) els.heroContent.classList.add('visible');
-    if (els.scrollIndicator) els.scrollIndicator.classList.add('visible');
-    
-    // Also reveal any sections already in viewport
-    document.querySelectorAll('.reveal-section:not(.visible)').forEach(section => {
-      section.style.transition = 'none';
-      section.classList.add('visible');
-      section.querySelectorAll('.reveal-item').forEach(item => {
-        item.style.transition = 'none';
-      });
-    });
-    
-    // Restore transitions after a tick so future animations still work
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        Object.values(els).forEach(el => {
-          if (el) el.style.transition = '';
-        });
-        document.querySelectorAll('.reveal-section, .reveal-item').forEach(el => {
-          el.style.transition = '';
-        });
-      });
-    });
-  }
-});
-</script>
